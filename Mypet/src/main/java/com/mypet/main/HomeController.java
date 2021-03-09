@@ -1,4 +1,4 @@
-package com.test.mypet;
+package com.mypet.main;
 
 import java.text.DateFormat;
 import java.util.Date;
