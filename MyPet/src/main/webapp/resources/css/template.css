@@ -34,8 +34,18 @@
     }
 
 /* 건드릴까 말까.. */
-    #pheadercontent2,#pheadercontent3{
+    /* #pheadercontent2,#pheadercontent3{
         
+    }
+     */
+    #pheadercontent2 {
+    	background-image: url(/mypet/resources/images/logo.png);
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+    
+    #pheadercontent3 {
+    	margin-left: 360px;
     }
 
     #contentnav {
@@ -45,6 +55,17 @@
         padding: 20px 20px;
     }
 
+	.login {
+		border: 2px solid #301B00;
+	    position: absolute;
+	    top: 140px;
+	    left: 1470px;
+	    height: 50px;
+	    background-color: transparent;
+	    font-size: 16px;
+	    color: #301B00;
+	    
+	}
 
     /* 좌측 nav */
     .nav1{
@@ -90,6 +111,12 @@
 
     /* 상단 nav2 부분 입니다. 위치 조정하세요*/
     .menubar2{
+    	width: 50px;
+	    height: 50px;
+	    border: 1px solid;
+	    position: absolute;
+	    top: 140px;
+	    left: 1410px;
 
     }
 
