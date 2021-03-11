@@ -4,7 +4,7 @@
 
 <tiles-definitions>
 
-	<definition name="*" template="/WEB-INF/views/template/template.jsp">
+	<definition name="*.*" template="/WEB-INF/views/{1}/{2}.jsp">
 		<!-- asset -->
 		<put-attribute name="asset" value="/WEB-INF/views/inc/asset.jsp"></put-attribute>
 		<!-- header -->
