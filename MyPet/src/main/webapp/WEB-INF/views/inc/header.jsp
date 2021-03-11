@@ -19,6 +19,6 @@
 			</label> <input type="button" value='로그인' class="btn login">
 			</span>
 		</div>
-	<!-- </div> -->
+	</div>
 </header>
 <!-- ########################## header 끝 ########################## -->
