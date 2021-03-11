@@ -5,30 +5,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyPet :: 입양하기</title>
+    <title>Document</title>
+
 	<tiles:insertAttribute name="asset"></tiles:insertAttribute>
-	
-	<style>
-	
-	/* content */
-    #content{
-        width: 1300px;
-        margin: 0px auto;
-        margin-top: 210px;
-        padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
-       
-        /* margin-right: px; */
-    }
-	
-	</style>
+
 </head>
 <body>
- <!-- ########################## header 시작 ########################## -->
+
+    <!-- ########################## header 시작 ########################## -->
     <tiles:insertAttribute name="header"></tiles:insertAttribute>
     <!-- ########################## header 끝 ########################## -->
 
@@ -41,13 +28,14 @@
     <!-- ########################## 상단 nav 끝 ########################## -->
 
 
-    <div id="content">
-    	여기!
-    </div>
+    <!-- ########################## content 시작 ##########################-->
+    <tiles:insertAttribute name="content"></tiles:insertAttribute>
+    <!-- ########################## content 끝 ##########################-->
 
 
     <!-- ########################## footer 시작 ##########################-->
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
     <!-- ########################## footer 끝 ##########################-->
+
 </body>
 </html>
