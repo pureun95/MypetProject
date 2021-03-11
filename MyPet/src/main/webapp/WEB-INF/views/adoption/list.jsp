@@ -12,7 +12,8 @@
 	<tiles:insertAttribute name="asset"></tiles:insertAttribute>
 	
 	<style>
-		/* content */
+	
+	/* content */
     #content{
         width: 1300px;
         margin: 0px auto;
