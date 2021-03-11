@@ -14,7 +14,7 @@
 		<div id="pheadercontent2" class="pheadercontent"></div>
 		<div id="pheadercontent3" class="pheadercontent">
 			<span class="head_list2"> 
-			<label for="plist_bar2" class="menubar2">sss
+			<label for="plist_bar2" class="menubar2">
 				<input type="checkbox" id="plist_bar2" name="plist_bar2" style="display: none;">
 			</label> <input type="button" value='로그인' class="btn login">
 			</span>
