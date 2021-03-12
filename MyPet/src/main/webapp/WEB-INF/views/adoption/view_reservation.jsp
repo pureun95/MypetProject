@@ -27,7 +27,7 @@
 .hd1 {
 	font-size: 24px;
 	padding-left : 40px;
-	margin-top: 100px;
+	margin-top: 150px;
 	margin-bottom: 100px;
 	text-align: center;
 }
@@ -123,6 +123,18 @@
 /* 동의서 관련 CSS 끝 */
 
 
+.btnself {
+	font-family: 'Jal_Onuel';
+	background-color: #b27208;
+	color: white;
+} 
+
+.btnself:hover {
+	background-color: #b27208;
+	color: white;
+}
+
+
 </style>
 
 <!-- 바디역할 div 시작 -->
@@ -135,7 +147,6 @@
 	</div>
 	
 	<div class="page-header hd1">
-		<span class="glyphicon glyphicon-ok-sign"></span>
 		입양예약신청서 확인
 		<small class="hd2">
 			<span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 10px;"></span>
@@ -237,8 +248,8 @@
 	
 	
 	<div id="btnwrap" style="text-align: center; margin-bottom: 100px;">
-		<button id="btnsend" type="button" class="btn btn-warning" disabled onclick="location.href='/mypet/mypage/reservationlist.action';">전송</button>
-		<button type="button" class="btn btn-default">취소</button>
+		<button id="btnsend" type="button" class="btn btnself" disabled onclick="location.href='/mypet/adoption/sendreservation.action';">전송</button>
+		<button type="button" class="btn btnself">취소</button>
 	</div>
 	
 	

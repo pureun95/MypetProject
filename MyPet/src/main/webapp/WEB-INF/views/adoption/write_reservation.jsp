@@ -24,11 +24,12 @@
 
 /* 머릿글 관련 css 시작 */
 
-#hd1 {
+#hd1 {	
 	font-size: 24px;
 	padding-left : 40px;
-	margin-top: 100px;
+	margin-top: 150px;
 	margin-bottom: 100px;
+	text-align: center;
 }
 #hd1 > span {
 	padding-right: 20px;
@@ -68,12 +69,23 @@
 
 #hd2 {
 	font-size: 16px; 
-	margin-left: 100px; 
-	float:right; 
-	color: #F9820F
+	color: #F9820F;
+	display: block;
 }
 
 /* 입양예약신청서 관련 css 끝 */
+
+.btnself {
+	font-family: 'Jal_Onuel';
+	background-color: #b27208;
+	color: white;
+} 
+
+.btnself:hover {
+	background-color: #b27208;
+	color: white;
+}
+
 
 </style>
 
@@ -83,11 +95,10 @@
 	<!-- form 태그 시작 -->
 	<!-- <form method="POST" action=""> -->
 	<div id="imgbox" style="background-image:url(/mypet/resources/images/intro/1.jpg); margin-bottom: 100px;">
-	<div id="filter"></div>
+		<div id="filter"></div>
 	</div>
 	
 	<div class="page-header" id="hd1">
-		<span class="glyphicon glyphicon-ok-sign"></span>
 		입양예약신청서 작성
 		<small id="hd2">
 			<span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 10px;"></span>
@@ -221,8 +232,8 @@
 		</table>
 		
 		<div id="btnwrap" style="text-align: center; margin-bottom: 100px;">
-			<button type="button" class="btn btn-warning" onclick="location.href='/mypet/adoption/viewreservation.action';">신청서 등록</button>
-			<button type="button" class="btn btn-default">취소</button>
+			<button type="button" class="btn btnself" onclick="location.href='/mypet/adoption/viewreservation.action';">신청서 등록</button>
+			<button type="button" class="btn btnself">취소</button>
 		</div>
 	
 	</div>

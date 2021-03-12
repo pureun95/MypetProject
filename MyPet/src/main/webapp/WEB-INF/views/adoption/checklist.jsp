@@ -74,11 +74,18 @@
 #hd1 {
 	font-size: 24px;
 	padding-left : 40px;
-	margin-top: 100px;
+	margin-top: 150px;
 	margin-bottom: 100px;
+	text-align: center;
 }
 #hd1 > span {
 	padding-right: 20px;
+}
+
+#h2 {
+	font-size: 16px; 
+	color: #F9820F;
+	display: block;
 }
 
 /* 머릿글 관련 css 끝 */
@@ -104,6 +111,19 @@
 }
 
 
+.btnself {
+	font-family: 'Jal_Onuel';
+	background-color: #b27208;
+	color: white;
+} 
+
+.btnself:hover {
+	background-color: #b27208;
+	color: white;
+}
+
+
+
 </style>
 
 <!-- 바디역할 div 시작 -->
@@ -119,7 +139,7 @@
 	<div class="page-header" id="hd1">
 	<span class="glyphicon glyphicon-ok-sign"></span>
 	입양 전 체크리스트
-	<small style="font-size: 16px; margin-left: 100px; float:right; color: #F9820F"><span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 10px;"></span>체크리스트를 모두 체크하셔야 다음단계로 이동이 가능합니다.</small>
+	<small id="h2"><span class="glyphicon glyphicon-exclamation-sign" style="margin-right: 10px;"></span>체크리스트를 모두 체크하셔야 다음단계로 이동이 가능합니다.</small>
 	</div>
 	
 	<div class="infobox">
@@ -218,7 +238,7 @@
 	
 	<div id="btnwrap" style="padding-bottom: 100px; text-align: center;">
 		<!-- <button type="submit" class="btn btn-warning">예약 신청하기</button> -->
-		<button type="button" class="btn btn-warning" id="btn1">예약 신청하기</button>
+		<button type="button" class="btn btnself" id="btn1">예약 신청하기</button>
 		<div style="clear:both;"></div>
 	</div>
 	
