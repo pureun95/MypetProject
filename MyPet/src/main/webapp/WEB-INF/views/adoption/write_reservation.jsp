@@ -221,7 +221,7 @@
 		</table>
 		
 		<div id="btnwrap" style="text-align: center; margin-bottom: 100px;">
-			<button type="button" class="btn btn-warning">신청서 등록</button>
+			<button type="button" class="btn btn-warning" onclick="location.href='/mypet/adoption/viewreservation.action';">신청서 등록</button>
 			<button type="button" class="btn btn-default">취소</button>
 		</div>
 	
