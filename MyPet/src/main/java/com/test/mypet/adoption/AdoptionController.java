@@ -40,4 +40,17 @@ public class AdoptionController {
 		return "adoption.del";		
 	}
 
+	
+	//http://localhost:8090/mypet/adoption/checklist.action
+	@RequestMapping(value="/adoption/checklist.action")
+	public String checklist() {
+		return "adoption/checklist";		
+	}
+	
+	//http://localhost:8090/mypet/adoption/checklist.action
+	@RequestMapping(value="/adoption/writereservation.action")
+	public String writeReservation() {
+		return "adoption/write_reservation";		
+	}
+
 }
