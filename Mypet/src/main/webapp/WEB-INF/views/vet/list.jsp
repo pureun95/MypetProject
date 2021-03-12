@@ -1,17 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>    
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MyPet::동물병원</title>
-
-	<tiles:insertAttribute name="asset"></tiles:insertAttribute>
-
+<title>MyPet::동물병원</title>
 <style>
 
 	 /* 잘 풀리는 오늘 */
@@ -28,9 +17,8 @@
 	    font-family: 'NanumSquare', sans-serif !important;
 	}
 	
-	
-	
-	#content{
+    /* content */
+    #content{
         width: 1300px;
         margin: 0px auto;
         margin-top: 210px;
@@ -46,14 +34,29 @@
         height: auto;
     }
 
-----------------------------------------------------------------
-    /* 페이지 타이틀 */
-    
-    /* #content > h1 {
-    	text-align: center;
-    	font-family: 'Jal_Onuel';
+/*     #contentnav {
+        border: 1px solid black;
+        width: 1200px;
+        height: 100px;
+        padding: 20px 20px;
     } */
-    
+
+   
+
+
+----------------------------------------------------------------
+     /* 페이지타이틀 */
+    .board-title{
+    	font-size : 30px;
+    	text-align : center;
+    	display: block;
+    	margin-top: 130px;
+    	margin-bottom: 50px;
+    	font-family: 'Jal_Onuel';
+    	/* font-family: 'JSDongkang-Regular'; */
+    	/* font-family: 'JSDongkang-Bold'; */
+    	color: #301b01;
+    }
     
     /* 검색 */
     
@@ -96,10 +99,12 @@
 		text-decoration: none;
 	}
 	
+	
 	/* 지도 */
 	#map {
-		width: 100%;
+		width: 90%;
 		height: 450px;
+		margin : 10px auto;
 	}
 	
 	
@@ -154,27 +159,12 @@
 	
 
 </style>
-</head>
-<body>
-
-    <!-- ########################## header 시작 ########################## -->
-    <tiles:insertAttribute name="header"></tiles:insertAttribute>
-    <!-- ########################## header 끝 ########################## -->
-
-    <!-- ########################## 좌측 nav 시작 ########################## -->
-	<tiles:insertAttribute name="nav1"></tiles:insertAttribute>
-    <!-- ########################## 좌측 nav 끝 ########################## -->
-    
-    <!-- ########################## 상단 nav 시작 ##########################-->
-	<tiles:insertAttribute name="nav2"></tiles:insertAttribute>
-    <!-- ########################## 상단 nav 끝 ########################## -->
-
 
 	 <div id="content">
-		<div id="contentnav">동물병원 / 보호소</div>
-		<h1 class="page-header">동물병원</h1>
+		<!-- <div id="contentnav">동물병원 / 보호소</div> -->
+		<div class="board-title">동물병원</div>
 
-		<!-- <div class="selectsearch"> -->
+		<div class="selectsearch">
 			<div class="sel">
 				<select class="location">
 					<option>서울특별시</option>
@@ -188,8 +178,9 @@
 			<div class="search">
 	           	<input type="text" class="form-control" placeholder="병원이름" id="search" name="search" required value="${search}">
 	           	<input type="button" class="btns" value="검색" id="serch" onclick="$('#searchForm').submit();">
+	           	<input type="button" class="btns" value="등록" id="add" onclick="location.href='/mypet/shelter/add.action'">        
 	        </div>
-		<!-- </div> -->
+		</div>
 		
 		<div id="map"></div>
 		<table class="table table-condan">
@@ -201,7 +192,7 @@
 			</tr>
 			<tr class="list">
 				<td>1</td>
-				<td class="name">동물병원이름</td>
+				<td class="name" onclick="location.href='/mypet/vet/view.action'">동물병원이름</td>
 				<td>서울시 강남구 역삼동</td>
 				<td>0507-1234-5678</td>
 			</tr>
@@ -264,11 +255,3 @@
 
 		var map = new kakao.maps.Map(container, options); //객체 생성 -> 지도 출력
 	</script>
-
-
-    <!-- ########################## footer 시작 ##########################-->
-	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-    <!-- ########################## footer 끝 ##########################-->
-
-</body>
-</html>
