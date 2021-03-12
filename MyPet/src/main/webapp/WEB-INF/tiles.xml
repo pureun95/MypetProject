@@ -6,7 +6,7 @@
 
 
 
-	<definition name="*.*" template="/WEB-INF/views/{1}/{2}.jsp">
+	<definition name="*.*" template="/WEB-INF/views/layout/layout.jsp">
 		<!-- asset -->
 		<put-attribute name="asset"
 			value="/WEB-INF/views/inc/asset.jsp"></put-attribute>
@@ -24,7 +24,7 @@
 			value="/WEB-INF/views/inc/footer.jsp"></put-attribute>
 		<!-- content -->
 		<put-attribute name="content"
-			value="/WEB-INF/views/inc/content.jsp"></put-attribute>
+			value="/WEB-INF/views/{1}/{2}.jsp"></put-attribute>
 	</definition>
 
 
