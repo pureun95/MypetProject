@@ -15,27 +15,17 @@
 </head>
 <body>
 
-    <!-- ########################## header 시작 ########################## -->
     <tiles:insertAttribute name="header"></tiles:insertAttribute>
-    <!-- ########################## header 끝 ########################## -->
 
-    <!-- ########################## 좌측 nav 시작 ########################## -->
 	<tiles:insertAttribute name="nav1"></tiles:insertAttribute>
-    <!-- ########################## 좌측 nav 끝 ########################## -->
     
-    <!-- ########################## 상단 nav 시작 ##########################-->
 	<tiles:insertAttribute name="nav2"></tiles:insertAttribute>
-    <!-- ########################## 상단 nav 끝 ########################## -->
 
 
-    <!-- ########################## content 시작 ##########################-->
     <tiles:insertAttribute name="content"></tiles:insertAttribute>
-    <!-- ########################## content 끝 ##########################-->
 
 
-    <!-- ########################## footer 시작 ##########################-->
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
-    <!-- ########################## footer 끝 ##########################-->
 
 </body>
 </html>
