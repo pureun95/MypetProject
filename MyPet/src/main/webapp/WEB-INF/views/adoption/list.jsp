@@ -112,7 +112,7 @@
     .list {
     	border: 1px solid black;
     	width: 1200px;
-    	height: 1500px;
+    	height: 1700px;
     	
     }
     
@@ -142,6 +142,7 @@
     	/* border: 1px solid black; */
     	width: 280px;
     	height: 280px;
+    	cursor: pointer;
     	
     }
     
@@ -181,12 +182,54 @@
     	margin-top: -45px;
     	margin-left: 245px;
     	background-color: transparent;
+    	cursor: pointer;
     	/* float: left; */
 	}
 	
 	.like:hover {
 		background-image: url(/mypet/resources/images/heart.png);
 	}
+	
+	
+	/* 페이지바 */
+
+    .pagination {
+        width: 700px;
+        height: 40px;
+        margin-top: 60px;
+    }
+    .pagination> li > a {
+		border-color : #ccc;
+		color: #301b01;
+        font-size: 16px;
+        float: left;
+	}
+
+    .pagination>li>a:hover {
+        background-color: #b27208;
+        color: white;
+    }
+
+    
+    /* 검색창 & 버튼 박스 */
+    .pageSearch {
+        /* border: 1px solid black; */
+        width: 1200px;
+        height: 130px;
+        margin-top: 50px;
+        padding: 0px 360px;
+    }
+
+    /* 게시판 검색창 공통 클래스 */
+    .search-text {
+        width: 340px;
+        float: left;
+        margin-right: 20px;
+        font-size: 16px;
+    }
+    
+  
+    
 </style>
 
 
@@ -207,7 +250,7 @@
     		<label for="etc">기타동물</label>    		
     	</div>
     	
-    	<input type="text" class="form-control" value="검색 키워드를 입력해주세요.">
+    	<input type="text" class="form-control" value="검색 키워드를 입력해주세요." onfocus="this.value=''">
     	<input type="button" class="btn" value="검색">    
     </div>
     
@@ -281,8 +324,36 @@
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
     	</div>
+    
+    
+    <!-- 페이지바 -->
+    <div class="pageSearch">
+        <!-- 페이지바 -->
+          <ul class="pagination">
+              <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
+              <li><a>1</a></li>
+              <li><a>2</a></li>
+              <li><a>3</a></li>
+              <li><a>4</a></li>
+              <li><a>5</a></li>
+              <li><a>6</a></li>
+              <li><a>7</a></li>
+              <li><a>8</a></li>
+              <li><a>9</a></li>
+              <li><a>10</a></li>
+              <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
+           </ul>       
+     </div>
+    
+    
+    
+    
     </div>
     
+    
+    
+    
+        
     
     
    <!-- content -->

@@ -18,7 +18,7 @@
 
 /* 원본 */
  
-$(".head_list").click(function(){
+/* $(".head_list").click(function(){
 
     if($("#plist_bar1").prop("checked")){     
         $("html").scrollTop(0);
@@ -29,6 +29,41 @@ $(".head_list").click(function(){
         $("body").css("overflow-y","scroll");
     }
 });
+ */
+ 
+ 
+ $(".head_list").click(function() {
+     var height = $(document).scrollTop();
+     
+     if ( height > 130) {
+        if ($("#plist_bar1").prop("checked")) {
 
+           $(".nav1").css("left", "0%").css("z-index", "99").css("top",height+10+"px");
+
+        } else {
+           $(".nav1").css("left", "-100%");
+        }
+     }else {
+        
+        if ($("#plist_bar1").prop("checked")) {
+
+           $(".nav1").css("left", "0%").css("z-index", "99").css("top","150px");
+
+        } else {
+           $(".nav1").css("left", "-100%");
+        }
+     }
+  });
+
+  
+  $(window).scroll(function() {
+     var height = $(document).scrollTop();
+     console.log(height);
+     
+     $("#plist_bar1").prop("checked",false);
+     $(".nav1").css("background-color", "transparent");
+     $(".nav1").css("left", "-100%");
+     
+  });
 
 </script>
