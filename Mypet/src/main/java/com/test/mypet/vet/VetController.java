@@ -10,5 +10,15 @@ public class VetController {
 	public String list() {
 		return "vet.list";
 	}
+	
+	@RequestMapping(value="/vet/view.action")
+	public String view() {
+		return "vet.view";
+	}
+	
+	@RequestMapping(value="/vet/add.action")
+	public String add() {
+		return "vet.add";
+	}
 
 }
