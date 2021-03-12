@@ -146,6 +146,8 @@
         background-color: #b27208;
         color: white;
         float: left;
+        margin-right: 10px;
+        font-family: 'Jal_Onuel';
     }
 
     .common-btn:hover {
@@ -181,7 +183,7 @@
     }
 
     .board-btn > input:nth-child(1) {
-        margin-left: 1125px;
+        margin-left: 1060px;
     }
 
 </style>
@@ -189,7 +191,8 @@
 
     <div id="content">
         <span class="board-name">공지사항</span>
-        <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기"></div>
+        <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기">
+        <input type="button" class="btn common-btn" value="삭제"></div>
         <table class="table table-condensed">
             <tr class="headtr">
                 <th class="firsttd">번호</th>

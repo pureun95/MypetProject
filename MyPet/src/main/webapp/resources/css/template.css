@@ -1,7 +1,8 @@
 @charset "UTF-8";
 /*아이콘 경로 수정하세요!! menunav? 참고하세요*/
     /* header */
-    #header{
+    
+    header{
         position: fixed;
         top: 0;
         left: 0;
@@ -9,7 +10,13 @@
         z-index: 10;
         height: 200px;
         background-color: #F6DA42;
+        /* background-color: white; */
+        /* border-bottom: 2px solid #f6da42; */
         padding: 20px 100px;
+    }
+    
+    .header-scroll {
+    	height: 60px;
     }
 
     .pheadercontent {
@@ -38,13 +45,14 @@
         
     }
      */
-    #pheadercontent2 {
+     
+    .pheadercontent2 {
     	background-image: url(/mypet/resources/images/logo.png);
         background-size: cover;
         background-position: 50% 50%;
     }
     
-    #pheadercontent3 {
+    .pheadercontent3 {
     	margin-left: 360px;
     }
 
@@ -62,18 +70,22 @@
 	    top: 140px;
 	    left: 1530px;
 	    height: 40px;
-	    background-color: transparent;
+	    font-family: 'Jal_Onuel';
+	    background-color: #301B00;
 	    font-size: 16px;
-	    color: #301B00;
-	    font-family: 'JSDongkang-Bold';
+	    color: white;
 	}
 	
-	.login:hover {
-		border: 2px solid #301B00;
-		background-color: #301B00;
-		color: white;
+	.login-scroll {
+		background-color: transparent;
+		position: absolute;
+		top: 14px;
+		left: 1530px;
+		border: 0px;
+		color: #301B00;	
 	}
-
+	
+	
     /* 좌측 nav */
     .nav1{
         position: absolute;
@@ -114,10 +126,16 @@
         background-size: cover;
         background-position: 50% 50%;
     }
-
+	
+	.menubar-scroll {
+		position: absolute;
+		top: 19px;
+		width: 20px;
+		height: 20px;
+	}
 
     /* 상단 nav2 부분 입니다. 위치 조정하세요*/
-    .menubar2{
+    .menubar2 {
     	width: 40px;
 	    height: 40px;
 	   /*  border: 1px solid; */
@@ -128,6 +146,14 @@
         background-size: cover;
         background-position: 50% 50%;
 
+    }
+    
+    .menubar2-scroll {
+    	position: absolute;
+    	top: 18px; 
+    	left: 1500px;
+    	width: 25px;
+    	height: 25px;
     }
 
     /* 상단 nav */
