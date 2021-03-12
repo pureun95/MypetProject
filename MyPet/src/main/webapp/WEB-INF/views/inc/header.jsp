@@ -24,17 +24,16 @@
 			</label>
 			<input type="button" value='로그인' class="btn login">
 			</span>
-		</div>	
-			
-	</div>
-	
-	
-	<div class="nav2">
-	    	<div class="menu">
+		</div>
+		
+		
+		
+		 <div class="nav2">
+		    <div class="menu">
 				<div class="memu-img" id="img-first"></div>
 				<span>메뉴1</span>
 			</div>               
-	        <div class="menu">
+		       <div class="menu">
 				<div class="memu-img" id="img-sec"></div>
 				<span>메뉴2</span>
 			</div> 
@@ -50,9 +49,17 @@
 				<div class="memu-img" id="img-fifth"></div>
 				<span>메뉴5</span>
 			</div> 
-	    </div>
-	    
+	 </div>	
+	</div>
+	
+	
+	
+	
+	
+	
 </header>
+
+
 
  
 
@@ -65,15 +72,27 @@ $(window).scroll(function() {
         $(".menubar").addClass("menubar-scroll");
         $(".menubar2").addClass("menubar2-scroll");
         $(".login").addClass("login-scroll");
+        $(".nav2").addClass("nav2-scroll");
         
     } else {
         $("header").removeClass("header-scroll");
         $(".pheadercontent2").css("background-image", "url(/mypet/resources/images/logo.png)");
         $(".menubar").removeClass("menubar-scroll");
         $(".menubar2").removeClass("menubar2-scroll");
-        $(".login").removeClass("login-scroll")
+        $(".login").removeClass("login-scroll");
+        $(".nav2").removeClass("nav2-scroll");
     }
 });
+
+
+	$("#plist_bar2").click(function() {
+	console.log(123);
+	if ($("#plist_bar2").prop("checked")) {
+		$(".nav2").css("opacity", 1).css("z-index", "99");
+	} else {
+		$(".nav2").css("opacity", 0).css("z-index", "-1");
+	}
+	});
 
 </script>
 <!-- ########################## header 끝 ########################## -->
