@@ -147,11 +147,17 @@
 	    z-index: -1;
 	    opacity: 0;
 	    font-family: 'JSDongkang-Regular';
+	    text-align: center;
+    }
+    
+    .menu > span {
+    	display: block;
+    	margin-top: -8px;
     }
 
     
 	.menu {
-		border: 1px solid black;
+		/* border: 1px solid black; */
 		width: 60px;
 		height: 80px; 
 		float: left;
@@ -166,7 +172,7 @@
 	}
 
     .memu-img {
-        border: 1px solid black; 
+       /*  border: 1px solid black;  */
         background-size: cover;
         background-position: 50% 50%;
         width: 50px;
@@ -176,45 +182,26 @@
     }
 
     #img-first {
-        background-image: url(../image/notice.png);
+        background-image: url(../images/info.png);
     }
 
-    #img-second {
-        background-image: url(../image/activity.png);
+    #img-sec {
+        background-image: url(../images/like.png);
     }
 
     #img-third {
-        background-image: url(../image/heart.png);
+        background-image: url(../images/shopping.png);
     }
 
     #img-fourth {
-        background-image: url(../image/review.png);
+        background-image: url(../images/volunteer.png);
     }
 
-    #img-fifth {
-        background-image: url(../image/location.png);
-    }
+   /*  #img-fifth {
+        background-image: url(../images/location.png);
+    } */
 
-    #img-sixth {
-        background-image: url(../image/volunteer.png);
-    }
-
-    #img-seventh {
-        background-image: url(../image/shopping.png);
-    }
-
-    #img-eightth {
-        background-image: url(../image/tip.png);
-    }
-
-    #img-nineth {
-        background-image: url(../image/chart.png);
-    }
-
-    #img-ten {
-        background-image: url(../image/mypage.png);
-    } 
-    
+   
 
     /* content */
     #content{
