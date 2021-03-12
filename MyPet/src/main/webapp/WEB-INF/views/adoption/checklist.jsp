@@ -2,13 +2,21 @@
     pageEncoding="UTF-8"%>
 
 <style>
+
+/* 폰트 임시 */
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+.nanumsquare {
+    font-family: 'NanumSquare', sans-serif !important;
+}
+
+
 /* 체크리스트 관련 css 시작*/
 #clistcontainer {
 	/* border: 1px solid black; */
+	font-family: 'NanumSquare', sans-serif !important;
 	width : 800px;
 	margin: auto;
 	font-size: 16px;
-	font-family: 'JSDongkang-Bold';
 	color: #301B01;
 }
 #flist {
@@ -99,7 +107,7 @@
 </style>
 
 <!-- 바디역할 div 시작 -->
-<div style="width: 1300px; /* border: 5px solid green; */ margin: auto; padding-top: 300px;">
+<div style="width: 1300px; margin: auto; padding-top: 300px;">
 	
 	<!-- form 태그 시작 -->
 	<!-- <form method="POST" action=""> -->
