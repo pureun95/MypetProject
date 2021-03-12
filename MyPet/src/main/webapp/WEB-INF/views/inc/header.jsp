@@ -31,23 +31,23 @@
 		 <div class="nav2">
 		    <div class="menu">
 				<div class="memu-img" id="img-first"></div>
-				<span>메뉴1</span>
+				<span>회원정보</span>
 			</div>               
 		       <div class="menu">
 				<div class="memu-img" id="img-sec"></div>
-				<span>메뉴2</span>
+				<span>찜하기</span>
 			</div> 
 			<div class="menu">
 				<div class="memu-img" id="img-third"></div>
-				<span>메뉴3</span>
+				<span>주문내역</span>
 			</div> 
 			<div class="menu">
 				<div class="memu-img" id="img-fourth"></div>
-				<span>메뉴4</span>
+				<span>봉사활동</span>
 			</div> 
 			<div class="menu">
 				<div class="memu-img" id="img-fifth"></div>
-				<span>메뉴5</span>
+				<span>추가분</span>
 			</div> 
 	 </div>	
 	</div>
