@@ -15,16 +15,46 @@
 			</label>
 			</span>
 		</div>
+		
 		<div class="pheadercontent pheadercontent2"></div>
 		<div class="pheadercontent pheadercontent3">
 			<span class="head_list2"> 
 			<label for="plist_bar2" class="menubar2">
 				<input type="checkbox" id="plist_bar2" name="plist_bar2" style="display: none;">
-			</label><input type="button" value='로그인' class="btn login">
+			</label>
+			<input type="button" value='로그인' class="btn login">
 			</span>
-		</div>
+		</div>	
+			
 	</div>
+	
+	
+	<div class="nav2">
+	    	<div class="menu">
+				<div class="memu-img" id="img-first"></div>
+				<span>메뉴1</span>
+			</div>               
+	        <div class="menu">
+				<div class="memu-img" id="img-sec"></div>
+				<span>메뉴2</span>
+			</div> 
+			<div class="menu">
+				<div class="memu-img" id="img-third"></div>
+				<span>메뉴3</span>
+			</div> 
+			<div class="menu">
+				<div class="memu-img" id="img-fourth"></div>
+				<span>메뉴4</span>
+			</div> 
+			<div class="menu">
+				<div class="memu-img" id="img-fifth"></div>
+				<span>메뉴5</span>
+			</div> 
+	    </div>
+	    
 </header>
+
+ 
 
 <script>
 
