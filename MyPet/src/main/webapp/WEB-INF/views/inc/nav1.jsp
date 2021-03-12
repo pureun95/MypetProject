@@ -16,11 +16,12 @@
 
 <script>
 
+/* 원본 */
+ 
 $(".head_list").click(function(){
 
     if($("#plist_bar1").prop("checked")){     
         $("html").scrollTop(0);
-
         $(".nav1").css("left","0%").css("z-index","99").css("opacity","1").css("backgound","white");
         $("body").css("overflow-y","hidden");
     } else{
@@ -28,4 +29,6 @@ $(".head_list").click(function(){
         $("body").css("overflow-y","scroll");
     }
 });
+
+
 </script>
