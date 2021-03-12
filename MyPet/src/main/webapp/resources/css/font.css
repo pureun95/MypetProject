@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css">
+.nanumsquare {
+    font-family: 'NanumSquare', sans-serif !important;
+}
+
+
  /* 잘 풀리는 오늘 */
     @font-face {
     font-family: 'Jal_Onuel';
@@ -8,22 +14,8 @@
     font-style: normal;
     }
 
-    /* 정선동강체 */
-    @font-face {
-    font-family: 'JSDongkang-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-RegularA1.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    }
-
-    /* 정선동강체 볼드 */
-    @font-face {
-    font-family: 'JSDongkang-Bold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/JSDongkang-BoldA1.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-    }
-
+   	
+   	
     /* 마포금빛나루 */
     @font-face {
     font-family: 'MapoGoldenPier';
