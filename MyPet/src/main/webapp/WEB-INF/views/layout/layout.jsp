@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <!-- 타이들은 각자의 페이지에서 넣기! -->
+    <!-- <title>Document</title> -->
 
 	<tiles:insertAttribute name="asset"></tiles:insertAttribute>
 
@@ -21,10 +22,8 @@
     
 	<tiles:insertAttribute name="nav2"></tiles:insertAttribute>
 
-
     <tiles:insertAttribute name="content"></tiles:insertAttribute>
-
-
+    
 	<tiles:insertAttribute name="footer"></tiles:insertAttribute>
 
 </body>
