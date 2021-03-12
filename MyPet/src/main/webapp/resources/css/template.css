@@ -138,7 +138,7 @@
     .menubar2 {
     	width: 40px;
 	    height: 40px;
-	   	border: 1px solid;
+	   	/* border: 1px solid; */
 	    position: absolute;
 	    top: 140px;
 	    left: 1470px;
@@ -160,9 +160,9 @@
 	
 
      .nav2{
-        border: 1px solid black;
+        /* border: 1px solid black; */
 	   	position: absolute;
-	    left: 1350px;
+	    left: 1352px;
 	    top: 200px;
 	    padding: 20px;
 	    overflow: visible;
@@ -174,12 +174,13 @@
 	    opacity: 0;
 	    font-family: 'NanumSquare';
 	    text-align: center;
+	    box-shadow: 0px 0px 15px #e6e6e6;
     }
     
     .nav2-scroll {
     	position: absolute;
-	    left: 1350px;
-	    top: 50px;
+	    left: 1352px;
+	    top: 58px;
     }
     
     .menu > span {
