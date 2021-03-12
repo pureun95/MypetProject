@@ -61,7 +61,7 @@
     	background-color: #b27208;
     	font-size: 16px;
     	border: 0px;
-    	font-family: 'NanumSquare';
+    	font-family: 'Jal_Onuel';
     	
     }
     
