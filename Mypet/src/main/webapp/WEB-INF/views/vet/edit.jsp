@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<title>MyPet::동물병원 등록</title>	
+<title>MyPet::동물병원 수정</title>	
 <style>
 
     /* content */
@@ -93,38 +93,38 @@
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div id="board-title">동물병원 등록하기</div>
+	<div id="board-title">동물병원 수정하기</div>
 	<table class="table table-default">
 		<tr>
 			<th id="list">이름</th>
-			<td><input type="text" class="form-control"></td>
+			<td><input type="text" class="form-control" placeholder="가나다 동물병원"></td>
 		</tr>
 		<tr>
 			<th id="list">주소</th>
-			<td><input type="text"  class="form-control"></td>
+			<td><input type="text" class="form-control" placeholder="서울특별시 강남구 역삼동"></td>
 		</tr>
 		<tr>
 			<th id="list">전화번호</th>
-			<td><input type="text"  class="form-control"></td>
+			<td><input type="text" class="form-control" placeholder="0507-1234-5678"></td>
 		</tr>
 		<tr>
 			<th id="list">진료시간</th>
-			<td><input type="text"  class="form-control"></td>
+			<td><input type="text" class="form-control" placeholder="09:00-18:00"></td>
 		</tr>
 		<tr>
 			<th id="list">진료목록</th>
-			<td><input type="text"  class="form-control"></td>
+			<td><input type="text" class="form-control" placeholder="건강검진, 안과진료"></td>
 		</tr>
 		<tr>
 			<th id="list">로고 or 이미지</th>
-			<td><input type="file"  class="form-control"></td>
+			<td><input type="file" class="form-control"></td>
 		</tr>
 		
 	</table>
 	
 	<div class="btns">
-      	<input type="submit" class="btn" value="등록" id="add">
-      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/list.action'">
+      	<input type="submit" class="btn" value="수정" id="add">
+      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/view.action'">
     </div>
 </div>
 

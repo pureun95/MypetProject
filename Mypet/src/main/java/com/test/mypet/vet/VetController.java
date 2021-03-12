@@ -20,5 +20,10 @@ public class VetController {
 	public String add() {
 		return "vet.add";
 	}
+	
+	@RequestMapping(value="/vet/edit.action")
+	public String edit() {
+		return "vet.edit";
+	}
 
 }
