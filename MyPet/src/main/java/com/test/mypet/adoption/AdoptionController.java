@@ -14,7 +14,7 @@ public class AdoptionController {
 	
 	//http://localhost:8090/mypet/adoption/list.action
 	@RequestMapping(value = "/adoption/list.action", method = { RequestMethod.GET })
-	public String auth(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
 		return "adoption/list";
 

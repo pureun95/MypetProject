@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	
 
-    <title>나나</title>
+    <title>MyPet :: 입양하기</title>
 	
 	<style>
 	

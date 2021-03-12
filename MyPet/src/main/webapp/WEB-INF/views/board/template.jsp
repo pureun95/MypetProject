@@ -7,8 +7,9 @@
 
 
  body {
-        font-family: 'JSDongkang-Regular';
+      font-family: 'NanumSquare';
     }
+    
 
     /* header */
     #header{
@@ -72,9 +73,9 @@
         margin-top: 130px;
         margin-bottom: 50px;
         font-size: 30px;
-        /* font-family: 'Jal_Onuel'; */
-        /* font-family: 'JSDongkang-Regular'; */
-        font-family: 'JSDongkang-Bold';
+        font-family: 'Jal_Onuel';
+        /* font-family: 'NanumSquare';
+        font-weight: bold; */
         color: #301b01;
     }
 
@@ -129,7 +130,7 @@
 
     /* 게시판 검색창 공통 클래스 */
     .search-text {
-        width: 365px;
+        width: 340px;
         float: left;
         margin-right: 20px;
         font-size: 16px;
@@ -138,8 +139,9 @@
     /* 버튼 공통 클래스 */
 
     .btn {
-        font-family: 'JSDongkang-Regular';
+         font-family: 'NanumSquare';
     }
+    
     .common-btn {
         background-color: #b27208;
         color: white;
