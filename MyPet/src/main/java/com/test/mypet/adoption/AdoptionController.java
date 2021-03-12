@@ -52,5 +52,11 @@ public class AdoptionController {
 	public String writeReservation() {
 		return "adoption/write_reservation";		
 	}
+	
+	//http://localhost:8090/mypet/adoption/checklist.action
+	@RequestMapping(value="/adoption/viewreservation.action")
+	public String viewReservation() {
+		return "adoption/view_reservation";		
+	}
 
 }
