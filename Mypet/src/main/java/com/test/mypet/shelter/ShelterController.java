@@ -10,5 +10,10 @@ public class ShelterController {
 	public String list() {
 		return "shelter.list";
 	}
+	
+	@RequestMapping(value="/shelter/view.action")
+	public String view() {
+		return "shelter.view";
+	}
 
 }
