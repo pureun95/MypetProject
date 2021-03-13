@@ -47,5 +47,19 @@ public class BoardController {
 		return "board/volunteerList";
 
 	}
+	
+	@RequestMapping(value = "/board/faqList.action", method = { RequestMethod.GET })
+	public String faqList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/faqList";
+
+	}
+	
+	@RequestMapping(value = "/board/faqAdd.action", method = { RequestMethod.GET })
+	public String faqAdd(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/faqAdd";
+
+	}
 
 }
