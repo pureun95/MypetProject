@@ -20,23 +20,13 @@ public class AdoptionController {
 
 	}
 	
-	//http://localhost:8090/mypet/board/template.action
-	/*
-	 * @RequestMapping(value = "/adoption/list.action", method = { RequestMethod.GET
-	 * }) public String template(HttpServletRequest request, HttpServletResponse
-	 * response, HttpSession session) {
-	 * 
-	 * return "adoption/list";
-	 * 
-	 * }
-	 */
 	
-	//http://localhost:8090/mypet/adoption/view.action
-	@RequestMapping(value="/adoption/view.action")
-	public String view() {
-		return "adoption.view";		
+	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
+	public String adoptionView(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "adoption/view";
+
 	}
-		
 	
 	//http://localhost:8090/mypet/adoption/write.action
 	@RequestMapping(value="/adoption/write.action")
