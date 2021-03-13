@@ -6,10 +6,10 @@
 
 
 
- body {
-      font-family: 'NanumSquare';
-      color: #301b01;
-    }
+	body {
+	      font-family: 'NanumSquare';
+	      color: #301b01;
+	}
      
 
     #content{        
@@ -64,24 +64,40 @@
 	
 	
 	
+	/* 게시판 선택 select 박스 */
+	.board-write > select {
+    	color: #9c9c9c;
+    }
+    
+    .board-write > select > option {
+    	color: #301b01;
+    }
+    
+	
 	
 
-
     /* 버튼 공통 클래스 */
-
+	
+	.board-btn {
+		/* border: 1px solid black;  */
+		height: 80px;
+		margin-top: 30px;
+		padding: 0px 290px;
+	} 
+	
     .btn {
-         font-family: 'NanumSquare';
+        font-family: 'NanumSquare';
     }
     
     
     .common-btn {
     	margin-top: 30px;
-	    margin-left: 350px;
 	    width: 100px;
 	    height: 40px;
 	    background-color: #b27208;
 	    color: white;
 	    font-family: 'Jal_Onuel';
+	    float: left;
     }
 
     .common-btn:hover {
@@ -92,11 +108,19 @@
     .common-btn:active {
         outline: none !important;
     }
-
-
-    .board-btn > input:nth-child(1) {
-        margin-left: 1060px;
+    
+    
+    .common-btn:nth-child(2) {
+    	margin-left: 10px;
     }
+    
+    .delete {
+    	background-color: #fab018;    	
+    }
+
+
+    
+    /* 파일 */
     
     #file {
     	display: none;
@@ -118,8 +142,6 @@
     	/* border: 1px solid black; */
     	width: 40px;
     	height: 30px;
-    	/* TODO 연동안됨 */
-    	/* background-image: url(/mypet/resources/images/photo.png); */
     	background-image: url(/mypet/resources/images/photo.png);
     	background-size: cover;
     	background-position: 50% 50%;
@@ -131,13 +153,6 @@
     	text-align: center;
     }
     
-    .board-write > select {
-    	color: #9c9c9c;
-    }
-    
-    .board-write > select > option {
-    	color: #301b01;
-    }
     
    
 
@@ -161,14 +176,18 @@
 			</select>
 	        <input type="text" class="form-control board-title" onclick="this.value=''" placeholder="제목을 입력해주세요.">	        	
 	        <textarea class="form-control board-content" onclick="this.value=''" placeholder="내용을 입력해주세요."></textarea> 	    	                      		           		        
-	        <div class="photo">
-	        	
+	        
+	        <div class="photo">	        	
 	        	<input type="file" id="file" class="board-file">	
 	        	<label for="file"></label>	
 	        	<span>사진</span>	  	       		
 	       	</div>
 	        
-	        <input type="button" class="btn common-btn" value="등록">
+	        <div class="board-btn">
+	        	<input type="button" class="btn common-btn delete" value="취소">
+	        	<input type="button" class="btn common-btn ok" value="등록">		        		        	      
+	        </div>
+	       
         </div>	
 
     </div>
