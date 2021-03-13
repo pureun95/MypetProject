@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<title>MyPet::동물병원 등록</title>	
+<title>MyPet::보호소 수정</title>	
 <style>
 
     /* content */
@@ -93,27 +93,31 @@
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div id="board-title">동물병원 등록하기</div>
+	<div id="board-title">보호소 수정하기</div>
 	<table class="table table-default">
 		<tr>
 			<th id="list">이름</th>
-			<td><input type="text" class="form-control"></td>
+			<td><input type="text" class="form-control" placeholder="가나다 동물병원"></td>
 		</tr>
 		<tr>
 			<th id="list">주소</th>
-			<td><input type="text"  class="form-control"></td>
+			<td><input type="text"  class="form-control" placeholder="가나다 보호소"></td>
 		</tr>
 		<tr>
 			<th id="list">전화번호</th>
-			<td><input type="text"  class="form-control"></td>
+			<td><input type="text"  class="form-control" placeholder="0507-1234-5678"></td>
 		</tr>
 		<tr>
 			<th id="list">진료시간</th>
-			<td><input type="text"  class="form-control"></td>
+			<td><input type="text"  class="form-control" placeholder="09:00-18:00"></td>
 		</tr>
 		<tr>
-			<th id="list">진료목록</th>
-			<td><input type="text"  class="form-control"></td>
+			<th id="list">후원계좌</th>
+			<td><input type="text"  class="form-control" placeholder="신한 123-4567-9012 (가나다보호소)"></td>
+		</tr>
+		<tr>
+			<th id="list">봉사활동</th>
+			<td><input type="text"  class="form-control" placeholder="2021/03/24 ~ 2021/03/31"></td>
 		</tr>
 		<tr>
 			<th id="list">로고 or 이미지</th>
