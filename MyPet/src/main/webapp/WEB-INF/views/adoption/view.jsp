@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<title>MyPet :: 상세보기</title>
 <style>
  
  #content{
@@ -26,16 +27,17 @@
     }
     
     .title {
-    	font-size: 22px;  
+    	font-size: 24px;  
     	display: block;
     	float: left; 
+    	font-weight: bold;
     	 	
     }
     
     
     .like-count {
     	/* border: 1px solid black; */
-    	float: left;
+    	float: right;
     	margin-left: 50px;
     	margin-right: 20px;
     	margin-top: 7px;
@@ -78,7 +80,7 @@
     }
     
     .img-sub {
-    	border: 1px solid black;
+    	border: 1px solid #eee;
     	width: 200px;
     	height: 150px;
     	margin-right: 32px;
@@ -90,6 +92,38 @@
     	margin-right: 0px;
     }
     
+    
+    /* 기본정보 */
+    
+    .basic-info {
+    	display: block;
+    	text-align: center;
+    	font-size: 20px;
+    	margin-top: 100px;
+    	margin-bottom: 50px;
+    }
+    
+    
+    
+    .headtr > th, td {
+    	text-align: center;
+    	border-right: 1px solid #ddd;
+    }
+    
+    .board-th {
+    	width: 100px;
+    }
+    
+    .board-tr {
+    	width: 200px;
+    }
+    
+    
+    .no-border {
+    	border: 0px;
+    }
+    
+   
 </style>
 
 
@@ -108,11 +142,33 @@
 		<img class="img-sub" src="../resources/images/adoption/nopic2.png">
 	</div>
 	
-	<div class="detaile2">
 	
-		<table>
-			<tr>sss</tr>
-		</table>
-	</div>
+	
+	<!-- 동물 기본 정보 -->
+	
+	<span class="basic-info">기본정보</span>
+	
+	<table class="table">
+		<tr class="headtr">
+			<th class="boardth">종류</th>
+			<td class="boardtr">포메라니안</td>
+			<th class="boardth">나이</th>
+			<td class="boardtr" class="no-border">2개월</td>			
+		</tr>		
+		<tr class="headtr">
+			<th class="boardth">성별</th>
+			<td class="boardtr">여아</td>
+			<th class="boardth">분류</th>
+			<td class="boardtr" class="no-border">소형견</td>			
+		</tr>
+		<tr class="headtr">
+			<th class="boardth">접종유무</th>
+			<td class="boardtr">O</td>
+			<th class="boardth">중성화유무</th>
+			<td class="boardtr" class="no-border">X</td>			
+		</tr>
+		
+	</table>
+	
 </div>
 
