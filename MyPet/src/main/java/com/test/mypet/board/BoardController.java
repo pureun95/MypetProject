@@ -29,6 +29,14 @@ public class BoardController {
 		return "board/template_view";
 
 	}
+	
+	//http://localhost:8090/mypet/board/template_write.action
+	@RequestMapping(value = "/board/template_write.action", method = { RequestMethod.GET })
+	public String write(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/template_write";
+
+	}
 		
 		
 	
