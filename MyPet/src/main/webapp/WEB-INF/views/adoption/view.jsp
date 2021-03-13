@@ -20,10 +20,11 @@
     
     /* 제목 */
     .title-box {
-    	border: 1px solid black;
+    	border-bottom: 1px solid gainsboro;
     	margin-top: 100px;
     	margin-bottom: 60px;
     	height: 50px;
+    	
     }
     
     .title {
@@ -66,13 +67,13 @@
     }
     
     .detail {
-    	border: 1px solid black;
+    	/* border: 1px solid black; */
     	width: 900px;
     	height: 700px;
     }
     
     .img {
-    	border: 1px solid black;
+    	/* border: 1px solid black; */
     	width: 900px;
     	height: 500px;
     	background-size: cover;
@@ -95,27 +96,44 @@
     
     /* 기본정보 */
     
+    .table {
+    	width: 900px;
+    	margin-bottom: 100px;
+    }
+    
+    
     .basic-info {
     	display: block;
     	text-align: center;
     	font-size: 20px;
     	margin-top: 100px;
     	margin-bottom: 50px;
+    	font-weight: bold;
     }
     
     
     
     .headtr > th, td {
     	text-align: center;
-    	border-right: 1px solid #ddd;
+    	/* border-right: 1px solid #ddd; */
     }
     
-    .board-th {
-    	width: 100px;
-    }
-    
-    .board-tr {
+    .boardth {
     	width: 200px;
+    	border-right: 1px solid #ddd;
+    	background-color: #f7f7f7;
+    }
+    
+    .headtr > .boardth:nth-child(3) {
+    	border-left: 1px solid #ddd;
+    }
+    
+    .headtr > .boardth:nth-child(2) {
+    	background-color: #ddd;
+    }
+    
+    .boardtr {
+    	width: 250px;    	
     }
     
     
@@ -123,6 +141,65 @@
     	border: 0px;
     }
     
+    .headtr:last-child {
+    	border-bottom: 1px solid #ddd;
+    }
+    
+    
+    /* 게시판 textarea */
+    .info {
+    	width: 100%;
+    	height: 500px;
+    }
+    
+    .headtr {
+    	
+    }
+    
+    table > tbody > tr > .firstth {
+    	padding: 10px;
+    	border-right: 1px solid #e8e8e8;    	
+    	border-top: 1px solid #e8e8e8;   
+    	text-align: center;
+    	background-color: #f9f9f9;
+    } 
+    
+    
+    
+    table > tbody > tr > .firsttd {
+    	padding: 10px 15px;
+    	text-align: left; 	
+    	border-top: 1px solid #e8e8e8;   
+    } 
+    
+    
+    .common-btn {
+        background-color: #b27208;
+        color: white;
+        margin-right: 10px;
+        font-family: 'Jal_Onuel';
+        margin-left: 850px;
+    	margin-top: -150px;
+    }
+    
+    .common-btn:hover {
+        color: white;
+        outline: none;
+    }
+
+    .common-btn:active {
+        outline: none !important;
+    }
+    
+    .common-btn:nth-child(2) {
+    	margin-top: 20px;
+	    margin-left: 760px;
+	    margin-bottom: 10px;
+	    width: 140px;
+	    height: 40px;
+    }
+    
+   
    
 </style>
 
@@ -133,6 +210,9 @@
 		<div class="like-count"><img class="like" src="../resources/images/like.png">
 		<span class="count">12</span></div>
 	</div>
+	
+	
+	<input type="button" class="btn common-btn" value="입양예약하기">
 	
 	<div class="detail">
 		<img class="img" src="../resources/images/adoption/1.jpg">
@@ -166,9 +246,34 @@
 			<td class="boardtr">O</td>
 			<th class="boardth">중성화유무</th>
 			<td class="boardtr" class="no-border">X</td>			
-		</tr>
-		
+		</tr>		
 	</table>
+	
+	
+	<!-- textarea 공간 -->
+	<div class="info">
+		글이 나온다.
+		강아지가 기다리고 있어요~
+	</div>
+	
+	
+	<!-- 이전글 & 다음글 -->
+	<table class="table">
+		<tr class="headtr">      	
+	       <td class="firstth" style="width: 100px">이전글</td>
+	       <td class="firsttd">이전글입니다.</td>
+	    </tr>
+	    <tr class="headtr">      	
+	       <td class="firstth" style="border-bottom: 1px solid #e8e8e8">다음글</td>
+	       <td class="firsttd" style="border-bottom: 1px solid #e8e8e8">다음글입니다.</td>
+	    </tr>
+	</table>
+	
+	<input type="button" class="btn common-btn" value="목록">
+	
+	
+	
+	
 	
 </div>
 
