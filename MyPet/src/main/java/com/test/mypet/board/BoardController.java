@@ -12,14 +12,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BoardController {
 	
 	
-	//http://localhost:8090/mypet/board/template.action
-	@RequestMapping(value = "/board/template.action", method = { RequestMethod.GET })
-		public String template(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	//http://localhost:8090/mypet/board/template_list.action
+	@RequestMapping(value = "/board/template_list.action", method = { RequestMethod.GET })
+	public String template(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
-			return "board/template";
+		return "board/template_list";
 
 	}
 	
+	
+	
+	//http://localhost:8090/mypet/board/template_view.action
+	@RequestMapping(value = "/board/template_view.action", method = { RequestMethod.GET })
+	public String view(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/template_view";
+
+	}
+		
+		
 	
 	//http://localhost:8090/mypet/board/volunteerList.action
 	@RequestMapping(value = "/board/volunteerList.action", method = { RequestMethod.GET })

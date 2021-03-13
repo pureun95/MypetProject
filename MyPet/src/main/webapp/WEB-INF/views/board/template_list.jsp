@@ -9,32 +9,7 @@
  body {
       font-family: 'NanumSquare';
     }
-    
-
-    /* header */
-    #header{
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10;
-        height: 200px;
-        background-color: #F6DA42;
-        padding: 20px 100px;
-    }
-
-    .logo {
-        margin: 0px auto;
-        /* border: 1px solid black; */
-        width: 180px;
-        height: 180px;
-        background-image: url('../image/logo.png');
-        background-size: cover;
-        background-position: 50% 50%;
-    }
-
-    /* content */
- 
+     
 
     #content{        
         width: 1300px;
@@ -53,18 +28,6 @@
         height: 1000px;
     }
 
-
-    /* footer */
-    #footer{
-        clear: both;
-        position: relative;
-        height: 100px;
-        margin-top: 1px;
-        padding-top: 34px;
-        border-top: 1px solid #eef1f3;
-        text-align: center;
-        background-color: #F6DA42;
-    }
 
     .board-name {
         /* border: 1px solid black; */
