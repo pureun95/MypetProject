@@ -122,15 +122,15 @@
 		margin-bottom:100px;
 		
 	}
-}
-    
+	
+	
 </style>
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
 	<div class="board-title">가나다 보호소 상세정보</div>
 	<div class="btns"> 
-		<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/shelter/delete.action'">
+		<input type="button" value="삭제" id="delete" class="btn" >
 		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/shelter/edit.action'">
 	</div>
 	<table class="table table-default">
@@ -178,6 +178,8 @@
 	</div>
 	
 </div>
+
+
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9"></script>
 	

@@ -25,5 +25,10 @@ public class ShelterController {
 	public String edit() {
 		return "shelter.edit";
 	}
+	
+	@RequestMapping(value="/shelter/delete.action")
+	public String delete() {
+		return "shelter.delete";
+	}
 
 }
