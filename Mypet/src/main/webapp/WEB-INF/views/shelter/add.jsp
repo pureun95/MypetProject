@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<title>MyPet::동물병원 등록</title>	
+<title>MyPet::보호소 등록</title>	
 <style>
 
     /* content */
@@ -76,8 +76,8 @@
     	margin : 10px;
     	padding : 10px 12px;
 		border : none;
-	    color: white;   
-	    outline: none !important;
+	    color: white;  
+	    outline: none !important; 
     }
     
     .btns #add{
@@ -93,7 +93,7 @@
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div id="board-title">동물병원 등록하기</div>
+	<div id="board-title">보호소 등록하기</div>
 	<table class="table table-default">
 		<tr>
 			<th id="list">이름</th>
@@ -112,7 +112,11 @@
 			<td><input type="text"  class="form-control"></td>
 		</tr>
 		<tr>
-			<th id="list">진료목록</th>
+			<th id="list">후원계좌</th>
+			<td><input type="text"  class="form-control"></td>
+		</tr>
+		<tr>
+			<th id="list">봉사활동</th>
 			<td><input type="text"  class="form-control"></td>
 		</tr>
 		<tr>

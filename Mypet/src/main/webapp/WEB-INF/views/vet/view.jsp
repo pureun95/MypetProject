@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
-<title>MyPet::동물병원</title>	
+<title>MyPet::동물병원 상세정보</title>	
 <style>
 
     /* content */
@@ -85,26 +85,44 @@
 		width: 1100px;
 		height: 450px;
 		text-align: center;
-		margin-bottom:100px;
+		margin :10px;
 	}
 	
 	/* 버튼 */
 	
-	
-	.btns{
-		background-color: #b27208;
+	.btn{
+		font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 10px;
+    	padding : 10px 12px;
 		border : none;
-		text-align: center;
-	    color: white;
+	    color: white;   
+		background-color: #b27208;		
 		border-radius : 5px;
-		margin: 0px 10px;
-		padding : 6px 12px;
-		outline: none !important;
+		outline: none !important;	
+	
 	}
 	
+	.btns #edit, .btns #delete {		
+		text-align: center;
+		float : right;
+	}
+	
+	.btns #delete{
+		margin-right : 30px;
+	}
+	
+	#res{
+		width :150px;
+		margin-left:30px;
+	}
+	
+	
 	.listbtn{
-		text-align: right;
-		margin:10px 30px;
+		text-align: center;
+		margin-top:10px;
+		margin-bottom:100px;
+		
 	}
 }
     
@@ -113,8 +131,9 @@
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
 	<div class="board-title">가나다 동물병원 상세정보</div>
-	<div class="listbtn"> 
-		<input type="button" class="btns" value="목록" onclick="location.href='/mypet/vet/list.action'">
+	<div class="btns"> 
+		<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/vet/delete.action'">
+		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/vet/edit.action'">
 	</div>
 	<table class="table table-default">
 		<tr id="list">
@@ -122,7 +141,7 @@
 				<div id="img" style="background-image:url(/mypet/resources/images/vet/24snc동물메디컬센터.jpg);"></div>
 			</td>
 			<th>이름</th>
-			<td>가나다 동물병원<input type="button" class="btns" value="진료예약하기" id="serch" onclick="$('#searchForm').submit();"></td>
+			<td>가나다 동물병원<input type="button" class="btn" value="진료예약하기" id="res" onclick="$('#searchForm').submit();"></td>
 		</tr>		
 		<tr id="list">
 			<!-- <td></td> -->
@@ -150,6 +169,10 @@
 			<!-- <td></td> -->
 		</tr>
 	</table>
+	
+	<div class="listbtn"> 
+		<input type="button" class="btn" value="목록" id="listbtn" onclick="location.href='/mypet/vet/list.action'">
+	</div>
 	
 	
 </div>

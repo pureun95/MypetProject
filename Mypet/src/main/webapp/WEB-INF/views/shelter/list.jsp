@@ -70,15 +70,17 @@
 		margin : 0px 10px;
 	}
 	
-	.btns {
-		background-color: #b27208;
+	.btn {
+		font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 10px;
+    	padding : 10px 12px;
 		border : none;
+	    color: white;   
+		background-color: #b27208;	
+		outline: none !important;	
 		border-radius : 5px;
-		padding: 6px 12px;
 		text-align: center;
-	    color: white;
-	    width: 70px;
-	    outline: none !important;
 	}
 	
 	.btns :hover {
@@ -161,7 +163,8 @@
 			
 			<div class="search">
 	           	<input type="text" class="form-control" placeholder="보호소이름" id="search" name="search" required value="${search}">
-	           	<input type="button" class="btns" value="검색" id="serch" onclick="$('#searchForm').submit();">
+	           	<input type="button" class="btn" value="검색" id="serch" onclick="$('#searchForm').submit();">
+	        	<input type="button" class="btn" value="등록" id="add" onclick="location.href='/mypet/shelter/add.action'">        
 	        </div>
 		<!-- </div> -->
 		

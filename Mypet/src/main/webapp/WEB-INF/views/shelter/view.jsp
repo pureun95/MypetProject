@@ -85,26 +85,42 @@
 		width: 1100px;
 		height: 450px;
 		text-align: center;
-		margin-bottom:100px;
+		margin: 10px;
 	}
 	
 	/* 버튼 */
-	
-	
-	.btns{
-		background-color: #b27208;
+	.btn{
+		font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 10px;
+    	padding : 10px 12px;
 		border : none;
-		text-align: center;
-	    color: white;
-		border-radius : 5px;
-		margin: 0px 10px;
-		padding : 6px 12px;
-		outline: none !important;
+	    color: white;   
+		background-color: #b27208;	
+		outline: none !important;	
+	
 	}
 	
+	.btns #edit, .btns #delete {		
+		text-align: center;
+		float : right;
+	}
+	
+	.btns #delete{
+		margin-right : 30px;
+	}
+	
+	#vol{
+		width :150px;
+		margin-left:30px;
+	}
+	
+	
 	.listbtn{
-		text-align: right;
-		margin:10px 30px;
+		text-align: center;
+		margin-top:10px;
+		margin-bottom:100px;
+		
 	}
 }
     
@@ -113,8 +129,9 @@
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
 	<div class="board-title">가나다 보호소 상세정보</div>
-	<div class="listbtn"> 
-		<input type="button" class="btns" value="목록" onclick="location.href='/mypet/shelter/list.action'">
+	<div class="btns"> 
+		<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/shelter/delete.action'">
+		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/shelter/edit.action'">
 	</div>
 	<table class="table table-default">
 		<tr id="list">
@@ -142,12 +159,12 @@
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>후원계좌</th>
-			<td>1234-567-8901</td>
+			<td>신한 123-4567-9012 (가나다보호소)</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>봉사활동</th>
-			<td>2021/03/24 ~ 2021/03/31 <input type="button" class="btns" value="봉사예약하기" id="serch" onclick="$('#searchForm').submit();"></td>
+			<td>2021/03/24 ~ 2021/03/31 <input type="button" class="btn" value="봉사예약하기" id="vol" onclick="$('#searchForm').submit();"></td>
 		</tr>
 		<tr id="list">
 			<td colspan='3' class="map"><div id="map"></div></td>
@@ -156,6 +173,9 @@
 		</tr>
 	</table>
 	
+	<div class="listbtn"> 
+		<input type="button" value="목록" id="listbtn" class="btn" onclick="location.href='/mypet/shelter/list.action'">
+	</div>
 	
 </div>
 

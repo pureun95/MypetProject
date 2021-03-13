@@ -15,5 +15,15 @@ public class ShelterController {
 	public String view() {
 		return "shelter.view";
 	}
+	
+	@RequestMapping(value="/shelter/add.action")
+	public String add() {
+		return "shelter.add";
+	}
+	
+	@RequestMapping(value="/shelter/edit.action")
+	public String edit() {
+		return "shelter.edit";
+	}
 
 }
