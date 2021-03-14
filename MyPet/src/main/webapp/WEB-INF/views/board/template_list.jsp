@@ -102,7 +102,7 @@
     /* 버튼 공통 클래스 */
 
     .btn {
-         font-family: 'NanumSquare';
+         font-family: 'Jal_Onuel';
     }
     
     .common-btn {

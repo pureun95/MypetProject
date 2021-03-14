@@ -10,17 +10,6 @@
         font-family: 'JSDongkang-Regular';
     }
 
-    /* header */
-    #header{
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        z-index: 10;
-        height: 200px;
-        background-color: #F6DA42;
-        padding: 20px 100px;
-    }
 
     .logo {
         margin: 0px auto;
@@ -72,9 +61,7 @@
         margin-top: 130px;
         margin-bottom: 50px;
         font-size: 30px;
-        /* font-family: 'Jal_Onuel'; */
-        /* font-family: 'JSDongkang-Regular'; */
-        font-family: 'JSDongkang-Bold';
+        font-family: 'Jal_Onuel';
         color: #301b01;
     }
 
@@ -86,6 +73,7 @@
     .tr2:hover {
         background-color: #F6DA42;
     }
+   
    
     .firsttd {
         width: 100px;
@@ -103,13 +91,18 @@
     }
 
     .fourthtd {
+        width: 200px;
+        text-align: center;
+    }
+    
+    .fifthtd {
         width: 100px;
         text-align: center;
     }
 
    
     /* 번호, 날짜, 조회수 */
-    .tr2 > td:nth-child(1), td:nth-child(3), td:nth-child(4) {
+    .tr2 > td:nth-child(1), td:nth-child(3), td:nth-child(4), td:nth-child(5) {
         text-align: center;
     }
 
@@ -129,7 +122,7 @@
 
     /* 게시판 검색창 공통 클래스 */
     .search-text {
-        width: 365px;
+        width: 340px;
         float: left;
         margin-right: 20px;
         font-size: 16px;
@@ -138,8 +131,9 @@
     /* 버튼 공통 클래스 */
 
     .btn {
-        font-family: 'JSDongkang-Regular';
+       	font-family: 'Jal_Onuel';
     }
+    
     .common-btn {
         background-color: #b27208;
         color: white;
@@ -186,18 +180,20 @@
 
 
     <div id="content">
-        <span class="board-name">공지사항</span>
+        <span class="board-name">봉사활동신청</span>
         <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기"></div>
         <table class="table table-condensed">
             <tr class="headtr">
                 <th class="firsttd">번호</th>
                 <th class="sectd">제목</th>
-                <th class="thirdtd">날짜</th>
-                <th class="fourthtd">조회수</th>
+                <th class="thirdtd">마감현황</th>
+                <th class="fourthtd">날짜</th>
+                <th class="fifthtd">조회수</th>
             </tr>
             <tr class="tr2">
                 <td>1</td>
                 <td>공지사항 제목입니다.</td>
+                <td>마감</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
@@ -205,54 +201,63 @@
             <tr class="tr2">
                 <td>2</td>
                 <td>공지사항 제목입니다.</td>
+                <td>마감</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
             <tr class="tr2">
                 <td>3</td>
                 <td>공지사항 제목입니다.</td>
+                <td>마감</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
             <tr class="tr2">
                 <td>4</td>
                 <td>공지사항 제목입니다.</td>
+                <td>신청가능</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
             <tr class="tr2">
                 <td>5</td>
                 <td>공지사항 제목입니다.</td>
+                <td>신청가능</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
             <tr class="tr2">
                 <td>6</td>
                 <td>공지사항 제목입니다.</td>
+                <td>신청가능</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
             <tr class="tr2">
                 <td>7</td>
                 <td>공지사항 제목입니다.</td>
+                <td>신청가능</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
             <tr class="tr2">
                 <td>8</td>
                 <td>공지사항 제목입니다.</td>
+                <td>신청가능</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
             <tr class="tr2">
                 <td>9</td>
                 <td>공지사항 제목입니다.</td>
+                <td>신청가능</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
             <tr class="tr2">
                 <td>10</td>
                 <td>공지사항 제목입니다.</td>
+                <td>신청가능</td>
                 <td>2021-01-01</td>
                 <td>32</td>
             </tr>
@@ -315,12 +320,11 @@
             </ul>       
 
             <!-- 검색창 & 검색 버튼 -->
-            <input type="textbox" class="form-control search-text">
+            <input type="text" class="form-control search-text">
             <input type="button" class="btn common-btn" value="검색">
         </div>
     </div>
    
-</div>
 
 
     <script>
