@@ -61,5 +61,19 @@ public class BoardController {
 		return "board/faqAdd";
 
 	}
+	
+	@RequestMapping(value = "/board/faqEdit.action", method = { RequestMethod.GET })
+	public String faqEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/faqEdit";
+
+	}
+	
+	@RequestMapping(value = "/board/faqDelete.action", method = { RequestMethod.GET })
+	public String faqDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/faqDelete";
+
+	}
 
 }
