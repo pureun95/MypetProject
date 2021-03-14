@@ -142,7 +142,7 @@
 	
 	<!-- form 태그 시작 -->
 	<!-- <form method="POST" action=""> -->
-	<div id="imgbox" style="background-image:url(/mypet/resources/images/intro/3.jpg); margin-bottom: 100px;">
+	<div id="imgbox" style="background-image:url(/mypet/resour ces/images/intro/3.jpg); margin-bottom: 100px;">
 	<div id="filter"></div>
 	</div>
 	

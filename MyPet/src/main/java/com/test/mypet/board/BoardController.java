@@ -61,5 +61,19 @@ public class BoardController {
 		return "board/faqAdd";
 
 	}
+	
+	@RequestMapping(value = "/board/adoptionreviewlist.action", method = { RequestMethod.GET })
+	public String adoptionReviewList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		return "board/faqAdd";
+		
+	}
+	
+	@RequestMapping(value = "/board/adoptionreviewview.action", method = { RequestMethod.GET })
+	public String adoptionReviewview(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		return "board/faqAdd";
+		
+	}
 
 }

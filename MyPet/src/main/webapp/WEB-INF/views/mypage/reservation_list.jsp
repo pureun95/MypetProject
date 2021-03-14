@@ -135,7 +135,7 @@ ul, li {
 			<th>상태</th>
 		</tr>
 		<tr>
-			<td><a href="">000005</a></td>
+			<td><a href="/mypet/mypage/reservationview.action">000005</a></td>
 			<td class="underlinetxt">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -159,17 +159,17 @@ ul, li {
 			<td class="underlinetxt">
 				<li class="dropdown" >
 					<a href="#" id="m1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					서울보호소
+					도그마루 잠실본점
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>보호소명 : 서울보호소</a></li>
+						<li><a>보호소명 : 도그마루 잠실본점</a></li>
 						<li><a>운영시간 : 오전 9시 ~ 오후 18시</a></li>
 						<li><a>나이 : 3살</a></li>
 						<li><a>전화번호 : 02-4851-4541</a></li>
 						<li><a>지도 <small style="float:right;">※ 지도를 클릭하여 움직이세요.</small></a></li>
 						<div id="map" style="width:400px;height:200px;"></div>
-						<button type="button" class="btn btnself" style="margin:30px; float:right;">길찾기</button>
+						<button type="button" class="btn btnself" style="margin:30px; float:right;" id="btnnav">길찾기</button>
 					</ul>
 				</li>
 			</td>
@@ -218,13 +218,14 @@ ul, li {
 		var geocoder = new kakao.maps.services.Geocoder();
 		
 		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('서울 강남구 봉은사로47길 59', function(result, status) {
+		geocoder.addressSearch('서울 송파구 석촌호수로 104', function(result, status) {
 		
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
-		
+				
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
+		    	var addr = '도그마루 잠실본점,'+result[0].y+','+result[0].x;
+				
 		        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 			    mapOption = {
 			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -243,15 +244,24 @@ ul, li {
 		
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">서울보호소</div>'
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">도그마루 잠실본점</div>'
 		        });
 		        
 		        infowindow.open(map, marker);
 		
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		        map.setCenter(coords);
+		        
+				$('#btnnav').click(function(){
+					
+			       	window.open('https://map.kakao.com/link/to/'+addr);
+			       	
+				})
+		        
+		        
 		    } 
 		});    
+		
 		
 	})
 	

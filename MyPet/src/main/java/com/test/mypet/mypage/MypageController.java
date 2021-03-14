@@ -11,6 +11,12 @@ public class MypageController {
 	public String reservationList() {
 		return "mypage/reservation_list";		
 	}
+	
+	//예약신청서 세부정보보기
+	@RequestMapping(value="/mypage/reservationview.action")
+	public String reservationView() {
+		return "mypage/reservation_view";		
+	}
 
 	
 }
