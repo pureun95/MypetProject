@@ -79,7 +79,7 @@ public class BoardController {
 		return "board/faqAdd";
 
 	}
-	
+
 	@RequestMapping(value = "/board/faqEdit.action", method = { RequestMethod.GET })
 	public String faqEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
@@ -93,5 +93,19 @@ public class BoardController {
 		return "board/faqDelete";
 
 	}
+  
+     @RequestMapping(value = "/board/adoptionreviewlist.action", method = { RequestMethod.GET })
+   public String adoptionReviewList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+      
+      return "board/adoptionreviewList";
+      
+   }
+   
+   @RequestMapping(value = "/board/adoptionreviewview.action", method = { RequestMethod.GET })
+   public String adoptionReviewview(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+      
+      return "board/adoptionreviewView";
+      
+   }
 
 }
