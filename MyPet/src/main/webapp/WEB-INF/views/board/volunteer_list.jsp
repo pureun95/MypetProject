@@ -6,8 +6,9 @@
 
 
 
- body {
-        font-family: 'JSDongkang-Regular';
+ 	body {
+        font-family: 'NanumSquare';
+	   	color: #301b01;
     }
 
 
@@ -42,18 +43,6 @@
     }
 
 
-    /* footer */
-    #footer{
-        clear: both;
-        position: relative;
-        height: 100px;
-        margin-top: 1px;
-        padding-top: 34px;
-        border-top: 1px solid #eef1f3;
-        text-align: center;
-        background-color: #F6DA42;
-    }
-
     .board-name {
         /* border: 1px solid black; */
         display: block;
@@ -68,6 +57,10 @@
     /* 테이블 css */
     table {
         font-size: 16px;
+    }
+    
+    .tr2 {
+    	cursor: pointer;
     }
 
     .tr2:hover {
@@ -191,7 +184,7 @@
                 <th class="thirdtd">작성일</th>
                 <th class="fifthtd">조회수</th>
             </tr>
-            <tr class="tr2">
+            <tr class="tr2" onclick="location.href='/mypet/board/volunteerView.action'">
                 <td class="center">1</td>
                 <td>[봉사활동명] 봉사활동 할 사람 모여라</td>
                 <td class="center">마감</td>

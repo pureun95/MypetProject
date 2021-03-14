@@ -123,7 +123,7 @@
 	    border: 0px;
 	    width: 80px;
 	    height: 80px;
-	    margin-left: 0px;
+	    margin-left: -30px;
 	    margin-bottom: 20px;
 	    margin-right: 20px;
 	    background-size: contain;
@@ -222,6 +222,72 @@
     .board-btn > input:nth-child(1) {
         margin-left: 1060px;
     }
+    
+    
+    
+    /* modal */
+    
+     /* 모달창 */
+    
+    .modal-content {
+    	overflow: hidden;
+    }
+    
+    .close {
+    	position : absolute;
+    	top : 20px;
+    	right :10px;
+    	outline: none !important;	
+    }
+       
+    .modal-header, .modal-title {
+    	background-color: #f6da42;
+    	font-family: 'Jal_Onuel';
+    	font-size: 16px;
+    }
+    
+   	.modal-body{
+		font-family: 'NanumSquare';
+		text-align: center;
+		height : 90px;	
+		font-size: 16px;	
+	}
+	
+	.modal-body p {
+		margin-top: 25px;
+	}
+	
+	.modal-footer{
+		text-align: center;
+	}
+	
+
+    
+    
+    /* 모달창 */
+       
+    .modal-footer #check, .modal-footer #cancel {
+		font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 0px 10px;
+    	padding : 10px 12px;
+		border : none;
+	    color: white;
+		outline: none !important;	
+		border-radius : 5px;
+	}
+	.modal-footer #delete:hover, .modal-footer #cancel:hover{
+		color:black;
+	}
+	
+	
+	.modal-footer #check{ background-color: #b27208; }
+	.modal-footer #cancel{ background-color: #fab018; }
+	
+    }
+	 
+	 
+    
 
 </style>
 
@@ -265,10 +331,9 @@
         					<span><b>보호소:</b> 쫑쫑보호소</span>
         					<span><b>주소:</b> 서울시 동작구 네네동</span>
         					
-        					<input type="button" class="btn common-btn" value="신청하기">
+        					<input type="button" id="ok" class="btn common-btn" value="신청하기">
         				</div>
-        				
-        				
+        				        	
         				<div class="img-volunteer">
         					<span><img class="photo-icon" src="../resources/images/photo.png">쫑쫑보호소 봉사활동 앨범</span>
         					<div class="arrow1"></div>
@@ -300,6 +365,61 @@
         </table>
                 
     </div>
+    
+    
+	<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content" id="modal-content">
+		     <div class="modal-header">
+		       <h5 class="modal-title">봉사활동 신청하기</h5>
+		       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		         <span aria-hidden="true">&times;</span>
+		       </button>
+		     </div>
+		     <div class="modal-body">
+		       <p>[희망의 연탄 나르기] 봉사활동 신청하시겠습니까?</p>
+		     </div>
+		     <div class="modal-footer">
+		      <button type="submit" class="btn" id="check">확인</button>
+		       <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+		     </div>
+		   </div>
+		 </div>
+	</div>
+	
+	
+	<div class="modal" tabindex="-1" role="dialog" id="okmodal">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content" id="modal-content">
+		     <div class="modal-header">
+		       <h5 class="modal-title">신청완료</h5>
+		       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		         <span aria-hidden="true">&times;</span>
+		       </button>
+		     </div>
+		     <div class="modal-body">
+		       <p>[희망의 연탄 나르기] 신청이 완료되었습니다.</p>
+		     </div>
+		     <div class="modal-footer">
+		       <button type="button" class="btn" id="check" data-dismiss="modal">확인</button>	        
+		     </div>
+		   </div>
+		 </div>
+	</div>
+
+
+<script>
+	$('#ok').click(function(e){
+		e.preventDefault();
+		$('#deletemodal').modal("show");
+	});
+	
+	$('#check').click(function(e){
+		e.preventDefault();
+		$('#okmodal').modal("show");
+		$('#deletemodal').modal("hide");
+	});
+</script>
    
 
 
