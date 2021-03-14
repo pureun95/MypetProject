@@ -35,6 +35,22 @@
     	 	
     }
     
+    .state {
+    	/* border: 1px solid #f9820f; */
+	    width: 82px;
+	    height: 30px;
+	    border-radius: 5px;
+	    color: #ffffff;
+	    font-size: 14px;
+	    background-color: #f9820f;
+	    margin-top: 2px;
+	    margin-right: 15px;
+	    float: left;
+	    padding: 5px 15px;
+	    opacity: .9;
+	    font-family: 'Jal_Onuel' !important;
+    }
+    
     
     .like-count {
     	/* border: 1px solid black; */
@@ -205,7 +221,7 @@
 
 <div id="content">
 	<div class="title-box">
-		<span class="title">쫑쫑이의 가족이 되어주세요.</span>
+		<span class="state">입양완료</span><span class="title">쫑쫑이의 가족이 되어주세요.</span>
 		<div class="like-count"><img class="like" src="../resources/images/like.png">
 		<span class="count">12</span></div>
 	</div>
