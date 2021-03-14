@@ -9,6 +9,7 @@
 
 	body {
 	   font-family: 'NanumSquare';
+	   color: #301b01;
 	}
      
 
@@ -24,7 +25,7 @@
 
     /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
     #content{
-        height: 1100px;
+        height: auto;
     }
 
 
@@ -34,7 +35,7 @@
         /* 버튼 아래 있을 때 */
         /* margin-top: 170px; */
         /* 버튼 위에 있을 때 */
-       	margin-top: 60px;
+       	margin-top: 20px;
         font-size: 16px;
         ont-family: 'NanumSquare';
         color: #301b01;
@@ -57,39 +58,133 @@
     }
     
     .board-content {
-    	min-height: 400px;
+    	border: 1px solid black;
+    	min-height: 800px;
+    	width: 1100px;
+    	float: left;
     }
     
     .board-content > span {
-    	font-size: 20px;
+    	font-size: 24px;
     	font-weight: bold;
     	text-align: center;
     	display: block;
     	margin-top: 100px;
+    	margin-bottom: 30px;
     	
     }
     
     
-    /* 테이블 */
-    .table-info {
-    	width: 850px;
-    	margin-left: 100px;
-    	font-size: 14px;
+    .info {
+    	/* border: 1px solid #e8e8e8; */
+	    width: 450px;
+	    height: 400px;
+	    background-image: url(/mypet/resources/images/volunteer/memo.png);
+	    background-size: contain;
+	    background-position: 50% 50%;
+	    background-repeat: no-repeat;
+	    margin-bottom: 120px;
+	    margin-left: 320px;
+	    padding: 100px 70px;
+	    
     }
     
-	
-	.board-content > .table-info > .headtr > .firstth {
-		background-color: white;
-	}
-	
-	.headtr:last-child {
-		border-bottom: 1px solid #e8e8e8;
-	}
+    .info > span {
+    	display: block;
+	    /* border: 1px solid; */
+	    width: 300px;	 
+	    margin-bottom: 8px; 
+    	
+    }
+    
+    .info > input {
+    	margin-top: 30px;
+    	margin-left: 120px;
+    }
+    
+    
+    .img-volunteer {
+    	/* border: 1px solid #e8e8e8; */
+	    width: 900px;
+	    height: 600px;
+	    margin-left: 100px;
+    }
+    
+    .img-volunteer > span {
+    	font-size: 24px;
+    	font-weight: bold;
+    	display: block;
+    	text-align: center;
+    	/* margin-bottom: 20px; */
+    }
+    
+    .photo-icon {
+    	/* border: 1px solid black; */
+	    border: 0px;
+	    width: 80px;
+	    height: 80px;
+	    margin-left: 0px;
+	    margin-bottom: 20px;
+	    margin-right: 20px;
+	    background-size: contain;
+	    background-position: 50% 50%;
+	    background-repeat: no-repeat;
+	    opacity: .8;
+	    transform: rotate(-15deg);
+    }
+    
+    .img {
+    	border: 1px solid #e8e8e8;
+	    width: 900px;
+	    max-height: 500px;
+	    background-size: contain;
+	    background-position: 50% 50%;
+	    background-repeat: no-repeat;
+    }
+    
+    .arrow1 {
+    	/* border: 1px solid #e8e8e8; */
+    	width: 50px;
+    	height: 50px;
+    	background-image: url(/mypet/resources/images/volunteer/arrow1.png);
+    	background-size: contain;
+	    background-position: 50% 50%;
+	    background-repeat: no-repeat;
+	    float: left;
+	    position: relative;
+	    left: -70px;
+	    top: 280px;
+	    opacity: .2;
+	    cursor: pointer;
+    }
+    
+    .arrow2 {
+    	/* border: 1px solid #e8e8e8; */
+    	width: 50px;
+    	height: 50px;
+    	background-image: url(/mypet/resources/images/volunteer/arrow2.png);
+    	background-size: contain;
+	    background-position: 50% 50%;
+	    background-repeat: no-repeat;
+	    float: right;
+	    position: relative;
+	    right: -70px;
+	    top: 280px;
+	    opacity: .2;
+	    cursor: pointer;
+    }
+    
+    .board-content > .desc {
+    	font-size: 16px;
+	    font-weight: normal;
+	    display: block;
+	    margin-top: 200px;
+    }
 
     /* 버튼 공통 클래스 */
 
     .btn {
-         font-family: 'NanumSquare';
+        font-family: 'NanumSquare';
     }
     
     .btn-group {
@@ -161,36 +256,28 @@
         				
         				<!-- 봉사활동 기본정보 -->
         				<span>봉사활동 안내</span>
-        				<!-- <table class="table table-info">
-        					<tr class="headtr">
-        						<th class="firstth" colspan="1">봉사활동명</th>
-        						<td colspan="9">희망의 연탄나르기</td>        						
-        					</tr>
-        					<tr class="headtr">
-        						<th class="firstth">시작일</th>
-        						<td>희망의 연탄나르기</td>
-        						<th class="firstth">종료일</th>
-        						<td>ㅇㅇㄴ</td>
-        					</tr>
-        					<tr class="headtr">
-        						<th class="firstth">모집인원</th>
-        						<td>희망의 연탄나르기</td>
-        						<th class="firstth">신청인원</th>
-        						<td>ㅇㅇㄴ</td>
-        					</tr>
-        					<tr class="headtr">
-        						<th class="firstth">보호소</th>
-        						<td>쫑쫑보호소</td>
-        						<th class="firstth">주소</th>
-        						<td>서울시 강동구 라라라</td>
-        					</tr>
-        				</table> -->
-        			
-        			
-        			<!-- 상세내용 -->
-        			사진이나 내용이 들어갈 공간
-        			
-        			
+        				
+        				<div class="info">
+        					<span><b>봉사활동명:</b> 희망의 연탄나르기</span>
+        					<span><b>기간:</b> 2020-01-01 ~ 2020-02-01</span>
+        					<span><b>모집인원:</b> 6명</span>
+        					<span><b>신청인원:</b> 5명</span>
+        					<span><b>보호소:</b> 쫑쫑보호소</span>
+        					<span><b>주소:</b> 서울시 동작구 네네동</span>
+        					
+        					<input type="button" class="btn common-btn" value="신청하기">
+        				</div>
+        				
+        				
+        				<div class="img-volunteer">
+        					<span><img class="photo-icon" src="../resources/images/photo.png">쫑쫑보호소 봉사활동 앨범</span>
+        					<div class="arrow1"></div>
+        					<div class="arrow2"></div>
+        					<img class="img" src="../resources/images/volunteer/1.jpg">
+        				</div>
+        				
+        				<span class="desc">봉사활동의 시즌이 왔습니다~</span>
+
         			</div>     
         			
         			   		
@@ -211,17 +298,7 @@
         		<td class="firsttd" colspan="9" style="border-bottom: 1px solid #e8e8e8">다음글입니다.</td>
         	</tr>
         </table>
-        
-        
-        <!-- <div class="btn-group">
-        	<input type="button" class="btn common-btn" value="목록">
-    		<input type="button" class="btn common-btn" value="수정">
-        	<input type="button" class="btn common-btn" value="삭제">
-    	</div> -->
-
-        
-        <!-- <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기"></div> -->
-        
+                
     </div>
    
 
@@ -229,5 +306,37 @@
 
     <script>
 
+    
+    /* 화살표 누르면 사진 바꾸기 */
+    
+    var i = 1;
+    
+    $(".arrow2").click(function() {
+    	
+    	i++;
+    	
+    	if(i > 10) {
+    		alert("다음 사진이 없습니다.");
+    		i = 10;
+    	}
+    	
+    	$(".img").prop("src", "../resources/images/volunteer/" + i + ".jpg");
+    	
+    	/* 데이터 이미지 배열만큼 할 것  */
+    	
+    	
+    })
+    
+    $(".arrow1").click(function() {
+   		
+    	i--;
+    	
+    	if(i < 1) {
+    		alert("이전 사진이 없습니다.");
+    		i = 1;
+    	}
+    	
+    	$(".img").prop("src", "../resources/images/volunteer/" + i + ".jpg");
+    })
 
     </script>

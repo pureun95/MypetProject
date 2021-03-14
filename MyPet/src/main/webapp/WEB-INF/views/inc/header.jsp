@@ -6,10 +6,10 @@
 
 	/* 후에 template.css로 옮길 것 */
 	.logo-scroll {
-		positon: absolute;
-		top: -3px;
-		background-size: cover;
        	background-position: 50% 50%;
+       	background-repeat: no-repeat;
+    	background-size: contain;
+    	margin-top: -7px;
 	}
 	
 </style>
