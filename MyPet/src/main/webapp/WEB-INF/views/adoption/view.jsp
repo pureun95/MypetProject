@@ -196,7 +196,6 @@
 	    margin-left: 760px;
 	    margin-bottom: 10px;
 	    width: 140px;
-	    height: 40px;
     }
     
    
@@ -212,7 +211,7 @@
 	</div>
 	
 	
-	<input type="button" class="btn common-btn" value="입양예약하기">
+	<input type="button" class="btn common-btn" value="입양예약하기" onclick="location.href='/mypet/adoption/writereservation.action'">
 	
 	<div class="detail">
 		<img class="img" src="../resources/images/adoption/1.jpg">
@@ -269,7 +268,7 @@
 	    </tr>
 	</table>
 	
-	<input type="button" class="btn common-btn" value="목록">
+	<input type="button" class="btn common-btn" value="목록" onclick="location.href='/mypet/adoption/list.action'">
 	
 	
 	
