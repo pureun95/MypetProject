@@ -44,7 +44,25 @@ public class BoardController {
 	@RequestMapping(value = "/board/volunteerList.action", method = { RequestMethod.GET })
 	public String volunteer_list(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
-		return "board/volunteerList";
+		return "board/volunteer_list";
+
+	}
+	
+	
+	//http://localhost:8090/mypet/board/volunteerView.action
+	@RequestMapping(value = "/board/volunteerView.action", method = { RequestMethod.GET })
+	public String volunteer_view(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/volunteer_view";
+
+	}
+		
+		
+	//http://localhost:8090/mypet/board/volunteerList.action
+	@RequestMapping(value = "/board/volunteerWrite.action", method = { RequestMethod.GET })
+	public String volunteer_write(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/volunteer_write";
 
 	}
 	
