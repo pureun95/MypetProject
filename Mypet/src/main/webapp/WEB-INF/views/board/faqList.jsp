@@ -86,7 +86,8 @@
         font-size: 16px;
     }
 
-    .tr2:hover {
+    .tr2:hover{
+   		cursor: pointer;
         background-color: #F6DA42;
     }
    
@@ -105,11 +106,12 @@
         text-align: center;
     }
 
-    /* .fourthtd {
-        width: 100px;
-        text-align: center;
-    } */
-
+	
+	.tr3 td{
+		text-align: center;
+		margin-top:20px;
+	}
+	
    
     /* 번호, 날짜, 조회수 */
     .tr2 > td:nth-child(1), td:nth-child(2)/* , td:nth-child(4) */ {
@@ -214,6 +216,10 @@
     .board-btn > input:nth-child(1) {
         margin-left: 1125px;
     }
+    
+
+
+
 
 </style>
 
@@ -231,73 +237,107 @@
 			</span>
         	<span><input type="button" class="btn common-btn" value="글쓰기" id="add" onclick="location.href='/mypet/board/faqAdd.action'"></span>        
         </div>
-        <table class="table table-condensed">
+  
+        <table class="table table-condensed" id="table">
             <tr class="headtr">
                 <th class="firsttd">번호</th>
                 <th class="sectd">카테고리</th>
                 <th class="thirdtd">제목</th>
                 <!-- <th class="thirdtd">날짜</th> -->         
             </tr>
-            <tr class="tr2">
+         
+  			<tr class="tr2">
                 <td>1</td>
                 <td>입양</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->          
             </tr>
-
+            <tr class="tr3">
+            	<td colspan="3"> 
+            	<input type="button" value="수정" id="delete" class="btn" onclick="location.href='/mypet/board/faqEdit.action'">
+            	<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/board/faqDelete.action'">
+            	FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다.
+            	</td>
+            </tr>
+            
             <tr class="tr2">
                 <td>2</td>
                 <td>봉사</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->
             </tr>
+            <tr class="tr3">
+            	<td colspan="3"> FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다.</td>
+            </tr>
+            
             <tr class="tr2">
                 <td>3</td>
                 <td>굿즈</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->
             </tr>
+            <tr class="tr3">
+            	<td colspan="3"> FAQ내용입니다.</td>
+            </tr>
+            
             <tr class="tr2">
                 <td>4</td>
                 <td>동물병원</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->
             </tr>
+            <tr class="tr3">
+            	<td colspan="3"> FAQ내용입니다.</td>
+            </tr>
+            
             <tr class="tr2">
                 <td>5</td>
                 <td>보호소</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->
             </tr>
+            <tr class="tr3">
+            	<td colspan="3"> FAQ내용입니다.</td>
+            </tr>
+            
             <tr class="tr2">
                 <td>6</td>
                 <td>기타</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->
             </tr>
+            <tr class="tr3">
+            	<td colspan="3"> FAQ내용입니다.</td>
+            </tr>
+            
             <tr class="tr2">
                 <td>7</td>
                 <td>입양</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->
             </tr>
+            <tr class="tr3">
+            	<td colspan="3"> FAQ내용입니다.</td>
+            </tr>
+            
             <tr class="tr2">
                 <td>8</td>
                 <td>봉사</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->
             </tr>
+            <tr class="tr3">
+            	<td colspan="3"> FAQ내용입니다.</td>
+            </tr>
+            
             <tr class="tr2">
                 <td>9</td>
                 <td>굿즈</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->
             </tr>
+            <tr class="tr3">
+            	<td colspan="3"> FAQ내용입니다.</td>
+            </tr>
+            
             <tr class="tr2">
                 <td>10</td>
                 <td>기타</td>
                 <td>FAQ 제목입니다.</td>
-                <!-- <td>2021-01-01</td> -->
+            </tr>
+            <tr class="tr3">
+            	<td colspan="3"> FAQ내용입니다.</td>
             </tr>
 
             <!-- 10개 vs 15개 -->
@@ -365,8 +405,25 @@
    
 </div>
 
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    $(document).ready(function(){
 
-    <script>
+        $("#table tr:odd").addClass("odd");
+        $("#table tr:not(.odd)").hide(); 
+        $("#table tr:first-child").show(); //열머리글 보여주기
+
+        $("#table tr.odd").click(function(){
+            $(this).next("tr").toggle();
+            $(this).find(".arrow").toggleClass("up");
+
+        });
+       
+
+    });
+
+</script>
+
+    
 
 
-    </script>
