@@ -81,8 +81,7 @@
 	.modal-footer #delete:hover, .modal-footer #cancel:hover{
 		color:black;
 	}
-	
-	
+		
 	.modal-footer #delete{ background-color: #b27208; }
 	.modal-footer #cancel{ background-color: #fab018; }
 	

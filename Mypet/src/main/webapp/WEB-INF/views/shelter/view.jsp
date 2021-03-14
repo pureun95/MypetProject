@@ -101,6 +101,10 @@
 	
 	}
 	
+	#apply{
+		width: 150px;
+	}
+	
 	.btns #edit, .btns #delete {		
 		text-align: center;
 		float : right;
@@ -122,6 +126,62 @@
 		margin-bottom:100px;
 		
 	}
+	
+	    /* 모달창 */
+    
+    .modal-content {
+    	overflow: hidden;
+    }
+    
+    .close {
+    	position : absolute;
+    	top : 20px;
+    	right :10px;
+    	outline: none !important;	
+    }
+       
+    .modal-header, .modal-title {
+    	background-color: #f6da42;
+    	font-family: 'Jal_Onuel';
+    	font-size: 16px;
+    }
+    
+   	.modal-body{
+		font-family: 'NanumSquare';
+		text-align: center;
+		height : 90px;	
+		font-size: 16px;	
+	}
+	
+	.modal-body p {
+		margin-top: 25px;
+	}
+	
+	.modal-footer{
+		text-align: center;
+	}
+	
+  
+    /* 버튼 */
+       
+    .modal-footer #apply, .modal-footer #cancel {
+		font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 0px 10px;
+    	padding : 10px 12px;
+		border : none;
+	    color: white;
+		outline: none !important;	
+		border-radius : 5px;
+	}
+	.modal-footer #apply:hover, .modal-footer #cancel:hover{
+		color:black;
+	}
+		
+	.modal-footer #apply{ background-color: #b27208; }
+	.modal-footer #cancel{ background-color: #fab018; }
+	
+    }
 	
 	
 </style>
@@ -164,7 +224,29 @@
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>봉사활동</th>
-			<td>2021/03/24 ~ 2021/03/31 <input type="button" class="btn" value="봉사예약하기" id="vol" onclick="$('#searchForm').submit();"></td>
+			<td>2021/03/24 ~ 2021/03/31 
+<!-- 			<input type="button" class="btn" value="봉사예약하기" id="vol" onclick="$('#searchForm').submit();"> -->
+			<button id="apply" class="btn">봉사신청하기</button>
+			<div class="modal" tabindex="-1" role="dialog" id="applymodal">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content" id="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">가나다 보호소 봉사 신청하기</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        <p>가나다 보호소를 봉사활동을 신청하시겠습니까?</p>
+			      </div>
+			      <div class="modal-footer">
+			      	<button type="submit" class="btn" id="apply">신청</button>
+			        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			</td>
 		</tr>
 		<tr id="list">
 			<td colspan='3' class="map"><div id="map"></div></td>
@@ -179,8 +261,16 @@
 	
 </div>
 
+<!-- 봉사활동 신청 -->
+<script>
+	$('#apply').click(function(e){
+		e.preventDefault();
+		$('#applymodal').modal("show");
+	});
+</script>
 
 
+<!-- 지도 -->
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9"></script>
 	
 <script>
