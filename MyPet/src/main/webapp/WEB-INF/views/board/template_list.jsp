@@ -103,6 +103,7 @@
 
     .btn {
          font-family: 'Jal_Onuel';
+         cursor: pointer;
     }
     
     .common-btn {
