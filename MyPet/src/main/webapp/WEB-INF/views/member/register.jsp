@@ -115,6 +115,22 @@ input[type="checkbox"] {
 	background-color: #F6DA42;
 }
 
+.chaticon {
+	/* border: 1px solid black; */
+	width: 80px;
+	height: 80px;
+	position: fixed;
+	right: 5px;
+	bottom: 5px;
+	/* margin-left: 30px; */
+	background-image: url('/mypet/resources/images/chat/chatimg.png');
+	background-size: cover;
+	background-position: 50% 50%;
+	/* margin-right: 10px; */
+	z-index: 100;
+	cursor:pointer;
+}
+
 
 </style>
 
@@ -240,6 +256,9 @@ input[type="checkbox"] {
 
 	</div>
 	<!-- join_content -->
+	
+	<div class="chaticon"></div>
+	
 </div>
 <!-- content -->
 

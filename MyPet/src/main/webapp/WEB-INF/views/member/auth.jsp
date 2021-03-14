@@ -120,6 +120,23 @@ body {
 	color: #cacaca;
 }
 
+.chaticon {
+	/* border: 1px solid black; */
+	width: 80px;
+	height: 80px;
+	position: fixed;
+	right: 5px;
+	bottom: 5px;
+	/* margin-left: 30px; */
+	background-image: url('/mypet/resources/images/chat/chatimg.png');
+	background-size: cover;
+	background-position: 50% 50%;
+	/* margin-right: 10px; */
+	z-index: 100;
+	cursor:pointer;
+}
+
+
 
 </style>
 
@@ -144,6 +161,8 @@ body {
 			<input type="submit" class="btn btn-outline-secondary" type="button"
 				id="btn-login" value="로그인">
 		</div>
+		
+		
 
 
 
@@ -159,21 +178,41 @@ body {
 
 	</div>
 
-	<div>
+	<!-- <div>
 		<button>
 			<a href="/mypet/member/login.action?id=hong">홍길동</a>
 		</button>
-	</div>
+	</div> -->
+
+
+	<div class="chaticon" id="chaticon"></div>
+<!-- 	<div class="chaticon" onclick="showPopup();"></div> -->
 
 
 
 
 
 
+<script>
+var chaticon = document.getElementById("chaticon");
 
+var _width = '350';
+var _height = '570';
 
+// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+var _left = Math.ceil(( window.screen.width - _width )/2);
+var _top = Math.ceil(( window.screen.width - _height )/2); 
 
+/* window.open('/url', 'popup-test', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top ); */
 
+chaticon.onclick = function() {
+
+ 	window.open("/mypet/member/chat.action", "a", "width=350, height=570"); 
+/* 	window.open("/mypet/member/chat.action", "a", "'width='+ _width +', height='+ _height +', left=0, top=0"); */
+
+}
+
+</script>
 
 
 </div>

@@ -49,7 +49,11 @@
 		<put-attribute name="content"
 			value="/WEB-INF/views/{1}/{2}.jsp"></put-attribute>
 	</definition>
+	
+	<!-- 채팅전용  -->
+	<definition name="*//*" template="/WEB-INF/views/member/chat.jsp">
 
+	</definition>
 
 </tiles-definitions>
 
