@@ -87,7 +87,7 @@
 	    	$("header").addClass("header-scroll");
 	    	$("#headersub").css("height", "60px");
 	    	$("#pheadercontent1").css("height", "50px");
-	        $(".pheadercontent2").css("height", "30px").css("background-image", "url(/mypet/resources/images/logo2.png)").addClass("logo-scroll");
+	        $(".pheadercontent2").css("height", "35px").css("background-image", "url(/mypet/resources/images/logo2.png)").addClass("logo-scroll");
 	        $(".pheadercontent3").css("height", "50px");
 	        $(".menubar").addClass("menubar-scroll");
 	        $(".menubar2").addClass("menubar2-scroll");
