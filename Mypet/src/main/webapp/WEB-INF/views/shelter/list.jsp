@@ -125,6 +125,7 @@
     
      .pagebar {
     	text-align : center;
+    	margin-bottom :100px;
     } 
     
     .pagination{

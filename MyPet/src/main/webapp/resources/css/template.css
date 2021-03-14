@@ -307,14 +307,16 @@
         float: left;
         margin-left:200px;
     }
-
+    
     .pheadercontent::after{
         content: "";
         display: block;
         clear: both;
     }
+    
     #headersub{
         width: 1300px;
+        height: 200px;
         margin: 0px auto;
         text-align: center;
     }
@@ -327,8 +329,8 @@
      
     .pheadercontent2 {
        background-image: url(/mypet/resources/images/logo.png);
-        background-size: cover;
-        background-position: 50% 50%;
+       background-size: cover;
+       background-position: 50% 50%;
     }
     
     .pheadercontent3 {
@@ -353,6 +355,10 @@
        background-color: #301B00;
        font-size: 16px;
        color: white;
+   }
+   
+   .login:hover {
+   		color: white;
    }
    
    .login-scroll {
@@ -441,7 +447,7 @@
 
      .nav2{
         /* border: 1px solid black; */
-         position: relative;
+       position: relative;
        left: 1050px;
        top: 180px;
        padding: 20px;
