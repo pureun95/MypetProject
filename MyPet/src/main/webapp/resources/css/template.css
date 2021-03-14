@@ -78,6 +78,10 @@
        color: white;
    }
    
+   .login:hover {
+   		color: white;
+   }
+   
    .login-scroll {
       background-color: transparent;
       position: relative;
