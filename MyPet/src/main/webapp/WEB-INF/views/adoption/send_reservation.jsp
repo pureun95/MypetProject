@@ -151,7 +151,8 @@
 	</div>
 	<div class="exptxt"><small>굿즈 판매 수익은 보호동물에게 사용됩니다.</small></div>
 	<div class="exptxt"><small>굿즈 구매로 보호동물들을 도와주세요.</small></div>
-
+	
+	<!-- 캐러셀 시작 -->
 	<div style="width:254px; height:301px; margin:auto;">
 		
 		<!-- 가운데 o 모양 페이지 표시 -->

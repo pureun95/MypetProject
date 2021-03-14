@@ -102,10 +102,24 @@ public class BoardController {
    }
    
    @RequestMapping(value = "/board/adoptionreviewview.action", method = { RequestMethod.GET })
-   public String adoptionReviewview(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+   public String adoptionReviewView(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
       
       return "board/adoptionreviewView";
       
+   }
+   
+   @RequestMapping(value = "/board/adoptionreviewwrite.action", method = { RequestMethod.GET })
+   public String adoptionReviewWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	   
+	   return "board/adoptionreviewWrite";
+	   
+   }
+   
+   @RequestMapping(value = "/board/adoptionreviewedit.action", method = { RequestMethod.GET })
+   public String adoptionReviewEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	   
+	   return "board/adoptionreviewEdit";
+	   
    }
 
 }
