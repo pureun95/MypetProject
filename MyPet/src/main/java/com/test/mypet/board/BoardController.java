@@ -44,7 +44,25 @@ public class BoardController {
 	@RequestMapping(value = "/board/volunteerList.action", method = { RequestMethod.GET })
 	public String volunteer_list(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
-		return "board/volunteerList";
+		return "board/volunteer_list";
+
+	}
+	
+	
+	//http://localhost:8090/mypet/board/volunteerView.action
+	@RequestMapping(value = "/board/volunteerView.action", method = { RequestMethod.GET })
+	public String volunteer_view(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/volunteer_view";
+
+	}
+		
+		
+	//http://localhost:8090/mypet/board/volunteerList.action
+	@RequestMapping(value = "/board/volunteerWrite.action", method = { RequestMethod.GET })
+	public String volunteer_write(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/volunteer_write";
 
 	}
 	
@@ -61,19 +79,33 @@ public class BoardController {
 		return "board/faqAdd";
 
 	}
-	
-	@RequestMapping(value = "/board/adoptionreviewlist.action", method = { RequestMethod.GET })
-	public String adoptionReviewList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		
-		return "board/faqAdd";
-		
+
+	@RequestMapping(value = "/board/faqEdit.action", method = { RequestMethod.GET })
+	public String faqEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/faqEdit";
+
 	}
 	
-	@RequestMapping(value = "/board/adoptionreviewview.action", method = { RequestMethod.GET })
-	public String adoptionReviewview(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		
-		return "board/faqAdd";
-		
+	@RequestMapping(value = "/board/faqDelete.action", method = { RequestMethod.GET })
+	public String faqDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "board/faqDelete";
+
 	}
+  
+     @RequestMapping(value = "/board/adoptionreviewlist.action", method = { RequestMethod.GET })
+   public String adoptionReviewList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+      
+      return "board/adoptionreviewList";
+      
+   }
+   
+   @RequestMapping(value = "/board/adoptionreviewview.action", method = { RequestMethod.GET })
+   public String adoptionReviewview(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+      
+      return "board/adoptionreviewView";
+      
+   }
 
 }

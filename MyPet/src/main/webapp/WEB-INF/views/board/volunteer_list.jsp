@@ -91,7 +91,7 @@
     }
 
     .fourthtd {
-        width: 200px;
+        width: 300px;
         text-align: center;
     }
     
@@ -102,7 +102,7 @@
 
    
     /* 번호, 날짜, 조회수 */
-    .tr2 > td:nth-child(1), td:nth-child(3), td:nth-child(4), td:nth-child(5) {
+    .tr2 > .center  {
         text-align: center;
     }
 
@@ -187,80 +187,43 @@
                 <th class="firsttd">번호</th>
                 <th class="sectd">제목</th>
                 <th class="thirdtd">마감현황</th>
-                <th class="fourthtd">날짜</th>
+                <th class="fourthtd">기간</th>           
+                <th class="thirdtd">작성일</th>
                 <th class="fifthtd">조회수</th>
             </tr>
             <tr class="tr2">
-                <td>1</td>
-                <td>공지사항 제목입니다.</td>
-                <td>마감</td>
-                <td>2021-01-01</td>
-                <td>32</td>
+                <td class="center">1</td>
+                <td>[봉사활동명] 봉사활동 할 사람 모여라</td>
+                <td class="center">마감</td>
+                <td class="center">2021-01-01 ~ 2021-01-30</td>
+                <td class="center">2021-01-01</td>
+                <td class="center">32</td>
             </tr>
-
-            <tr class="tr2">
-                <td>2</td>
-                <td>공지사항 제목입니다.</td>
-                <td>마감</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>3</td>
-                <td>공지사항 제목입니다.</td>
-                <td>마감</td>
-                <td>2021-01-01</td>
-                <td>32</td>
+			<tr class="tr2">
+                <td class="center">1</td>
+                <td>[봉사활동명] 제목</td>
+                <td class="center">마감</td>
+                <td class="center">2021-01-01 ~ 2021-01-30</td>
+                <td class="center">2021-01-01</td>
+                <td class="center">32</td>
             </tr>
             <tr class="tr2">
-                <td>4</td>
-                <td>공지사항 제목입니다.</td>
-                <td>신청가능</td>
-                <td>2021-01-01</td>
-                <td>32</td>
+                <td class="center">1</td>
+                <td>[봉사활동명] 제목</td>
+                <td class="center">마감</td>
+                <td class="center">2021-01-01 ~ 2021-01-30</td>
+                <td class="center">2021-01-01</td>
+                <td class="center">32</td>
             </tr>
             <tr class="tr2">
-                <td>5</td>
-                <td>공지사항 제목입니다.</td>
-                <td>신청가능</td>
-                <td>2021-01-01</td>
-                <td>32</td>
+                <td class="center">1</td>
+                <td>[봉사활동명] 제목</td>
+                <td class="center">마감</td>
+                <td class="center">2021-01-01 ~ 2021-01-30</td>
+                <td class="center">2021-01-01</td>
+                <td class="center">32</td>
             </tr>
-            <tr class="tr2">
-                <td>6</td>
-                <td>공지사항 제목입니다.</td>
-                <td>신청가능</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>7</td>
-                <td>공지사항 제목입니다.</td>
-                <td>신청가능</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>8</td>
-                <td>공지사항 제목입니다.</td>
-                <td>신청가능</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>9</td>
-                <td>공지사항 제목입니다.</td>
-                <td>신청가능</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>10</td>
-                <td>공지사항 제목입니다.</td>
-                <td>신청가능</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
+            
 
             <!-- 10개 vs 15개 -->
             

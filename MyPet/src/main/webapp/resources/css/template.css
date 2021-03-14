@@ -351,7 +351,7 @@
        top: 100px;
        left: 25px;
        height: 40px;
-       font-family: 'Jal_Onuel';
+       font-family: 'Jal_Onuel' !important;
        background-color: #301B00;
        font-size: 16px;
        color: white;
@@ -449,36 +449,37 @@
         /* border: 1px solid black; */
        position: relative;
        left: 1050px;
-       top: 180px;
+       /* top: 180px; */
        padding: 20px;
        overflow: visible;
        background: rgb(255, 255, 255);
        outline: 0px;
        width: 280px;
        height: 250px;
-       /* z-index: 1; */
+       z-index: -1;
        opacity: 0;
        font-family: 'NanumSquare';
        text-align: center;
        box-shadow: 0px 0px 15px #e6e6e6;
+       float: left;
     }
     
     .nav2-scroll {
        position: relative;
        left: 1050px;
-       top: 40px;
+       top: -10px;
     }
     
     .menu > span {
        display: block;
-       margin-top: -150px;
+      /*  margin-top: -150px; */
        font-size: 14px;
        font-family: 'NanumSquare';
     }
 
     
    .menu {
-      /* border: 1px solid black; */
+      border: 1px solid black;
       width: 70px;
       height: 80px; 
       float: left;
@@ -500,8 +501,8 @@
         height: 50px;
         margin-bottom: 10px;
         margin-left: 7px;
-        position:relative;
-        top:-150px;
+        /* position:relative;
+        top:-150px; */
         
     }
 

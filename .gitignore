@@ -2,3 +2,5 @@
 MyPet/src/main/java/com/test/mypet/adoption/AdoptionController.java
 MyPet/target/classes/com/test/mypet/adoption/AdoptionController.class
 MyPet/src/main/webapp/resources/css/template.css
+MyPet/target/classes/com/test/mypet/board/BoardController.class
+MyPet/src/main/java/com/test/mypet/board/BoardController.java
