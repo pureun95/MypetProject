@@ -68,6 +68,7 @@
 $(window).scroll(function() {
     if($(this).scrollTop() > 100) {
     	$("header").addClass("header-scroll");
+    	$("#headersub").css("height", "60px");
         $(".pheadercontent2").css("background-image", "none");
         $(".menubar").addClass("menubar-scroll");
         $(".menubar2").addClass("menubar2-scroll");
@@ -76,6 +77,7 @@ $(window).scroll(function() {
         
     } else {
         $("header").removeClass("header-scroll");
+        $("#headersub").css("height", "200px");
         $(".pheadercontent2").css("background-image", "url(/mypet/resources/images/logo.png)");
         $(".menubar").removeClass("menubar-scroll");
         $(".menubar2").removeClass("menubar2-scroll");
@@ -86,6 +88,9 @@ $(window).scroll(function() {
 
 
 	$("#plist_bar2").click(function() {
+		
+		/* event.stopPropagation(); */
+		
 	console.log(123);
 	if ($("#plist_bar2").prop("checked")) {
 		$(".nav2").css("opacity", 1).css("z-index", "99");
