@@ -135,7 +135,7 @@ ul, li {
 			<th>신청일</th>
 			<th>상태</th>
 		</tr>
-		<c:forEach items="${list}" var="dto">
+		<c:forEach items="${list}" var="dto" varStatus="status">
 		<tr>
 			<td><a href="/mypet/mypage/reservationview.action">${dto.seqReservation}</a></td>
 			<td class="underlinetxt" >
@@ -149,29 +149,46 @@ ul, li {
 						<li><a>분류 : ${dto.species}</a></li>
 						<li><a>나이 : ${dto.age}</a></li>
 						<li><a>성별 : ${dto.gender}</a></li>
-						<li><a>중성화여부 : ${dto.neutralization}</a></li>
-						<li><a>접종여부 : ${dto.vaccination}</a></li>
+						<li><a>중성화여부 : 
+							<c:if test="${dto.neutralization==0}">
+								X
+							</c:if>
+							<c:if test="${dto.neutralization==1}">
+								O
+							</c:if>
+						</a></li>
+						<li><a>접종여부 : 
+							<c:if test="${dto.vaccination==0}">
+								X
+							</c:if>
+							<c:if test="${dto.vaccination==1}">
+								O
+							</c:if>
+						
+						</a></li>
 						<li><a>사진</a></li>
 						<li class="divider"></li>
-						<li><a><img class="animalimg" src="/mypet/resources/images/adoption/1.jpg"></a></li>
+						<li><a><img class="animalimg" src="/mypet/resources/images/adoption/${dto.image}"></a></li>
 						<li class="divider"></li>
 					</ul>
 				</li>
 			</td>
 			<td class="underlinetxt">
 				<li class="dropdown" >
-					<a href="#" id="m1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >
+					<a href="#" id="m${status.count}" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >
 					${dto.hospitalName}
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>보호소명 : 도그마루 잠실본점</a></li>
-						<li><a>운영시간 : 오전 9시 ~ 오후 18시</a></li>
-						<li><a>나이 : 3살</a></li>
-						<li><a>전화번호 : 02-4851-4541</a></li>
+						<li><a>보호소명 : ${dto.hospitalName}</a></li>
+						<li><a>운영시간 : ${dto.time}</a></li>
+						<li><a>진료과목 : ${dto.treatment}</a></li>
+						<li><a>전화번호 : ${dto.hospitalTel}</a></li>
 						<li><a>지도 <small style="float:right;">※ 지도를 클릭하여 움직이세요.</small></a></li>
-						<div id="map" style="width:400px;height:200px;"></div>
-						<button type="button" class="btn btnself" style="margin:30px; float:right;" id="btnnav">길찾기</button>
+						<input type="hidden" id="address${status.count}" name="address${status.count}" value="${dto.hospitalAddress}">
+						<input type="hidden" id="name${status.count}" name="name${status.count}" value="${dto.hospitalName}">
+						<div id="map${status.count}" style="width:400px;height:200px;"></div>
+						<button type="button" class="btn btnself" style="margin:30px; float:right;" id="btnnav${status.count}">길찾기</button>
 					</ul>
 				</li>
 			</td>
@@ -224,22 +241,23 @@ ul, li {
 		
 		// 주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
-		
+		var haddress = $('#address1').val();
+		var name = $('#name1').val();
 		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('서울 송파구 석촌호수로 104', function(result, status) {
+		geocoder.addressSearch(haddress, function(result, status) {
 		
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
 				
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		    	var addr = '도그마루 잠실본점,'+result[0].y+','+result[0].x;
+		    	var addr = name+result[0].y+','+result[0].x;
 				
-		        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		        var mapContainer = document.getElementById('map1'), // 지도를 표시할 div 
 			    mapOption = {
 			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
 			        level: 5 // 지도의 확대 레벨
 			    };  
-			
+				
 				// 지도를 생성합니다    
 				var map = new kakao.maps.Map(mapContainer, mapOption); 
 				
@@ -252,7 +270,7 @@ ul, li {
 		
 		        // 인포윈도우로 장소에 대한 설명을 표시합니다
 		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:150px;text-align:center;padding:6px 0;">도그마루 잠실본점</div>'
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
 		        });
 		        
 		        infowindow.open(map, marker);
@@ -260,72 +278,110 @@ ul, li {
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		        map.setCenter(coords);
 		        
-				$('#btnnav').click(function(){
+				$('#btnnav1').click(function(){
 					
 			       	window.open('https://map.kakao.com/link/to/'+addr);
-			       	
 				})
-		        
-		        
 		    } 
 		});    
+	})
+	$('#m2').click(function(){
 		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		var haddress = $('#address2').val();
+		var name = $('#name2').val();
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch(haddress, function(result, status) {
 		
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+				
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		    	var addr = name+result[0].y+','+result[0].x;
+				
+		        var mapContainer = document.getElementById('map2'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 5 // 지도의 확대 레벨
+			    };  
+				
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				
+		        
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
+		        });
+		        
+		        infowindow.open(map, marker);
+		
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		        
+				$('#btnnav2').click(function(){
+					
+			       	window.open('https://map.kakao.com/link/to/'+addr);
+				})
+		    } 
+		});    
+	})
+	$('#m3').click(function(){
+		
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+		var haddress = $('#address3').val();
+		var name = $('#name3').val();
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch(haddress, function(result, status) {
+		
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+				
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		    	var addr = name+result[0].y+','+result[0].x;
+				
+		        var mapContainer = document.getElementById('map3'), // 지도를 표시할 div 
+			    mapOption = {
+			        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			        level: 5 // 지도의 확대 레벨
+			    };  
+				
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+				
+		        
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+		
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
+		        });
+		        
+		        infowindow.open(map, marker);
+		
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		        
+				$('#btnnav3').click(function(){
+					
+			       	window.open('https://map.kakao.com/link/to/'+addr);
+				})
+		    } 
+		});    
 	})
 	
-	
-	function petInfo(seqPet){
-			alert("됀다");
-			/* let seqPet = seqPet;
-									
-			$.ajax({
-				type: "GET",
-				url: "/mypet/mypage/getpetinfo.action",
-				data:"seqPet="+seqPet,
-				success: function(llist){
-					
-					var body = '';
-					
-					console.log(llist);
-					llist = JSON.parse(llist);
-
-					
-					if (llist==null || llist==""){
-						body += '<td colspan="4">';
-						body += '지역에 존재하는 다른 중개사가 없습니다.';
-						body += '</td>';
-						body += '</tr>';
-					}
-					
-					
-					for (var i=0; i<llist.length; i++) {
-						
-
-						body += '<tr class="selcontractor" onclick="location.href='
-						body += '\'/Myhome_project/user/selectcontractor.do?seqContractor=';
-						body += llist[i].seqContractor;
-						body += '&seqMatching=';
-						body += num;
-						body += '\'">';
-						body += '<td>'+llist[i].contractorName+'</td>';
-						body += '<td>'+llist[i].companyNumber+'</td>';
-						body += '<td>'+llist[i].phoneNumber +'</td>';
-						body += '<td>'+llist[i].address+'</td>';
-						body += '</tr>';
-						
-						
-					}
-					
-				
-					$("#tb").html(body);
-					
-				},
-				error: function(a,b,c) {
-					console.log(a,b,c);
-				}
-			}) */
-			 
-		};
 	
 	
 </script>

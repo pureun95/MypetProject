@@ -32,7 +32,7 @@ public class VwReservationDTO {
 	private String time;
 	private String hospitalTel;
 	private String treatment;
-	
+	private String hospitalAddress;
 	
 	public String getAge() {
 		return age;
@@ -195,6 +195,12 @@ public class VwReservationDTO {
 	}
 	public void setAvailableDate(String availabledate) {
 		this.availableDate = availabledate;
+	}
+	public String getHospitalAddress() {
+		return hospitalAddress;
+	}
+	public void setHospitalAddress(String hospitalAddress) {
+		this.hospitalAddress = hospitalAddress;
 	}
 	
 }
