@@ -161,7 +161,7 @@
     
    
     /* 추가 */
-    .fagtail {
+    .faqtail {
     	position :relative;
     	border : 1px solid #fab018;
     }
@@ -202,7 +202,7 @@
 			</select>
 	        <input type="text" class="form-control board-title" onclick="this.value=''" placeholder="FAQ제목입니다.">	        	
 	        <textarea class="form-control board-content" onclick="this.value=''" placeholder="FAQ내용입니다."></textarea> 	    	                      		           		        
-	        <div class="fagtail">
+	        <div class="faqtail">
 	        	<span class="glyphicon glyphicon-question-sign"></span>
         		<ul>
         			<li>추가로 자세한 답변을 원하신다면 <span id="chat" onclick="location.href='/mypet/board/faqList.action'">채팅</span>을 이용해주세요.</li>

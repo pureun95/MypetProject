@@ -124,6 +124,77 @@
 		margin-bottom:100px;
 		
 	}
+	
+	#apply{
+		width: 150px;
+	}
+	
+	/* 모달창 */
+    
+    .modal-content {
+    	overflow: hidden;
+    }
+    
+    .close {
+    	position : absolute;
+    	top : 20px;
+    	right :10px;
+    	outline: none !important;	
+    }
+       
+    .modal-header, .modal-title {
+    	background-color: #f6da42;
+    	font-family: 'Jal_Onuel';
+    	font-size: 16px;
+    }
+    
+   	.modal-body{
+		font-family: 'NanumSquare';
+		text-align: center;
+		height : 200px;	
+		font-size: 16px;	
+		margin-bottom:10px;
+	}
+	
+	.modal-body table{
+		margin: 0px auto;
+	}
+	
+ 	.madal-body #apply_th{
+ 		font-weight:none;
+		margin-bottom: 10px;
+		margin-rigth: 10px;
+	} 
+	
+	.modal-body p {
+		margin-top: 25px;
+		
+	}
+	
+	.modal-footer{
+		text-align: center;
+	}
+	
+	/* 버튼 */
+       
+    .modal-footer #apply, .modal-footer #cancel {
+		font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 0px 10px;
+    	padding : 10px 12px;
+		border : none;
+	    color: white;
+		outline: none !important;	
+		border-radius : 5px;
+	}
+	.modal-footer #apply:hover, .modal-footer #cancel:hover{
+		color:black;
+	}
+		
+	.modal-footer #apply{ background-color: #b27208; }
+	.modal-footer #cancel{ background-color: #fab018; }
+	
+    }
 }
     
 </style>
@@ -141,7 +212,47 @@
 				<div id="img" style="background-image:url(/mypet/resources/images/vet/24snc동물메디컬센터.jpg);"></div>
 			</td>
 			<th>이름</th>
-			<td>가나다 동물병원<input type="button" class="btn" value="진료예약하기" id="res" onclick="$('#searchForm').submit();"></td>
+			<td>가나다 동물병원
+			<!-- <input type="button" class="btn" value="진료예약하기" id="res" onclick="$('#searchForm').submit();"> -->
+			<button id="apply" class="btn">진료예약하기</button>
+			<div class="modal" tabindex="-1" role="dialog" id="applymodal">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content" id="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">가나다 동물병원 진료 예약하기</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			      	<table>
+			      		<tr id="apply_tr">
+			      			<th id="apply_th">반려동물 이름</th>
+			      			<td><input type="text" class="form-control" id="name"></td>
+			      		</tr>
+			      		<tr id="apply_tr">
+			      			<th id="apply_th">반려동물 종류</th>
+			      			<td><input type="text" class="form-control" id="species"></td>
+			      		</tr>
+			      		<tr id="apply_tr">
+			      			<th id="apply_th">진료사유</th>
+			      			<td><input type="text" class="form-control"  id="reason"></td>
+			      		</tr>
+			      		<tr id="apply_tr">
+			      			<th id="apply_th">날짜</th>
+			      			<td><input type="text" class="form-control"  id="date"></td>
+			      		</tr>
+			      	</table>
+			        <p>가나다 동물병원 진료를 예약하시겠습니까?</p>
+			      </div>
+			      <div class="modal-footer">
+			      	<button type="submit" class="btn" id="apply">예약</button>
+			        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			</td>
 		</tr>		
 		<tr id="list">
 			<!-- <td></td> -->
@@ -176,6 +287,21 @@
 	
 	
 </div>
+
+<!-- 진료예약 -->
+<script>
+
+	$('#apply').click(function(e){
+		e.preventDefault();
+		$('#applymodal').modal("show");
+	});
+
+	$("#date").datepicker({
+	    dateFormat : "yy-mm-dd",	
+	    minDate: "-1M -5D",
+	    maxDate: "+1M +5D"
+	});
+</script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9"></script>
 	

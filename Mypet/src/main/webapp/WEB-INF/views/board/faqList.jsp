@@ -51,7 +51,7 @@
 
     /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
     #content{
-        height: 1000px;
+        height: auto;
     }
 
 
@@ -83,6 +83,7 @@
 
     /* 테이블 css */
     table {
+    	font-family: 'NanumSquare';
         font-size: 16px;
     }
 
@@ -106,10 +107,13 @@
         text-align: center;
     }
 
+	.tr3 {
+		border : 1px solid #F6DA42;
+	}
 	
-	.tr3 td{
+	.tr3 #txt{
 		text-align: center;
-		margin-top:20px;
+		margin:20px;
 	}
 	
    
@@ -122,22 +126,7 @@
     .headtr > td:nth-child(3) {
         text-align: left;
     }
-    
-    /* 더보기 */
-/*     .more {
-    	position: absolute;
-    	right: 100px;
-    	text-align: right;
-	    position: absolute;
-	    right: 19px;
-	    top: 50%;
-	    margin-top: -4px;
-	    width: 15px;
-	    height: 9px;
-	    background-position: -240px -280px;
-    }
-    
- */
+
     /* 검색창 & 버튼 박스 */
     .pageSearch {
         /* border: 1px solid black; */
@@ -158,16 +147,24 @@
     /* 버튼 공통 클래스 */
 
     .btn {
-        font-family: 'JSDongkang-Regular';
+        font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 0px 10px;
+    	padding : 10px 12px;
+		border : none;
+		background-color: #b27208;
+	    color: white;
+		outline: none !important;	
+		border-radius : 5px;
     }
-    .common-btn {
+    #add {
         background-color: #b27208;
         color: white;
         float: right;
     }
 
-    .common-btn:hover {
-        color: white;
+    .btn:hover {
+        color: black;
         outline: none;
     }
 
@@ -188,6 +185,11 @@
 	
 	.category button{
 		outline-color: #fab018;
+	}
+	
+	.tr3 .btns{
+		text-align: center;
+		margin-bottom : 10px;
 	}
 
     /* 페이지바 */
@@ -217,7 +219,37 @@
         margin-left: 1125px;
     }
     
-
+	/* 추가 */
+    .faqtail {
+    	width:500px;
+    	position :relative;
+    	border : 1px solid #fab018;
+    	border-radius : 5px;
+    	font-family: 'NanumSquare';
+		margin : 20px auto;
+    }
+    
+    .glyphicon{
+    	font-size: 3em;
+    	position: absolute;
+    	top: 30%;
+    	left: 10px;
+    	color : #fab018;
+    	vertical-align: middle;
+    	margin-right:10px;
+    	
+    }
+    
+    .faqtail #item {
+   		font-size: 16px;
+   		margin: 10px; 
+    }
+    
+	#chat {
+		cursor: pointer;
+		color: #fab018;
+		font-weight: bold;
+	}
 
 
 
@@ -235,7 +267,7 @@
 				<button class="item" id="shelter">보호소</button>
 				<button class="item" id="etc">기타</button>
 			</span>
-        	<span><input type="button" class="btn common-btn" value="글쓰기" id="add" onclick="location.href='/mypet/board/faqAdd.action'"></span>        
+        	<span><input type="button" class="btn" value="글쓰기" id="add" onclick="location.href='/mypet/board/faqAdd.action'"></span>        
         </div>
   
         <table class="table table-condensed" id="table">
@@ -253,9 +285,18 @@
             </tr>
             <tr class="tr3">
             	<td colspan="3"> 
-            	<input type="button" value="수정" id="delete" class="btn" onclick="location.href='/mypet/board/faqEdit.action'">
-            	<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/board/faqDelete.action'">
-            	FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다.
+            	<div id="txt">FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다.</div>
+            	<div class="faqtail">
+		        	<span class="glyphicon glyphicon-question-sign"></span>
+	        		<ul>
+	        			<li id="item">추가로 자세한 답변을 원하신다면 <span id="chat" onclick="location.href='/mypet/board/faqList.action'">채팅</span>을 이용해주세요.</li>
+	        			<li id="item">전화문의를 원하신다면 0000-0000로 연락주세요.</li>
+	        		</ul>
+	        	</div>
+	        	<div class="btns">
+        			<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/board/faqEdit.action'">
+           			<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/board/faqDelete.action'">           	
+            	</div>
             	</td>
             </tr>
             
