@@ -13,7 +13,7 @@
     }
 
     /* header */
-    #header{
+/*     #header{
         position: fixed;
         top: 0;
         left: 0;
@@ -22,7 +22,7 @@
         height: 200px;
         background-color: #F6DA42;
         padding: 20px 100px;
-    }
+    } */
 
     .logo {
         margin: 0px auto;
@@ -230,6 +230,7 @@
     }
     
     .glyphicon{
+    	display:block;
     	font-size: 3em;
     	position: absolute;
     	top: 30%;
@@ -239,6 +240,9 @@
     	margin-right:10px;
     	
     }
+    /* .faqtail ul {
+    	float: left;
+    } */
     
     .faqtail #item {
    		font-size: 16px;
@@ -250,6 +254,8 @@
 		color: #fab018;
 		font-weight: bold;
 	}
+	
+/* 	.tr3 > td{ display:none;} */
 
 
 
@@ -281,7 +287,7 @@
   			<tr class="tr2">
                 <td>1</td>
                 <td>입양</td>
-                <td>FAQ 제목입니다.</td>
+                <td>FAQ 제목입니다.<span class="icon">▼</span></td>
             </tr>
             <tr class="tr3">
             	<td colspan="3"> 
@@ -450,7 +456,7 @@
 <script>
     $(document).ready(function(){
 
-        $("#table tr:odd").addClass("odd");
+    	$("#table tr:odd").addClass("odd");
         $("#table tr:not(.odd)").hide(); 
         $("#table tr:first-child").show(); //열머리글 보여주기
 
@@ -461,7 +467,25 @@
         });
        
 
-    });
+    }); 
+    
+    /* $(function(){
+    	$("#table .tr2").click(function(){
+    		$("#table .tr3 td").slideUp();
+    		$('.icon').css('transform','none');
+    		if(!$(this).next().is(":visible"))
+    		{
+    			$(this).next().slideDown();
+    			$(this).find('.icon:eq(0)').css('transform','rotate(180deg)');
+    		}
+    	})
+    }) */
+    
+    	var tr2 = document.getElementsByClassName("tr2");
+    
+    	tr2.onclick = function(){
+    		tr2.style.backgroundColor = "#F6DA42";
+    	};
 
 </script>
 
