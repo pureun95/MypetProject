@@ -145,6 +145,9 @@ body {
 <div id="content">
 
 	<div class="loginbox">
+	<%-- <c:if test="${member == null}"> --%>
+
+		<form action='/mypet/member/login.action' method="post">
 		<div class="loginbox2">
 			<div class="login-title">
 				<span class="logo"></span>로그인
@@ -162,6 +165,19 @@ body {
 			<input type="submit" class="btn btn-outline-secondary" type="button"
 				id="btn-login" value="로그인">
 		</div>
+		</form>
+		<%-- </c:if> --%>
+		
+		
+		
+		
+		<!--  -->
+		<%-- <c:if test="${member != null}">
+		<c:redirect url="/mypet/member/register.action"></c:redirect>
+		</c:if> --%>
+
+
+
 		
 		
 
