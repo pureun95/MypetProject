@@ -15,6 +15,7 @@ body {
 
 #content {
 	font-size: 16px;
+	border: 1px solid transparent !important;
 }
 
 
@@ -30,7 +31,7 @@ body {
 	/* box-shadow: 0px 5px 15px #e4e4e4; */
 	box-shadow: rgba(81, 99, 120, 0.3) 0px 6px 60px 0px;
 	background-color: white;
-	font-family: 'JSDongkang-Regular';
+	font-family: NanumSquare;
 	
 }
 
@@ -106,7 +107,7 @@ body {
 	width: 100%;
 	height: 4rem;
 	text-align: center;
-	font-family: 'JSDongkang-Regular';
+	font-family: NanumSquare;
 	padding: 10px;
 	
 }
@@ -122,8 +123,8 @@ body {
 
 .chaticon {
 	/* border: 1px solid black; */
-	width: 80px;
-	height: 80px;
+	width: 70px;
+	height: 70px;
 	position: fixed;
 	right: 5px;
 	bottom: 5px;
@@ -186,7 +187,6 @@ body {
 
 
 	<div class="chaticon" id="chaticon"></div>
-<!-- 	<div class="chaticon" onclick="showPopup();"></div> -->
 
 
 
@@ -194,21 +194,20 @@ body {
 
 
 <script>
+
+/* 채팅 */
 var chaticon = document.getElementById("chaticon");
 
 var _width = '350';
-var _height = '570';
+var _height = '600';
 
-// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기
+// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기.. 오른쪽 아래 하단에 두는건..? right=0 bottom=0으로 두는데 왜 안되지??
 var _left = Math.ceil(( window.screen.width - _width )/2);
 var _top = Math.ceil(( window.screen.width - _height )/2); 
 
-/* window.open('/url', 'popup-test', 'width='+ _width +', height='+ _height +', left=' + _left + ', top='+ _top ); */
-
 chaticon.onclick = function() {
 
- 	window.open("/mypet/member/chat.action", "a", "width=350, height=570"); 
-/* 	window.open("/mypet/member/chat.action", "a", "'width='+ _width +', height='+ _height +', left=0, top=0"); */
+ 	window.open("/mypet/member/chat.action", "a", "width=350, height=600"); 
 
 }
 

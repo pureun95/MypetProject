@@ -117,8 +117,8 @@ input[type="checkbox"] {
 
 .chaticon {
 	/* border: 1px solid black; */
-	width: 80px;
-	height: 80px;
+	width: 70px;
+	height: 70px;
 	position: fixed;
 	right: 5px;
 	bottom: 5px;
@@ -140,15 +140,15 @@ input[type="checkbox"] {
 
 	<div class="join_content">
 		<div class="join_form">
-			<form id="join_form" method="GET" action="/user2/V2Join.nhn?m=begin">
+			<form id="join_form" method="GET" action="/#">
 
 				<!-- <form method="post" id="join_form" action="/#"> -->
 
 				<!-- 약관 동의 시작 -->
-				<div class="chekalllist">
+				<div class="chekall_list">
 
 					
-					<div class="checklist"><input type="checkbox" name="check_all" id="check_all" value="1">
+					<div class="checklist"><input type="checkbox" name="chk_all" id="chk_all" value="1">
 					<label for="check_all">마이펫 이용약관, 개인정보 수집 및 이용, 프로모션 정보 수신(선택)에 모두 동의합니다.</label></div> 
 						
 						
@@ -245,7 +245,7 @@ input[type="checkbox"] {
 				<div class="btn_area double">
 					<span><a href="#" id="btnCancel"
 						class="btns btn-outline-secondary" role="button">취소</a></span> <span><a
-						href="#" id="btnAgree" class="btns btn-outline-secondary" role="button">확인</a></span>
+						href="/mypet/member/register2.action" id="btnAgree" class="btns btn-outline-secondary" role="button">확인</a></span>
 				</div>
 
 			</form>
@@ -257,7 +257,7 @@ input[type="checkbox"] {
 	</div>
 	<!-- join_content -->
 	
-	<div class="chaticon"></div>
+	<div class="chaticon" id="chaticon"></div>
 	
 </div>
 <!-- content -->
@@ -337,5 +337,22 @@ input[type="checkbox"] {
 		$("#join_form").submit();
 		return true;
 	}
+	
+	
+	//채팅
+	var chaticon = document.getElementById("chaticon");
+
+var _width = '350';
+var _height = '600';
+
+// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기.. 오른쪽 아래 하단에 두는건..? right=0 bottom=0으로 두는데 왜 안되지??
+var _left = Math.ceil(( window.screen.width - _width )/2);
+var _top = Math.ceil(( window.screen.width - _height )/2); 
+
+chaticon.onclick = function() {
+
+ 	window.open("/mypet/member/chat.action", "a", "width=350, height=600"); 
+
+}
 </script>
 

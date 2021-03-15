@@ -54,6 +54,15 @@ public class MemberController {
 
 	}
 	
+	@RequestMapping(value = "/member/register2.action", method = { RequestMethod.GET })
+	public String register2(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		return "member/register2";
+
+	}
+	
+
+	
 	
 	@RequestMapping(value = "/member/chat.action", method = { RequestMethod.GET })
 	public String chat(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
