@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goods">
+	
+	<select id="list" parameterType="hashMap" resultType="goodsDTO">
+		select * from vwGoods
+		<if test="category != null">
+			where seqCategory = #{category}
+		</if>
+	</select>
+	
+	<select id="goods" parameterType="String" resultType="goodsDTO">
+		select * from vwGoods where seqGoods = #{seqGoods}
+	</select>
+	
+<!-- 	<select id="order" parameterType="dto">
+		insert into tblOrder(seqOrder, seqDelivery, seqUser, price, orderdate) values (seqOrder.nextVal, 0, #{seqUser}, #{totalPrice}, sysdate);
+	</select>
+	
+	<select id="getSeqOrder" parameterType="dto" resultType="int">
+		select seqOrder from tblOrder where seqUser = #{seqUser} and orderdate like sysdate;
+	</select>
+	 -->
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

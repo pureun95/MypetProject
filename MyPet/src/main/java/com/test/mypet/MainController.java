@@ -11,9 +11,9 @@ public class MainController {
 		return "layout.layout";		
 	}
 	
-	@RequestMapping(value="/layout/content.action")
-	public String template2() {
-		return "layout/content";		
+	@RequestMapping(value="/main.action")
+	public String main() {
+		return "mypet.main";		
 	}
 	
 
