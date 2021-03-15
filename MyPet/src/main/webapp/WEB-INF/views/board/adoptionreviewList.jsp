@@ -168,12 +168,13 @@
     
     .titlecover{
     	text-align: center;
-    	border: 1px solid #ccc;
+    	border: 1px solid #aaa;
     	height: 60px;
+    	border-radius: 5px;
     }
     
     .titlecover > div {
-    	color: #ccc;
+    	color: #aaa;
     }
     /* 버튼 css */
     
@@ -216,7 +217,7 @@
 									</div>
 								</div>
 								<div class="titlecover">
-									<a href="/mypet/board/adoptionreviewview.action">입양후기1 제목입니다.</a>
+									<a href="/mypet/board/adoptionreviewview.action">입양후기1 제목입니다. <span class="badge">10</span></a>
 									<div>입양후기 내용입니다.</div>
 								</div>
 							</div>
