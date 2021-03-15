@@ -24,7 +24,7 @@
 
     /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
     #content{
-        height: 1200px;
+        height: 1600px;
         
     }
     
@@ -55,6 +55,17 @@
     letter-spacing: -2px;
     padding-left: 31px;
     }
+    
+    .section2 {
+    	
+    	
+    }
+    
+    .intro2 {
+    	/* border-top-right-radius: 50%;
+    	border-bottom-right-radius: 50%; */
+    	border-radius: 50%;
+    }
 
     
     /* 채팅 */
@@ -81,11 +92,24 @@
 	
 	<div class="section1">
 		<div><img src="/mypet/resources/images/introduce/intro1_1.jpg" style="width: 100%; margin-bottom: 15px;" class="intro1"></div>
-		<div class="introtxt txt1">사지않고 입양하는 문화가<br>유기 동물에게 더 나은 내일을 선물합니다.<small>(수정예정..)</small></div>
+		<div class="introtxt txt1">사지않고 입양하는 문화가<br>유기 동물에게 더 나은 내일을 선물합니다.</div>
 		<div class="introtxt txt2">마이펫은 유기 동물 입양을 장려합니다.<br>새 가족을 맞이하는 여러분의 시작을 마이펫이 함께하겠습니다.</div>
 	
 	</div>
 
+	<!-- 서버작업 어느정도 마무리하고 진행하기.. -->
+	<!-- <div class="section2">
+		<div><img src="/mypet/resources/images/introduce/intro2.jpg" style="width: 400px; margin-bottom: 15px;" class="intro2"></div>
+	</div> -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
