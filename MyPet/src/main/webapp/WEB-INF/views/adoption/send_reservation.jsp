@@ -141,7 +141,7 @@
 			<div class="imptext graything"> - 입양예약신청서 접수 후 입양업무 담당자가 서류심사를 한 후 예약 상태를 승인 시 예약완료 / 거절 시 예약거절로 바꿉니다. ( 마이페이지 > 입양예약진행현황 에서 확인 가능.)</div>
 			<div class="imptext graything"> - 입양이 결정된 경우, 보호소 방문 시 신분증과 입양동물의 운송에 필요한 물품(이동가방, 목걸이, 리드줄 등)을 지참하시고, 오후 4시(일요일 및 공휴일 제외)까지 방문해 주셔야 합니다.</div>
 			<div class="imptext graything"> - 문의사항은 보호소, 동물병원에 직접 연락하셔도 상담 도와 드리겠습니다.</div>
-			<div class="imptext graything"> - <a href="">FAQ 게시판</a>에서도 자주 묻는 질문 확인이 가능합니다.</div>
+			<div class="imptext graything"> - <a href="/mypet/board/faqList.action">FAQ 게시판</a>에서도 자주 묻는 질문 확인이 가능합니다.</div>
 			<div class="imptext graything"></div>
 		</div>
 		
@@ -198,7 +198,7 @@
 	<!-- 버튼 -->
 	<div id="btnwrap" style="padding-bottom: 100px; text-align: center;">
 		<!-- <button type="submit" class="btn btn-warning">예약 신청하기</button> -->
-		<button type="button" class="btn btnself" id="btn1" onclick="alert('굿즈리스트 페이지로 연결')">더 많은 굿즈 보러가기</button>
+		<button type="button" class="btn btnself" id="btn1" onclick="location.href='/mypet/goods/list.action';">더 많은 굿즈 보러가기</button>
 	</div>
 	
 	<hr style="margin: 50px;">
@@ -210,8 +210,8 @@
 </div>
 
 <script>
-
-
+	
+	
 </script>
 
 

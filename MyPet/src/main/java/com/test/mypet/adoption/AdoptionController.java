@@ -70,7 +70,7 @@ public class AdoptionController {
 	public String writeReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
 		//ReservationDAO dao = new ReservationDAO();
-	
+		session.setAttribute("seqUser", "6");
 		session.setAttribute("id", "red1234");
 		System.out.println(session.getAttribute("id"));
 
@@ -93,12 +93,24 @@ public class AdoptionController {
 	
 	//http://localhost:8090/mypet/adoption/viewreservation.action
 	@RequestMapping(value="/adoption/viewreservation.action", method={RequestMethod.POST})
-	public String viewReservation() {
+	public String viewReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session	
+			,VwReservationDTO dto) {	//1.
+		
+		//1. 데이터 가져오기
+		//2. 데이터 통해 페이지에 출력
+		
+				
+		request.setAttribute("dto", dto);
+		
 		return "adoption/view_reservation";		
 	}
 	//http://localhost:8090/mypet/adoption/sendreservation.action
-	@RequestMapping(value="/adoption/sendreservation.action")
-	public String sendReservation() {
+	@RequestMapping(value="/adoption/sendreservation.action", method={RequestMethod.POST})
+	public String sendReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session
+			,VwReservationDTO dto) {
+		
+		dao.insertReservation(dto);
+		
 		return "adoption/send_reservation";		
 	}
 

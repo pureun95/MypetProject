@@ -31,6 +31,14 @@ public class ReservationDAO implements IReservationDAO {
 		return template.selectList("adoption_reservation.getVetList",address);
 	}
 
+	//입양예약신청서 등록.
+	@Override
+	public int insertReservation(VwReservationDTO dto) {
+
+		
+		return template.insert("adoption_reservation.insertReservation", dto);
+	}
+
 	
 	
 	

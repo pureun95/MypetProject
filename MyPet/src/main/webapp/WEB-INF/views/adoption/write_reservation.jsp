@@ -87,6 +87,10 @@
 	color: white;
 }
 
+.vets:hover {
+	background-color: #b27208;
+	cursor: pointer;
+}
 
 </style>
 
@@ -111,28 +115,28 @@
 			<tr>
 				<th>성명</th>
 				<td>
-					<input type="text" id="name" class="form-control input-form" readonly value="${dto.name}">
+					<input type="text" id="name" name="name" class="form-control input-form" readonly value="${dto.name}">
 				</td>
 			</tr>
 			
 			<tr>
 				<th>생년월일</th>
 				<td>
-					<input type="text" id="birth" class="form-control input-form" readonly value="${dto.birthDate }" }>
+					<input type="text" id="birthDate" name="birthDate" class="form-control input-form" readonly value="${dto.birthDate }" }>
 				</td>
 			</tr>
 			
 			<tr>
 				<th>전화번호</th>
 				<td>
-					<input type="text" id="tel" class="form-control input-form" readonly value="${dto.tel }">
+					<input type="text" id="tel" name="tel" class="form-control input-form" readonly value="${dto.tel }">
 				</td>
 			</tr>
 			
 			<tr>
 				<th>주소</th>
 				<td>
-					<input type="text" id="add1" class="form-control input-form" readonly value="${dto.address }">
+					<input type="text" id="address" name="address" class="form-control input-form" readonly value="${dto.address }">
 				</td>
 			</tr>
 			
@@ -143,55 +147,61 @@
 					<label for="jobok">직장있음</label>
 					<input type="radio" name="rd1" id="jobno" value="0" style="margin-left: 50px;">
 					<label for="jobno">직장없음</label>
-					<input type="text" id="company" class="form-control input-form">
+					<input type="text" id="companyName" name="companyName" class="form-control input-form">
 				</td>
 			</tr>
 			
 			<tr>
 				<th>축종</th>
-				<td>개/푸들</td>
+				<td>
+					<input type="text" id="species" name="species" class="form-control input-form" readonly value="강아지">
+					<input type="text" id="breed" name="breed" class="form-control input-form" readonly value="푸들">
+				</td>
 			</tr>
 			
 			<tr>
 				<th>일련(관리)번호</th>
-				<td>200618-0004</td>
+				<td>
+					<input type="text" id="seqPet" name="seqPet" class="form-control input-form" readonly value="1">
+				</td>
 			</tr>
 			
 			<tr>
 				<th>입양하려는 이유</th>
 				<td>
-					<input type="text" id="reason" class="form-control input-form" placeholder="ex) 자녀의 심리적 안정감을 위해서">
+					<input type="text" id="reason" name="reason" class="form-control input-form" placeholder="ex) 자녀의 심리적 안정감을 위해서">
 				</td>
 			</tr>
 			
 			<tr>
 				<th>자주찾는 동물병원</th>
 				<td>
-					<input type="text" id="reason" style="float:left;" class="form-control input-form" placeholder="검색 버튼을 눌러주세요." readonly>
+					<input type="text" id="hospitalName" name="hospitalName" style="float:left;" class="form-control input-form" placeholder="검색 버튼을 눌러주세요." readonly>
 					<button type="button" id="search" class="btn btn-default">검색</button>
+					<input type="hidden" id="seqVet" name="seqVet">
 				</td>								
 			</tr>
 			
 			<tr>
 				<th rowspan="2">주거 형태</th>
 				<td>
-					<input type="radio" name="housetype" id="h1" value="1" checked>
+					<input type="radio" name="seqHouseType" id="h1" value="1" checked>
 					<label for="h1">단독주택</label>								
 				
-					<input type="radio" name="housetype" id="h2" value="2">
+					<input type="radio" name="seqHouseType" id="h2" value="2">
 					<label for="h2">다세대주택</label>								
 					
-					<input type="radio" name="housetype" id="h3" value="3">
+					<input type="radio" name="seqHouseType" id="h3" value="3">
 					<label for="h3">전원주택</label>
 				</td>								
 			</tr>
 			
 			<tr>
 				<td>
-					<input type="radio" name="housetype" id="h4" value="4">
+					<input type="radio" name="seqHouseType" id="h4" value="4">
 					<label for="h4">아파트</label>						
 				
-					<input type="radio" name="housetype" id="h5" value="5">
+					<input type="radio" name="seqHouseType" id="h5" value="5">
 					<label for="h5">기타</label>
 				</td>						
 			</tr>
@@ -199,32 +209,32 @@
 			<tr>
 				<th>가족 동의</th>
 				<td>
-					<input type="radio" name="housetype" id="agree1" value="1">
-					<label for="agree1">예</label>						
+					<input type="radio" name="familyagree" id="agree1" value="1" checked>
+					<label for="agree1">동의</label>						
 				
-					<input type="radio" name="housetype" id="disagree1" value="0">
-					<label for="disagree1">아니오</label>						
+					<input type="radio" name="familyagree" id="disagree1" value="0">
+					<label for="disagree1">동의안함</label>						
 				</td>			
 			</tr>
 			
 			<tr>
 				<th>반려동물 입양경험</th>
 				<td>
-					<input type="radio" name="housetype" id="agree2" value="1">
-					<label for="agree2">예</label>						
+					<input type="radio" name="adoptionExperience" id="agree2" value="1" checked>
+					<label for="agree2">있음</label>						
 				
-					<input type="radio" name="housetype" id="disagree2" value="0">
-					<label for="disagree2">아니오</label>						
+					<input type="radio" name="adoptionExperience" id="disagree2" value="0">
+					<label for="disagree2">없음</label>						
 				</td>			
 			</tr>
 			
 			<tr>
 				<th>중성화수술 동의</th>
 				<td>
-					<input type="radio" name="housetype" id="agree3" value="1">
+					<input type="radio" name="neutralizationSurgery" id="agree3" value="1" checked>
 					<label for="agree3">동의</label>						
 				
-					<input type="radio" name="housetype" id="disagree3" value="0">
+					<input type="radio" name="neutralizationSurgery" id="disagree3" value="0">
 					<label for="disagree3">동의안함</label>						
 				</td>			
 			</tr>
@@ -247,7 +257,7 @@
 	
 	<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
 	    	<div class="modal-dialog" role="document">
-	    		<div class="modal-content" id="modal-content">
+	    		<div class="modal-content" id="modal-content" style="width: 800px; height:400px;">
 	   				<div class="modal-header">
 	           			<h5 class="modal-title">동물병원 검색하기</h5>
 	           			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -256,7 +266,7 @@
 	        		</div>
 	         		<div class="modal-body">
 	           			<div>동물병원을 선택하세요.</div>
-	           			<table>
+	           			<table class="table table-bordered">
 	           				<tr>
 	           					<th>병원명</th>
 	           					<th>위치</th>
@@ -264,13 +274,17 @@
 	           					<th>진료시간</th>
 	           				</tr>
 	           				<c:if test="${empty list}">
-           					<tr>
+           					<tr >
            						<td colspan="4">병원이 없습니다.</td>
            					</tr>
 	           				</c:if>
-	           				<c:forEach items="${list}" var="dto2">
-	           				<tr>
-	           					<td>${dto2.name}</td>
+	           				<c:forEach items="${list}" var="dto2" varStatus="status">
+	           				<tr id="vets${status.count}" class="vets">
+	           					<td>
+	           					${dto2.name}
+	           					<input type="hidden" id="hdnvetname${status.count}" value="${dto2.name}">
+	           					<input type="hidden" id="hdnvetseq${status.count}" value="${dto2.seqVet}">
+	           					</td>
 	           					<td>${dto2.address}</td>
 	           					<td>${dto2.treatment}</td>
 	           					<td>${dto2.time}</td>
@@ -293,10 +307,10 @@
 <script>
 	$("input:radio[name=rd1]").click(function() {
 		if($("input:radio[name=rd1]:checked").val() =="1"){
-			$("#company").attr("disabled",false);
+			$("#companyName").attr("disabled",false);
 		} else if($("input:radio[name=rd1]:checked").val() =="0") {
-			$("#company").attr("disabled",true);
-			$("#company").val("");
+			$("#companyName").attr("disabled",true);
+			$("#companyName").val("직장없음");
 		}
 	});
 	
@@ -306,6 +320,34 @@
       e.preventDefault();
       $('#deletemodal').modal("show");
    });
+	
+	$('#vets1').click(function(){
+		$('#deletemodal').modal("hide");
+		$('#hospitalName').val($('#hdnvetname1').val());
+		$('#seqVet').val($('#hdnvetseq1').val());
+		
+	})
+	$('#vets2').click(function(){
+		$('#deletemodal').modal("hide");
+		$('#hospitalName').val($('#hdnvetname2').val());
+		$('#seqVet').val($('#hdnvetseq2').val());
+		
+	})
+	$('#vets3').click(function(){
+		$('#deletemodal').modal("hide");
+		$('#hospitalName').val($('#hdnvetname3').val());
+		$('#seqVet').val($('#hdnvetseq3').val());
+		
+	})
+	
+	$('#disagree1').click(function(){
+		alert("가족의 동의가 없으면 입양이 불가합니다.");
+		
+	})
+	
+	$('#disagree3').click(function(){
+		alert("중성화수술에 동의하지 않으면 입양이 불가합니다.");
+	})
 </script>
 
 

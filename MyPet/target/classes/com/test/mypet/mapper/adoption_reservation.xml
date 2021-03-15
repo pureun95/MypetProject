@@ -13,6 +13,9 @@
 
 	</select>
 	
+	<insert id="insertReservation" parameterType="vwReservationDTO">
+		insert into tblReservation (seqReservation, seqUser, seqPet, seqHouseType, seqVet, reason, companyName, adoptionExperience, NeutralizationSurgery, availableDate) values(seqReservation.nextVal, #{seqUser}, #{seqPet}, #{seqHouseType}, #{seqVet}, #{reason}, #{companyName}, #{adoptionExperience} , #{neutralizationSurgery}, sysdate)
+	</insert> 
 	
 </mapper>
 

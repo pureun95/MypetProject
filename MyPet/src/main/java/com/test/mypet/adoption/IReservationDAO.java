@@ -8,5 +8,7 @@ public interface IReservationDAO {
 
 	List<VetDTO> getVetList(String address);
 
+	int insertReservation(VwReservationDTO dto);
+
 
 }

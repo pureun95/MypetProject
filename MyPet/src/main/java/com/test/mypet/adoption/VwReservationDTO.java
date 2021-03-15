@@ -4,23 +4,23 @@ public class VwReservationDTO {
 	
 	private String seqReservation;
 	private String seqUser;
-	private String name;
-	private String birthDate;
-	private String tel;
-	private String address;
-	private String companyName;
-	private String species;
-	private String breed;
-	private String seqPet;
-	private String reason;
-	private String hospitalName;
-	private String type;
-	private String adoptionExperience;
-	private String neutralizationSurgery;
+	private String name;//
+	private String birthDate;//
+	private String tel;//
+	private String address;//
+	private String companyName;//
+	private String species;//
+	private String breed;//
+	private String seqPet;//
+	private String reason;//
+	private String hospitalName;//
+	private String seqHouseType;//
+	private String adoptionExperience;//
+	private String neutralizationSurgery;//
 	private String neutralization;
 	private String response;
 	private String failReason;
-	
+	private String seqVet;
 	
 	public String getSeqReservation() {
 		return seqReservation;
@@ -92,13 +92,7 @@ public class VwReservationDTO {
 		return hospitalName;
 	}
 	public void setHospitalName(String hospitalName) {
-		this.hospitalName = hospitalName;
-	}
-	public String getType() {
-		return type;
-	}
-	public void setType(String type) {
-		this.type = type;
+		this.hospitalName = hospitalName;	
 	}
 	public String getAdoptionExperience() {
 		return adoptionExperience;
@@ -129,6 +123,18 @@ public class VwReservationDTO {
 	}
 	public void setFailReason(String failReason) {
 		this.failReason = failReason;
+	}
+	public String getSeqVet() {
+		return seqVet;
+	}
+	public void setSeqVet(String seqVet) {
+		this.seqVet = seqVet;
+	}
+	public String getSeqHouseType() {
+		return seqHouseType;
+	}
+	public void setSeqHouseType(String seqHouseType) {
+		this.seqHouseType = seqHouseType;
 	}
 	
 }
