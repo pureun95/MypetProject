@@ -28,7 +28,11 @@ public class VetController {
 	}
 	
 	@RequestMapping(value="/vet/view.action")
-	public String view() {
+	public String view(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
+		
+		VetDTO vdto = dao.get(seq);
+		request.setAttribute("vdto", vdto);
+		
 		return "vet.view";
 	}
 	

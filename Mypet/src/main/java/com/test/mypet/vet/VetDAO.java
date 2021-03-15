@@ -17,6 +17,14 @@ public class VetDAO implements IVet{
 		
 		return template.selectList("vet.list");
 	}
+
+	@Override
+	public VetDTO get(String seqVet) {
+		
+		
+		return template.selectOne("vet.get", seqVet);
+		
+	}
 	
 
 }
