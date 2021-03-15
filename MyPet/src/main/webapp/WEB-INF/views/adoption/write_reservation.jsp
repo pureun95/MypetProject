@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 /* 인트로 이미지 관련 css 시작 */
 
@@ -94,7 +94,7 @@
 <div style="width: 1300px; /* border: 5px solid green; */ margin: auto; padding-top: 300px;">
 	
 	<!-- form 태그 시작 -->
-	<!-- <form method="POST" action=""> -->
+	<form method="POST" action="/mypet/adoption/viewreservation.action">
 	<div id="imgbox" style="background-image:url(/mypet/resources/images/intro/1.jpg); margin-bottom: 100px;">
 		<div id="filter"></div>
 	</div>
@@ -111,28 +111,28 @@
 			<tr>
 				<th>성명</th>
 				<td>
-					<input type="text" id="name" class="form-control input-form" readonly>
+					<input type="text" id="name" class="form-control input-form" readonly value="${dto.name}">
 				</td>
 			</tr>
 			
 			<tr>
 				<th>생년월일</th>
 				<td>
-					<input type="text" id="birth" class="form-control input-form" readonly>
+					<input type="text" id="birth" class="form-control input-form" readonly value="${dto.birthDate }" }>
 				</td>
 			</tr>
 			
 			<tr>
 				<th>전화번호</th>
 				<td>
-					<input type="text" id="tel" class="form-control input-form" readonly>
+					<input type="text" id="tel" class="form-control input-form" readonly value="${dto.tel }">
 				</td>
 			</tr>
 			
 			<tr>
 				<th>주소</th>
 				<td>
-					<input type="text" id="add1" class="form-control input-form" readonly>
+					<input type="text" id="add1" class="form-control input-form" readonly value="${dto.address }">
 				</td>
 			</tr>
 			
@@ -168,7 +168,7 @@
 				<th>자주찾는 동물병원</th>
 				<td>
 					<input type="text" id="reason" style="float:left;" class="form-control input-form" placeholder="검색 버튼을 눌러주세요." readonly>
-					<button type="button" class="btn btn-default">검색</button>
+					<button type="button" id="search" class="btn btn-default">검색</button>
 				</td>								
 			</tr>
 			
@@ -232,16 +232,61 @@
 		</table>
 		
 		<div id="btnwrap" style="text-align: center; margin-bottom: 100px;">
-			<button type="button" class="btn btnself" onclick="location.href='/mypet/adoption/viewreservation.action';">신청서 등록</button>
+			<button type="submit" class="btn btnself">신청서 등록</button>
 			<button type="button" class="btn btnself">취소</button>
 		</div>
+		
+		
 	
 	</div>
 
 	<hr style="margin: 50px;">
 	
 	<!-- form태그 끝 -->
-	<!-- </form> -->
+	</form>
+	
+	<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
+	    	<div class="modal-dialog" role="document">
+	    		<div class="modal-content" id="modal-content">
+	   				<div class="modal-header">
+	           			<h5 class="modal-title">동물병원 검색하기</h5>
+	           			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	             		<span aria-hidden="true">&times;</span>
+	           			</button>
+	        		</div>
+	         		<div class="modal-body">
+	           			<div>동물병원을 선택하세요.</div>
+	           			<table>
+	           				<tr>
+	           					<th>병원명</th>
+	           					<th>위치</th>
+	           					<th>진료목록</th>
+	           					<th>진료시간</th>
+	           				</tr>
+	           				<c:if test="${empty list}">
+           					<tr>
+           						<td colspan="4">병원이 없습니다.</td>
+           					</tr>
+	           				</c:if>
+	           				<c:forEach items="${list}" var="dto2">
+	           				<tr>
+	           					<td>${dto2.name}</td>
+	           					<td>${dto2.address}</td>
+	           					<td>${dto2.treatment}</td>
+	           					<td>${dto2.time}</td>
+	           				</tr>
+	           				</c:forEach>
+	           			</table>
+	         		</div>
+	         		<div class="modal-footer">
+	            		<button type="submit" class="btn" id="delete">삭제</button>
+	           			<button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>           
+	         		</div>
+	      		</div>
+	     	</div>
+	   </div>
+		
+	
 	
  <!-- 바디역할 끝 -->
 </div>
@@ -255,6 +300,12 @@
 		}
 	});
 	
+
+	/* 모달 */
+   $('#search').click(function(e){
+      e.preventDefault();
+      $('#deletemodal').modal("show");
+   });
 </script>
 
 
