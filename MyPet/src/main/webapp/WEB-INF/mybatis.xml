@@ -11,7 +11,7 @@
 		<typeAlias type="com.test.mypet.vet.VetDTO" alias="vdto"/>
 		<typeAlias type="com.test.mypet.adoption.AdoptionDTO" alias="adto"/>
     <typeAlias type="com.test.mypet.member.MemberDTO" alias="memberDTO"/>
-		
+		<typeAlias type="com.test.mypet.mypage.VwReservationResponseDTO" alias="vwReservationResponseDTO"/>
 	</typeAliases>
 	
 

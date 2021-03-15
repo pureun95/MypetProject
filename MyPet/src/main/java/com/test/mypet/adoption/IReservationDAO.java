@@ -10,5 +10,7 @@ public interface IReservationDAO {
 
 	int insertReservation(VwReservationDTO dto);
 
+	List<VwReservationDTO> getMyReservationList(String attribute);
+
 
 }

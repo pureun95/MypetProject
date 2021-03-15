@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 
 /* 폰트 임시 */
@@ -135,21 +135,22 @@ ul, li {
 			<th>신청일</th>
 			<th>상태</th>
 		</tr>
+		<c:forEach items="${list}" var="dto">
 		<tr>
-			<td><a href="/mypet/mypage/reservationview.action">000005</a></td>
-			<td class="underlinetxt">
+			<td><a href="/mypet/mypage/reservationview.action">${dto.seqReservation}</a></td>
+			<td class="underlinetxt" >
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					개/푸들
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onclick="petInfo(${dto.seqPet});">
+					${dto.species}/${dto.breed}
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>품종 : 푸들</a></li>
-						<li><a>분류 : 개</a></li>
-						<li><a>나이 : 3살</a></li>
-						<li><a>성별 : 여자</a></li>
-						<li><a>중성화여부 : O</a></li>
-						<li><a>접종여부 : O</a></li>
+						<li><a>품종 : ${dto.breed}</a></li>
+						<li><a>분류 : ${dto.species}</a></li>
+						<li><a>나이 : ${dto.age}</a></li>
+						<li><a>성별 : ${dto.gender}</a></li>
+						<li><a>중성화여부 : ${dto.neutralization}</a></li>
+						<li><a>접종여부 : ${dto.vaccination}</a></li>
 						<li><a>사진</a></li>
 						<li class="divider"></li>
 						<li><a><img class="animalimg" src="/mypet/resources/images/adoption/1.jpg"></a></li>
@@ -159,8 +160,8 @@ ul, li {
 			</td>
 			<td class="underlinetxt">
 				<li class="dropdown" >
-					<a href="#" id="m1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					도그마루 잠실본점
+					<a href="#" id="m1" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" >
+					${dto.hospitalName}
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
@@ -174,20 +175,26 @@ ul, li {
 					</ul>
 				</li>
 			</td>
-			<td>홍길동</td>
-			<td>2021-03-07</td>
+			<td>${dto.name}</td>
+			<td>${dto.availableDate}</td>
 			<td class="underlinetxt">
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-					거절
+					${dto.response}
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>거절사유 : 입양사유 불충분</a></li>
+						<c:if test="${dto.response eq '승인'}">
+						<li><a> ${dto.failReason}</a></li>
+						</c:if>
+						<c:if test="${dto.response eq '거절'}">
+						<li><a>거절사유 : ${dto.failReason}</a></li>
+						</c:if>
 					</ul>
 				</li>
 			</td>
 		</tr>
+		</c:forEach>
 		
 	</table>
 
@@ -265,6 +272,60 @@ ul, li {
 		
 		
 	})
+	
+	
+	function petInfo(seqPet){
+			alert("됀다");
+			/* let seqPet = seqPet;
+									
+			$.ajax({
+				type: "GET",
+				url: "/mypet/mypage/getpetinfo.action",
+				data:"seqPet="+seqPet,
+				success: function(llist){
+					
+					var body = '';
+					
+					console.log(llist);
+					llist = JSON.parse(llist);
+
+					
+					if (llist==null || llist==""){
+						body += '<td colspan="4">';
+						body += '지역에 존재하는 다른 중개사가 없습니다.';
+						body += '</td>';
+						body += '</tr>';
+					}
+					
+					
+					for (var i=0; i<llist.length; i++) {
+						
+
+						body += '<tr class="selcontractor" onclick="location.href='
+						body += '\'/Myhome_project/user/selectcontractor.do?seqContractor=';
+						body += llist[i].seqContractor;
+						body += '&seqMatching=';
+						body += num;
+						body += '\'">';
+						body += '<td>'+llist[i].contractorName+'</td>';
+						body += '<td>'+llist[i].companyNumber+'</td>';
+						body += '<td>'+llist[i].phoneNumber +'</td>';
+						body += '<td>'+llist[i].address+'</td>';
+						body += '</tr>';
+						
+						
+					}
+					
+				
+					$("#tb").html(body);
+					
+				},
+				error: function(a,b,c) {
+					console.log(a,b,c);
+				}
+			}) */
+			 
+		};
 	
 	
 </script>

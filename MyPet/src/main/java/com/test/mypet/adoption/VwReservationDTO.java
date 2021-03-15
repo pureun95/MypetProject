@@ -1,5 +1,5 @@
-package com.test.mypet.adoption;
 
+package com.test.mypet.adoption;
 public class VwReservationDTO {
 	
 	private String seqReservation;
@@ -22,6 +22,60 @@ public class VwReservationDTO {
 	private String failReason;
 	private String seqVet;
 	
+	private String availableDate;
+	
+	private String age;
+	private String gender;
+	private String vaccination;
+	private String image;
+	
+	private String time;
+	private String hospitalTel;
+	private String treatment;
+	
+	
+	public String getAge() {
+		return age;
+	}
+	public void setAge(String age) {
+		this.age = age;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+	public String getVaccination() {
+		return vaccination;
+	}
+	public void setVaccination(String vaccination) {
+		this.vaccination = vaccination;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getHospitalTel() {
+		return hospitalTel;
+	}
+	public void setHospitalTel(String hospitalTel) {
+		this.hospitalTel = hospitalTel;
+	}
+	public String getTreatment() {
+		return treatment;
+	}
+	public void setTreatment(String treatment) {
+		this.treatment = treatment;
+	}
 	public String getSeqReservation() {
 		return seqReservation;
 	}
@@ -135,6 +189,12 @@ public class VwReservationDTO {
 	}
 	public void setSeqHouseType(String seqHouseType) {
 		this.seqHouseType = seqHouseType;
+	}
+	public String getAvailableDate() {
+		return availableDate;
+	}
+	public void setAvailableDate(String availabledate) {
+		this.availableDate = availabledate;
 	}
 	
 }
