@@ -10,7 +10,8 @@
 		<typeAlias alias="vetDTO" type="com.test.mypet.adoption.VetDTO"/>
 		<typeAlias type="com.test.mypet.vet.VetDTO" alias="vdto"/>
 		<typeAlias type="com.test.mypet.adoption.AdoptionDTO" alias="adto"/>
-    <typeAlias type="com.test.mypet.member.MemberDTO" alias="memberDTO"/>
+	    <typeAlias type="com.test.mypet.member.MemberDTO" alias="memberDTO"/>
+	    <typeAlias type="com.test.mypet.board.NoticeDTO" alias="noticeDTO"/>
 		
 	</typeAliases>
 	
