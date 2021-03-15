@@ -7,6 +7,10 @@
 	<select id="list" resultType="vdto">
 		select * from tblVet order by seqVet asc
 	</select>
+	
+	<select id="get" parameterType="String" resultType="vdto">
+   		select * from tblVet where seqVet = #{seqVet}
+   </select>
 
 
 </mapper>

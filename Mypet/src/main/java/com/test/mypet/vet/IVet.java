@@ -6,4 +6,6 @@ public interface IVet {
 
 	List<VetDTO> list();
 
+	VetDTO get(String seq);
+
 }

@@ -47,20 +47,15 @@
     }
 
 ----------------------------------------------------------------
-    /* 페이지 타이틀 */
-    
-    .board-name {
-        /* border: 1px solid black; */
-        display: block;
-        text-align: center;
-        margin-top: 130px;
-        margin-bottom: 50px;
-        font-size: 30px;
-        font-weight : bold;
-        /* font-family: 'Jal_Onuel'; */
-        /* font-family: 'JSDongkang-Regular'; */
-        font-family: 'JSDongkang-Bold';
-        color: #301b01;
+     /* 페이지타이틀 */
+    .board-title{
+    	font-size : 30px;
+    	text-align : center;
+    	display: block;
+    	margin-top: 130px;
+    	margin-bottom: 50px;
+    	font-family: 'Jal_Onuel';
+    	color: #301b01;
     }
     
     
@@ -175,7 +170,7 @@
 			<span id="vet"><input type="radio" name="rd" onclick="location.href='/mypet/vet/list.action'">동물병원</span>
 			<span id="shelter"><input type="radio" name="rd" id="shelter" checked="checked">보호소</span>
 		</div>
-		<span class="board-name">보호소</span>
+		<div class="board-title">보호소</div>
 
 		<!-- <div class="selectsearch"> -->
 			<div class="sel">

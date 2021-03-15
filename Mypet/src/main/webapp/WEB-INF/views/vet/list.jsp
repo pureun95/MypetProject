@@ -238,7 +238,7 @@
 			<c:forEach items="${list}" var="vdto">
 				<tr class="list">
 					<td>${vdto.seqVet}</td>
-					<td class="name" onclick="location.href='/mypet/vet/view.action'">${vdto.name}</td>
+					<td class="name" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}'">${vdto.name}</td>
 					<td>${vdto.address}</td>
 					<td>${vdto.tel}</td>
 				</tr>
