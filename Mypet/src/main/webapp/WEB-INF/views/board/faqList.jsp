@@ -283,17 +283,17 @@
                 <th class="thirdtd">제목</th>
                 <!-- <th class="thirdtd">날짜</th> -->         
             </tr>
-         
-  			<tr class="tr2">
-                <td>1</td>
-                <td>입양</td>
-                <td>FAQ 제목입니다.<span class="icon">▼</span></td>
-            </tr>
             
+         <c:forEach items="${list}" var = "fdto">
+  			<tr class="tr2">
+                <td>${fdto.seqFaq}</td>
+                <td>${fdto.category}</td>
+                <td>${fdto.title}<span class="icon">▼</span></td>
+            </tr>
             
             <tr class="tr3">
             	<td colspan="3"> 
-            	<div id="txt">FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다.</div>
+            	<div id="txt">${fdto.content}</div>
             	<div class="faqtail">
 		        	<span class="glyphicon glyphicon-question-sign"></span>
 	        		<ul>
@@ -302,127 +302,12 @@
 	        		</ul>
 	        	</div>
 	        	<div class="btns">
-        			<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/board/faqEdit.action'">
+        			<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/board/faqEdit.action?seq=${fdto.seqFaq}';">
            			<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/board/faqDelete.action'">           	
             	</div>
             	</td>
             </tr>
-            
-            <tr class="tr2">
-                <td>2</td>
-                <td>봉사</td>
-                <td>FAQ 제목입니다.</td>
-            </tr>
-            <tr class="tr3">
-            	<td colspan="3"> FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다.</td>
-            </tr>
-            
-            <tr class="tr2">
-                <td>3</td>
-                <td>굿즈</td>
-                <td>FAQ 제목입니다.</td>
-            </tr>
-            <tr class="tr3">
-            	<td colspan="3"> FAQ내용입니다.</td>
-            </tr>
-            
-            <tr class="tr2">
-                <td>4</td>
-                <td>동물병원</td>
-                <td>FAQ 제목입니다.</td>
-            </tr>
-            <tr class="tr3">
-            	<td colspan="3"> FAQ내용입니다.</td>
-            </tr>
-            
-            <tr class="tr2">
-                <td>5</td>
-                <td>보호소</td>
-                <td>FAQ 제목입니다.</td>
-            </tr>
-            <tr class="tr3">
-            	<td colspan="3"> FAQ내용입니다.</td>
-            </tr>
-            
-            <tr class="tr2">
-                <td>6</td>
-                <td>기타</td>
-                <td>FAQ 제목입니다.</td>
-            </tr>
-            <tr class="tr3">
-            	<td colspan="3"> FAQ내용입니다.</td>
-            </tr>
-            
-            <tr class="tr2">
-                <td>7</td>
-                <td>입양</td>
-                <td>FAQ 제목입니다.</td>
-            </tr>
-            <tr class="tr3">
-            	<td colspan="3"> FAQ내용입니다.</td>
-            </tr>
-            
-            <tr class="tr2">
-                <td>8</td>
-                <td>봉사</td>
-                <td>FAQ 제목입니다.</td>
-            </tr>
-            <tr class="tr3">
-            	<td colspan="3"> FAQ내용입니다.</td>
-            </tr>
-            
-            <tr class="tr2">
-                <td>9</td>
-                <td>굿즈</td>
-                <td>FAQ 제목입니다.</td>
-            </tr>
-            <tr class="tr3">
-            	<td colspan="3"> FAQ내용입니다.</td>
-            </tr>
-            
-            <tr class="tr2">
-                <td>10</td>
-                <td>기타</td>
-                <td>FAQ 제목입니다.</td>
-            </tr>
-            <tr class="tr3">
-            	<td colspan="3"> FAQ내용입니다.</td>
-            </tr>
-
-            <!-- 10개 vs 15개 -->
-            
-            <!--
-            <tr class="tr2">
-                <td>11</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>12</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>13</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>14</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>15</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            -->
+            </c:forEach>
         </table>
 
         <!-- 글쓰기 버튼 아래 -->

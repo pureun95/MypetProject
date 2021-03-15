@@ -234,7 +234,7 @@
 				    </div>
 				  </div>
 				</div>
-		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/vet/edit.action'">
+		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/vet/edit.action?seq=${vdto.seqVet}';">
 	</div>
 	<table class="table table-default">
 		<tr id="list">

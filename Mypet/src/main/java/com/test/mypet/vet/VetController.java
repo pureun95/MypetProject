@@ -42,7 +42,12 @@ public class VetController {
 	}
 	
 	@RequestMapping(value="/vet/edit.action")
-	public String edit() {
+	public String edit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
+		
+		VetDTO vdto = dao.get(seq);
+		
+		request.setAttribute("vdto", vdto);
+		
 		return "vet.edit";
 	}
 	

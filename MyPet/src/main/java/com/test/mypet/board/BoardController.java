@@ -71,9 +71,16 @@ public class BoardController {
 
 	}
 	
+	@Autowired
+	private IFaq dao;
+	
 	@RequestMapping(value = "/board/faqList.action", method = { RequestMethod.GET })
 	public String faqList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
+		List<FaqDTO> list = dao.list();
+		
+		request.setAttribute("list", list);
+		
 		return "board/faqList";
 
 	}
@@ -86,8 +93,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board/faqEdit.action", method = { RequestMethod.GET })
-	public String faqEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public String faqEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
 
+		FaqDTO fdto = dao.get(seq);
+		
+		request.setAttribute("fdto", fdto);
+		
 		return "board/faqEdit";
 
 	}
