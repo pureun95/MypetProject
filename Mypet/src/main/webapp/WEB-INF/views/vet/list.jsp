@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <title>MyPet::동물병원</title>
 <style>
 
@@ -101,6 +103,10 @@
     	padding : 0px 5px;
     }
     
+    .sel .location, .sel .locationDetail {
+    	float: left;
+    }
+    
     #search {
 		width: 200px;
 		display: inline;
@@ -151,6 +157,7 @@
 	.table th:nth-child(3) { width: 400px; }
 	.table th:nth-child(4) { width: 250px; }
 	
+	.table td:nth-child(2) { text-align : left;}
 	.table td:nth-child(3) { text-align : left;}
 	
 	.table .list:hover{
@@ -203,11 +210,11 @@
 
 		<div class="selectsearch">
 			<div class="sel">
-				<select class="location">
+				<select class="location form-control">
 					<option>서울특별시</option>
 				</select>
 				
-				<select class="locationDetail">
+				<select class="locationDetail form-control">
 					<option>강남구</option>
 				</select>
 			</div>	
@@ -227,40 +234,15 @@
 				<th>주소</th>
 				<th>전화번호</th>
 			</tr>
-			<tr class="list">
-				<td>1</td>
-				<td class="name" onclick="location.href='/mypet/vet/view.action'">동물병원이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
 			
-			<tr class="list">
-				<td>2</td>
-				<td class="name">동물병원이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
-			
-			<tr class="list">
-				<td>3</td>
-				<td class="name">동물병원이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
-			
-			<tr class="list">
-				<td>4</td>
-				<td class="name">동물병원이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
-			
-			<tr class="list">
-				<td>5</td>
-				<td class="name">동물병원이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
+			<c:forEach items="${list}" var="vdto">
+				<tr class="list">
+					<td>${vdto.seqVet}</td>
+					<td class="name" onclick="location.href='/mypet/vet/view.action'">${vdto.name}</td>
+					<td>${vdto.address}</td>
+					<td>${vdto.tel}</td>
+				</tr>
+			</c:forEach>		
 		</table>
 		
 		<div class="pagebar">
