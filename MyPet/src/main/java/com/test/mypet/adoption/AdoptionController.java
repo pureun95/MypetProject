@@ -1,15 +1,21 @@
 package com.test.mypet.adoption;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class AdoptionController {
+	
+	@Autowired
+	private IReservationDAO dao;
 
 
 	//http://localhost:8090/mypet/board/template.action
@@ -31,6 +37,7 @@ public class AdoptionController {
 	//http://localhost:8090/mypet/adoption/write.action
 	@RequestMapping(value="/adoption/write.action")
 	public String adoptionwrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
 		return "adoption/write";		
 	}
 	
@@ -50,19 +57,42 @@ public class AdoptionController {
 
 	
 	//http://localhost:8090/mypet/adoption/checklist.action
-	@RequestMapping(value="/adoption/checklist.action")
-	public String checklist() {
+	@RequestMapping(value="/adoption/checklist.action", method={RequestMethod.GET})
+	public String checklist(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		session.setAttribute("id", "red1234");
+		System.out.println(session.getAttribute("id"));
 		return "adoption/checklist";		
 	}
 	
 	//http://localhost:8090/mypet/adoption/writereservation.action
-	@RequestMapping(value="/adoption/writereservation.action")
-	public String writeReservation() {
+	@RequestMapping(value="/adoption/writereservation.action", method={RequestMethod.GET})
+	public String writeReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		//ReservationDAO dao = new ReservationDAO();
+	
+		session.setAttribute("id", "red1234");
+		System.out.println(session.getAttribute("id"));
+
+		VwReservationDTO dto = dao.getUserInfo(session.getAttribute("id"));
+		
+		String address = dto.getAddress();
+		String temp[] = address.split(" ");
+		address = temp[1];
+		System.out.println(address);
+		
+		List<VetDTO> list = dao.getVetList(address);
+		
+		//회원정보
+		request.setAttribute("dto", dto);
+		//동물병원
+		request.setAttribute("list", list);
+		
 		return "adoption/write_reservation";		
 	}
 	
 	//http://localhost:8090/mypet/adoption/viewreservation.action
-	@RequestMapping(value="/adoption/viewreservation.action")
+	@RequestMapping(value="/adoption/viewreservation.action", method={RequestMethod.POST})
 	public String viewReservation() {
 		return "adoption/view_reservation";		
 	}
@@ -72,4 +102,5 @@ public class AdoptionController {
 		return "adoption/send_reservation";		
 	}
 
+	
 }
