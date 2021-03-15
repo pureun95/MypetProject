@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <title>MyPet::보호소</title>
 <style>
 
@@ -125,6 +128,7 @@
 	.table th:nth-child(3) { width: 400px; }
 	.table th:nth-child(4) { width: 250px; }
 	
+	.table td:nth-child(2) { text-align : left;}
 	.table td:nth-child(3) { text-align : left;}
 	
 	.table .list:hover{
@@ -198,40 +202,14 @@
 				<th>주소</th>
 				<th>전화번호</th>
 			</tr>
-			<tr class="list">
-				<td>1</td>
-				<td class="name" onclick="location.href='/mypet/shelter/view.action'">보호소이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
-			
-			<tr class="list">
-				<td>2</td>
-				<td class="name">보호소이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
-			
-			<tr class="list">
-				<td>3</td>
-				<td class="name">보호소이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
-			
-			<tr class="list">
-				<td>4</td>
-				<td class="name">보호소이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
-			
-			<tr class="list">
-				<td>5</td>
-				<td class="name">보호소이름</td>
-				<td>서울시 강남구 역삼동</td>
-				<td>0507-1234-5678</td>
-			</tr>
+			<c:forEach items="${list}" var = "sdto">
+				<tr class="list">
+					<td>${sdto.seqShelter}</td>
+					<td class="name" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}'">${sdto.name}</td>
+					<td>${sdto.address}</td>
+					<td>${sdto.tel}</td>
+				</tr>
+			</c:forEach>
 		</table>
 		
 		<div class="pagebar">

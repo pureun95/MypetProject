@@ -94,42 +94,47 @@
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
 	<div id="board-title">보호소 수정하기</div>
-	<table class="table table-default">
-		<tr>
-			<th id="list">이름</th>
-			<td><input type="text" class="form-control" placeholder="가나다 동물병원"></td>
-		</tr>
-		<tr>
-			<th id="list">주소</th>
-			<td><input type="text"  class="form-control" placeholder="가나다 보호소"></td>
-		</tr>
-		<tr>
-			<th id="list">전화번호</th>
-			<td><input type="text"  class="form-control" placeholder="0507-1234-5678"></td>
-		</tr>
-		<tr>
-			<th id="list">진료시간</th>
-			<td><input type="text"  class="form-control" placeholder="09:00-18:00"></td>
-		</tr>
-		<tr>
-			<th id="list">후원계좌</th>
-			<td><input type="text"  class="form-control" placeholder="신한 123-4567-9012 (가나다보호소)"></td>
-		</tr>
-		<tr>
-			<th id="list">봉사활동</th>
-			<td><input type="text"  class="form-control" placeholder="2021/03/24 ~ 2021/03/31"></td>
-		</tr>
-		<tr>
-			<th id="list">로고 or 이미지</th>
-			<td><input type="file"  class="form-control"></td>
-		</tr>
-		
-	</table>
 	
-	<div class="btns">
-      	<input type="submit" class="btn" value="등록" id="add">
-      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/shelter/list.action'">
-    </div>
+	<form mathod="POST" action=""></form>
+		<table class="table table-default">
+			<tr>
+				<th id="list">이름</th>
+				<td><input type="text" class="form-control" value="${sdto.name}"></td>
+			</tr>
+			<tr>
+				<th id="list">주소</th>
+				<td><input type="text"  class="form-control" value="${sdto.address}"></td>
+			</tr>
+			<tr>
+				<th id="list">전화번호</th>
+				<td><input type="text"  class="form-control" value="${sdto.tel}"></td>
+			</tr>
+			<tr>
+				<th id="list">진료시간</th>
+				<td><input type="text"  class="form-control" value="${sdto.time}"></td>
+			</tr>
+			<tr>
+				<th id="list">후원계좌</th>
+				<td><input type="text"  class="form-control" value="${sdto.account} (${sdto.name})"></td>
+			</tr>
+			<tr>
+				<th id="list">봉사활동</th>
+				<td><input type="text"  class="form-control" value="${sdto.startDate} ~ ${sdto.endDate}"></td>
+			</tr>
+			<tr>
+				<th id="list">로고 or 이미지</th>
+				<td><input type="file"  class="form-control"></td>
+			</tr>
+			
+		</table>
+		
+		<div class="btns">
+	      	<input type="submit" class="btn" value="등록" id="add">
+	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}'">
+	    </div>
+	    
+    	<input type="hidden" name="seq" value="${sdto.seqShelter}">
+    </form>
 </div>
 
 
