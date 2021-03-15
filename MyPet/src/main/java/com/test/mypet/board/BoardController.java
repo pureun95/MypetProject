@@ -108,6 +108,37 @@ public class BoardController {
       
    }
    
+  
+//푸른님
+   @RequestMapping(value = "/board/noticeList.action", method = { RequestMethod.GET })
+   public String noticeList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+      
+      return "board/noticeList";
+      
+   }
+   
+   @RequestMapping(value = "/board/noticeView.action", method = { RequestMethod.GET })
+   public String noticeView(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+      
+      return "board/noticeView";
+      
+   }
+   
+   @RequestMapping(value = "/board/noticeWrite.action", method = { RequestMethod.GET })
+   public String noticeWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+      
+      return "board/noticeWrite";
+      
+   }
+   
+   @RequestMapping(value = "/board/noticeEdit.action", method = { RequestMethod.GET })
+   public String noticeEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+      
+      return "board/noticeEdit";
+   
+   }
+      
+//준오님
    @RequestMapping(value = "/board/adoptionreviewwrite.action", method = { RequestMethod.GET })
    public String adoptionReviewWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	   
