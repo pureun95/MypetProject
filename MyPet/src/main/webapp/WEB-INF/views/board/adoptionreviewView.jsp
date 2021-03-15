@@ -154,7 +154,7 @@
         	</tr>
         	<tr class="headtr">
         		<td class="firstth" colspan="1" style="border-bottom: 1px solid #e8e8e8">다음글</td>
-        		<td class="firsttd" colspan="9" style="border-bottom: 1px solid #e8e8e8">다음글입니다.</td>
+        		<td class="firsttd" colspan="9" style="border-bottom: 1px solid #e8e8e8"><a href="">입양후기2 제목입니다.</a></td>
         	</tr>
         </table>
 	

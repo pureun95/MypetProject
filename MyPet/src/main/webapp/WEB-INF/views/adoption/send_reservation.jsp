@@ -26,6 +26,7 @@
 /* 머릿글 관련 css 시작 */
 
 #hd1 {
+	font-family: 'Jal_Onuel';
 	font-size: 24px;
 	margin-top: 150px;
 	margin-bottom: 30px;
