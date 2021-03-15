@@ -78,8 +78,6 @@
     	margin-top: 130px;
     	margin-bottom: 50px;
     	font-family: 'Jal_Onuel';
-    	/* font-family: 'JSDongkang-Regular'; */
-    	/* font-family: 'JSDongkang-Bold'; */
     	color: #301b01;
     }
     
