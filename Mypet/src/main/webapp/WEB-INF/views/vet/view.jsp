@@ -156,15 +156,21 @@
 		margin-bottom:10px;
 	}
 	
-	.modal-body table{
+	.modal-body .applytable{
+		width: 400px;
 		margin: 0px auto;
 	}
 	
- 	.madal-body #apply_th{
- 		font-weight:none;
-		margin-bottom: 10px;
-		margin-rigth: 10px;
+
+ 	.madal-body #apply_tr{
+		margin-bottom: 30px;
+		padding : 10px;
 	} 
+	
+	.madal-body #apply_td{
+		width: 200px;
+		text-align: left;
+	}
 	
 	.modal-body p {
 		margin-top: 25px;
@@ -195,55 +201,79 @@
 	.modal-footer #cancel{ background-color: #fab018; }
 	
     }
+    
+    .table #list td{
+		text-align: left !important;
+	}
 }
     
 </style>
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div class="board-title">가나다 동물병원 상세정보</div>
+	<div class="board-title">${vdto.name} 상세정보</div>
 	<div class="btns"> 
-		<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/vet/delete.action'">
+		<!-- 삭제버튼 모달 -->
+		<input type="button" value="삭제" id="delete" class="btn">
+			<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content" id="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title">동물병원 정보 삭제하기</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				        <p>동물병원을 정말 삭제하시겠습니까?</p>
+				      </div>
+				      <div class="modal-footer">
+				      	<button type="submit" class="btn" id="delete">삭제</button>
+				        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+				      </div>
+				    </div>
+				  </div>
+				</div>
 		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/vet/edit.action'">
 	</div>
 	<table class="table table-default">
 		<tr id="list">
 			<td rowspan='5' class="logo">
-				<div id="img" style="background-image:url(/mypet/resources/images/vet/24snc동물메디컬센터.jpg);"></div>
+				<div id="img" style="background-image:url('/mypet/resources/images/vet/${vdto.image}');"></div>
 			</td>
 			<th>이름</th>
-			<td>가나다 동물병원
+			<td>${vdto.name}
 			<!-- <input type="button" class="btn" value="진료예약하기" id="res" onclick="$('#searchForm').submit();"> -->
 			<button id="apply" class="btn">진료예약하기</button>
 			<div class="modal" tabindex="-1" role="dialog" id="applymodal">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content" id="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title">가나다 동물병원 진료 예약하기</h5>
+			        <h5 class="modal-title">${vdto.name} 진료 예약하기</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			      	<table>
+			      	<table class="applytable">
 			      		<tr id="apply_tr">
-			      			<th id="apply_th">반려동물 이름</th>
+			      			<td id="apply_td">반려동물 이름</td>
 			      			<td><input type="text" class="form-control" id="name"></td>
 			      		</tr>
 			      		<tr id="apply_tr">
-			      			<th id="apply_th">반려동물 종류</th>
+			      			<td id="apply_td">반려동물 종류</td>
 			      			<td><input type="text" class="form-control" id="species"></td>
 			      		</tr>
 			      		<tr id="apply_tr">
-			      			<th id="apply_th">진료사유</th>
+			      			<td id="apply_td">진료사유</td>
 			      			<td><input type="text" class="form-control"  id="reason"></td>
 			      		</tr>
 			      		<tr id="apply_tr">
-			      			<th id="apply_th">날짜</th>
+			      			<td id="apply_td">날짜</td>
 			      			<td><input type="text" class="form-control"  id="date"></td>
 			      		</tr>
 			      	</table>
-			        <p>가나다 동물병원 진료를 예약하시겠습니까?</p>
+			        <p>${vdto.name} 진료를 예약하시겠습니까?</p>
 			      </div>
 			      <div class="modal-footer">
 			      	<button type="submit" class="btn" id="apply">예약</button>
@@ -257,22 +287,22 @@
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>주소</th>
-			<td>서울특별시 강남구 역삼동</td>
+			<td>${vdto.address}</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>전화번호</th>
-			<td>0507-1234-5678</td>
+			<td>${vdto.tel}</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>진료시간</th>
-			<td>09:00-18:00</td>
+			<td>${vdto.time}</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>진료목록</th>
-			<td>건강검진, 안과치료</td>
+			<td>${vdto.treatment}</td>
 		</tr>
 		<tr id="list">
 			<td colspan='3' class="map"><div id="map"></div></td>
@@ -290,26 +320,33 @@
 
 <!-- 진료예약 -->
 <script>
-
+	/* 진료예약 */
 	$('#apply').click(function(e){
 		e.preventDefault();
 		$('#applymodal').modal("show");
 	});
 
+	/* 날짜 */
 	$("#date").datepicker({
 	    dateFormat : "yy-mm-dd",	
 	    minDate: "-1M -5D",
 	    maxDate: "+1M +5D"
 	});
+	
+	/* 삭제 */
+	$('#delete').click(function(e){
+		e.preventDefault();
+		$('#deletemodal').modal("show");
+	});
 </script>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9&libraries=services"></script>
 	
 <script>
 	var container = document.getElementById('map');
 	var options = {
 		center : new kakao.maps.LatLng(37.499293, 127.033236),
-		level : 5
+		level : 4
 	};
 	
 	
@@ -319,7 +356,7 @@
 	var geocoder = new kakao.maps.services.Geocoder();
 
 	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+	geocoder.addressSearch('${vdto.address}', function(result, status) {
 		
 		// 정상적으로 검색이 완료됐으면 
 	     if (status === kakao.maps.services.Status.OK) {
@@ -334,7 +371,7 @@
 
 	        // 인포윈도우로 장소에 대한 설명을 표시합니다
 	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">가나다동물병원</div>'
+	            content: '<div style="width:200px;text-align:center;padding:6px 0;">${vdto.name}</div>'
 	        });
 	        infowindow.open(map, marker);
 

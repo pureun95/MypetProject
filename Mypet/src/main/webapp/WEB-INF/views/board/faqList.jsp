@@ -289,6 +289,8 @@
                 <td>입양</td>
                 <td>FAQ 제목입니다.<span class="icon">▼</span></td>
             </tr>
+            
+            
             <tr class="tr3">
             	<td colspan="3"> 
             	<div id="txt">FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다. FAQ내용입니다.</div>

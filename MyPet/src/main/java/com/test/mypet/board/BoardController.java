@@ -1,9 +1,14 @@
 package com.test.mypet.board;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -110,9 +115,22 @@ public class BoardController {
    
   
 //푸른님
+   
+   @Autowired // 의존 주입하기
+	private INoticeDAO noticeDAO;
+   
    @RequestMapping(value = "/board/noticeList.action", method = { RequestMethod.GET })
    public String noticeList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
       
+	   
+	   List<NoticeDTO> noticeList = noticeDAO.noticeList();
+
+		request.setAttribute("noticeList", noticeList);
+		
+		
+		
+		
+	   
       return "board/noticeList";
       
    }
@@ -152,5 +170,7 @@ public class BoardController {
 	   return "board/adoptionreviewEdit";
 	   
    }
+   
+   
 
 }

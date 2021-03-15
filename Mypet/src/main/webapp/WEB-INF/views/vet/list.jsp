@@ -78,8 +78,6 @@
     	margin-top: 130px;
     	margin-bottom: 50px;
     	font-family: 'Jal_Onuel';
-    	/* font-family: 'JSDongkang-Regular'; */
-    	/* font-family: 'JSDongkang-Bold'; */
     	color: #301b01;
     }
     
@@ -238,7 +236,7 @@
 			<c:forEach items="${list}" var="vdto">
 				<tr class="list">
 					<td>${vdto.seqVet}</td>
-					<td class="name" onclick="location.href='/mypet/vet/view.action'">${vdto.name}</td>
+					<td class="name" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}'">${vdto.name}</td>
 					<td>${vdto.address}</td>
 					<td>${vdto.tel}</td>
 				</tr>

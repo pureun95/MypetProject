@@ -77,6 +77,7 @@
 	    background-size: contain;
 	    background-repeat : no-repeat;
     	padding : 5px;
+    	vertical-align: middle;
 	    
     }
     
@@ -188,56 +189,56 @@
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div class="board-title">가나다 보호소 상세정보</div>
+	<div class="board-title">${sdto.name}</div>
 	<div class="btns"> 
 		<input type="button" value="삭제" id="delete" class="btn" >
-		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/shelter/edit.action'">
+		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/shelter/edit.action?seq=${sdto.seqShelter}';">
 	</div>
 	<table class="table table-default">
 		<tr id="list">
 			<td rowspan='6' class="logo">
-				<div id="img" style="background-image:url(/mypet/resources/images/shelter/아이조아요양보호소.jpg);"></div>
+				<div id="img" style="background-image:url('/mypet/resources/images/shelter/${sdto.image}');"></div>
 			</td>
 			<th>이름</th>
-			<td>가나다 보호소</td>
+			<td>${sdto.name}</td>
 		</tr>		
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>주소</th>
-			<td>서울특별시 강남구 역삼동</td>
+			<td>${sdto.address}</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>전화번호</th>
-			<td>0507-1234-5678</td>
+			<td>${sdto.tel}</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>진료시간</th>
-			<td>09:00-18:00</td>
+			<td>${sdto.time}</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>후원계좌</th>
-			<td>신한 123-4567-9012 (가나다보호소)</td>
+			<td>${sdto.account} (${sdto.name})</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>봉사활동</th>
-			<td>2021/03/24 ~ 2021/03/31 
+			<td>${sdto.startDate} ~ ${sdto.endDate}
 <!-- 			<input type="button" class="btn" value="봉사예약하기" id="vol" onclick="$('#searchForm').submit();"> -->
 			<button id="apply" class="btn">봉사신청하기</button>
 			<div class="modal" tabindex="-1" role="dialog" id="applymodal">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content" id="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title">가나다 보호소 봉사 신청하기</h5>
+			        <h5 class="modal-title">${sdto.name} 봉사 신청하기</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        <p>가나다 보호소를 봉사활동을 신청하시겠습니까?</p>
+			        <p>${sdto.name} 봉사활동을 신청하시겠습니까?</p>
 			      </div>
 			      <div class="modal-footer">
 			      	<button type="submit" class="btn" id="apply">신청</button>
@@ -271,13 +272,13 @@
 
 
 <!-- 지도 -->
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9&libraries=services"></script>
 	
 <script>
 	var container = document.getElementById('map');
 	var options = {
 		center : new kakao.maps.LatLng(37.499293, 127.033236),
-		level : 5
+		level : 4
 	};
 	
 	
@@ -287,7 +288,7 @@
 	var geocoder = new kakao.maps.services.Geocoder();
 
 	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+	geocoder.addressSearch('${sdto.address}', function(result, status) {
 		
 		// 정상적으로 검색이 완료됐으면 
 	     if (status === kakao.maps.services.Status.OK) {
@@ -302,7 +303,7 @@
 
 	        // 인포윈도우로 장소에 대한 설명을 표시합니다
 	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">가나다동물병원</div>'
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${sdto.name}</div>'
 	        });
 	        infowindow.open(map, marker);
 
