@@ -33,7 +33,7 @@
     
     /* 지도 & 검색창 */
     .map-search {
-    	border: 1px solid black;
+    	/* border: 1px solid black; */
     	margin-left: 200px;
     	width: 800px;
     	height:	550px;
@@ -41,7 +41,7 @@
     }
     
     #map {
-    	border: 1px solid black;
+    	/* border: 1px solid black; */
     	width: 800px;
     	height: 350px;
     	margin-bottom: 50px;    
@@ -73,7 +73,7 @@
     /* 동물 종류 검색 */
     
     .pet-radio {
-    	border: 1px solid black;
+    	/* border: 1px solid black; */
     	width: 800px;
     	height: 80px;
     	padding: 0px 135px;
@@ -110,7 +110,7 @@
     
     /* 입양글 리스트 */
     .list {
-    	border: 1px solid black;
+    	/* border: 1px solid black; */
     	width: 1200px;
     	height: 1700px;
     	
@@ -122,7 +122,7 @@
     	height: 400px;
     	float: left;
     	margin-left: 90px;
-    	margin-bottom: 90px;    
+    	margin-bottom: 120px;    
     	color: #301b01;	
     }
     
@@ -136,6 +136,21 @@
     	margin-top: 10px;
 	    font-size: 12px;	    
 	    height: 30px;
+    }
+    
+    .list-detail > .state {
+    	display: block;
+    	background-color: #f9820f;
+    	width: 80px;
+    	height: 25px;
+    	color: white;
+    	text-align: center;
+    	margin-left: 100px;
+    	margin-top: 20px;
+    	border-radius: 5px;
+    	font-family: 'Jal_Onuel';
+    	padding: 4px;
+    	opacity: .8;
     }
     
     .img {
@@ -256,14 +271,14 @@
     
     
     <!-- 9개씩 나오기 -->
-    <div class="list">
-    	<div class="list-detail">
+    <div class="list">    	    	    		
+    	<div class="list-detail">    	
     		<div class="img"><img class="img-pet" src="../resources/images/adoption/1.jpg"></div>
     		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
-    		
+    		<span class="state">입양가능</span>    		
     	</div>
 	
 		<!-- 나중에 삭제 -->
@@ -274,6 +289,7 @@
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
+    		<span class="state">입양가능</span>  
     	</div>
     	<div class="list-detail">
     		<div class="img"><img class="img-pet" src="../resources/images/adoption/3.jpg"></div>
@@ -281,6 +297,7 @@
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
+    		<span class="state">입양완료</span>  
     	</div>
     	<div class="list-detail">
     		<div class="img"><img class="img-pet" src="../resources/images/adoption/4.jpg"></div>
@@ -288,6 +305,7 @@
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
+    		<span class="state">입양완료</span>  
     	</div>
     	<div class="list-detail">
     		<div class="img"><img class="img-pet" src="../resources/images/adoption/5.jpg"></div>
@@ -295,6 +313,7 @@
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
+    		<span class="state">입양완료</span>  
     	</div>
     	<div class="list-detail">
     		<div class="img"><img class="img-pet" src="../resources/images/adoption/6.jpg"></div>
@@ -302,6 +321,7 @@
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
+    		<span class="state">입양완료</span>  
     	</div>
     	<div class="list-detail">
     		<div class="img"><img class="img-pet" src="../resources/images/adoption/7.jpg"></div>
@@ -309,6 +329,7 @@
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
+    		<span class="state">입양완료</span>  
     	</div>
     	<div class="list-detail">
     		<div class="img"><img class="img-pet" src="../resources/images/adoption/8.jpg"></div>
@@ -316,6 +337,7 @@
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
+    		<span class="state">입양완료</span>  
     	</div>
     	<div class="list-detail">
     		<div class="img"><img class="img-pet" src="../resources/images/adoption/9.jpg"></div>
@@ -323,6 +345,7 @@
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
     		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
+    		<span class="state">입양완료</span>  
     	</div>
     
     

@@ -30,8 +30,8 @@ public class AdoptionController {
 	
 	//http://localhost:8090/mypet/adoption/write.action
 	@RequestMapping(value="/adoption/write.action")
-	public String write() {
-		return "adoption.write";		
+	public String adoptionwrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		return "adoption/write";		
 	}
 	
 	

@@ -2,16 +2,14 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<title>MyPet::FAQ 수정하기</title>
-
 <style>
 
 
 
-	 body {
+	body {
 	      font-family: 'NanumSquare';
 	      color: #301b01;
-	    }
+	}
      
 
     #content{        
@@ -26,7 +24,7 @@
 
     /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
     #content{
-        height: 1300px;
+        height: 1100px;
     }
 
 	
@@ -66,21 +64,41 @@
 	
 	
 	
+	/* 게시판 선택 select 박스 */
+	.board-write > select {
+    	color: #9c9c9c;
+    }
+    
+    .board-write > select > option {
+    	color: #301b01;
+    }
+    
+	
 	
 
-
     /* 버튼 공통 클래스 */
-
-  
-/*     .common-btn {
+	
+	.board-btn {
+		/* border: 1px solid black;  */
+		height: 80px;
+		margin-top: 30px;
+		padding: 0px 290px;
+	} 
+	
+    .btn {
+        font-family: 'NanumSquare';
+    }
+    
+    
+    .common-btn {
     	margin-top: 30px;
-	    margin-left: 350px;
 	    width: 100px;
 	    height: 40px;
 	    background-color: #b27208;
 	    color: white;
 	    font-family: 'Jal_Onuel';
-    } */
+	    float: left;
+    }
 
     .common-btn:hover {
         color: white;
@@ -90,11 +108,19 @@
     .common-btn:active {
         outline: none !important;
     }
-
-
-    .board-btn > input:nth-child(1) {
-        margin-left: 1060px;
+    
+    
+    .common-btn:nth-child(2) {
+    	margin-left: 10px;
     }
+    
+    .delete {
+    	background-color: #fab018;    	
+    }
+
+
+    
+    /* 파일 */
     
     #file {
     	display: none;
@@ -116,8 +142,6 @@
     	/* border: 1px solid black; */
     	width: 40px;
     	height: 30px;
-    	/* TODO 연동안됨 */
-    	/* background-image: url(/mypet/resources/images/photo.png); */
     	background-image: url(/mypet/resources/images/photo.png);
     	background-size: cover;
     	background-position: 50% 50%;
@@ -129,58 +153,8 @@
     	text-align: center;
     }
     
-    .board-write > select {
-    	color: #9c9c9c;
-    }
-    
-    .board-write > select > option {
-    	color: #301b01;
-    }
-    
-    /* 버튼 */
-    
-    .btns{
-    	font-family: 'Jal_Onuel';
-    	text-align: center;
-    	margin-bottom : 100px;  
-    	margin-top : 30px;  
-    }
-    
-    .btn {
-    	width : 70px;
-    	margin : 10px;
-    	padding : 10px 12px;
-		border : none;
-	    color: white;  
-	    outline: none !important; 
-    }
-    
-    .btns #add{ background-color: #b27208; }
-    
-    .btns #cancel{ background-color: #fab018; }
     
    
-    /* 추가 */
-    .faqtail {
-    	position :relative;
-    	border : 1px solid #fab018;
-    }
-    
-    .glyphicon{
-    	font-size: 3em;
-    	position: absolute;
-    	top: 30%;
-    	left: 10px;
-    	color : #fab018;
-    	vertical-align: middle;
-    	margin-right:10px;
-    }
-    
-	#chat {
-		cursor: pointer;
-		color: #fab018;
-		font-weight: bold;
-	}
 
 </style>
 
@@ -188,38 +162,32 @@
     <div id="content">
 		
 		<div class="board-write">
-			<span class="title">FAQ 수정하기</span>
+			<span class="title">입양후기 글쓰기</span>
 			
 			<!-- 각자 본인의 게시판에 들어가면 option이 selected 되어있도록?! 해보고싶어서 넣어봤어요. -->
 			<select class="form-control multiple">
-				<option selected disabled>FAQ 카테고리</option>
-				<option value="1">입양</option>
-				<option value="2">봉사</option>		
-				<option value="3">굿즈</option>	
-				<option value="4">동물병원</option>
-				<option value="5">보호소</option>
-				<option value="6">기타</option>		
+				<option selected disabled hidden>게시판을 선택해주세요.</option>
+				<option value="1">공지사항</option>
+				<option value="2">활동</option>		
+				<option value="3">봉사활동신청</option>
+				<option value="4" selected>입양후기</option>
+				<option value="5">자주하는질문</option>
+				<option value="6">유기동물신고</option>			
 			</select>
-	        <input type="text" class="form-control board-title" onclick="this.value=''" placeholder="FAQ제목입니다.">	        	
-	        <textarea class="form-control board-content" onclick="this.value=''" placeholder="FAQ내용입니다."></textarea> 	    	                      		           		        
-	        <div class="faqtail">
-	        	<span class="glyphicon glyphicon-question-sign"></span>
-        		<ul>
-        			<li>추가로 자세한 답변을 원하신다면 <span id="chat" onclick="location.href='/mypet/board/faqList.action'">채팅</span>을 이용해주세요.</li>
-        			<li>추가로 자세한 전화문의를 원하신다면 0000-0000로 연락주세요.</li>
-        		</ul>
-        	</div>
+	        <input type="text" class="form-control board-title" onclick="this.value=''" placeholder="제목을 입력해주세요.">	        	
+	        <textarea class="form-control board-content" onclick="this.value=''" placeholder="내용을 입력해주세요."></textarea> 	    	                      		           		        
 	        
-	        <div class="photo">
-	        	
+	        <div class="photo">	        	
 	        	<input type="file" id="file" class="board-file">	
 	        	<label for="file"></label>	
 	        	<span>사진</span>	  	       		
-	       	</div>	        
-	        <div class="btns">
-		        <input type="submit" class="btn common-btn" id="add" value="수정">
-		        <input type="button" class="btn common-btn" id="cancel" value="취소" onclick="location.href='/mypet/board/faqList.action'">		        
-        	</div>
+	       	</div>
+	        
+	        <div class="board-btn">
+	        	<input type="button" class="btn common-btn delete" onclick="history.back()" value="취소">
+	        	<input type="button" class="btn common-btn ok" value="등록">		        		        	      
+	        </div>
+	       
         </div>	
 
     </div>

@@ -34,14 +34,34 @@
     #content{
         height: auto;
     }
+    
+    #contentnav{
+    	height : 50px;
+    	border :none;
+    	font-size: 20px;
+    	margin:30px 0px;
+    }
+    
+    #contentnav span{
+    	margin: 0px 10px;
+    }
 
 ----------------------------------------------------------------
     /* 페이지 타이틀 */
     
-    /* #content > h1 {
-    	text-align: center;
-    	font-family: 'Jal_Onuel';
-    } */
+    .board-name {
+        /* border: 1px solid black; */
+        display: block;
+        text-align: center;
+        margin-top: 130px;
+        margin-bottom: 50px;
+        font-size: 30px;
+        font-weight : bold;
+        /* font-family: 'Jal_Onuel'; */
+        /* font-family: 'JSDongkang-Regular'; */
+        font-family: 'JSDongkang-Bold';
+        color: #301b01;
+    }
     
     
     /* 검색 */
@@ -124,8 +144,10 @@
     /* 페이지바 */
     
      .pagebar {
-    	text-align : center;
+     	width:1200px;
+    	padding : 0px 360px;
     	margin-bottom :100px;
+    	margin-top : 30px;
     } 
     
     .pagination{
@@ -137,6 +159,7 @@
 		border-color : #ccc;
 		color: #301b01;
         font-size: 18px;
+        float: left;
 	}
 	
 	.pagination > li > a:hover {
@@ -148,8 +171,11 @@
 </style>
 
 	 <div id="content">
-		<div id="contentnav">동물병원 / 보호소</div>
-		<h1 class="page-header">보호소</h1>
+		<div id="contentnav">
+			<span id="vet"><input type="radio" name="rd" onclick="location.href='/mypet/vet/list.action'">동물병원</span>
+			<span id="shelter"><input type="radio" name="rd" id="shelter" checked="checked">보호소</span>
+		</div>
+		<span class="board-name">보호소</span>
 
 		<!-- <div class="selectsearch"> -->
 			<div class="sel">
@@ -214,23 +240,24 @@
 		</table>
 		
 		<div class="pagebar">
-			<ul class="pagination pagination-lg">
-				<li class="page-item"><a class="page-link" href=""><<</a></li>
-				<li class="page-item"><a class="page-link" href="">1</a></li>
-				<li class="page-item"><a class="page-link" href="">2</a></li>
-				<li class="page-item"><a class="page-link" href="">3</a></li>
-				<li class="page-item"><a class="page-link" href="">4</a></li>
-				<li class="page-item"><a class="page-link" href="">5</a></li>
-				<li class="page-item"><a class="page-link" href="">6</a></li>
-				<li class="page-item"><a class="page-link" href="">7</a></li>
-				<li class="page-item"><a class="page-link" href="">8</a></li>
-				<li class="page-item"><a class="page-link" href="">9</a></li>
-				<li class="page-item"><a class="page-link" href="">10</a></li>
-				<li class="page-item"><a class="page-link" href="">>></a></li>
-			</ul>
+			<ul class="pagination">
+                <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
+                <li><a>1</a></li>
+                <li><a>2</a></li>
+                <li><a>3</a></li>
+                <li><a>4</a></li>
+                <li><a>5</a></li>
+                <li><a>6</a></li>
+                <li><a>7</a></li>
+                <li><a>8</a></li>
+                <li><a>9</a></li>
+                <li><a>10</a></li>
+                <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
+            </ul>      
 		</div>
 	</div>
 	
+	<!-- 지도 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9"></script>
 	
 	<script>

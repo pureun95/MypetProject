@@ -25,6 +25,7 @@
 /* 머릿글 관련 css 시작 */
 
 #hd1 {	
+	font-family: 'Jal_Onuel';
 	font-size: 24px;
 	padding-left : 40px;
 	margin-top: 150px;
@@ -143,7 +144,6 @@
 					<input type="radio" name="rd1" id="jobno" value="0" style="margin-left: 50px;">
 					<label for="jobno">직장없음</label>
 					<input type="text" id="company" class="form-control input-form">
-	
 				</td>
 			</tr>
 			

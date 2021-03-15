@@ -33,18 +33,41 @@
     #content{
         height: auto;
     }
+    
+----------------------------------------------------
 
-/*     #contentnav {
-        border: 1px solid black;
-        width: 1200px;
-        height: 100px;
-        padding: 20px 20px;
-    } */
+	#contentnav{
+    	height : 50px;
+    	border :none !important;
+    	margin:30px 0px;
+    }
+    
+    #contentnav span{
+    	margin: 0px 10px;
+    }
+    
+    #contentnav input[name=rd] {
+    	
+		display: none;
+	}
 
+	#contentnav #vet, #contentnav #shelter {
+		float: left;
+		width: 100px;
+		text-align: center;
+        cursor: pointer;
+        font-size: 20px;
+        font-family: 'Jal_Onuel';
+        
+	}
+	#contentnav #vet{
+		color : #f6da42;
+	}
+	
    
 
 
-----------------------------------------------------------------
+
      /* 페이지타이틀 */
     .board-title{
     	font-size : 30px;
@@ -142,8 +165,10 @@
     /* 페이지바 */
     
      .pagebar {
-    	text-align : center;
-    	margin-bottom: 100px;
+     	width:1200px;
+    	padding : 0px 360px;
+    	margin-bottom :100px;
+    	margin-top : 30px;
     } 
     
     .pagination{
@@ -166,7 +191,14 @@
 </style>
 
 	 <div id="content">
-		<!-- <div id="contentnav">동물병원 / 보호소</div> -->
+		<div id="contentnav">
+				<input type="radio" name="rd" id="vet" checked="checked">
+				<label id="vet" for="vet">동물병원</label>
+
+				<input type="radio" name="rd" id="shelter" onclick="location.href='/mypet/shelter/list.action'">
+				<label id="shelter" for="shelter">보호소</label>
+
+		</div>
 		<div class="board-title">동물병원</div>
 
 		<div class="selectsearch">
@@ -232,20 +264,20 @@
 		</table>
 		
 		<div class="pagebar">
-			<ul class="pagination pagination-lg">
-				<li class="page-item"><a class="page-link" href=""><<</a></li>
-				<li class="page-item"><a class="page-link" href="">1</a></li>
-				<li class="page-item"><a class="page-link" href="">2</a></li>
-				<li class="page-item"><a class="page-link" href="">3</a></li>
-				<li class="page-item"><a class="page-link" href="">4</a></li>
-				<li class="page-item"><a class="page-link" href="">5</a></li>
-				<li class="page-item"><a class="page-link" href="">6</a></li>
-				<li class="page-item"><a class="page-link" href="">7</a></li>
-				<li class="page-item"><a class="page-link" href="">8</a></li>
-				<li class="page-item"><a class="page-link" href="">9</a></li>
-				<li class="page-item"><a class="page-link" href="">10</a></li>
-				<li class="page-item"><a class="page-link" href="">>></a></li>
-			</ul>
+			<ul class="pagination">
+                <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
+                <li><a>1</a></li>
+                <li><a>2</a></li>
+                <li><a>3</a></li>
+                <li><a>4</a></li>
+                <li><a>5</a></li>
+                <li><a>6</a></li>
+                <li><a>7</a></li>
+                <li><a>8</a></li>
+                <li><a>9</a></li>
+                <li><a>10</a></li>
+                <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
+            </ul>      
 		</div>
 	</div>
 	
