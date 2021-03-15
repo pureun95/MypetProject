@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public class ReservationDAO implements IReservationDAO {
 
@@ -38,6 +39,14 @@ public class ReservationDAO implements IReservationDAO {
 		
 		return template.insert("adoption_reservation.insertReservation", dto);
 	}
+
+	//내 예약목록 출력.
+	@Override
+	public List<VwReservationDTO> getMyReservationList(String seqUser) {
+
+		return template.selectList("adoption_reservation.getMyReservationList", seqUser);
+	}
+
 
 	
 	

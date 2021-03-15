@@ -59,8 +59,10 @@ public class AdoptionController {
 	//http://localhost:8090/mypet/adoption/checklist.action
 	@RequestMapping(value="/adoption/checklist.action", method={RequestMethod.GET})
 	public String checklist(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		
+		//임시 session값 부여
+		session.setAttribute("seqUser", "6");
 		session.setAttribute("id", "red1234");
+		System.out.println(session.getAttribute("seqUser"));
 		System.out.println(session.getAttribute("id"));
 		return "adoption/checklist";		
 	}
@@ -69,9 +71,10 @@ public class AdoptionController {
 	@RequestMapping(value="/adoption/writereservation.action", method={RequestMethod.GET})
 	public String writeReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
-		//ReservationDAO dao = new ReservationDAO();
+		//임시 session값 부여
 		session.setAttribute("seqUser", "6");
 		session.setAttribute("id", "red1234");
+		System.out.println(session.getAttribute("seqUser"));
 		System.out.println(session.getAttribute("id"));
 
 		VwReservationDTO dto = dao.getUserInfo(session.getAttribute("id"));
