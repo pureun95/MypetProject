@@ -277,7 +277,7 @@
     		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
     		<span class="pet-address">서울시 종로구 어쩌구동</span>
     		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
+    		<div  class="pet-seq"><span>여기!!!! ${result }</span><img class="like" src="../resources/images/like.png"></div>
     		<span class="state">입양가능</span>    		
     	</div>
 	

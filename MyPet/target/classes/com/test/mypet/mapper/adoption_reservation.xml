@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adoption_reservation">
+	
+	<select parameterType="String" resultType="vwReservationDTO" id="getUserInfo">
+		select seqUser, name, birthDate, tel, address from tblUser where id = #{id}
+	</select>
+	
+	<select parameterType="String" resultType="vetDTO" id="getVetList">
+		select * from tblVet where address like '%' ||  #{address} || '%'
+
+	</select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
