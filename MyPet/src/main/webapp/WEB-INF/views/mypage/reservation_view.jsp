@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style> 
 
 /* 입양예약신청서 관련 css 시작 */
@@ -75,55 +76,71 @@
 		<table id="tbl1" style="margin: auto; margin-top: 50px; margin-bottom: 100px; width: 800px;">
 			<tr>
 				<th>성명</th>
-				<td>홍길동</td>
+				<td>${dto.name}</td>
 			</tr>
 			<tr>
 				<th>생년월일</th>
-				<td>1999년 03월 12일</td>
+				<td>${dto.birthDate}</td>
 			</tr>
 			<tr>
 				<th>전화번호</th>
-				<td>010-1234-4545</td>
+				<td>${dto.tel}</td>
 			</tr>
 			<tr>
 				<th>주소</th>
-				<td>서울시 강남구 대치2동 쌍용아파트 223호</td>
+				<td>${dto.address}</td>
 			</tr>
 			<tr>
 				<th>직장명</th>
-				<td>쌍용교육센터</td>
+				<td>${dto.companyName}</td>
 			</tr>
 			<tr>
 				<th>축종</th>
-				<td>개/푸들</td>
+				<td>${dto.species}/${dto.breed}</td>
 			</tr>
 			<tr>
 				<th>일련(관리)번호</th>
-				<td>200618-0004</td>
+				<td>${dto.seqPet}</td>
 			</tr>
 			<tr>
 				<th>입양하려는 이유</th>
-				<td>자녀의 심리적 안정감을 위해서 입양하려고 합니다.</td>
+				<td>${dto.reason}</td>
 			</tr>
 			<tr>
 				<th>자주찾는 동물병원</th>
-				<td>쌍용24시동물병원</td>								
+				<td>${dto.hospitalName}</td>								
 			</tr>
 			<tr>
 				<th>주거 형태</th>
-				<td>아파트</td>						
+				<td>
+					${dto.type}
+				</td>			
 			</tr>
 			<tr>
 				<th>가족 동의</th>
-				<td>예</td>			
+				<td>동의함</td>			
 			</tr>
 			<tr>
 				<th>반려동물 입양경험</th>
-				<td>예</td>			
+				<td>
+					<c:if test="${dto.adoptionExperience==1}">
+						있음
+					</c:if>
+					<c:if test="${dto.adoptionExperience==0}">
+						없음
+					</c:if>
+				</td>			
 			</tr>
 			<tr>
 				<th>중성화수술 동의</th>
-				<td>예</td>			
+				<td>
+					<c:if test="${dto.neutralizationSurgery==1}">
+						동의함
+					</c:if>
+					<c:if test="${dto.neutralizationSurgery==0}">
+						동의안함
+					</c:if>
+				</td>			
 			</tr>
 			
 		</table>

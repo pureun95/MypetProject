@@ -34,6 +34,75 @@ public class VwReservationDTO {
 	private String treatment;
 	private String hospitalAddress;
 	
+	private String hospitalName2;
+	private String time2;
+	private String hospitalTel2;
+	private String treatment2;
+	private String hospitalAddress2;
+	
+	private String shelterName2;
+	private String shelterTel2;
+	private String account;
+	private String shelterAddress2;
+	
+	private String type;
+	
+	
+	public String getHospitalName2() {
+		return hospitalName2;
+	}
+	public void setHospitalName2(String hospitalName2) {
+		this.hospitalName2 = hospitalName2;
+	}
+	public String getTime2() {
+		return time2;
+	}
+	public void setTime2(String time2) {
+		this.time2 = time2;
+	}
+	public String getHospitalTel2() {
+		return hospitalTel2;
+	}
+	public void setHospitalTel2(String hospitalTel2) {
+		this.hospitalTel2 = hospitalTel2;
+	}
+	public String getTreatment2() {
+		return treatment2;
+	}
+	public void setTreatment2(String treatment2) {
+		this.treatment2 = treatment2;
+	}
+	public String getHospitalAddress2() {
+		return hospitalAddress2;
+	}
+	public void setHospitalAddress2(String hospitalAddress2) {
+		this.hospitalAddress2 = hospitalAddress2;
+	}
+	public String getShelterName2() {
+		return shelterName2;
+	}
+	public void setShelterName2(String shelterName2) {
+		this.shelterName2 = shelterName2;
+	}
+	public String getShelterTel2() {
+		return shelterTel2;
+	}
+	public void setShelterTel2(String shelterTel2) {
+		this.shelterTel2 = shelterTel2;
+	}
+	public String getAccount() {
+		return account;
+	}
+	public void setAccount(String account) {
+		this.account = account;
+	}
+	public String getShelterAddress2() {
+		return shelterAddress2;
+	}
+	public void setShelterAddress2(String shelterAddress2) {
+		this.shelterAddress2 = shelterAddress2;
+	}
+	
 	public String getAge() {
 		return age;
 	}
@@ -201,6 +270,12 @@ public class VwReservationDTO {
 	}
 	public void setHospitalAddress(String hospitalAddress) {
 		this.hospitalAddress = hospitalAddress;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

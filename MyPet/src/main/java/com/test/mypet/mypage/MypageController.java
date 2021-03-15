@@ -27,16 +27,30 @@ public class MypageController {
 		
 		List<VwReservationDTO> list = dao.getMyReservationList((String)session.getAttribute("seqUser"));
 		
+		List<VwReservationDTO> nlist = dao.getMyReservationListWithNoResponse((String)session.getAttribute("seqUser"));
+		
+		List<VwReservationDTO> slist = dao.getMyReservationListShelter((String)session.getAttribute("seqUser"));
+		
+		List<VwReservationDTO> snlist = dao.getMyReservationListShelterWithNoResponse((String)session.getAttribute("seqUser"));
 		
 		
 		request.setAttribute("list", list);
+		request.setAttribute("nlist", nlist);
+		request.setAttribute("slist", slist);
+		request.setAttribute("snlist", snlist);
+		
 		
 		return "mypage/reservation_list";		
 	}
 	
 	//예약신청서 세부정보보기
 	@RequestMapping(value="/mypage/reservationview.action")
-	public String reservationView(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public String reservationView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqReservation) {
+		
+		VwReservationDTO dto = dao.getReservationView(seqReservation);
+		
+		request.setAttribute("dto", dto);
+		
 		return "mypage/reservation_view";		
 	}
 	

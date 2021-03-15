@@ -12,5 +12,13 @@ public interface IReservationDAO {
 
 	List<VwReservationDTO> getMyReservationList(String attribute);
 
+	VwReservationDTO getReservationView(String seqReservation);
+
+	List<VwReservationDTO> getMyReservationListWithNoResponse(String attribute);
+
+	List<VwReservationDTO> getMyReservationListShelter(String attribute);
+
+	List<VwReservationDTO> getMyReservationListShelterWithNoResponse(String attribute);
+
 
 }
