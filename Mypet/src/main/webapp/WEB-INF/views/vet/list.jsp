@@ -75,7 +75,7 @@
     	font-size : 30px;
     	text-align : center;
     	display: block;
-    	margin-top: 130px;
+    	margin-top: 100px;
     	margin-bottom: 50px;
     	font-family: 'Jal_Onuel';
     	color: #301b01;
@@ -84,25 +84,17 @@
     /* 검색 */
     
     .selectsearch{
+    	width:1000px;
     	text-align: center;
     	margin : 10px auto;
-    }
+    }   
     
-    .sel, .search {
-    	float: left;
-    	
-    	text-align: center;
-    	margin : 10px auto;
-    }
-    
-    .sel > select {
+    .selectsearch > select {
+    	display: inline;
+    	width : 200px;
     	margin: 0px 10px;
     	height: 30px;
     	padding : 0px 5px;
-    }
-    
-    .sel .location, .sel .locationDetail {
-    	float: left;
     }
     
     #search {
@@ -206,8 +198,8 @@
 		</div>
 		<div class="board-title">동물병원</div>
 
-		<div class="selectsearch">
-			<div class="sel">
+		<form id="searchForm" method="GET" action="/mypet/vet/list.action">
+			<div class="selectsearch">
 				<select class="location form-control">
 					<option>서울특별시</option>
 				</select>
@@ -215,14 +207,14 @@
 				<select class="locationDetail form-control">
 					<option>강남구</option>
 				</select>
-			</div>	
-			
-			<div class="search">
 	           	<input type="text" class="form-control" placeholder="병원이름" id="search" name="search" required value="${search}">
-	           	<input type="button" class="btn" value="검색" id="serch" onclick="$('#searchForm').submit();">
-	           	<input type="button" class="btn" value="등록" id="add" onclick="location.href='/mypet/vet/add.action'">        
+	           	<input type="button" class="btn" value="검색" onclick="$('#searchForm').submit();">	           
+	        	<span>
+		        	<input type="button" class="btn" value="등록" id="add" onclick="location.href='/mypet/vet/add.action'">   
+				</span>
 	        </div>
-		</div>
+	   </form>
+        
 		
 		<div id="map"></div>
 		<table class="table table-condan">

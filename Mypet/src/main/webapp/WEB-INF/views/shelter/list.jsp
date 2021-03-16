@@ -37,25 +37,42 @@
     #content{
         height: auto;
     }
-    
-    #contentnav{
+
+----------------------------------------------------------------
+     #contentnav{
     	height : 50px;
-    	border :none;
-    	font-size: 20px;
+    	border :none !important;
     	margin:30px 0px;
     }
     
     #contentnav span{
     	margin: 0px 10px;
     }
+    
+    #contentnav input[name=rd] {
+    	
+		display: none;
+	}
 
-----------------------------------------------------------------
+	#contentnav #vet, #contentnav #shelter {
+		float: left;
+		width: 100px;
+		text-align: center;
+        cursor: pointer;
+        font-size: 20px;
+        font-family: 'Jal_Onuel';
+        
+	}
+	#contentnav #shelter{
+		color : #f6da42;
+	}
+     
      /* 페이지타이틀 */
     .board-title{
     	font-size : 30px;
     	text-align : center;
     	display: block;
-    	margin-top: 130px;
+    	margin-top: 100px;
     	margin-bottom: 50px;
     	font-family: 'Jal_Onuel';
     	color: #301b01;
@@ -65,18 +82,15 @@
     /* 검색 */
     
     .selectsearch{
+    	width:1000px;
     	text-align: center;
     	margin : 10px auto;
-    }
+   		
+    }   
     
-    .sel, .search {
-    	float: left;
-    	
-    	text-align: center;
-    	margin : 10px auto;
-    }
-    
-    .sel > select {
+    .selectsearch > select {
+    	display: inline;
+    	width : 200px;
     	margin: 0px 10px;
     	height: 30px;
     	padding : 0px 5px;
@@ -171,28 +185,37 @@
 
 	 <div id="content">
 		<div id="contentnav">
-			<span id="vet"><input type="radio" name="rd" onclick="location.href='/mypet/vet/list.action'">동물병원</span>
-			<span id="shelter"><input type="radio" name="rd" id="shelter" checked="checked">보호소</span>
+				<input type="radio" name="rd" id="vet" onclick="location.href='/mypet/vet/list.action'">
+				<label id="vet" for="vet">동물병원</label>
+
+				<input type="radio" name="rd" id="shelter" checked="checked">
+				<label id="shelter" for="shelter">보호소</label>
+
 		</div>
 		<div class="board-title">보호소</div>
 
-		<!-- <div class="selectsearch"> -->
-			<div class="sel">
-				<select class="location">
-					<option>서울특별시</option>
-				</select>
-				
-				<select class="locationDetail">
-					<option>강남구</option>
-				</select>
-			</div>	
-			
-			<div class="search">
-	           	<input type="text" class="form-control" placeholder="보호소이름" id="search" name="search" required value="${search}">
-	           	<input type="button" class="btn" value="검색" id="serch" onclick="$('#searchForm').submit();">
-	        	<input type="button" class="btn" value="등록" id="add" onclick="location.href='/mypet/shelter/add.action'">        
-	        </div>
-		<!-- </div> -->
+			<form id="searchForm" method="GET" action="/mypet/shelter/list.action">
+				<div class="selectsearch">
+					<select class="location form-control">
+						<c:forEach items="${location}" var = "ldto">
+							<option>${ldto.location}</option>
+						</c:forEach>
+					</select>
+					
+					<select class="locationDetail form-control">
+						<c:forEach items="${location}" var = "ldto">
+							<option>${ldto.locationDetail}</option>
+						</c:forEach>
+					</select>	
+					
+		           	<input type="text" class="form-control" placeholder="보호소이름" id="search" name="search" required value="${search}">
+		           	<input type="button" class="btn" value="검색" name="search" onclick="$('#searchForm').submit();">	        	       
+			     	<span>
+			        	<input type="button" class="btn" value="등록" id="add" onclick="location.href='/mypet/vet/add.action'">   
+					</span>
+			     </div>
+	        </form>
+	   
 		
 		<div id="map"></div>
 		<table class="table table-condan">
@@ -205,7 +228,7 @@
 			<c:forEach items="${list}" var = "sdto">
 				<tr class="list">
 					<td>${sdto.seqShelter}</td>
-					<td class="name" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}'">${sdto.name}</td>
+					<td class="name" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}&search=${search}'">${sdto.name}</td>
 					<td>${sdto.address}</td>
 					<td>${sdto.tel}</td>
 				</tr>
@@ -231,7 +254,7 @@
 	</div>
 	
 	<!-- 지도 -->
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9&libraries=services"></script>
 	
 	<script>
 		var container = document.getElementById('map');
@@ -241,4 +264,32 @@
 		};
 
 		var map = new kakao.maps.Map(container, options); //객체 생성 -> 지도 출력
-	</script>
+	
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new kakao.maps.services.Geocoder();
+
+		// 주소로 좌표를 검색합니다
+		geocoder.addressSearch('서울시 강남구 역삼동', function(result, status) {
+			
+			// 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new kakao.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        var infowindow = new kakao.maps.InfoWindow({
+		            content: '<div style="width:200px;text-align:center;padding:6px 0;">학원</div>'
+		        });
+		        infowindow.open(map, marker);
+
+		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+		        map.setCenter(coords);
+		    } 	
+		});
+		</script>
