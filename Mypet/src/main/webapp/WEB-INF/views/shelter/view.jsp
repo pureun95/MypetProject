@@ -189,9 +189,9 @@
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div class="board-title">${sdto.name}</div>
+	<div class="board-title">${sdto.name} 상세정보</div>
 	<div class="btns"> 
-		<input type="button" value="삭제" id="delete" class="btn" >
+		<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/shelter/delete.action?seq=${sdto.seqShelter}';">
 		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/shelter/edit.action?seq=${sdto.seqShelter}';">
 	</div>
 	<table class="table table-default">

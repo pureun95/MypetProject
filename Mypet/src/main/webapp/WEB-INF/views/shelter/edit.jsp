@@ -80,7 +80,7 @@
 	    outline: none !important;
     }
     
-    .btns #add{
+    .btns #edit{
     	background-color: #b27208;   	
     }
     
@@ -93,9 +93,9 @@
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div id="board-title">보호소 수정하기</div>
+	<div id="board-title">${sdto.name} 수정하기</div>
 	
-	<form mathod="POST" action=""></form>
+	<form method="POST" action="/mypet/shelter/editok.action">
 		<table class="table table-default">
 			<tr>
 				<th id="list">이름</th>
@@ -129,7 +129,7 @@
 		</table>
 		
 		<div class="btns">
-	      	<input type="submit" class="btn" value="등록" id="add">
+	      	<input type="submit" class="btn" value="수정" id="edit">
 	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}'">
 	    </div>
 	    

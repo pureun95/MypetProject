@@ -27,5 +27,11 @@ public class VetDAO implements IVet{
 		
 	}
 
+	@Override
+	public int edit(VetDTO vdto) {
+		
+		return template.update("vet.edit",vdto);
+	}
+
 
 }

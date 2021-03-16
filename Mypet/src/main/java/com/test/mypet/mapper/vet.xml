@@ -14,6 +14,16 @@
 	<select id="get" parameterType="String" resultType="vdto">
    		select * from tblVet where seqVet = #{seqVet}
    </select>
+   
+   <update id="edit" parameterType="vdto">
+   		update tblVet set
+   			name = #{name},
+   			image = #{image},
+   			address = #{address},
+   			tel = #{tel},
+   			treatment = #{treatment}
+   				where seqVet = #{seqVet}
+   </update>
 
 
 </mapper>
