@@ -33,9 +33,9 @@
     
     /* 지도 & 검색창 */
     .map-search {
-    	/* border: 1px solid black; */
+    	border: 1px solid black;
     	margin-left: 100px;
-    	width: 800px;
+    	width: 1000px;
     	height:	700px;
     	margin-bottom: 100px;
     }
@@ -90,13 +90,25 @@
     
     .form-control {
     	color: #9c9c9c;
+  	  	width: 550px;
+    	margin-left: 170px;
+		float: left;
     }
     
+    .search-btn {
+    	margin-left: -200px;
+    }
     
     /* 동물 종류 검색 */
     
+    .search-box {
+    	border: 1px solid black;
+    	width: 1000px;
+    	height: 100px;
+    }
+    
     .pet-radio {
-    	/* border: 1px solid black; */
+    	border: 1px solid black;
     	width: 1000px;
     	height: 80px;
     	padding: 0px 170px;
@@ -319,10 +331,13 @@
     		<label for="etc" onclick="location.href='/mypet/adoption/list.action?species=3'">기타동물</label>    		
     	</div>
     	
-    	<form method="GET" action="/mypet/adoption/list.action">
-    		<input type="text" class="form-control" name="search" placeholder="검색 키워드를 입력해주세요." onfocus="this.value=''">
-    		<input type="submit" class="btn" value="검색">    
-    	</form>
+    	<div class="search-box">
+	    	<form method="GET" action="/mypet/adoption/list.action">
+	    		<input type="text" class="form-control" name="search" placeholder="검색 키워드를 입력해주세요." onfocus="this.value=''">
+	    		<input type="submit" class="btn common-btn search-btn" value="검색">    
+	    	</form>
+    	</div>
+    	
     </div>
     
     <!-- 관리자만 보여주기 -->
