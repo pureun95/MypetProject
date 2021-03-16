@@ -11,9 +11,9 @@
 		</if>
 	</select>
 	
-	<select id="location" resultType="ldto">
+	<!-- <select id="location" resultType="ldto">
 		select * from vwLocationDetail by seqLocation asc
-	</select>
+	</select> -->
 	
 	<select id="get" parameterType="String" resultType="sdto">
    		select * from vwShelter where seqShelter = #{seqShelter}
