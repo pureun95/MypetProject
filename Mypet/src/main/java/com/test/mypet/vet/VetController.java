@@ -64,6 +64,21 @@ public class VetController {
 		return "vet.edit";
 	}
 	
+	public void editok(HttpServletRequest request, HttpServletResponse response, HttpSession session, VetDTO vdto) {
+		
+		int result = dao.edit(vdto);
+		
+		try {
+			if(result == 1) {
+				response.sendRedirect("/mypet/vet/view.action?seqVet=" + vdto.getSeqVet());
+			}else {
+				response.sendRedirect("/mypet/vet/edit.action?seqVet=" + vdto.getSeqVet());
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	@RequestMapping(value="/vet/delete.action")
 	public String delete() {
 		return "vet.delete";

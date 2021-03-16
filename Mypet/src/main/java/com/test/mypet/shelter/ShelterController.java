@@ -29,7 +29,7 @@ public class ShelterController {
 			map.put("search", search);
 		}
 		
-		List<LocationDTO> location = dao.location();
+		/* List<LocationDTO> location = dao.location(); */
 		
 		List<ShelterDTO> list = dao.list(map);
 		
@@ -62,6 +62,24 @@ public class ShelterController {
 		request.setAttribute("sdto", sdto);
 		
 		return "shelter.edit";
+	}
+	
+	@RequestMapping(value="/shelter/editok.acion", method= {RequestMethod.POST})
+	public void editok(HttpServletRequest request, HttpServletResponse response, HttpSession session, ShelterDTO sdto) {
+		
+		int result = dao.edit(sdto);
+		
+		try {
+			if (result == 1) {
+				response.sendRedirect("/mypet/shelter/view.action?seqShelter=" + sdto.getSeqShelter());
+			}else {
+				response.sendRedirect("/mypet/shelter/edit.action?seqShelter=" + sdto.getSeqShelter());
+				
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
 	}
 	
 	@RequestMapping(value="/shelter/delete.action")

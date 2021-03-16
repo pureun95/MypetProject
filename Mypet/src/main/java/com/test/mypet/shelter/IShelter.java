@@ -11,4 +11,6 @@ public interface IShelter {
 
 	List<LocationDTO> location();
 
+	int edit(ShelterDTO sdto);
+
 }

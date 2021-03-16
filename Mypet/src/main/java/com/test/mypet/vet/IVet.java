@@ -11,6 +11,8 @@ public interface IVet {
 
 	VetDTO get(String seq);
 
+	int edit(VetDTO vdto);
+
 
 
 }

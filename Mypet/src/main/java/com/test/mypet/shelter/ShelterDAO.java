@@ -40,5 +40,12 @@ public class ShelterDAO implements IShelter{
 		return template.selectList("shelter.list");
 	}
 
+
+	@Override
+	public int edit(ShelterDTO sdto) {
+		
+		return template.update("shelter.edit",sdto);
+	}
+
 	
 }

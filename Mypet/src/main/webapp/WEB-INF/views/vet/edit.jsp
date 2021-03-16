@@ -80,7 +80,7 @@
 	    outline: none !important;
     }
     
-    .btns #add{
+    .btns #edit{
     	background-color: #b27208;   	
     }
     
@@ -93,39 +93,42 @@
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div id="board-title">동물병원 수정하기</div>
-	<table class="table table-default">
-		<tr>
-			<th id="list">이름</th>
-			<td><input type="text" class="form-control" value="${vdto.name}"></td>
-		</tr>
-		<tr>
-			<th id="list">주소</th>
-			<td><input type="text" class="form-control" value="${vdto.address}"></td>
-		</tr>
-		<tr>
-			<th id="list">전화번호</th>
-			<td><input type="text" class="form-control" value="${vdto.tel}"></td>
-		</tr>
-		<tr>
-			<th id="list">진료시간</th>
-			<td><input type="text" class="form-control" value="${vdto.time}"></td>
-		</tr>
-		<tr>
-			<th id="list">진료목록</th>
-			<td><input type="text" class="form-control" value="${vdto.treatment}"></td>
-		</tr>
-		<tr>
-			<th id="list">로고 or 이미지</th>
-			<td><input type="file" class="form-control"></td>
-		</tr>
-		
-	</table>
+	<div id="board-title">${vdto.name} 수정하기</div>
 	
-	<div class="btns">
-      	<input type="submit" class="btn" value="수정" id="add">
-      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}'">
-    </div>
+	<form method="POST" action="/mypet/vet/editok.action">
+		<table class="table table-default">
+			<tr>
+				<th id="list">이름</th>
+				<td><input type="text" class="form-control" value="${vdto.name}"></td>
+			</tr>
+			<tr>
+				<th id="list">주소</th>
+				<td><input type="text" class="form-control" value="${vdto.address}"></td>
+			</tr>
+			<tr>
+				<th id="list">전화번호</th>
+				<td><input type="text" class="form-control" value="${vdto.tel}"></td>
+			</tr>
+			<tr>
+				<th id="list">진료시간</th>
+				<td><input type="text" class="form-control" value="${vdto.time}"></td>
+			</tr>
+			<tr>
+				<th id="list">진료목록</th>
+				<td><input type="text" class="form-control" value="${vdto.treatment}"></td>
+			</tr>
+			<tr>
+				<th id="list">로고 or 이미지</th>
+				<td><input type="file" class="form-control"></td>
+			</tr>
+			
+		</table>
+	
+		<div class="btns">
+	      	<input type="submit" class="btn" value="수정" id="edit">
+	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}'">
+	    </div>
+	</form>
 </div>
 
 
