@@ -16,7 +16,7 @@ body {
 #content {
 	font-size: 16px;
 	border: 1px solid transparent !important;
-	height: 1800px;
+	height: 1000px;
 }
 
 
