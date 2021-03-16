@@ -332,8 +332,8 @@
     	<!-- 관리자가 보는 페이지 -->
     	<c:forEach items="${list }" var="dto">
     	<div class="list-detail">    	
-    		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqPet=${dto.seqPet}'"><img class="img-pet" src="../resources/images/adoption/${dto.img }"></div>
-    		<span class="pet-title" onclick="location.href='/mypet/adoption/view.action?seqPet=${dto.seqPet}'">${dto.title }</span>
+    		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'"><img class="img-pet" src="../resources/images/adoption/${dto.img }"></div>
+    		<span class="pet-title" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'">${dto.title }</span>
     		
     		<c:if test="${not empty dto.nameV }">
     		<span class="pet-address">${dto.addressV }</span>
