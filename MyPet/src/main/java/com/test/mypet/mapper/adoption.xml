@@ -23,10 +23,18 @@
 	<!-- 입양글 카운트 -->
 	<select id="count" parameterType="HashMap" resultType="int">
 		select count(*) as count from vPet 
+		<if test="species != null">
+			where species = #{species} 
+		</if>
 		<!-- <if test="search != null">
 			where seqPet = #{search} or title = #{search}
 		</if> -->
 	</select>
 	
+	
+	<!-- 입양글 상세보기 -->
+	<select id="view" parameterType="String" resultType="adto">
+		select * from vPet where seqAdoption = #{seqAdoption}		
+	</select>
 
 </mapper>

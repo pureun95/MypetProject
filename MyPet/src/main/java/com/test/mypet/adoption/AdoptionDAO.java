@@ -30,6 +30,14 @@ public class AdoptionDAO implements IAdoptionDAO {
 		
 		return template.selectOne("adoption.count", map);
 	}
+	
+	
+	//상세보기
+	@Override
+	public AdoptionDTO getView(String seqAdoption) {
+			
+		return template.selectOne("adoption.view", seqAdoption);
+	}
 
 	
 	

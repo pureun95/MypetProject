@@ -20,5 +20,13 @@ public interface IAdoptionDAO {
 	 * @return 총 카운트
 	 */
 	int getTotalCount(HashMap<String, String> map);
+
+	
+	/**
+	 * 
+	 * @param 게시물번호
+	 * @return 입양글 상세정보
+	 */
+	AdoptionDTO getView(String seqAdoption);
 	
 }
