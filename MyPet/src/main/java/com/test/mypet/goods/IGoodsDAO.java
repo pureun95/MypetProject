@@ -34,5 +34,12 @@ public interface IGoodsDAO {
 	 */
 	int getSeqOrder(GoodsDTO dto);
 
+	/**
+	 * 굿즈의 총 개수를 가져오는 메서드
+	 * @param map 
+	 * @return 총 개수
+	 */
+	int getTotalCount(HashMap<String, String> map);
+
 
 }
