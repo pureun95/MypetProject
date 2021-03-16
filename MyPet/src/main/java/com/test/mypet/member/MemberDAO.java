@@ -18,31 +18,13 @@ public class MemberDAO implements IMemberDAO {
 		return template.selectOne("member.login", dto);
 	}
 
-//	public MemberDTO memberLogin(MemberDTO memberDTO) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//	public class MemberDAO implements IMemberDAO {
+	@Override
+	public AdminDTO adminLogin(AdminDTO dto_admin) {
 
-//	@Override
-//	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+//		return template.selectOne("member.login_admin", dto_admin);
+		return template.selectOne("member.login_admin", dto_admin);
+		
+	}
 
-
-	
-//	@Override
-//	public MemberDTO login(MemberDTO dto) throws Exception {
-//
-//		return sql.selectOne("memberMapper.login", dto);
-//	}
-	
-//	public MemberDTO memberLogin(MemberDTO memberDTO) throws Exception;
-
-	
-	
-	
-	
 	
 }

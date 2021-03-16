@@ -7,6 +7,10 @@
 	<select id="login" resultType="memberDTO" parameterType="memberDTO">
 		select * from tblUser where id = #{id} and password = #{password}
 	</select>
+	
+	<select id="login_admin" resultType="adminDTO" parameterType="adminDTO">
+		select * from tblAdmin where id = #{id} and password = #{password}
+	</select>
 
 </mapper>
 
