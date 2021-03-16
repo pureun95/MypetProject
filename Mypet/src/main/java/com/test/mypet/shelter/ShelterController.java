@@ -1,5 +1,6 @@
 package com.test.mypet.shelter;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.test.mypet.vet.VetDTO;
-
 @Controller
 public class ShelterController {
 	
@@ -22,12 +21,24 @@ public class ShelterController {
 	@RequestMapping(value="/shelter/list.action", method= {RequestMethod.GET})
 	public String list(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
-		List<ShelterDTO> list = dao.list();
+		HashMap<String,String> map = new HashMap<String, String>();
+		
+		String search = request.getParameter("search");
+		
+		if(!(search == null || search.equals(""))) {
+			map.put("search", search);
+		}
+		
+		List<LocationDTO> location = dao.location();
+		
+		List<ShelterDTO> list = dao.list(map);
 		
 		request.setAttribute("list", list);
 		
 		return "shelter.list";
 	}
+	
+	
 	
 	@RequestMapping(value="/shelter/view.action")
 	public String view(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {

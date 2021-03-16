@@ -39,25 +39,31 @@ public class MemberController {
 		// 3. 시작 페이지로 이동
 
 		MemberDTO dto = new MemberDTO();
+//		AdminDTO dto_admin = new AdminDTO();
 
 		System.out.println(id);
 		System.out.println(password);
 
 		dto.setId(id);
 		dto.setPassword(password);
-
+		
+//		dto_admin.setId(id);
+//		dto_admin.setPassword(password);
 //		
 		MemberDTO mdto = dao.memberLogin(dto);
+//		AdminDTO adto = dao.adminLogin(dto_admin);
 
 		System.out.println(mdto.getName());
+//		System.out.println(dto_admin.getId());
 
 		try {
-			if (mdto.getSeqUser().equals("")) {
+			if (mdto.getSeqUser().equals("") || mdto.getSeqUser() == null) {
 				response.sendRedirect("/mypet/member/auth.action");
 				//로그인 실패
 			} else {
-				response.sendRedirect("/mypet/member/register.action");
-				//로그인 성공. 메인 페이지가 오류남 메인페이지 완성되면 연결하기
+//				response.sendRedirect("/mypet/member/register.action");
+				response.sendRedirect("/mypet/main.action");
+				//로그인 성공.
 			}
 		} catch (Exception e) {
 			System.out.println(e);
@@ -66,6 +72,53 @@ public class MemberController {
 
 	}
 
+	
+	//
+	
+	
+	@RequestMapping(value = "/member/login_admin.action", method = { RequestMethod.POST })
+	public void login_admin(HttpServletRequest request, HttpServletResponse response, HttpSession session, String id,	String password) { // 1.
+
+		// 1. 데이터 가져오기(id)
+		// 2. 인증 티켓 발급
+		// 3. 시작 페이지로 이동
+
+		
+		AdminDTO dto_admin = new AdminDTO();
+
+		System.out.println(id);
+		System.out.println(password);
+
+		
+		dto_admin.setId(id);
+		dto_admin.setPassword(password);
+//		
+		
+		AdminDTO adto = dao.adminLogin(dto_admin);
+
+		
+		System.out.println(dto_admin.getId());
+
+		try {
+			if (adto.getSeqAdmin().equals("")) {
+				response.sendRedirect("/mypet/member/auth.action");
+				//로그인 실패
+			} else {
+				response.sendRedirect("/mypet/main.action");
+				//로그인 성공.
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+
+
+	}
+	
+	
+	
+	
+	//
+	
 	
 	
 	@RequestMapping(value = "/member/register.action", method = { RequestMethod.GET })

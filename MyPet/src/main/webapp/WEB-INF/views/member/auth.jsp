@@ -16,6 +16,7 @@ body {
 #content {
 	font-size: 16px;
 	border: 1px solid transparent !important;
+	height: 1800px;
 }
 
 
@@ -34,6 +35,28 @@ body {
 	font-family: NanumSquare;
 	
 }
+
+#loginbox_admin {
+ z-index: 6;
+}
+
+#loginbox_user {
+position: relative;
+    top: -700px;
+    z-index: 5;
+}
+/* 
+#loginbox_user {
+ z-index: 6;
+}
+
+#loginbox_admin {
+position: relative;
+    top: -700px;
+    z-index: 5;
+} */
+
+
 
 .loginbox2 {
 	margin: 25px auto;
@@ -60,7 +83,21 @@ body {
 	
 }
 
+/* 유저 로그인버튼 */
 #btn-login {
+	/* margin-left: 120px; */
+	display: inline-block;
+	margin-top: 20px;
+	width: 100%;
+	background-color: #F6DA42;
+	color: white;
+	font-family: 'Jal_Onuel';
+	height: 5rem;
+	font-size: 16px;
+}
+
+/* 관리자 로그인버튼 */
+#btn-login2 {
 	/* margin-left: 120px; */
 	display: inline-block;
 	margin-top: 20px;
@@ -82,6 +119,12 @@ body {
 	color: #F6DA42;
 	margin-left: 100px;
 	margin-top: 70px;
+}
+
+/* 관리자 로그인 타이틀 */
+#title2 {
+	left: -40px;
+    position: relative;
 }
 
  .login-title>span {
@@ -121,6 +164,26 @@ body {
 	color: #cacaca;
 }
 
+.login_type {
+	font-family: NanumSquare;
+	color: #444;
+	font-size: 12px;
+	position: relative;
+	top: -15px;   
+    width: 100%;
+    text-align: right;
+    left: -40px;
+    cursor: pointer;
+}
+
+/* 임시 로그인키 */
+.temp {
+	position: relative;
+    top: -780px;
+    left: 720px;
+}
+
+/* 채팅아이콘 */
 .chaticon {
 	/* border: 1px solid black; */
 	width: 70px;
@@ -141,13 +204,34 @@ body {
 
 </style>
 
-<!-- 요 칸안에 내용작성하세요 -->
 <div id="content">
 
-	<div class="loginbox">
+		<div class="loginbox" id="loginbox_admin">
+		
+		<form action='/mypet/member/login_admin.action' method="post" id="form_admin" name="form_admin">
+		<div class="loginbox2">
+			<div class="login-title" id="title2">
+				<span class="logo"></span>관리자로그인
+			</div>
+			<div class="inputs">
+			<input type="text" class="form-control readonly" id="id_admin" name="id" placeholder="아이디" required></div>
+			<div class="inputs">
+			<input type="password" class="form-control readonly" id="pw_admin" name="password" placeholder="패스워드" required></div>
+	
+			<input type="submit" class="btn btn-outline-secondary" type="button"
+				id="btn-login2" value="로그인">
+		</div>
+		</form>
+		
+		<div class="login_type" id="login_user">회원 로그인</div>
+
+	</div>
+
+
+	<div class="loginbox" id="loginbox_user">
 	<%-- <c:if test="${member == null}"> --%>
 
-		<form action='/mypet/member/login.action' method="post">
+		<form action='/mypet/member/login.action' method="post" id="form_user" name="form_user">
 		<div class="loginbox2">
 			<div class="login-title">
 				<span class="logo"></span>로그인
@@ -165,41 +249,22 @@ body {
 			<input type="submit" class="btn btn-outline-secondary" type="button"
 				id="btn-login" value="로그인">
 		</div>
+		
+		
 		</form>
-		<%-- </c:if> --%>
 		
+		<div class="login_type" id="login_admin">관리자 로그인</div>
 		
-		
-		
-		<!--  -->
-		<%-- <c:if test="${member != null}">
-		<c:redirect url="/mypet/member/register.action"></c:redirect>
-		</c:if> --%>
+		</div>
 
-
-
-		
-		
-
-
-
-
-
-
-		<!-- 테스트용 -->
-		<!-- <button type="button" class="btn" onclick="test('ccu7678','ccu7678nt');">이제위</button> -->
-
-		<%-- <div>${empty id ? "익명" : id}</div> --%>
-
-		<!-- <div><a href="/mypet/member/logout.action">로그아웃</a></div> -->
-
-	</div>
-
-	<!-- <div>
-		<button>
-			<a href="/mypet/member/login.action?id=hong">홍길동</a>
+	 <div class="temp">
+		<button onclick="temp_loginuser('red1234','rkskek1234');" style="background-color: #F6DA42; color: white; outline: none; font-family: 'Jal_Onuel'; border:none; padding:10px;">
+			김지수(회원)
 		</button>
-	</div> -->
+		<button onclick="temp_loginadmin('Administrator1','rhksflwk1');" style="background-color: #F6DA42; color: white; outline: none; font-family: 'Jal_Onuel'; border:none; padding:10px;">
+			관리자
+		</button>
+	</div> 
 
 
 	<div class="chaticon" id="chaticon"></div>
@@ -225,6 +290,42 @@ chaticon.onclick = function() {
 
  	window.open("/mypet/member/chat.action", "a", "width=350, height=600"); 
 
+}
+
+
+
+
+/* 로그인 타입 바꾸기 */
+var login_admin = document.getElementById("login_admin");
+var login_user = document.getElementById("login_user");
+
+var loginbox_user = document.getElementById("loginbox_user");
+var loginbox_admin = document.getElementById("loginbox_admin");
+
+
+
+login_admin.onclick = function() {
+	loginbox_admin.style.visibility = 'visible';
+	loginbox_user.style.visibility = 'hidden';	
+}
+
+login_user.onclick = function() {
+	loginbox_user.style.visibility = 'visible';	
+	loginbox_admin.style.visibility = 'hidden';
+}
+
+
+/* 로그인 임시 키 */
+function temp_loginuser(id, password) {
+	$("#id").val(id);
+	$("#pw").val(password);
+	$("#form_user").submit();
+}
+
+function temp_loginadmin(id, password) {
+	$("#id_admin").val(id);
+	$("#pw_admin").val(password);
+	$("#form_admin").submit();
 }
 
 </script>

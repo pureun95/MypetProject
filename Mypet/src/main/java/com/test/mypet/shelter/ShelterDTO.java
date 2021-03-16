@@ -15,5 +15,7 @@ public class ShelterDTO {
 	private String content;
 	private String startDate;
 	private String endDate;
+	
+
 
 }

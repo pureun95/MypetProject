@@ -218,16 +218,15 @@
    
 </style>
 
-
 <div id="content">
 	<div class="title-box">
-		<span class="state">입양완료</span><span class="title">쫑쫑이의 가족이 되어주세요.</span>
+		<span class="state">${dto.state }</span><span class="title">${dto.title }</span>
 		<div class="like-count"><img class="like" src="../resources/images/like.png">
-		<span class="count">12</span></div>
+		<span class="count">${dto.like }</span></div>
 	</div>
 	
 	
-	<input type="button" class="btn common-btn" value="입양예약하기" onclick="location.href='/mypet/adoption/writereservation.action'">
+	<input type="button" class="btn common-btn" value="입양예약하기" onclick="location.href='/mypet/adoption/writereservation.action?seqPet=${dto.seqPet}'">
 	
 	<div class="detail">
 		<img class="img" src="../resources/images/adoption/1.jpg">
