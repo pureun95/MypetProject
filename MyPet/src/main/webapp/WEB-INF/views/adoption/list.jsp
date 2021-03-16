@@ -119,7 +119,7 @@
     }
     
     
-    .pet-radio > label:nth-child(10) {
+    .pet-radio > label:last-child {
     	border-right: 1px solid #eee;
     }
     
@@ -319,8 +319,10 @@
     		<label for="etc" onclick="location.href='/mypet/adoption/list.action?species=3'">기타동물</label>    		
     	</div>
     	
-    	<input type="text" class="form-control" value="검색 키워드를 입력해주세요." onfocus="this.value=''">
-    	<input type="button" class="btn" value="검색">    
+    	<form method="GET" action="/mypet/adoption/list.action">
+    		<input type="text" class="form-control" name="search" placeholder="검색 키워드를 입력해주세요." onfocus="this.value=''">
+    		<input type="submit" class="btn" value="검색">    
+    	</form>
     </div>
     
     <!-- 관리자만 보여주기 -->

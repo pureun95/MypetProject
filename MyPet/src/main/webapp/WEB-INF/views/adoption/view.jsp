@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
 
 <title>MyPet :: 상세보기</title>
 <style>
@@ -91,18 +95,28 @@
     .img {
     	/* border: 1px solid black; */
     	width: 900px;
-    	height: 500px;
-    	background-size: cover;
-    /* 	background-position: 50% 50%; */
+    	height: 650px;
+    	background-size: contain;
+    	background-repeat: no-repeat;
+    }
+    
+    .subimg {
+    	/* border: 1px solid #eee; */
+	    width: 900px;
+	    height: 180px;
+	    float: left;
+	    margin-bottom: 100px;
+	    margin-top: 50px;
+	    /* padding: 15px; */
     }
     
     .img-sub {
     	border: 1px solid #eee;
     	width: 200px;
     	height: 150px;
-    	margin-right: 32px;
-    	margin-top: 20px;
+    	margin-right: 25px;
     	float: left;
+    	cursor: pointer;
     }
     
     .img-sub:last-child {
@@ -125,6 +139,7 @@
     	margin-top: 100px;
     	margin-bottom: 50px;
     	font-weight: bold;
+    	clear: both;
     }
     
     
@@ -222,21 +237,33 @@
 	<div class="title-box">
 		<span class="state">${dto.state }</span><span class="title">${dto.title }</span>
 		<div class="like-count"><img class="like" src="../resources/images/like.png">
-		<span class="count">${dto.like }</span></div>
+		<span class="count">${dto.likes }</span></div>
 	</div>
 	
 	
 	<input type="button" class="btn common-btn" value="입양예약하기" onclick="location.href='/mypet/adoption/writereservation.action?seqPet=${dto.seqPet}'">
 	
 	<div class="detail">
-		<img class="img" src="../resources/images/adoption/1.jpg">
-		<img class="img-sub" src="../resources/images/adoption/nopic2.png">
-		<img class="img-sub" src="../resources/images/adoption/nopic2.png">
-		<img class="img-sub" src="../resources/images/adoption/nopic2.png">
-		<img class="img-sub" src="../resources/images/adoption/nopic2.png">
+	
+	<!-- 이미지 split -->
+	<c:set var="keyword" value="${dto.img }"></c:set>
+	<c:set var="arr" value="${fn:split(keyword ,',')}"></c:set>
+		<!-- 메인 이미지 -->
+		<img class="img" src="../resources/images/adoption/${arr[0] }">
+		
+		<!-- 서브 이미지 -->
+		
+		<div class="subimg">
+			<c:forEach var="img" items="${arr }">
+			<img class="img-sub" src="../resources/images/adoption/${img }" alt="${img }">
+			<input type="hidden" class="hidden" value="${img }">
+		</c:forEach>
+		</div>
+		
 	</div>
+
 	
-	
+
 	
 	<!-- 동물 기본 정보 -->
 	
@@ -245,29 +272,28 @@
 	<table class="table">
 		<tr class="headtr">
 			<th class="boardth">종류</th>
-			<td class="boardtr">포메라니안</td>
+			<td class="boardtr">${dto.species }</td>
 			<th class="boardth">나이</th>
-			<td class="boardtr" class="no-border">2개월</td>			
+			<td class="boardtr" class="no-border">${dto.age }</td>			
 		</tr>		
 		<tr class="headtr">
 			<th class="boardth">성별</th>
-			<td class="boardtr">여아</td>
+			<td class="boardtr">${dto.gender }</td>
 			<th class="boardth">분류</th>
-			<td class="boardtr" class="no-border">소형견</td>			
+			<td class="boardtr" class="no-border">${dto.sizes }</td>			
 		</tr>
 		<tr class="headtr">
 			<th class="boardth">접종유무</th>
-			<td class="boardtr">O</td>
+			<td class="boardtr">${dto.vaccination }</td>
 			<th class="boardth">중성화유무</th>
-			<td class="boardtr" class="no-border">X</td>			
+			<td class="boardtr" class="no-border">${dto.neu }</td>			
 		</tr>		
 	</table>
 	
 	
 	<!-- textarea 공간 -->
 	<div class="info">
-		글이 나온다.
-		강아지가 기다리고 있어요~
+		${dto.content }
 	</div>
 	
 	
@@ -285,9 +311,18 @@
 	
 	<input type="button" class="btn common-btn" value="목록" onclick="location.href='/mypet/adoption/list.action'">
 	
-	
-	
-	
-	
+
 </div>
 
+
+<script>
+	
+	/* 서브 이미지 클릭하면 메인 이미지로 오기 */
+	$(".img-sub").click(function() {
+		
+		var img = $(this).attr('src');
+		
+		$(".img").attr("src", img);
+	})
+	
+</script>
