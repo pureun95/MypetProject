@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
 
 <style>
 
@@ -198,6 +200,7 @@
 
         <table class="table table-condensed">
         	<tr>
+        		<c:forEach items="${rlist}" var="dto" >
             	<td>
             		<div class="innerbox">
             			<div style="width:254px; height:301px; margin:auto;">
@@ -206,24 +209,21 @@
 							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 								<!-- Wrapper for slides -->
 								<div class="carousel-inner" role="listbox">
-									<div class="item active">
-										<img class="imgitems"src="/mypet/resources/images/adoption/1.jpg"   alt="1">
+								<c:forEach items="${fn:split(dto.image, ',') }" var="img" varStatus="status">
+									<div class="item <c:if test="${status.index==0}">active</c:if>">
+										<img class="imgitems"src="/mypet${img}"   alt="1">
 									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/2.jpg"   alt="2">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/3.jpg"   alt="3">
-									</div>
+								</c:forEach>
 								</div>
 								<div class="titlecover">
-									<a href="/mypet/board/adoptionreviewview.action">입양후기1 제목입니다. <span class="badge">10</span></a>
-									<div>입양후기 내용입니다.</div>
+									<a href="/mypet/board/adoptionreviewview.action?seqAdoptionReview=${dto.seqAdoptionReview}">${dto.title}<span class="badge">${dto.viewcount}</span></a>
+									<div>${dto.content}</div>
 								</div>
 							</div>
 						</div>
             		</div>
             	</td>
+            	</c:forEach>
             	<td>
             		<div class="innerbox">
             			<div style="width:254px; height:301px; margin:auto;">

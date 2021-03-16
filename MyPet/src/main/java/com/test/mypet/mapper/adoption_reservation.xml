@@ -35,9 +35,9 @@
 	</select>
  
  
- 	<!-- 예약서 정보 출력 쿼리 -->
+ 	<!-- 마이페이지 > 예약서 정보 출력 쿼리 -->
 	<select parameterType="String" resultType="vwReservationDTO" id="getReservationView">
-		select * from vwReservationResponse where seqReservation = #{seqReservation}
+		select * from vwReservation where seqReservation = #{seqReservation}
 	</select>
  
 </mapper>
