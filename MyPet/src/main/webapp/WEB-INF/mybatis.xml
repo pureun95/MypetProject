@@ -17,7 +17,6 @@
 	    <typeAlias type="com.test.mypet.member.MemberDTO" alias="memberDTO"/>
 	    <typeAlias type="com.test.mypet.board.NoticeDTO" alias="noticeDTO"/>
 	    <typeAlias type="com.test.mypet.board.FaqDTO" alias="fdto"/>
-    	<typeAlias type="com.test.mypet.member.MemberDTO" alias="memberDTO"/>
 		<!-- 입양후기 게시판 dto -->
 		<typeAlias type="com.test.mypet.board.AdoptionReviewDTO" alias="adoptionReviewDTO"/>
 		<!-- 굿즈 관련 dto -->
