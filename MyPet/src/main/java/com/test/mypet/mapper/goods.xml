@@ -5,14 +5,22 @@
 <mapper namespace="goods">
 	
 	<select id="list" parameterType="hashMap" resultType="goodsDTO">
-		select * from vwGoods
+		select * from (select a.*, rownum as rnum from (select * from vwGoods
 		<if test="category != null">
 			where seqCategory = #{category}
 		</if>
+		order by seqGoods desc) a) where rnum between #{begin} and #{end}
 	</select>
 	
 	<select id="goods" parameterType="String" resultType="goodsDTO">
 		select * from vwGoods where seqGoods = #{seqGoods}
+	</select>
+	
+	<select id="getTotalCount" parameterType="hashMap" resultType="int">
+		select count(*) as count from vwGoods
+		<if test="category != null">
+			where seqCategory = #{category}
+		</if>
 	</select>
 	
 <!-- 	<select id="order" parameterType="dto">
