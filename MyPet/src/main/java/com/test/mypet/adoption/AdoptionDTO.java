@@ -11,8 +11,9 @@ public class AdoptionDTO {
 	private String title;
 	private String content;
 	
-	private int like;
+	private int likes;
 	
+	private String age;
 	private String species;
 	private String breed;
 	private String neu;
