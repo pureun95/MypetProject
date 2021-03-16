@@ -307,9 +307,9 @@
 <script>
 	$("input:radio[name=rd1]").click(function() {
 		if($("input:radio[name=rd1]:checked").val() =="1"){
-			$("#companyName").attr("disabled",false);
+			$("#companyName").attr("readonly",false);
 		} else if($("input:radio[name=rd1]:checked").val() =="0") {
-			$("#companyName").attr("disabled",true);
+			$("#companyName").attr("readonly",true);
 			$("#companyName").val("직장없음");
 		}
 	});
@@ -342,12 +342,15 @@
 	
 	$('#disagree1').click(function(){
 		alert("가족의 동의가 없으면 입양이 불가합니다.");
-		
+		$('#agree1').prop('checked',true);
 	})
 	
 	$('#disagree3').click(function(){
 		alert("중성화수술에 동의하지 않으면 입양이 불가합니다.");
+		$('#agree3').prop('checked',true);
 	})
+	
+	
 </script>
 
 

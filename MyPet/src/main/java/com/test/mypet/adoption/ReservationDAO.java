@@ -40,12 +40,41 @@ public class ReservationDAO implements IReservationDAO {
 		return template.insert("adoption_reservation.insertReservation", dto);
 	}
 
-	//내 예약목록 출력.
+	//내 예약목록 출력.(응답 있음)
 	@Override
 	public List<VwReservationDTO> getMyReservationList(String seqUser) {
 
 		return template.selectList("adoption_reservation.getMyReservationList", seqUser);
 	}
+	
+	//내 예약목록 출력.(응답 없음)
+	@Override
+	public List<VwReservationDTO> getMyReservationListWithNoResponse(String seqUser) {
+		return template.selectList("adoption_reservation.getMyReservationListWithNoResponse", seqUser);
+	}
+	
+	//내 예약목록 출력(보호소, 응답있음)
+	@Override
+	public List<VwReservationDTO> getMyReservationListShelter(String seqUser) {
+		
+		return template.selectList("adoption_reservation.getMyReservationListShelter", seqUser);
+	}
+	
+	//내 예약목록 출력(보호소, 응답없음)
+	@Override
+	public List<VwReservationDTO> getMyReservationListShelterWithNoResponse(String seqUser) {
+		
+		return template.selectList("adoption_reservation.getMyReservationListShelterWithNoResponse", seqUser);
+	}
+
+	//입양예약서 정보 출력
+	@Override
+	public VwReservationDTO getReservationView(String seqReservation) {
+		
+		return template.selectOne("adoption_reservation.getReservationView" ,seqReservation);
+	}
+
+
 
 
 	

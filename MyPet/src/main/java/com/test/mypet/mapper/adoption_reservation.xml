@@ -17,9 +17,27 @@
 		insert into tblReservation (seqReservation, seqUser, seqPet, seqHouseType, seqVet, reason, companyName, adoptionExperience, NeutralizationSurgery, availableDate) values(seqReservation.nextVal, #{seqUser}, #{seqPet}, #{seqHouseType}, #{seqVet}, #{reason}, #{companyName}, #{adoptionExperience} , #{neutralizationSurgery}, sysdate)
 	</insert>
 	
- 
+ 	<!-- 마이페이지 예약목록 불러오기 쿼리 -->
 	<select parameterType="String" resultType="vwReservationDTO" id="getMyReservationList">
 		select * from vwReservationResponse where seqUser = #{seqUser}
+	</select>
+ 
+	<select parameterType="String" resultType="vwReservationDTO" id="getMyReservationListWithNoResponse">
+		select * from vwReservationNoResponse where seqUser = #{seqUser}
+	</select>
+ 
+	<select parameterType="String" resultType="vwReservationDTO" id="getMyReservationListShelter">
+		select * from vwReservationResponsesh where seqUser = #{seqUser}
+	</select>
+ 
+	<select parameterType="String" resultType="vwReservationDTO" id="getMyReservationListShelterWithNoResponse">
+		select * from vwReservationNoResponsesh where seqUser = #{seqUser}
+	</select>
+ 
+ 
+ 	<!-- 예약서 정보 출력 쿼리 -->
+	<select parameterType="String" resultType="vwReservationDTO" id="getReservationView">
+		select * from vwReservationResponse where seqReservation = #{seqReservation}
 	</select>
  
 </mapper>
