@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 
 /* 폰트 임시 */
@@ -158,28 +158,15 @@
 		
 		<!-- 가운데 o 모양 페이지 표시 -->
 		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			<!-- Indicators -->
-			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-			</ol>
 	
 			<!-- Wrapper for slides -->
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img src="/mypet/resources/images/goods/accessory1.PNG" onclick="alert('굿즈 상세페이지 연결');" alt="1">
-					<div class="carousel-caption" style="color: #444">판매상품 1</div>
+			<div class="carousel-inner" role="listbox" alt="1">
+				<c:forEach items="${glist}" var="dto" varStatus="status">
+				<div class="item <c:if test="${status.index==0}">active</c:if>"onclick="/mypet/goods/goods.action?seqGoods=${dto.seqGoods}">
+					<img src="/mypet/resources/images/goods${dto.image}" >
+					<div class="carousel-caption" style="color: #444">${dto.name}</div>
 				</div>
-				<div class="item">
-					<img src="/mypet/resources/images/goods/accessory2.PNG" onclick="alert('굿즈 상세페이지 연결');" alt="2">
-					<div class="carousel-caption" style="color: #444">판매상품 2</div>
-				</div>
-				<div class="item">
-					<img src="/mypet/resources/images/goods/accessory3.PNG" onclick="alert('굿즈 상세페이지 연결');" alt="3">
-					<div class="carousel-caption" style="color: #444">판매상품 3</div>
-				</div>
+				</c:forEach>
 			</div>
 	
 			<!-- 좌 / 우 버튼 -->

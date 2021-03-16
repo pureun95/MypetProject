@@ -40,6 +40,7 @@ public class VwReservationDTO {
 	private String treatment2;
 	private String hospitalAddress2;
 	
+	private String seqShelter;
 	private String shelterName2;
 	private String shelterTel2;
 	private String account;
@@ -276,6 +277,12 @@ public class VwReservationDTO {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	public String getSeqShelter() {
+		return seqShelter;
+	}
+	public void setSeqShelter(String seqShelter) {
+		this.seqShelter = seqShelter;
 	}
 	
 }
