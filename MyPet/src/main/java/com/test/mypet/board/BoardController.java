@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class BoardController {
 	
+
+	@Autowired
+	IAdoptionReviewDAO ardao;
 	
 	//http://localhost:8090/mypet/board/template_list.action
 	@RequestMapping(value = "/board/template_list.action", method = { RequestMethod.GET })
@@ -110,19 +113,6 @@ public class BoardController {
 
 	}
   
-     @RequestMapping(value = "/board/adoptionreviewlist.action", method = { RequestMethod.GET })
-   public String adoptionReviewList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-      
-      return "board/adoptionreviewList";
-      
-   }
-   
-   @RequestMapping(value = "/board/adoptionreviewview.action", method = { RequestMethod.GET })
-   public String adoptionReviewView(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-      
-      return "board/adoptionreviewView";
-      
-   }
    
   
 //푸른님
@@ -168,6 +158,24 @@ public class BoardController {
    }
       
 //준오님
+   
+   @RequestMapping(value = "/board/adoptionreviewlist.action", method = { RequestMethod.GET })
+   public String adoptionReviewList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	   
+	   List<AdoptionReviewDTO> rlist = ardao.getList();
+	   
+	   request.setAttribute("rlist", rlist);
+	   
+	   return "board/adoptionreviewList";
+	   
+   }
+   
+   @RequestMapping(value = "/board/adoptionreviewview.action", method = { RequestMethod.GET })
+   public String adoptionReviewView(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	   
+	   return "board/adoptionreviewView";
+	   
+   }
    @RequestMapping(value = "/board/adoptionreviewwrite.action", method = { RequestMethod.GET })
    public String adoptionReviewWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	   

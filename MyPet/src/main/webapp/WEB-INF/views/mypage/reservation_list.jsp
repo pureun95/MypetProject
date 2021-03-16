@@ -169,7 +169,7 @@ ul, li {
 						</a></li>
 						<li><a>사진<small style="float:right;">※ 사진을 누르면 상세페이지로 이동합니다.</small></a></li>
 						<li class="divider"></li>
-						<li onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${dto.image}"></a></li>
+						<li style="cursor:pointer;" onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${dto.image}"></a></li>
 						<li class="divider"></li>
 					</ul>
 				</li>
@@ -181,11 +181,11 @@ ul, li {
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>보호병원명 : ${dto.hospitalName2}</a></li>
+						<li class="underlinetxt" style="cursor:pointer;" onclick="location.href='/mypet/vet/view.action?seq=${dto.seqVet}'"><a>보호병원명 : ${dto.hospitalName2}</a> <small style="padding-left: 10px;">※ 병원명을 클릭하면 상세페이지로 이동합니다.</small></li>
 						<li><a>운영시간 : ${dto.time2}</a></li>
 						<li><a>진료과목 : ${dto.treatment2}</a></li>
 						<li><a>전화번호 : ${dto.hospitalTel2}</a></li>
-						<li><a>지도 <small style="float:right;">※ 지도를 클릭하여 움직이세요.</small></a></li>
+						<li><a>지도</a></li>
 						<input type="hidden" id="address${status.count}" name="address${status.count}" value="${dto.hospitalAddress2}">
 						<input type="hidden" id="name${status.count}" name="name${status.count}" value="${dto.hospitalName2}">
 						<div id="map${status.count}" style="width:400px;height:200px;"></div>
@@ -247,7 +247,7 @@ ul, li {
 						</a></li>
 						<li><a>사진<small style="float:right;">※ 사진을 누르면 상세페이지로 이동합니다.</small></a></li>
 						<li class="divider"></li>
-						<li onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${ndto.image}"></a></li>
+						<li style="cursor:pointer;" onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${ndto.image}"></a></li>
 						<li class="divider"></li>
 					</ul>
 				</li>
@@ -259,11 +259,11 @@ ul, li {
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li onclick="location.href='/mypet/adoption/view.action'"><a>보호병원명 : ${ndto.hospitalName2}</a></li>
+						<li class="underlinetxt" style="cursor:pointer;" onclick="location.href='/mypet/vet/view.action?seq=${ndto.seqVet}'"><a>보호병원명 : ${ndto.hospitalName2}</a> <small style="padding-left: 10px;">※ 병원명을 클릭하면 상세페이지로 이동합니다.</small></li>
 						<li><a>운영시간 : ${ndto.time2}</a></li>
 						<li><a>진료과목 : ${ndto.treatment2}</a></li>
 						<li><a>전화번호 : ${ndto.hospitalTel2}</a></li>
-						<li><a>지도 <small style="float:right;">※ 지도를 클릭하여 움직이세요.</small></a></li>
+						<li><a>지도 </a></li>
 						<input type="hidden" id="address0${status.count}" name="address0${status.count}" value="${ndto.hospitalAddress2}">
 						<input type="hidden" id="name0${status.count}" name="name0${status.count}" value="${ndto.hospitalName2}">
 						<div id="map0${status.count}" style="width:400px;height:200px;"></div>
@@ -311,7 +311,7 @@ ul, li {
 						</a></li>
 						<li><a>사진<small style="float:right;">※ 사진을 누르면 상세페이지로 이동합니다.</small></a></li>
 						<li class="divider"></li>
-						<li onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${sdto.image}"></a></li>
+						<li style="cursor:pointer;" onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${sdto.image}"></a></li>
 						<li class="divider"></li>
 					</ul>
 				</li>
@@ -323,11 +323,11 @@ ul, li {
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>보호소명 : ${sdto.shelterName2}</a></li>
+						<li class="underlinetxt" style="cursor:pointer;" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}'"><a>보호소명 : ${sdto.shelterName2}</a> <small style="padding-left: 10px;">※ 병원명을 클릭하면 상세페이지로 이동합니다.</small></li>
 						<li><a>운영시간 : ${sdto.time2}</a></li>
 						<li><a>계좌번호 : ${sdto.account}</a></li>
 						<li><a>전화번호 : ${sdto.shelterTel2}</a></li>
-						<li><a>지도 <small style="float:right;">※ 지도를 클릭하여 움직이세요.</small></a></li>
+						<li><a>지도 </a></li>
 						<input type="hidden" id="address00${status.count}" name="address00${status.count}" value="${sdto.shelterAddress2}">
 						<input type="hidden" id="name00${status.count}" name="name00${status.count}" value="${sdto.shelterName2}">
 						<div id="map00${status.count}" style="width:400px;height:200px;"></div>
@@ -356,7 +356,7 @@ ul, li {
 		</tr>
 		</c:forEach>
 		
-		<!-- 응답없음(동물병원이 보호중) -->
+		<!-- 응답없음(보호소가 보호중) -->
 		<c:forEach items="${snlist}" var="sndto" varStatus="status">
 		<tr>
 			<td class="underlinetxt"><a href="/mypet/mypage/reservationview.action?seqReservation=${sndto.seqReservation}">${sndto.seqReservation}</a></td>
@@ -390,7 +390,7 @@ ul, li {
 						</a></li>
 						<li><a>사진<small style="float:right;">※ 사진을 누르면 상세페이지로 이동합니다.</small></a></li>
 						<li class="divider"></li>
-						<li onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${sndto.image}"></a></li>
+						<li style="cursor:pointer;" onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${sndto.image}"></a></li>
 						<li class="divider"></li>
 					</ul>
 				</li>
@@ -402,11 +402,11 @@ ul, li {
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li onclick="location.href='/mypet/adoption/view.action'"><a>보호소명 : ${sndto.shelterName2}</a></li>
+						<li class="underlinetxt" style="cursor:pointer;" onclick="location.href='/mypet/shelter/view.action?seq=${sndto.seqShelter}'"><a>보호소명 : ${sndto.shelterName2}</a> <small style="padding-left: 10px;">※ 병원명을 클릭하면 상세페이지로 이동합니다.</small></li>
 						<li><a>운영시간 : ${sndto.time2}</a></li>
 						<li><a>계좌번호 : ${sndto.account}</a></li>
 						<li><a>전화번호 : ${sndto.shelterTel2}</a></li>
-						<li><a>지도 <small style="float:right;">※ 지도를 클릭하여 움직이세요.</small></a></li>
+						<li><a>지도</a></li>
 						<input type="hidden" id="address000${status.count}" name="address000${status.count}" value="${sndto.shelterAddress2}">
 						<input type="hidden" id="name000${status.count}" name="name000${status.count}" value="${sndto.shelterName2}">
 						<div id="map000${status.count}" style="width:400px;height:200px;"></div>

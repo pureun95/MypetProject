@@ -4,9 +4,16 @@
 
 <mapper namespace="shelter">
 
-	<select id="list" resultType="sdto">
-		select * from vwShelter order by seqShelter asc
+	<select id="list" parameterType="map" resultType="sdto">
+		select * from vwShelter <!-- order by seqShelter asc -->
+		<if test="search != null and search != ''"> 
+			where name like '%' || #{search} || '%'
+		</if>
 	</select>
+	
+	<!-- <select id="location" resultType="ldto">
+		select * from vwLocationDetail by seqLocation asc
+	</select> -->
 	
 	<select id="get" parameterType="String" resultType="sdto">
    		select * from vwShelter where seqShelter = #{seqShelter}

@@ -12,11 +12,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.test.mypet.goods.GoodsDTO;
+import com.test.mypet.goods.IGoodsDAO;
+
 @Controller
 public class AdoptionController {
 	
 	@Autowired
 	private IReservationDAO dao;
+	
+	@Autowired
+	private IGoodsDAO gdao;
 
 	@Autowired
 	private IAdoptionDAO adao;
@@ -254,6 +260,13 @@ public class AdoptionController {
 			,VwReservationDTO dto) {
 		
 		dao.insertReservation(dto);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		List<GoodsDTO> glist = gdao.list(map);
+		
+		
+		request.setAttribute("glist", glist);
 		
 		return "adoption/send_reservation";		
 	}
