@@ -34,24 +34,24 @@
     /* 지도 & 검색창 */
     .map-search {
     	/* border: 1px solid black; */
-    	margin-left: 200px;
+    	margin-left: 100px;
     	width: 800px;
-    	height:	550px;
+    	height:	700px;
     	margin-bottom: 100px;
     }
     
     #map {
     	/* border: 1px solid black; */
-    	width: 800px;
-    	height: 350px;
+    	width: 1000px;
+    	height: 500px;
     	margin-bottom: 50px;    
     }
     
     .map-search > input[type=text] {
     	width: 425px;
     	float: left;
-    	margin-right: 20px;
-    	margin-left: 135px;
+    	margin-right: 16px;
+    	margin-left: 239px;
     }
     
     .map-search > input[type=button] {
@@ -61,11 +61,34 @@
     	background-color: #b27208;
     	font-size: 16px;
     	border: 0px;
+    	font-family: 'Jal_Onuel';    	
+    }
+    
+    .map-search > input[type=button]:hover {
+    	background-color: #F6DA42;
+    	color: #301b01;
+    }
+    
+    
+    .common-btn {
+    	background-color: #b27208;
+    	color: white;
     	font-family: 'Jal_Onuel';
+    	margin-bottom: 20px;
+    	float: right;
+    	position: relative;
+    	left: -89px;
+    	width: 80px;
     	
     }
     
-    .map-search > input[type=text] {
+    .common-btn:hover {
+    	background-color: #F6DA42;
+    	color: #301b01;
+    	
+    }
+    
+    .form-control {
     	color: #9c9c9c;
     }
     
@@ -74,9 +97,9 @@
     
     .pet-radio {
     	/* border: 1px solid black; */
-    	width: 800px;
+    	width: 1000px;
     	height: 80px;
-    	padding: 0px 135px;
+    	padding: 0px 170px;
     }
     
     .pet-radio > input[type="radio"] {
@@ -96,7 +119,7 @@
     }
     
     
-    .pet-radio > label:nth-child(8) {
+    .pet-radio > label:nth-child(10) {
     	border-right: 1px solid #eee;
     }
     
@@ -112,14 +135,15 @@
     .list {
     	/* border: 1px solid black; */
     	width: 1200px;
-    	height: 1700px;
+    	height: auto;
+    	clear: both;
     	
     }
     
     .list-detail {
     	border: 1px solid #eee;
     	width: 281px;
-    	height: 400px;
+    	height: 430px;
     	float: left;
     	margin-left: 90px;
     	margin-bottom: 120px;    
@@ -142,14 +166,14 @@
     	display: block;
     	background-color: #f9820f;
     	width: 80px;
-    	height: 25px;
+    	height: 30px;
     	color: white;
     	text-align: center;
     	margin-left: 100px;
     	margin-top: 20px;
     	border-radius: 5px;
     	font-family: 'Jal_Onuel';
-    	padding: 4px;
+    	padding: 6px;
     	opacity: .8;
     }
     
@@ -162,7 +186,7 @@
     }
     
     .img-pet {
-    	width: 280px;
+    	width: 279px;
     	height: 280px;
     	background-size: cover;
     	background-position: 50% 50%;
@@ -172,10 +196,12 @@
     	font-size: 16px;
     	font-family: 'NanumSquare';
     	display: block;
+    	height: 50px;
     	margin-top: 10px;
     	margin-left: 5px;
     	margin-bottom: 10px;
     	font-weight: bold;
+    	cursor: pointer;
     	
     }
 	
@@ -195,7 +221,7 @@
 		background-size: cover;
     	background-position: 50% 50%;
     	margin-top: -45px;
-    	margin-left: 245px;
+    	margin-left: 240px;
     	background-color: transparent;
     	cursor: pointer;
     	/* float: left; */
@@ -206,34 +232,45 @@
 	}
 	
 	
-	/* 페이지바 */
-
-    .pagination {
-        width: 700px;
-        height: 40px;
-        margin-top: 60px;
-    }
-    .pagination> li > a {
-		border-color : #ccc;
-		color: #301b01;
-        font-size: 16px;
-        float: left;
-	}
-
-    .pagination>li>a:hover {
-        background-color: #b27208;
-        color: white;
-    }
-
-    
-    /* 검색창 & 버튼 박스 */
+	/* 검색창 & 버튼 박스 */
     .pageSearch {
         /* border: 1px solid black; */
         width: 1200px;
         height: 130px;
         margin-top: 50px;
         padding: 0px 360px;
+        text-align: center;
     }
+	
+	/* 페이지바 */
+	
+    .pagination {
+       /*  width: 700px; */
+        height: 40px;
+        margin-top: 60px;
+        /* text-align: center; */
+    }
+    
+    .pagination> li {
+    	margin: 0px;
+    }
+    
+    
+    .pagination> li > a {
+		border-color : #ccc !important;
+		color: #301b01 !important;
+        font-size: 16px !important;
+        background-color: transparent !important;    
+        cursor: pointer !important;
+	}
+
+    .pagination> li > a:hover {
+        background-color: #b27208 !important;
+        color: white !important;
+    }
+
+    
+    
 
     /* 게시판 검색창 공통 클래스 */
     .search-text {
@@ -255,119 +292,74 @@
     	<div id="map">지도다</div>  
     	
     	<div class="pet-radio">
-    		<input type="radio" name="pet" id="dog" value="0" checked>
-    		<label for="dog">강아지</label>    	
-    		<input type="radio" name="pet" id="cat" value="1">
-    		<label for="cat">고양이</label>
-    		<input type="radio" name="pet" id="rabbit" value="2">
-    		<label for="rabbit">토끼</label>
-    		<input type="radio" name="pet" id="etc" value="3">
-    		<label for="etc">기타동물</label>    		
+    		<c:if test="${empty species }">		
+    		<input type="radio" name="species" id="all" checked value="">
+    		</c:if>
+    		<label for="all" onclick="location.href='/mypet/adoption/list.action?'">전체</label>
+    		
+    		
+    		<c:if test="${species == 0 }">		
+    		<input type="radio" name="species" id="dog" checked>
+    		</c:if>
+    		<label for="dog" onclick="location.href='/mypet/adoption/list.action?species=0'">강아지</label>
+    		    	
+    		<c:if test="${species == 1 }">	
+    		<input type="radio" name="species" id="cat" checked>
+    		</c:if>
+    		<label for="cat" onclick="location.href='/mypet/adoption/list.action?species=1'">고양이</label>
+    		
+    		<c:if test="${species == 2 }">	
+    		<input type="radio" name="species" id="rabbit" checked>
+    		</c:if>
+    		<label for="rabbit" onclick="location.href='/mypet/adoption/list.action?species=2'">토끼</label>
+    		
+    		<c:if test="${species == 3 }">	
+    		<input type="radio" name="species" id="etc" checked>
+    		</c:if>
+    		<label for="etc" onclick="location.href='/mypet/adoption/list.action?species=3'">기타동물</label>    		
     	</div>
     	
     	<input type="text" class="form-control" value="검색 키워드를 입력해주세요." onfocus="this.value=''">
     	<input type="button" class="btn" value="검색">    
     </div>
     
+    <!-- 관리자만 보여주기 -->
+    <input type="button" class="btn common-btn" value="글쓰기" onclick="location.href='/mypet/adoption/write.action'">
     
     <!-- 9개씩 나오기 -->
-    <div class="list">    	    	    		
+    <div class="list">    	        	
+    
+    	<!-- 관리자가 보는 페이지 -->
+    	<c:forEach items="${list }" var="dto">
     	<div class="list-detail">    	
-    		<div class="img"><img class="img-pet" src="../resources/images/adoption/1.jpg"></div>
-    		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
-    		<span class="pet-address">서울시 종로구 어쩌구동</span>
-    		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>여기!!!! ${result }</span><img class="like" src="../resources/images/like.png"></div>
-    		<span class="state">입양가능</span>    		
+    		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqPet=${dto.seqPet}'"><img class="img-pet" src="../resources/images/adoption/${dto.img }"></div>
+    		<span class="pet-title" onclick="location.href='/mypet/adoption/view.action?seqPet=${dto.seqPet}'">${dto.title }</span>
+    		
+    		<c:if test="${not empty dto.nameV }">
+    		<span class="pet-address">${dto.addressV }</span>
+    		<span class="pet-address">${dto.nameV }</span>
+    		</c:if>
+    		
+    		<c:if test="${empty dto.nameV }">
+    		<span class="pet-address">${dto.addressS }</span>
+    		<span class="pet-address">${dto.nameS }</span>
+    		</c:if>
+    		
+    		<div class="pet-seq"><span>no. ${dto.seqPet}</span><img class="like" src="../resources/images/like.png"></div>
+    		<span class="state">${dto.state }</span>    		
     	</div>
-	
-		<!-- 나중에 삭제 -->
-
-    	<div class="list-detail">
-    		<div class="img"><img class="img-pet" src="../resources/images/adoption/2.jpg"></div>
-    		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
-    		<span class="pet-address">서울시 종로구 어쩌구동</span>
-    		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
-    		<span class="state">입양가능</span>  
-    	</div>
-    	<div class="list-detail">
-    		<div class="img"><img class="img-pet" src="../resources/images/adoption/3.jpg"></div>
-    		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
-    		<span class="pet-address">서울시 종로구 어쩌구동</span>
-    		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
-    		<span class="state">입양완료</span>  
-    	</div>
-    	<div class="list-detail">
-    		<div class="img"><img class="img-pet" src="../resources/images/adoption/4.jpg"></div>
-    		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
-    		<span class="pet-address">서울시 종로구 어쩌구동</span>
-    		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
-    		<span class="state">입양완료</span>  
-    	</div>
-    	<div class="list-detail">
-    		<div class="img"><img class="img-pet" src="../resources/images/adoption/5.jpg"></div>
-    		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
-    		<span class="pet-address">서울시 종로구 어쩌구동</span>
-    		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
-    		<span class="state">입양완료</span>  
-    	</div>
-    	<div class="list-detail">
-    		<div class="img"><img class="img-pet" src="../resources/images/adoption/6.jpg"></div>
-    		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
-    		<span class="pet-address">서울시 종로구 어쩌구동</span>
-    		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
-    		<span class="state">입양완료</span>  
-    	</div>
-    	<div class="list-detail">
-    		<div class="img"><img class="img-pet" src="../resources/images/adoption/7.jpg"></div>
-    		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
-    		<span class="pet-address">서울시 종로구 어쩌구동</span>
-    		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
-    		<span class="state">입양완료</span>  
-    	</div>
-    	<div class="list-detail">
-    		<div class="img"><img class="img-pet" src="../resources/images/adoption/8.jpg"></div>
-    		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
-    		<span class="pet-address">서울시 종로구 어쩌구동</span>
-    		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
-    		<span class="state">입양완료</span>  
-    	</div>
-    	<div class="list-detail">
-    		<div class="img"><img class="img-pet" src="../resources/images/adoption/9.jpg"></div>
-    		<span class="pet-title">귀여운 또또의 친구가 되어주세요.</span>
-    		<span class="pet-address">서울시 종로구 어쩌구동</span>
-    		<span class="pet-address">한사랑 동물병원</span>
-    		<div  class="pet-seq"><span>no.1</span><img class="like" src="../resources/images/like.png"></div>
-    		<span class="state">입양완료</span>  
-    	</div>
-    
-    
+		</c:forEach>		
+		
+		
+    <c:if test="${list.size() > 0 }">
     <!-- 페이지바 -->
-    <div class="pageSearch">
-        <!-- 페이지바 -->
-          <ul class="pagination">
-              <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
-              <li><a>1</a></li>
-              <li><a>2</a></li>
-              <li><a>3</a></li>
-              <li><a>4</a></li>
-              <li><a>5</a></li>
-              <li><a>6</a></li>
-              <li><a>7</a></li>
-              <li><a>8</a></li>
-              <li><a>9</a></li>
-              <li><a>10</a></li>
-              <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
-           </ul>       
+    <div class="pageSearch" style="clear: both">
+	      <!-- 페이지바 -->
+	       <ul class="pagination">
+	            ${pagebar }
+	       </ul>     
      </div>
-    
+    </c:if>
     
     
     
@@ -376,9 +368,7 @@
     
     
     
-        
-    
-    
+
    <!-- content -->
    </div> 
    
@@ -393,6 +383,11 @@
 	};
 	
 	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+	
+	
+	$(".form-control").click(function() {
+		$(this).css("color", "#301b01");
+	})
 </script>
 
 

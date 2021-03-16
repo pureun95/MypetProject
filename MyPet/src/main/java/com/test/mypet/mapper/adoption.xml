@@ -4,8 +4,28 @@
 
 <mapper namespace="adoption">
 	
-	<select id="m1" parameterType="int" resultType="adto">
-		SELECT count(*) as count FROM vPet;
+	<!-- 입양글 리스트 -->
+	<select id="list" parameterType="HashMap" resultType="adto">
+		select * from (select a.*, rownum as rnum from (select * from vPet 
+		<if test="species != null">
+			where species = #{species} 
+		</if>
+		<if test="search != null">
+			where seqPet = #{search} or title = #{search} 
+		</if>
+		order by seqAdoption desc) a) where rnum between #{begin} and #{end}
+		
+	</select>
+	
+	
+	<!-- select * from (select a.*, rownum as rnum from (select * from vAllLessorProperty %s order by seqLessorProperty desc) a) where rnum between %s and %s", where, map.get("begin"), map.get("end") -->
+	
+	<!-- 입양글 카운트 -->
+	<select id="count" parameterType="HashMap" resultType="int">
+		select count(*) as count from vPet 
+		<!-- <if test="search != null">
+			where seqPet = #{search} or title = #{search}
+		</if> -->
 	</select>
 	
 
