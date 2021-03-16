@@ -33,7 +33,7 @@
     
     /* 지도 & 검색창 */
     .map-search {
-    	border: 1px solid black;
+    	/* border: 1px solid black; */
     	margin-left: 100px;
     	width: 1000px;
     	height:	700px;
@@ -95,20 +95,21 @@
 		float: left;
     }
     
-    .search-btn {
-    	margin-left: -200px;
+    #search-btn {
+    	margin-left: 110px;
+    	float: left;
     }
     
     /* 동물 종류 검색 */
     
     .search-box {
-    	border: 1px solid black;
+    	/* border: 1px solid black; */
     	width: 1000px;
     	height: 100px;
     }
     
     .pet-radio {
-    	border: 1px solid black;
+    	/* border: 1px solid black; */
     	width: 1000px;
     	height: 80px;
     	padding: 0px 170px;
@@ -334,7 +335,7 @@
     	<div class="search-box">
 	    	<form method="GET" action="/mypet/adoption/list.action">
 	    		<input type="text" class="form-control" name="search" placeholder="검색 키워드를 입력해주세요." onfocus="this.value=''">
-	    		<input type="submit" class="btn common-btn search-btn" value="검색">    
+	    		<input type="submit" class="btn common-btn" id="search-btn" value="검색">    
 	    	</form>
     	</div>
     	
