@@ -200,7 +200,7 @@
 
         <table class="table table-condensed">
         	<tr>
-        		<c:forEach items="${rlist}" var="dto" >
+        		<c:forEach items="${rlist}" var="dto" begin="0" end="3">
             	<td>
             		<div class="innerbox">
             			<div style="width:254px; height:301px; margin:auto;">
@@ -224,87 +224,9 @@
             		</div>
             	</td>
             	</c:forEach>
-            	<td>
-            		<div class="innerbox">
-            			<div style="width:254px; height:301px; margin:auto;">
-		
-							<!-- 가운데 o 모양 페이지 표시 -->
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-								<!-- Wrapper for slides -->
-								<div class="carousel-inner" role="listbox">
-									<div class="item active">
-										<img class="imgitems"src="/mypet/resources/images/adoption/4.jpg"   alt="1">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/5.jpg"   alt="2">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/6.jpg"   alt="3">
-									</div>
-									<div class="titlecover">
-										<a href="/mypet/board/adoptionreviewview.action">입양후기2 제목입니다.</a>
-										<div>입양후기 내용입니다.</div>
-									</div>
-								</div>
-							</div>
-						</div>	
-            		</div>
-            	</td>
-            	<td>
-            		<div class="innerbox">
-            			<div style="width:254px; height:301px; margin:auto;">
-		
-							<!-- 가운데 o 모양 페이지 표시 -->
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-								<!-- Wrapper for slides -->
-								<div class="carousel-inner" role="listbox">
-									<div class="item active">
-										<img class="imgitems"src="/mypet/resources/images/adoption/7.jpg"   alt="1">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/8.jpg"   alt="2">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/9.jpg"   alt="3">
-									</div>
-									<div class="titlecover">
-										<a href="/mypet/board/adoptionreviewview.action">입양후기3 제목입니다.</a>
-										<div>입양후기 내용입니다.</div>
-									</div>
-								</div>
-							</div>
-						</div>
-            		</div>
-            	</td>
-            	<td>
-            		<div class="innerbox">
-            			<div style="width:254px; height:301px; margin:auto;">
-		
-							<!-- 가운데 o 모양 페이지 표시 -->
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-								<!-- Wrapper for slides -->
-								<div class="carousel-inner" role="listbox">
-									<div class="item active">
-										<img class="imgitems"src="/mypet/resources/images/adoption/10.jpg"   alt="1">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/11.jpg"   alt="2">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/12.jpg"   alt="3">
-									</div>
-									<div class="titlecover">
-										<a href="/mypet/board/adoptionreviewview.action">입양후기4 제목입니다.</a>
-										<div>입양후기 내용입니다.</div>
-									</div>
-								</div>
-							</div>
-						</div>
-            		</div>
-            	</td>
             </tr>
-        
-            <tr>
+            <tr>	
+            	<c:forEach items="${rlist}" var="dto" begin="4" end="7">
             	<td>
             		<div class="innerbox">
             			<div style="width:254px; height:301px; margin:auto;">
@@ -313,104 +235,22 @@
 							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 								<!-- Wrapper for slides -->
 								<div class="carousel-inner" role="listbox">
-									<div class="item active">
-										<img class="imgitems"src="/mypet/resources/images/adoption/13.jpg"   alt="1">
+								<c:forEach items="${fn:split(dto.image, ',') }" var="img" varStatus="status">
+									<div class="item <c:if test="${status.index==0}">active</c:if>">
+										<img class="imgitems"src="/mypet${img}"   alt="1">
 									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/14.jpg"   alt="2">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/15.jpg"   alt="3">
-									</div>
-									<div class="titlecover">
-										<a href="/mypet/board/adoptionreviewview.action">입양후기5 제목입니다.</a>
-										<div>입양후기 내용입니다.</div>
-									</div>	
+								</c:forEach>
+								</div>
+								<div class="titlecover">
+									<a href="/mypet/board/adoptionreviewview.action?seqAdoptionReview=${dto.seqAdoptionReview}">${dto.title}<span class="badge">${dto.viewcount}</span></a>
+									<div>${dto.content}</div>
 								</div>
 							</div>
 						</div>
             		</div>
             	</td>
-            	<td>
-            		<div class="innerbox">
-            			<div style="width:254px; height:301px; margin:auto;">
-		
-							<!-- 가운데 o 모양 페이지 표시 -->
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-								<!-- Wrapper for slides -->
-								<div class="carousel-inner" role="listbox">
-									<div class="item active">
-										<img class="imgitems"src="/mypet/resources/images/adoption/16.jpg"   alt="1">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/17.jpg"   alt="2">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/18.jpg"   alt="3">
-									</div>
-									<div class="titlecover">
-										<a href="/mypet/board/adoptionreviewview.action">입양후기6 제목입니다.</a>
-										<div>입양후기 내용입니다.</div>
-									</div>
-								</div>
-							</div>
-						</div>
-            		</div>
-            	</td>
-            	<td>
-            		<div class="innerbox">
-            			<div style="width:254px; height:301px; margin:auto;">
-		
-							<!-- 가운데 o 모양 페이지 표시 -->
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-								<!-- Wrapper for slides -->
-								<div class="carousel-inner" role="listbox">
-									<div class="item active">
-										<img class="imgitems"src="/mypet/resources/images/adoption/19.jpg"   alt="1">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/20.jpg"   alt="2">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/21.jpg"   alt="3">
-									</div>
-									<div class="titlecover">
-										<a href="/mypet/board/adoptionreviewview.action">입양후기7 제목입니다.</a>
-										<div>입양후기 내용입니다.</div>
-									</div>
-								</div>
-							</div>
-						</div>
-            		</div>
-            	</td>
-            	<td>
-            		<div class="innerbox">
-            			<div style="width:254px; height:301px; margin:auto;">
-		
-							<!-- 가운데 o 모양 페이지 표시 -->
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-								<!-- Wrapper for slides -->
-								<div class="carousel-inner" role="listbox">
-									<div class="item active">
-										<img class="imgitems"src="/mypet/resources/images/adoption/22.jpg"   alt="1">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/23.jpg"   alt="2">
-									</div>
-									<div class="item">
-										<img class="imgitems"src="/mypet/resources/images/adoption/24.jpg"   alt="3">
-									</div>
-									<div class="titlecover">
-										<a href="/mypet/board/adoptionreviewview.action">입양후기8 제목입니다.</a>
-										<div>입양후기 내용입니다.</div>
-									</div>
-								</div>
-							</div>
-	            		</div>
-            		</div>
-            	</td>
-            </tr>
-            
+            	</c:forEach>
+            </tr>	            
         </table>
 
         <!-- 글쓰기 버튼 아래 -->

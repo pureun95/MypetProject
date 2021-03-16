@@ -8,6 +8,5 @@ public interface IFaq {
 
 	FaqDTO get(String seq);
 
-	List<AdoptionReviewDTO> getList();
 
 }
