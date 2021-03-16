@@ -250,7 +250,8 @@
             		</div>
             	</td>
             	</c:forEach>
-            </tr>	            
+            </tr>
+            <tr id="box"></tr>
         </table>
 
         <!-- 글쓰기 버튼 아래 -->
@@ -260,6 +261,8 @@
         <div class="btnwrap" style="text-align: center;">
             <button id="btnmore" class="btn btnself" onclick="alert('밑으로 8개 더 만들기');">더보기</button>
             <button id="btnwrite" class="btn btnself" onclick="location.href='/mypet/board/adoptionreviewwrite.action';">글쓰기</button>
+            <input type="hidden" id="hdnstart">
+            <input type="hidden" id="hdnend">
         </div>
     </div>
    
@@ -267,6 +270,20 @@
 
 
     <script>
-
+		
+    	$('#btnmore').click(function() {
+    		
+    		
+    		var code = $('#box').html();
+    		
+    		alert(code);
+			
+    		code += '<c:forEach items="${rlist}" var="dto" begin="8" end="11"><td><div class="innerbox"><div style="width:254px; height:301px; margin:auto;"><div id="carousel-example-generic" class="carousel slide" data-ride="carousel"><div class="carousel-inner" role="listbox"><c:forEach items="${fn:split(dto.image, ',') }" var="img" varStatus="status"><div class="item <c:if test="${status.index==0}">active</c:if>"><img class="imgitems"src="/mypet${img}"   alt="1"></div></c:forEach></div><div class="titlecover"><a href="/mypet/board/adoptionreviewview.action?seqAdoptionReview=${dto.seqAdoptionReview}">${dto.title}<span class="badge">${dto.viewcount}</span></a><div>${dto.content}</div></div></div></div></div></td></c:forEach></tr><tr><c:forEach items="${rlist}" var="dto" begin="12" end="15"><td><div class="innerbox"><div style="width:254px; height:301px; margin:auto;"><div id="carousel-example-generic" class="carousel slide" data-ride="carousel"><div class="carousel-inner" role="listbox"><c:forEach items="${fn:split(dto.image, ',') }" var="img" varStatus="status"><div class="item <c:if test="${status.index==0}">active</c:if>"><img class="imgitems"src="/mypet${img}"   alt="1"></div></c:forEach></div><div class="titlecover"><a href="/mypet/board/adoptionreviewview.action?seqAdoptionReview=${dto.seqAdoptionReview}">${dto.title}<span class="badge">${dto.viewcount}</span></a><div>${dto.content}</div></div></div></div></div></td></c:forEach>';
+    		
+    		
+    		alert(code);
+    		
+    		$('#box').html(code);
+    	})
 
     </script>
