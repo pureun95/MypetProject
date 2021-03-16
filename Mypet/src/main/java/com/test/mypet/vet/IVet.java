@@ -13,6 +13,8 @@ public interface IVet {
 
 	int edit(VetDTO vdto);
 
+	int getTotalCount(HashMap<String, String> map);
+
 
 
 }

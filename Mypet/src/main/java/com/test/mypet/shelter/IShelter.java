@@ -13,4 +13,6 @@ public interface IShelter {
 
 	int edit(ShelterDTO sdto);
 
+	int getTotalCount(HashMap<String, String> map);
+
 }
