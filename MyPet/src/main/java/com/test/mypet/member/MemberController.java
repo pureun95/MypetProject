@@ -37,6 +37,8 @@ public class MemberController {
 		// 1. 데이터 가져오기(id)
 		// 2. 인증 티켓 발급
 		// 3. 시작 페이지로 이동
+		
+		session.setAttribute("id", id);
 
 		MemberDTO dto = new MemberDTO();
 //		AdminDTO dto_admin = new AdminDTO();
@@ -82,6 +84,9 @@ public class MemberController {
 		// 1. 데이터 가져오기(id)
 		// 2. 인증 티켓 발급
 		// 3. 시작 페이지로 이동
+		
+		session.setAttribute("id", id);
+
 
 		
 		AdminDTO dto_admin = new AdminDTO();
@@ -92,12 +97,16 @@ public class MemberController {
 		
 		dto_admin.setId(id);
 		dto_admin.setPassword(password);
+		
+//		dto_admin.setSeqAdmin(admindto.getSeqAdmin());////
 //		
 		
 		AdminDTO adto = dao.adminLogin(dto_admin);
 
 		
 		System.out.println(dto_admin.getId());
+		
+		
 
 		try {
 			if (adto.getSeqAdmin().equals("")) {
@@ -111,6 +120,26 @@ public class MemberController {
 			System.out.println(e);
 		}
 
+
+	}
+	
+	
+	
+	@RequestMapping(value = "/member/logout.action", method = { RequestMethod.GET })
+	public void logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+
+		// 1. 인증 티켓 폐기
+		// 2. 시작 페이지로 이동
+
+		session.removeAttribute("id");
+
+		// 2.
+		try {
+			response.sendRedirect("/mypet/member/auth.action");
+		} catch (IOException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
 
 	}
 	
