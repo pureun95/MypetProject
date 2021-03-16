@@ -235,9 +235,9 @@
 	       	<!-- 크기 -->
 	       	<select class="form-control multiple common-form">
 	        	<option selected disabled>크기를 선택해주세요.</option>
-	        	<option value="소형">소형</option>
-	        	<option value="중형">중형</option>
-	        	<option value="대형">대형</option>	    	        
+	        	<option value="소형동물">소형동물</option>
+	        	<option value="중형동물">중형동물</option>
+	        	<option value="대형동물">대형동물</option>	    	        
 	        </select>    
 	        
 	        <!-- 접종 유무 -->

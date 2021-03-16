@@ -30,12 +30,16 @@ public class AdoptionController {
 
 	//http://localhost:8090/mypet/adoption/list.action
 	@RequestMapping(value = "/adoption/list.action", method = { RequestMethod.GET })
-	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String search, String species) {
+	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species) {
+		
+		
+		String search = request.getParameter("search");
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("search", search);
 		map.put("species", species);
 		
+		System.out.println("검색어: " + map);
 		
 		//페이징
 		int nowPage = 0;		//현재 페이지 번호
@@ -170,6 +174,7 @@ public class AdoptionController {
 	public String adoptionView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		
 		AdoptionDTO dto = adao.getView(seqAdoption);
+		
 		request.setAttribute("dto", dto);
 		
 		return "adoption/view";
