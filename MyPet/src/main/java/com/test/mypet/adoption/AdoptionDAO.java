@@ -1,29 +1,38 @@
 package com.test.mypet.adoption;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-public class AdoptionDAO {
+
+@Repository
+public class AdoptionDAO implements IAdoptionDAO {
 	
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public int m1() {
+	
+	//리스트
+	@Override
+	public List<AdoptionDTO> getList(HashMap<String, String> map) {
 		
-		//insert into tblMyBatis (seq, num, txt) values (seqMyBatis.nextVal, 2136, '이일삼육')
-		
-		//executeUpdate()
-		// - template.insert(statement)
-		// - template.update(statement)
-		// - template.delete(statement)
-		
-		//executeQuery()
-		// - template.selectXXX(statement);
-		
-		//template.insert("insert into tblMyBatis (seq, num, txt) values (seqMyBatis.nextVal, 2136, '이일삼육')");
-		
-		return template.selectOne("adoption.m1");
+		return template.selectList("adoption.list", map);
 		 
 	}
+
+	
+	//페이징
+	@Override
+	public int getTotalCount(HashMap<String, String> map) {
+		
+		return template.selectOne("adoption.count", map);
+	}
+
+	
+	
+	
 
 }
