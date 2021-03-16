@@ -97,23 +97,23 @@
 	<table class="table table-default">
 		<tr>
 			<th id="list">이름</th>
-			<td><input type="text" class="form-control" placeholder="가나다 동물병원"></td>
+			<td><input type="text" class="form-control" value="${vdto.name}"></td>
 		</tr>
 		<tr>
 			<th id="list">주소</th>
-			<td><input type="text" class="form-control" placeholder="서울특별시 강남구 역삼동"></td>
+			<td><input type="text" class="form-control" value="${vdto.address}"></td>
 		</tr>
 		<tr>
 			<th id="list">전화번호</th>
-			<td><input type="text" class="form-control" placeholder="0507-1234-5678"></td>
+			<td><input type="text" class="form-control" value="${vdto.tel}"></td>
 		</tr>
 		<tr>
 			<th id="list">진료시간</th>
-			<td><input type="text" class="form-control" placeholder="09:00-18:00"></td>
+			<td><input type="text" class="form-control" value="${vdto.time}"></td>
 		</tr>
 		<tr>
 			<th id="list">진료목록</th>
-			<td><input type="text" class="form-control" placeholder="건강검진, 안과진료"></td>
+			<td><input type="text" class="form-control" value="${vdto.treatment}"></td>
 		</tr>
 		<tr>
 			<th id="list">로고 or 이미지</th>
@@ -124,7 +124,7 @@
 	
 	<div class="btns">
       	<input type="submit" class="btn" value="수정" id="add">
-      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/view.action'">
+      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}'">
     </div>
 </div>
 

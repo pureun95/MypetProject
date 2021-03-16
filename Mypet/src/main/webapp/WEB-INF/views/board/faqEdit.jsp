@@ -200,15 +200,9 @@
 				<option value="5">보호소</option>
 				<option value="6">기타</option>		
 			</select>
-	        <input type="text" class="form-control board-title" onclick="this.value=''" placeholder="FAQ제목입니다.">	        	
-	        <textarea class="form-control board-content" onclick="this.value=''" placeholder="FAQ내용입니다."></textarea> 	    	                      		           		        
-	        <div class="faqtail">
-	        	<span class="glyphicon glyphicon-question-sign"></span>
-        		<ul>
-        			<li>추가로 자세한 답변을 원하신다면 <span id="chat" onclick="location.href='/mypet/board/faqList.action'">채팅</span>을 이용해주세요.</li>
-        			<li>추가로 자세한 전화문의를 원하신다면 0000-0000로 연락주세요.</li>
-        		</ul>
-        	</div>
+	        <input type="text" class="form-control board-title" onclick="this.value=''" value="${fdto.title}">	        	
+	        <textarea class="form-control board-content" onclick="this.value=''">${fdto.content}</textarea> 	    	                      		           		        
+	        
 	        
 	        <div class="photo">
 	        	
