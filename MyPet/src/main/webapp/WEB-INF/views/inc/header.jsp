@@ -30,7 +30,7 @@
 			<label for="plist_bar2" class="menubar2">
 				<input type="checkbox" id="plist_bar2" name="plist_bar2" style="display: none;">
 			</label>
-			<input type="button" value='로그인' class="btn login">
+			<input type="button" value='로그인' class="btn login" onClick="location.href='/mypet/member/auth.action'">
 			</span>
 		</div>
 		
