@@ -7,7 +7,8 @@ public interface IShelter {
 
 	List<ShelterDTO> list(HashMap<String, String> map);
 
-	ShelterDTO get(String seq);
+	List<ShelterDTO> get(String seq);
+	/*ShelterVolDTO get(String seq);*/
 
 	List<LocationDTO> location();
 

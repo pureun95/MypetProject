@@ -72,13 +72,13 @@ public class ShelterController {
 		if (n == 1) {
 			pagebar += String.format("<li class='disabled'>"
 					+ "<a href=\"#!\" aria-label=\"Previous\">"
-					+ "이전"
+					+ "<<"
 					+ "</a>"
 					+ "</li>");
 		} else {				
 			pagebar += String.format("<li>"
-					+ "<a href=\"/Myhome_project/admin/board/listpolicy.do?page=%d\" aria-label=\"Previous\">"
-					+ "이전"
+					+ "<a href=\"/mypet/shelter/list.action?page=%d\" aria-label=\"Previous\">"
+					+ "<"
 					+ "</a>"
 					+ "</li>", n - 1);
 		}
@@ -93,7 +93,7 @@ public class ShelterController {
 				pagebar += "<li>";
 			}
 			
-			pagebar += String.format("<a href=\"/Myhome_project/admin/board/listpolicy.do?page=%d\">%d</a></li>", n, n);
+			pagebar += String.format("<a href=\"/mypet/shelter/list.action?page=%d\">%d</a></li>", n, n);
 			
 			loop++;
 			n++;
@@ -104,13 +104,13 @@ public class ShelterController {
 		if (n > totalPage) {
 			pagebar += String.format("<li class='disabled'>"
 					+ "<a href=\"#!\" aria-label=\"Next\">"
-					+ "다음"
+					+ ">>"
 					+ "</a>"
 					+ "</li>");
 		} else {
 			pagebar += String.format("<li>"
-					+ "<a href=\"/Myhome_project/admin/board/listpolicy.do?page=%d\" aria-label=\"Next\">"
-					+ "다음"
+					+ "<a href=\"/mypet/shelter/list.action?page=%d\" aria-label=\"Next\">"
+					+ ">>"
 					+ "</a>"
 					+ "</li>", n);
 		}
@@ -132,7 +132,7 @@ public class ShelterController {
 	@RequestMapping(value="/shelter/view.action")
 	public String view(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
 		
-		ShelterDTO sdto = dao.get(seq);
+		List<ShelterDTO> sdto = dao.get(seq);
 		request.setAttribute("sdto", sdto);
 		
 		return "shelter.view";
@@ -146,9 +146,9 @@ public class ShelterController {
 	@RequestMapping(value="/shelter/edit.action")
 	public String edit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
 		
-		ShelterDTO sdto = dao.get(seq);
-		
-		request.setAttribute("sdto", sdto);
+//		ShelterDTO sdto = dao.get(seq);
+//		
+//		request.setAttribute("sdto", sdto);
 		
 		return "shelter.edit";
 	}

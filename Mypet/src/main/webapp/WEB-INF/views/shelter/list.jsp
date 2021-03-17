@@ -175,8 +175,9 @@
         float: left;
 	}
 	
-	.pagination > li > a:hover {
+	.pagination > li > a:hover,.pagination > .active > a, .pagination > .active > a:hover {
         background-color: #b27208;
+        border-color: #b27208;
         color: white;
     }
 	
@@ -229,12 +230,12 @@
 				<tr class="list">
 					<td>${sdto.seqShelter}</td>
 					<td class="name" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}&search=${search}'">${sdto.name}</td>
-					<td>${sdto.address}</td>
+					<td >${sdto.address}</td>
 					<td>${sdto.tel}</td>
 				</tr>
 			</c:forEach>
 		</table>
-		
+		 
 		<div class="pagebar">
 			<ul class="pagination">
 				${pagebar}
@@ -246,39 +247,57 @@
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9&libraries=services"></script>
 	
 	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center : new kakao.maps.LatLng(37.499293, 127.033236),
-			level : 8
-		};
-
-		var map = new kakao.maps.Map(container, options); //객체 생성 -> 지도 출력
+		var mapContainer = document.getElementById('map');
+		var mapOption = {
+		    center: new daum.maps.LatLng(37.499293, 127.033236),
+		    level: 10
+		};  
 	
-		// 주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-
-		// 주소로 좌표를 검색합니다
-		geocoder.addressSearch('서울시 강남구 역삼동', function(result, status) {
+		var map = new daum.maps.Map(mapContainer, mapOption); 
+	
+		var geocoder = new daum.maps.services.Geocoder();
+				
+		var listData = [
 			
-			// 정상적으로 검색이 완료됐으면 
-		     if (status === kakao.maps.services.Status.OK) {
-
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
-		            map: map,
-		            position: coords
-		        });
-
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
-		        var infowindow = new kakao.maps.InfoWindow({
-		            content: '<div style="width:200px;text-align:center;padding:6px 0;">학원</div>'
-		        });
-		        infowindow.open(map, marker);
-
-		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-		        map.setCenter(coords);
-		    } 	
+			<c:forEach items="${list}" var = "sdto">
+			 '${sdto.address}',
+			</c:forEach>
+		];
+		
+		var listDataName = [
+			
+			<c:forEach items="${list}" var = "sdto">
+			 '${sdto.name}',
+			</c:forEach>
+		];
+		
+		var listDataSeq = [
+			
+			<c:forEach items="${list}" var = "vdto">
+			 '${sdto.seqVet}',
+			</c:forEach>
+			
+		];
+	
+		listData.forEach(function(addr, index) {
+		    geocoder.addressSearch(addr, function(result, status) {
+		        if (status === daum.maps.services.Status.OK) {
+		            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	
+		            var marker = new daum.maps.Marker({
+		                map: map,
+		                position: coords
+		            });
+		            var infowindow = new daum.maps.InfoWindow({
+		                content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listDataName[index] + '</div>',
+		                disableAutoPan: true
+		            });
+		            infowindow.open(map, marker);
+		            daum.maps.event.addListener(marker, 'click', function(mouseEvent) {        
+		            	location.href='/mypet/shelter/view.action?seq=' + listDataSeq[index];
+		   			    });
+		        } 
+		    });		    
 		});
-		</script>
+
+</script>

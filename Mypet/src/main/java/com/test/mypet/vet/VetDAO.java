@@ -35,7 +35,7 @@ public class VetDAO implements IVet{
 
 	@Override
 	public int getTotalCount(HashMap<String, String> map) {
-		// TODO Auto-generated method stub
+		
 		return template.selectOne("vet.count",map);
 	}
 

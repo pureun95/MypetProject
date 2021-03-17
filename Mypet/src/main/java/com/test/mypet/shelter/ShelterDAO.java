@@ -16,22 +16,16 @@ public class ShelterDAO implements IShelter{
 	@Override
 	public List<ShelterDTO> list(HashMap<String, String> map) {
 		
-//		if(map.get("search") != null) {
-//			
-//			String where = "";
-//			
-//			where = String.format("where name like '%%%s%%'", map.get("search"));
-//		}
-		
 		return template.selectList("shelter.list", map);
 	}
-	
 
+	
 	@Override
-	public ShelterDTO get(String seqShelter) {
+	public List<ShelterDTO> get(String seqShelter) {
 		
-		return template.selectOne("shelter.get", seqShelter);
+		return template.selectList("shelter.get", seqShelter);
 	}
+	
 
 
 	@Override
@@ -53,6 +47,8 @@ public class ShelterDAO implements IShelter{
 		
 		return template.selectOne("shelter.count",map);
 	}
+
+
 
 	
 }
