@@ -17,6 +17,18 @@
 		
 	</select>
 	
+	<!-- 입양글 전체 리스트 -->
+	<select id="AllList" parameterType="HashMap" resultType="adto">
+		select * from (select a.*, rownum as rnum from (select * from vPet 
+		<if test="species != null">
+			where species = #{species}
+		</if>
+		<if test="search != null">
+			where nameV like '%' || #{search} || '%' or nameS like '%' || #{search} || '%' or title like '%' || #{search} ||'%'
+		</if>
+			order by seqAdoption desc) a)
+		
+	</select>
 	
 	<!-- select * from (select a.*, rownum as rnum from (select * from vAllLessorProperty %s order by seqLessorProperty desc) a) where rnum between %s and %s", where, map.get("begin"), map.get("end") -->
 	
@@ -36,5 +48,11 @@
 	<select id="view" parameterType="String" resultType="adto">
 		select * from vPet where seqAdoption = #{seqAdoption}		
 	</select>
+	
+	
+	<!-- 찜하기 수 -->
+	<insert id="likes" parameterType="int" resultType="int">
+		update tblAdoption set likes = likes + 1 where seqAdoption = #{seqAdoption};
+	</insert> 
 
 </mapper>
