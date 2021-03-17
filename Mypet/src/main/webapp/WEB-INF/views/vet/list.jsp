@@ -237,18 +237,7 @@
 		
 		<div class="pagebar">
 			<ul class="pagination">
-                <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li><a>3</a></li>
-                <li><a>4</a></li>
-                <li><a>5</a></li>
-                <li><a>6</a></li>
-                <li><a>7</a></li>
-                <li><a>8</a></li>
-                <li><a>9</a></li>
-                <li><a>10</a></li>
-                <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
+                ${pagebar}
             </ul>      
 		</div>
 	</div>

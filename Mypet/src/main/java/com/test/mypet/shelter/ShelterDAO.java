@@ -47,5 +47,12 @@ public class ShelterDAO implements IShelter{
 		return template.update("shelter.edit",sdto);
 	}
 
+
+	@Override
+	public int getTotalCount(HashMap<String, String> map) {
+		
+		return template.selectOne("shelter.count",map);
+	}
+
 	
 }

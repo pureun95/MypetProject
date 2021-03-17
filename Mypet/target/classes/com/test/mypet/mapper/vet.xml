@@ -5,10 +5,11 @@
 <mapper namespace="vet">
 
 	<select id="list" parameterType="map" resultType="vdto">
-		select * from tblVet <!-- order by seqVet asc -->
+		select * from (select a.*, rownum as rnum from (select * from tblVet
 		<if test="search !=null and search !=''">
 			where name like '%' || #{search} || '%'
 		</if>	
+		order by seqVet asc) a) where rnum between #{begin} and #{end}
 	</select>
 	
 	<select id="get" parameterType="String" resultType="vdto">

@@ -5,19 +5,27 @@
 <mapper namespace="shelter">
 
 	<select id="list" parameterType="map" resultType="sdto">
-		select * from vwShelter <!-- order by seqShelter asc -->
-		<if test="search != null and search != ''"> 
-			where name like '%' || #{search} || '%'
-		</if>
+		select * from (select a.*, rownum as rnum from (select * from vwShelter  
+			<if test="search != null and search != ''"> 
+				where name like '%' || #{search} || '%'
+			</if>
+		order by seqShelter asc) a) where rnum between #{begin} and #{end}
 	</select>
-	
-	<!-- <select id="location" resultType="ldto">
-		select * from vwLocationDetail by seqLocation asc
-	</select> -->
-	
+
 	<select id="get" parameterType="String" resultType="sdto">
    		select * from vwShelter where seqShelter = #{seqShelter}
    </select>
+   
+   <update id="edit" parameterType="sdto">
+   		update vwShelter set 
+   			name = #{name},
+   			image = #{image},
+   			address = #{address},
+   			tel = #{tel},
+   			account = #{account},
+   			time = #{time}
+   				where seqShelter = #{seqShelter}
+   </update>
 
 
 </mapper>
