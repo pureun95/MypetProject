@@ -116,11 +116,30 @@ public class AdoptionController {
 									+ "            </a>"
 									+ "        </li>");			
 		} else {
-			pagebar += String.format("<li>"
-									+ "            <a href=\"/mypet/adoption/list.action?species=%s&page=%d\" aria-label=\"Previous\">"
-									+ "                <span aria-hidden=\"true\">&laquo;</span>"
-									+ "            </a>"
-									+ "        </li>", species, n - 1);
+			
+			if(species != null ) {
+				pagebar += String.format("<li>"
+						+ "            <a href=\"/mypet/adoption/list.action?species=%s&page=%d\" aria-label=\"Previous\">"
+						+ "                <span aria-hidden=\"true\">&laquo;</span>"
+						+ "            </a>"
+						+ "        </li>", species, n - 1);
+				
+			} else if (search != null) {
+				pagebar += String.format("<li>"
+						+ "            <a href=\"/mypet/adoption/list.action?search=%s&page=%d\" aria-label=\"Previous\">"
+						+ "                <span aria-hidden=\"true\">&laquo;</span>"
+						+ "            </a>"
+						+ "        </li>", search, n - 1);
+			} else {
+				pagebar += String.format("<li>"
+						+ "            <a href=\"/mypet/adoption/list.action?page=%d\" aria-label=\"Previous\">"
+						+ "                <span aria-hidden=\"true\">&laquo;</span>"
+						+ "            </a>"
+						+ "        </li>", n - 1);
+				
+			}
+			
+			
 							
 		}
 		
@@ -133,7 +152,7 @@ public class AdoptionController {
 				pagebar += "<li>";								
 			}
 							
-				pagebar += String.format("<a href=\"/mypet/adoption/list.action?species=%s&page=%d\">%d</a></li>", species, n, n);
+				pagebar += String.format("<a href=\"/mypet/adoption/list.action?&page=%d\">%d</a></li>", n, n);
 						
 					loop++;
 					n++;
@@ -150,11 +169,30 @@ public class AdoptionController {
 									+ "        </li>");
 							
 			} else { //여전히 다음페이지가 존재하는 경우엔 링크 있는 애로 생성.			
-				pagebar += String.format("<li>"
+				
+				if(species != null) {
+					
+				
+					pagebar += String.format("<li>"
 									+ "            <a href=\"/mypet/adoption/list.action?species=%s&page=%d\" aria-label=\"Next\">"
 									+ "                <span aria-hidden=\"true\">&raquo;</span>"
 									+ "            </a>"
 									+ "        </li>", species, n);
+			
+				} else if(search != null){
+					pagebar += String.format("<li>"
+							+ "            <a href=\"/mypet/adoption/list.action?search=%s&page=%d\" aria-label=\"Next\">"
+							+ "                <span aria-hidden=\"true\">&raquo;</span>"
+							+ "            </a>"
+							+ "        </li>", search, n);
+					
+				} else {
+					pagebar += String.format("<li>"
+							+ "            <a href=\"/mypet/adoption/list.action?page=%d\" aria-label=\"Next\">"
+							+ "                <span aria-hidden=\"true\">&raquo;</span>"
+							+ "            </a>"
+							+ "        </li>", n);
+				}
 			}
 						
 						
@@ -166,6 +204,7 @@ public class AdoptionController {
 		request.setAttribute("species", species);
 		
 		return "adoption/list";
+
 
 	}
 	
