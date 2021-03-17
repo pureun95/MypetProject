@@ -18,7 +18,7 @@ from tblGoods tg
                         on tg.seqImage = tig.seqImageGoods;
 
 -- 유저 주문 내역보기
-create or replace view vwUserOrderGoods as
+eate or replace view vwUserOrderGoods as
 select 
     tog.seqOrderGoods as seqOrderGoods,
     tog.seqOrder as seqOrder,
@@ -32,12 +32,12 @@ select
 from tblorderGoods tog 
     inner join tblOrder torder
         on tog.seqOrder = torder.seqOrder
-            inner join tblGoods tg
+            left outer join tblGoods tg
                 on tog.seqGoods = tg.seqGoods
-                    inner join tblUser tu
+                    left outer join tblUser tu
                         on torder.seqUser = tu.seqUser
-                            inner join tblDelivery td
-                                on torder.seqorder = td.seqdelivery;
+                            left outer join tblDelivery td
+                                on torder.seqdelivery = td.seqdelivery;
 
 
 
