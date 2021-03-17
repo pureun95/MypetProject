@@ -110,7 +110,7 @@ public class ReportBoardController {
 					+ "            <a href=\"/mypet/reportBoard/list.action?page=%d\" aria-label=\"Next\">"
 					+ "                <span aria-hidden=\"true\">&raquo;</span>"
 					+ "            </a>"
-					+ "        </li>");
+					+ "        </li>", n);
 		}
 		
 		List<ReportBoardDTO> list = dao.list(map);

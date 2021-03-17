@@ -204,7 +204,6 @@
 		
 		$("#btnOk").click(function() {
 			
-			console.log("안녕ㅋ");
 			
 			if($("#title1").val().trim() == "") {
 				alert("제목을 입력해주세요");
@@ -222,8 +221,5 @@
 			}
 			
 		});
-		
 
-    
-    
     </script>

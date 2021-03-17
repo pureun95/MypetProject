@@ -1,5 +1,6 @@
 package com.test.mypet.goods;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class GoodsController{
 		//우리가만든 해쉬맵은 스트링이기 때문에 begin과 end도 문자열로 만들어서 넘기기.
 		map.put("begin", begin + "");
 		map.put("end", end + "");
-		
+
 		List<GoodsDTO> list = dao.list(map);
 
 		totalCount = dao.getTotalCount(map);
@@ -131,9 +132,9 @@ public class GoodsController{
 					+ "        </li>", n, category);
 		}
 
-		
-	    request.setAttribute("pagebar", pagebar);
-	    request.setAttribute("nowPage", nowPage);
+
+		request.setAttribute("pagebar", pagebar);
+		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("list", list);
 
 		return "goods.list";		
@@ -169,24 +170,64 @@ public class GoodsController{
 		return "goods.order";		
 	}
 
-	/*
-	 * @RequestMapping(value="/goods/orderok.action", method={RequestMethod.POST})
-	 * public void orderok(HttpServletRequest request, HttpServletResponse response,
-	 * HttpSession session, GoodsDTO dto) {
-	 * 
-	 * dto.setSeqUser((String)session.getAttribute("seqUser"));
-	 * 
-	 * //1차적으로 주문 넣고 dao.order(dto);
-	 * 
-	 * //2차적으로 주문번호 가져와서 orderGoods insert int seqOrder = dao.getSeqOrder(dto);
-	 * 
-	 * 
-	 * }
-	 */
+
+	@RequestMapping(value="/goods/orderok.action", method={RequestMethod.POST})
+	public void orderok(HttpServletRequest request, HttpServletResponse response,
+			HttpSession session, String info) throws IOException {
+
+		//dto.setSeqUser((String)session.getAttribute("seqUser"));
+
+		GoodsDTO dto = new GoodsDTO();
+
+		//info = 개수,번호,가격
+		String line[] = info.split(",");
+
+		//상품번호
+		dto.setSeqGoods(line[1]);
+		//상품개수
+		dto.setGoodsCnt(line[0]);
+		//상품가격
+		dto.setTotalPrice(line[2]);
+		//유저
+		dto.setSeqUser("6");
+
+		//확인용
+		//System.out.println(dto.getSeqGoods() + dto.getGoodsCnt() + dto.getTotalPrice());
+
+
+		//1차적으로 주문 넣고 
+		dao.order(dto);
+
+		System.out.println("1차 주문완료");
+		//2차적으로 주문번호 가져와서 orderGoods insert 
+		String seqOrder = dao.getSeqOrder(dto);
+		
+		//소스구조상 문제있습니다. 추후 사용할시 수정해야합니다.
+		// list로 받아서 size에 맨마지막에있는게 가장 최근에 주문받은거입니다.
+		dto.setSeqOrder(seqOrder);
+		//System.out.println("2차 주문준비 " + seqOrder);
+		
+
+		//2차 주문
+		dao.orderGoods(dto);
+		
+		
+		//주문내역으로 이동
+		response.sendRedirect("/mypet/goods/orderList.action");
+		
+
+	}
+
 
 	@RequestMapping(value="/goods/orderList.action", method={RequestMethod.GET})
 	public String orderList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String category) {
 
+		
+		//유저번호......................
+		List<GoodsDTO> list = dao.orderList("6");
+		
+		request.setAttribute("list", list);
+		
 		return "goods.orderList";		
 	}
 

@@ -13,8 +13,15 @@ public class GoodsDTO {
 	private String name;
 	private String price;
 	
+	//유저
 	private String seqUser;
 	private String goodsCnt;
 	private String totalPrice;
+	
+	//주문내역
+	private String seqOrder;
+	private String userName;
+	private String goodsName;
+	private String deliveryState;
 	
 }
