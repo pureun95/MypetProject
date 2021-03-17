@@ -50,6 +50,14 @@ public class AdoptionDAO implements IAdoptionDAO {
 		return template.selectOne("adoption.view", seqAdoption);
 	}
 
+
+	//찜하기
+	@Override
+	public int getLikes(String seqAdoption) {
+		
+		return template.update("adoption.likes", seqAdoption);
+	}
+
 	
 	
 	

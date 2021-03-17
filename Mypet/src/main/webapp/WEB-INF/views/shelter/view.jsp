@@ -183,7 +183,18 @@
 	.modal-footer #cancel{ background-color: #fab018; }
 	
     }
+    
+    
+   .ck {
+    	display: block;
+    	float: float;
+    }
 	
+	.desc {
+		display: block;
+		
+		
+	}
 	
 </style>
 
@@ -227,7 +238,7 @@
 			<th>봉사활동</th>
 			<td>
 			<c:forEach items="${sdto}" var="dto">
-				<input type="checkbox">${dto.startDate} ~ ${dto.endDate}
+				<input type="checkbox" class="ck"><span class="desc">${dto.startDate} ~ ${dto.endDate}</span>
 			</c:forEach>
 			
 <!-- 			<input type="button" class="btn" value="봉사예약하기" id="vol" onclick="$('#searchForm').submit();"> -->

@@ -374,7 +374,7 @@
     	
     		
     		
-    		<div class="pet-seq"><span>no. ${dto.seqPet}</span><img class="like" src="../resources/images/like.png"></div>
+    		<div class="pet-seq"><span>no. ${dto.seqPet}</span><img class="like" src="../resources/images/like.png" onclick="location.href='/mypet/adoption/likesOk.action?seqAdoption=${dto.seqAdoption}'"></div>
     		<span class="state">${dto.state }</span>    		
     	</div>
 		</c:forEach>		

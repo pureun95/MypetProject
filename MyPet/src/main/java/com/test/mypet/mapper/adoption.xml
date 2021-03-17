@@ -51,8 +51,8 @@
 	
 	
 	<!-- 찜하기 수 -->
-	<insert id="likes" parameterType="int" resultType="int">
-		update tblAdoption set likes = likes + 1 where seqAdoption = #{seqAdoption};
-	</insert> 
+	<update id="likes" parameterType="String">
+		update tblAdoption set likes = (likes + 1) where seqAdoption = #{seqAdoption}
+	</update> 
 
 </mapper>

@@ -30,7 +30,7 @@ public class AdoptionController {
 
 	//http://localhost:8090/mypet/adoption/list.action
 	@RequestMapping(value = "/adoption/list.action", method = { RequestMethod.GET })
-	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species, int seqAdoption) {
+	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species, String seqAdoption) {
 		
 		
 		String search = request.getParameter("search");
@@ -213,6 +213,29 @@ public class AdoptionController {
 	}
 	
 
+	//http://localhost:8090/mypet/adoption/list.action
+	@RequestMapping(value = "/adoption/likesOk.action", method = { RequestMethod.GET })
+	public void likes(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
+	
+		int result = adao.getLikes(seqAdoption);
+		
+		System.out.println("결과 : " + result);
+		
+		
+		try {
+			if (result == 1) {
+				response.sendRedirect("/board/board/list.action");
+			} else {
+				response.sendRedirect("/board/board/add.action");
+			}
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+				
+		
+		
+		
+	}
 	
 	
 	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
