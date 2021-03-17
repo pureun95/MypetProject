@@ -1,15 +1,21 @@
 package com.test.mypet.member;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class MemberController {
@@ -20,6 +26,10 @@ public class MemberController {
 //	@Autowired
 //	MemberService memberService;
 
+	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	
+	
+	
 	@Autowired
 	private IMemberDAO dao;
 
@@ -31,6 +41,7 @@ public class MemberController {
 	}
 
 
+	//유저 로그인
 	@RequestMapping(value = "/member/login.action", method = { RequestMethod.POST })
 	public void login(HttpServletRequest request, HttpServletResponse response, HttpSession session, String id,	String password) { // 1.
 
@@ -49,18 +60,32 @@ public class MemberController {
 		dto.setId(id);
 		dto.setPassword(password);
 		
+		
+		
 //		dto_admin.setId(id);
 //		dto_admin.setPassword(password);
 //		
 		MemberDTO mdto = dao.memberLogin(dto);
 //		AdminDTO adto = dao.adminLogin(dto_admin);
 
-		System.out.println(mdto.getName());
+//		System.out.println(mdto.getName());
 //		System.out.println(dto_admin.getId());
 
 		try {
-			if (mdto.getSeqUser().equals("") || mdto.getSeqUser() == null) {
-				response.sendRedirect("/mypet/member/auth.action");
+//			if (mdto.getSeqUser().equals("") || mdto.getSeqUser() == null) {
+				if (mdto.getSeqUser() == null) {
+//				if (mdto.getId() != id) {
+				//response.sendRedirect("/mypet/member/auth.action");
+				PrintWriter writer = response.getWriter();
+				
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('failed');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
 				//로그인 실패
 			} else {
 //				response.sendRedirect("/mypet/member/register.action");
@@ -77,7 +102,7 @@ public class MemberController {
 	
 	//
 	
-	
+	//관리자 로그인
 	@RequestMapping(value = "/member/login_admin.action", method = { RequestMethod.POST })
 	public void login_admin(HttpServletRequest request, HttpServletResponse response, HttpSession session, String id,	String password) { // 1.
 
@@ -109,7 +134,8 @@ public class MemberController {
 		
 
 		try {
-			if (adto.getSeqAdmin().equals("")) {
+//			if (adto.getSeqAdmin().equals("")) {
+				if (adto.getSeqAdmin() == null) {
 				response.sendRedirect("/mypet/member/auth.action");
 				//로그인 실패
 			} else {
@@ -164,18 +190,45 @@ public class MemberController {
 
 	}
 	
-	@RequestMapping(value = "/member/chat.action", method = { RequestMethod.GET })
-	public String chat(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	
 
-		return "member//chat";
+	@RequestMapping(value = "/member/chat.action", method = RequestMethod.GET)
+	public ModelAndView chat(ModelAndView mv, HttpSession session, String id) {
+			
+		mv.setViewName("member//chat");
+		
+		
+		logger.info("아이디: "+ session.getId());
+		
+		System.out.println("normal chat page");
+		
+		List<ChatMessageDto> list = dao.list(session.getAttribute("id").toString());
+		System.out.println(list.size());
+		mv.addObject("list", list);
 
+		
+		return mv;
 	}
-
-	// test용 tiles 2번쨰 방식입니다. 나중에 지우면됩니다.!!
-//	@RequestMapping(value = "/stat.action")
-//	public String template_two() {
-//		System.out.println("test");
-//		return "statistic/list";
+	
+	
+	
+	
+	
+	
+//	@RequestMapping(value = "/member/chatlist.action", method = { RequestMethod.GET })
+//	public String list(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+//
+//		// 1. DB 위임 -> select
+//		// 2. JSP 호출하기
+//
+//		
+//
+//		//return "member.chatlist";
+//
 //	}
+//	
+	
+	
+	
 
 }

@@ -14,6 +14,7 @@
 	}
 	
 </style>
+
 <!-- ########################## header 시작 ########################## -->
 <c:if test="${empty id}">
 <header id="header">
@@ -193,6 +194,7 @@
 		<div class="pheadercontent pheadercontent2"></div>
 		<div class="pheadercontent pheadercontent3">
 			<span class="head_list2">
+			<span class="head_id2">관리자계정</span> 
 			
 			<label for="plist_bar2-3" class="menubar2-3" id="menubar2-3">
 				<input type="checkbox" id="plist_bar2-3" name="plist_bar2-3" style="display: none;">
@@ -258,6 +260,7 @@
 	        $(".menubar2-2").addClass("menubar2-2-scroll");
 	        $(".menubar2-3").addClass("menubar2-3-scroll");
 	        $(".head_id").addClass("head_id-scroll");
+	        $(".head_id2").addClass("head_id2-scroll");
 	        $(".login").addClass("login-scroll");
 	        $(".logout").addClass("logout-scroll");
 	        $(".logout2").addClass("logout2-scroll");
@@ -275,6 +278,7 @@
 	        $(".menubar2-2").removeClass("menubar2-2-scroll");
 	        $(".menubar2-3").removeClass("menubar2-3-scroll");
 	        $(".head_id").removeClass("head_id-scroll");
+	        $(".head_id2").removeClass("head_id2-scroll");
 	        $(".login").removeClass("login-scroll");
 	        $(".logout").removeClass("logout-scroll");
 	        $(".logout2").removeClass("logout2-scroll");

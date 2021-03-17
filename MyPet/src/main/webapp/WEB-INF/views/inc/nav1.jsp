@@ -2,36 +2,18 @@
 	pageEncoding="UTF-8"%>
 <div class="nav1">
 	<ul>
-		<li>1</li>
-		<li>2</li>
-		<li>3</li>
-		<li>4</li>
-		<li>5</li>
-		<li>6</li>
-		<li>7</li>
-		<li>8</li>
+		<li><a href="/mypet/mypetintroduce/introduce.action">mypet은?</a></li>
+		<li><a href="/mypet/goods/list.action">굿즈 스토어</a></li>
+		<li><a href="/mypet/vet/list.action">동물병원/보호소</a></li>
+		<li><a href="/mypet/adoption/list.action">입양하기</a></li>
+		<li><a href="/mypet/sponsor/view.action">후원하기</a></li>
+		<li><a href="">게시판</a></li>
+		<li><a href="/mypet/stat/view.action">유기동물 통계</a></li>
 	</ul>
 </div>
 
-
 <script>
 
-/* 원본 */
- 
-/* $(".head_list").click(function(){
-
-    if($("#plist_bar1").prop("checked")){     
-        $("html").scrollTop(0);
-        $(".nav1").css("left","0%").css("z-index","99").css("opacity","1").css("backgound","white");
-        $("body").css("overflow-y","hidden");
-    } else{
-        $(".nav1").css("left","-100%");
-        $("body").css("overflow-y","scroll");
-    }
-});
- */
- 
- 
  $(".head_list").click(function() {
      var height = $(document).scrollTop();
      

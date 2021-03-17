@@ -57,7 +57,7 @@
     	background-color: #DDDDDD;
     }
     
-    .tdProductInfo {
+    .tdProductInfoName, .tdProductInfoGoodsCnt, .tdProductPrice {
     	padding: 20px 20px;
     }
     
@@ -73,7 +73,6 @@
 
 <div id="content">
 	<div id="orderinfo">
-	
 		<form>
 			<fieldset>
 				<legend>주문자 정보</legend>
@@ -107,18 +106,18 @@
 						<th class="info">주문금액</th>
 					</tr>
 					<tr>
-						<td class="tdProductInfo">${dto.name }</td>
-						<td class="tdProductInfo">${dto.goodsCnt }</td>
-						<td class="tdProductInfo">${dto.totalPrice }</td>
+						<td class="tdProductInfoName" value="${dto.seqGoods }">${dto.name }</td>
+						<td class="tdProductInfoGoodsCnt" value="${dto.goodsCnt }">${dto.goodsCnt }</td>
+						<td class="tdProductInfoPrice" value="${dto.totalPrice }">${dto.totalPrice }</td>
 					</tr>
 				</table>
-				
 			</fieldset>
 		</form>
 	</div>
 	
 	<div id="payment">
-		<form>
+		<form method="POST" action="/mypet/goods/orderok.action">
+			<input type="text" value="" style="display:none;" name="info" id="txtInfo">
 			<fieldset>
 				<legend>결제 방법</legend>
 				<input type="radio" name="payment" class="payment_type"><label for="pay1">무통장입금</label>
@@ -127,15 +126,22 @@
 				<input type="radio" name="payment" class="payment_type"><label for="pay3">휴대전화</label>
 				<input type="radio" name="payment" class="payment_type"><label for="pay3">카카오페이</label>
 			</fieldset>
+			<input type="submit" type="button" id="btnPayment" value="결제하기">
 		</form>
-	
 	</div>
-	<input type="button" id="btnPayment" value="결제하기">
 </div>
 
 <script>
+
+	var GoodsCnt = $(".tdProductInfoGoodsCnt").attr('value');
+	var seqGoods = $(".tdProductInfoName").attr('value');
+	var totalPrice = $(".tdProductInfoPrice").attr('value');
+	
+	$("#txtInfo").val(GoodsCnt+","+seqGoods+","+totalPrice);
+	console.log($("#txtInfo").val())
 	
 	$("#btnPayment").click(function() {
+		
 		
 		if($("#tel").val().trim() == "") {
 			alert("전화번호를 입력하세요");
@@ -151,6 +157,8 @@
 			alert("성함을 입력하세요");
 			$("#name").focus();
 		}
+		
+		
 	});
 	
 	

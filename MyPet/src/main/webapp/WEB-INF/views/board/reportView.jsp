@@ -164,9 +164,8 @@
 
 <script>
 
-	var seqReportBoard = $("#comments").attr('value')
+	var seqReportBoard = $("#comments").attr('value');
 	
-
 	$("#btnComment").click(function() {
 
 		$(".comment").val($(".comment").val() + "," + seqReportBoard);
