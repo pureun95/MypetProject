@@ -30,7 +30,7 @@ public class AdoptionController {
 
 	//http://localhost:8090/mypet/adoption/list.action
 	@RequestMapping(value = "/adoption/list.action", method = { RequestMethod.GET })
-	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species) {
+	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species, int seqAdoption) {
 		
 		
 		String search = request.getParameter("search");
@@ -211,6 +211,8 @@ public class AdoptionController {
 		return "adoption/list";
 
 	}
+	
+
 	
 	
 	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
