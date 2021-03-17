@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
+<title>MyPet :: 신고하기 게시판</title>
 <style>
-
-
 
  body {
       font-family: 'NanumSquare';
@@ -185,13 +183,53 @@
     .board-btn > input:nth-child(1) {
         margin-left: 1060px;
     }
+    
+	#modal {
+	  display:none;
+	  position:relative;
+	  width:100%;
+	  height:100%;
+	  z-index:1;
+	}
+	
+	#modal h2 {
+	  margin:0;   
+	}
+	
+	#modal button {
+	  display:inline-block;
+	  width:100px;
+	  margin-left:calc(100% - 100px - 10px);
+	}
+	
+	#modal .modal_content {
+	  width:300px;
+	  margin:100px auto;
+	  padding:20px 10px;
+	  background:#fff;
+	  border:2px solid #666;
+	}
+	
+	#modal .modal_layer {
+	  position:fixed;
+	  top:0;
+	  left:0;
+	  width:100%;
+	  height:100%;
+	  background:rgba(0, 0, 0, 0.5);
+	  z-index:-1;
+	}
+	
+	.pagination {
+		margin-left: 500px;
+	}
 
 </style>
 
 
     <div id="content">
-        <span class="board-name">공지사항</span>
-        <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기">
+        <span class="board-name">신고하기 게시판</span>
+        <div class="board-btn"><input type="button" class="btn common-btn" id="btnWrite" value="글쓰기">
         <input type="button" class="btn common-btn" value="삭제"></div>
         <table class="table table-condensed">
             <tr class="headtr">
@@ -201,46 +239,62 @@
                 <th class="fourthtd">날짜</th>
             </tr>
             <c:forEach items="${list}" var="dto">
-	            <tr class="tr2">
+	            <tr value="${dto.seqReportBoard }">
  	                <td>${dto.seqReportBoard }</td>
- 	                <td><a href="/reportBoard/view.action?seq=${dto.seqReportBoard}">${dto.title }</a></td>
+ 	                <%-- <td><a href="/reportBoard/view.action?seq=${dto.seqReportBoard}">${dto.title }</a></td> --%>
+ 	                <td class="modal_open">${dto.title }</td>
  	                <td>${dto.name }</td>
 	                <td>${dto.writedate }</td> 
 	            </tr>
 	        </c:forEach>
         </table>
+        
+		
+		<form method="post" action="/mypet/reportBoard/viewOk.action">
+			<div id="modal">
+			    <div class="modal_content">
+			        <p>패스워드 입력</p>
+					<input type="text" name="password" id="password" value="">
+			        <input type="submit" class="btn btn-outline-secondary" type="button" id="btnPassword" value="입력">
+			    </div>
+			    <div class="modal_layer"></div>
+			</div>
+		</form>
+
 
         <!-- 글쓰기 버튼 아래 -->
         <!-- <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기"></div> -->
         <!-- 페이지바/검색창 -->
         
-        <div class="pageSearch">
-            <!-- 페이지바 -->
-            <ul class="pagination">
-                <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li><a>3</a></li>
-                <li><a>4</a></li>
-                <li><a>5</a></li>
-                <li><a>6</a></li>
-                <li><a>7</a></li>
-                <li><a>8</a></li>
-                <li><a>9</a></li>
-                <li><a>10</a></li>
-                <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
-            </ul>       
-
-            <!-- 검색창 & 검색 버튼 -->
-            <input type="textbox" class="form-control search-text">
-            <input type="button" class="btn common-btn" value="검색">
-        </div>
+	   <ul class="pagination">
+	   		${pagebar}
+	   </ul>
     </div>
    
 
+<script>
 
-
-    <script>
-
-
-    </script>
+	var seqReportBoard = [];
+	var value
+	
+	<c:forEach items="${list}" var="dto">
+		seqReportBoard.push("${dto.seqReportBoard}");
+	</c:forEach>
+	
+	$(".modal_open").click(function(){
+		value = seqReportBoard[$(this).parent('tr').attr('value') - parseInt(1)];
+		//console.log(value);
+	    $("#modal").attr("style", "display:block");
+	});
+	
+	 $("#btnPassword").click(function(){
+		$("#password").val($("#password").val() + "," + value);
+		console.log($("#password").val());
+	    $("#modal").attr("style", "display:none");
+	});
+	 
+	 $("#btnWrite").click(function() {
+		 location.href= '/mypet/reportBoard/write.action';
+	 });
+	 
+</script>
