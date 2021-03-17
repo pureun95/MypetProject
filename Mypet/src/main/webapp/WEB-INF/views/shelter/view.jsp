@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <title>MyPet::보호소</title>	
 <style>
 
@@ -189,56 +189,61 @@
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div class="board-title">${sdto.name} 상세정보</div>
+	<div class="board-title">${sdto[0].name} 상세정보</div>
 	<div class="btns"> 
-		<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/shelter/delete.action?seq=${sdto.seqShelter}';">
-		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/shelter/edit.action?seq=${sdto.seqShelter}';">
+		<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/shelter/delete.action?seq=${sdto[0].seqShelter}';">
+		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/shelter/edit.action?seq=${sdto[0].seqShelter}';">
 	</div>
 	<table class="table table-default">
 		<tr id="list">
 			<td rowspan='6' class="logo">
-				<div id="img" style="background-image:url('/mypet/resources/images/shelter/${sdto.image}');"></div>
+				<div id="img" style="background-image:url('/mypet/resources/images/shelter/${sdto[0].image}');"></div>
 			</td>
 			<th>이름</th>
-			<td>${sdto.name}</td>
+			<td>${sdto[0].name}</td>
 		</tr>		
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>주소</th>
-			<td>${sdto.address}</td>
+			<td>${sdto[0].address}</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>전화번호</th>
-			<td>${sdto.tel}</td>
+			<td>${sdto[0].tel}</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>진료시간</th>
-			<td>${sdto.time}</td>
+			<td>${sdto[0].time}</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>후원계좌</th>
-			<td>${sdto.account} (${sdto.name})</td>
+			<td>${sdto[0].account} (${sdto[0].name})</td>
 		</tr>
 		<tr id="list">
 			<!-- <td></td> -->
 			<th>봉사활동</th>
-			<td>${sdto.startDate} ~ ${sdto.endDate}
+			<td>
+			<c:forEach items="${sdto}" var="dto">
+				<input type="checkbox">${dto.startDate} ~ ${dto.endDate}
+			</c:forEach>
+			
 <!-- 			<input type="button" class="btn" value="봉사예약하기" id="vol" onclick="$('#searchForm').submit();"> -->
 			<button id="apply" class="btn">봉사신청하기</button>
 			<div class="modal" tabindex="-1" role="dialog" id="applymodal">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content" id="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title">${sdto.name} 봉사 신청하기</h5>
+			        <h5 class="modal-title">${sdto[0].name} 봉사 신청하기</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        <p>${sdto.name} 봉사활동을 신청하시겠습니까?</p>
+			      	<div>${dto.startDate} ~ ${dto.endDate}</div>
+			        <p>${sdto[0].name} 봉사활동을 신청하시겠습니까?</p>
 			      </div>
 			      <div class="modal-footer">
 			      	<button type="submit" class="btn" id="apply">신청</button>
@@ -288,7 +293,7 @@
 	var geocoder = new kakao.maps.services.Geocoder();
 
 	// 주소로 좌표를 검색합니다
-	geocoder.addressSearch('${sdto.address}', function(result, status) {
+	geocoder.addressSearch('${sdto[0].address}', function(result, status) {
 		
 		// 정상적으로 검색이 완료됐으면 
 	     if (status === kakao.maps.services.Status.OK) {
@@ -303,7 +308,7 @@
 
 	        // 인포윈도우로 장소에 대한 설명을 표시합니다
 	        var infowindow = new kakao.maps.InfoWindow({
-	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${sdto.name}</div>'
+	            content: '<div style="width:150px;text-align:center;padding:6px 0;">${sdto[0].name}</div>'
 	        });
 	        infowindow.open(map, marker);
 

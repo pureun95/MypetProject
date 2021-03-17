@@ -13,8 +13,10 @@ public class ShelterDTO {
 	private String account;
 	private String time;
 	private String content;
+	
 	private String startDate;
 	private String endDate;
+	
 	
 
 

@@ -312,7 +312,7 @@
 	</table>
 	
 	<div class="listbtn"> 
-		<input type="button" class="btn" value="목록" id="listbtn" onclick="location.href='/mypet/vet/list.action'">
+		<input type="button" class="btn" value="목록" id="listbtn" onclick="location.href='/mypet/vet/list.action?search=${search}&page=${page}'">
 	</div>
 	
 	

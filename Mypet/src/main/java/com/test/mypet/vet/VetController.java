@@ -74,13 +74,13 @@ public class VetController {
 		if (n == 1) {
 			pagebar += String.format("<li class='disabled'>"
 					+ "<a href=\"#!\" aria-label=\"Previous\">"
-					+ "이전"
+					+ "<<"
 					+ "</a>"
 					+ "</li>");
 		} else {				
 			pagebar += String.format("<li>"
-					+ "<a href=\"/Myhome_project/admin/board/listpolicy.do?page=%d\" aria-label=\"Previous\">"
-					+ "이전"
+					+ "<a href=\"/mypet/vet/list.action?page=%d\" aria-label=\"Previous\">"
+					+ "<<"
 					+ "</a>"
 					+ "</li>", n - 1);
 		}
@@ -95,7 +95,7 @@ public class VetController {
 				pagebar += "<li>";
 			}
 			
-			pagebar += String.format("<a href=\"/Myhome_project/admin/board/listpolicy.do?page=%d\">%d</a></li>", n, n);
+			pagebar += String.format("<a href=\"/mypet/vet/list.action?page=%d\">%d</a></li>", n, n);
 			
 			loop++;
 			n++;
@@ -106,13 +106,13 @@ public class VetController {
 		if (n > totalPage) {
 			pagebar += String.format("<li class='disabled'>"
 					+ "<a href=\"#!\" aria-label=\"Next\">"
-					+ "다음"
+					+ ">>"
 					+ "</a>"
 					+ "</li>");
 		} else {
 			pagebar += String.format("<li>"
-					+ "<a href=\"/Myhome_project/admin/board/listpolicy.do?page=%d\" aria-label=\"Next\">"
-					+ "다음"
+					+ "<a href=\"/mypet/vet/list.action?page=%d\" aria-label=\"Next\">"
+					+ ">>"
 					+ "</a>"
 					+ "</li>", n);
 		}

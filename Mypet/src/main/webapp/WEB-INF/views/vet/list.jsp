@@ -179,10 +179,12 @@
         font-size: 18px;
 	}
 	
-	.pagination > li > a:hover {
+	.pagination > li > a:hover,.pagination > .active > a, .pagination > .active > a:hover {
         background-color: #b27208;
+        border-color: #b27208;
         color: white;
     }
+
 	
 
 </style>
@@ -228,7 +230,7 @@
 			<c:forEach items="${list}" var="vdto">
 				<tr class="list">
 					<td>${vdto.seqVet}</td>
-					<td class="name" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}'">${vdto.name}</td>
+					<td class="name" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}&search=${search}&page=${nowPage}'">${vdto.name}</td>
 					<td>${vdto.address}</td>
 					<td>${vdto.tel}</td>
 				</tr>
@@ -242,14 +244,62 @@
 		</div>
 	</div>
 	
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9"></script>
+	<!-- 지도 -->
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9&libraries=services"></script>
 	
 	<script>
-		var container = document.getElementById('map');
-		var options = {
-			center : new kakao.maps.LatLng(37.499293, 127.033236),
-			level : 8
-		};
+		var mapContainer = document.getElementById('map');
+		var mapOption = {
+		    center: new daum.maps.LatLng(37.499293, 127.033236),
+		    level: 10
+		};  
+	
+		var map = new daum.maps.Map(mapContainer, mapOption); 
+	
+		var geocoder = new daum.maps.services.Geocoder();
+				
+		var listData = [
+			
+			<c:forEach items="${list}" var = "vdto">
+			 '${vdto.address}',
+			</c:forEach>
+		];
+		
+		var listDataName = [
+			
+			<c:forEach items="${list}" var = "vdto">
+			 '${vdto.name}',
+			</c:forEach>
+		];
+		
+		var listDataSeq = [
+			
+			<c:forEach items="${list}" var = "vdto">
+			 '${vdto.seqVet}',
+			</c:forEach>
+			
+		];
+		
+	
+		listData.forEach(function(addr, index) {
+		    geocoder.addressSearch(addr, function(result, status) {
+		        if (status === daum.maps.services.Status.OK) {
+		            var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+	
+		            var marker = new daum.maps.Marker({
+		                map: map,
+		                position: coords
+		            });
+		            var infowindow = new daum.maps.InfoWindow({
+		                content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listDataName[index] + '</div>',
+		                disableAutoPan: true
+		            });
+		            infowindow.open(map, marker);
+		            daum.maps.event.addListener(marker, 'click', function(mouseEvent) {        
+		            	location.href='/mypet/vet/view.action?seq=' + listDataSeq[index];
+		   			    });
+		        } 
+		    });		    
+		});
 
-		var map = new kakao.maps.Map(container, options); //객체 생성 -> 지도 출력
-	</script>
+</script>

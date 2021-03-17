@@ -25,6 +25,10 @@
    			treatment = #{treatment}
    				where seqVet = #{seqVet}
    </update>
+   
+   <select id="count" parameterType="HashMap" resultType="int">
+		select count(*) as count from  tblVet		
+	</select>
 
 
 </mapper>
