@@ -37,4 +37,11 @@ public interface IAdoptionDAO {
 	 */
 	AdoptionDTO getView(String seqAdoption);
 	
+	
+	/**
+	 * 
+	 * @param 게시물번호
+	 * @return 쿼리 결과
+	 */
+	int getLikes(String seqAdoption);
 }
