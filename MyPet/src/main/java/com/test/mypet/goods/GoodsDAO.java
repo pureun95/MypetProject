@@ -32,13 +32,23 @@ public class GoodsDAO implements IGoodsDAO{
 	}
 
 	@Override
-	public int getSeqOrder(GoodsDTO dto) {
+	public String getSeqOrder(GoodsDTO dto) {
 		return template.selectOne("goods.getSeqOrder", dto);
 	}
 
 	@Override
 	public int getTotalCount(HashMap<String, String> map) {
 		return template.selectOne("goods.getTotalCount", map);
+	}
+
+	@Override
+	public void orderGoods(GoodsDTO dto) {
+		template.insert("goods.orderGoods", dto);
+	}
+
+	@Override
+	public List<GoodsDTO> orderList(String seqUser) {
+		return template.selectList("goods.orderList", seqUser);
 	}
 
 

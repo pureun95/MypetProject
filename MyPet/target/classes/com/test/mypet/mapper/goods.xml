@@ -9,7 +9,7 @@
 		<if test="category != null">
 			where seqCategory = #{category}
 		</if>
-		order by seqGoods desc) a) where rnum between #{begin} and #{end}
+		order by seqGoods asc) a) where rnum between #{begin} and #{end}
 	</select>
 	
 	<select id="goods" parameterType="String" resultType="goodsDTO">
@@ -23,14 +23,21 @@
 		</if>
 	</select>
 	
-<!-- 	<select id="order" parameterType="dto">
-		insert into tblOrder(seqOrder, seqDelivery, seqUser, price, orderdate) values (seqOrder.nextVal, 0, #{seqUser}, #{totalPrice}, sysdate);
+ 	<select id="order" parameterType="goodsDTO">
+		insert into tblOrder(seqOrder, seqDelivery, seqUser, price, orderdate) values (seqOrder.nextVal, 0, #{seqUser}, #{totalPrice}, sysdate)
 	</select>
 	
-	<select id="getSeqOrder" parameterType="dto" resultType="int">
-		select seqOrder from tblOrder where seqUser = #{seqUser} and orderdate like sysdate;
+	<select id="getSeqOrder" parameterType="goodsDTO" resultType="String">
+		select seqOrder from tblOrder where seqUser = #{seqUser} and orderdate like sysdate
 	</select>
-	 -->
+	
+	<select id="orderGoods" parameterType="goodsDTO">
+		insert into tblOrderGoods values (seqOrderGoods.nextVal, #{seqOrder}, #{seqGoods}, #{goodsCnt})
+	</select>
+	
+	<select id="orderList" parameterType="String" resultType="goodsDTO">
+		select * from vwUserOrderGoods where seqUser = #{seqUser}
+	</select>
 	
 </mapper>
 

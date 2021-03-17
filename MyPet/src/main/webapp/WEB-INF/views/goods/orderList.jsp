@@ -52,28 +52,16 @@
 				<th>주문금액(수량)</th>
 				<th>주문상태</th>
 			</tr>
-			<tr>
-				<td>상품정보</td>
-				<td>2021.03.14</td>
-				<td>1</td>
-				<td>66000(1)</td>
-				<td>배송 중</td>
-			</tr>
+			<c:forEach items="${list }" var="dto">
+				<tr>
+					<td>${dto.goodsName }</td>
+					<td>2021.03.14</td>
+					<td>${dto.seqOrder }</td>
+					<td>${dto.totalPrice}(${dto.goodsCnt })</td>
+					<td>${dto.deliveryState }</td>
+				</tr>
+			</c:forEach>
 		</table>
 		
-		<ul class="pagination">
-	   		<li>
-	   			<a href="" aria-label="Next"><span aria-hidden="true">&laquo;</span></a>
-			</li>
-			<li>
-				<a href="">1</a>
-			</li>
-			<li>
-				<a href="">2</a>
-			</li>
-			<li>
-	   			<a href="" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
-			</li>
-   		</ul>
 	</div>
 </div>
