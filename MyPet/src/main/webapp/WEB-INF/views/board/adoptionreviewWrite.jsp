@@ -51,7 +51,7 @@
 		margin-top: 170px;
 	}
 	
-	.board-write > .board-content {
+	.board-write .board-content {
 		min-height: 500px;
 		resize: none;
 		color: #9c9c9c;
@@ -127,7 +127,7 @@
     }
     
     .photo {
-		border: 1px solid #ececec;
+		/* border: 1px solid #ececec; */
 		width: 50px;
 		height: 60px;
 		padding: 5px;
@@ -142,7 +142,7 @@
     	/* border: 1px solid black; */
     	width: 40px;
     	height: 30px;
-    	background-image: url(/mypet/resources/images/photo.png);
+    	/* background-image: url(/mypet/resources/images/photo.png); */
     	background-size: cover;
     	background-position: 50% 50%;
     }
@@ -165,29 +165,24 @@
 			<span class="title">입양후기 글쓰기</span>
 			
 			<!-- 각자 본인의 게시판에 들어가면 option이 selected 되어있도록?! 해보고싶어서 넣어봤어요. -->
-			<select class="form-control multiple">
-				<option selected disabled hidden>게시판을 선택해주세요.</option>
-				<option value="1">공지사항</option>
-				<option value="2">활동</option>		
-				<option value="3">봉사활동신청</option>
+			<select class="form-control multiple" readonly>
 				<option value="4" selected>입양후기</option>
-				<option value="5">자주하는질문</option>
-				<option value="6">유기동물신고</option>			
 			</select>
-	        <input type="text" class="form-control board-title" onclick="this.value=''" placeholder="제목을 입력해주세요.">	        	
-	        <textarea class="form-control board-content" onclick="this.value=''" placeholder="내용을 입력해주세요."></textarea> 	    	                      		           		        
-	        
-	        <div class="photo">	        	
-	        	<input type="file" id="file" class="board-file">	
-	        	<label for="file"></label>	
-	        	<span>사진</span>	  	       		
-	       	</div>
-	        
-	        <div class="board-btn">
-	        	<input type="button" class="btn common-btn delete" onclick="history.back()" value="취소">
-	        	<input type="button" class="btn common-btn ok" value="등록">		        		        	      
-	        </div>
-	       
+			
+			<form method="POST" action="/mypet/board/adoptionreviewwriteok.action" enctype="multipart/form-data">
+		        <input type="text" class="form-control board-title" name="title" placeholder="제목을 입력해주세요.">	        	
+		        <textarea class="form-control board-content" name="content" placeholder="내용을 입력해주세요."></textarea> 	    	                      		           		        
+		        
+		        <div class="photo">	        	
+		        	<input type="file" id="attach" name="attach" class="board-file">	
+		        	<label for="file"></label>	
+		       	</div>
+		        
+		        <div class="board-btn">
+		        	<input type="button" class="btn common-btn delete" onclick="history.back()" value="취소">
+		        	<input type="submit" class="btn common-btn ok" value="등록">		        		        	      
+		        </div>
+	       </form>
         </div>	
 
     </div>

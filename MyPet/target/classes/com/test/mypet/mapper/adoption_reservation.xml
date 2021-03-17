@@ -39,7 +39,8 @@
 	<select parameterType="String" resultType="vwReservationDTO" id="getReservationView">
 		select * from vwReservation where seqReservation = #{seqReservation}
 	</select>
- 
+	
+	 
 </mapper>
 
 
