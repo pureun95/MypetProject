@@ -15,7 +15,7 @@ public class AdoptionDAO implements IAdoptionDAO {
 	private SqlSessionTemplate template;
 	
 	
-	//리스트
+	//페이징 리스트
 	@Override
 	public List<AdoptionDTO> getList(HashMap<String, String> map) {
 		
@@ -24,6 +24,17 @@ public class AdoptionDAO implements IAdoptionDAO {
 	}
 
 	
+	
+	//전체 리스트
+	@Override
+	public List<AdoptionDTO> getAllList(HashMap<String, String> map) {
+		
+		return template.selectList("adoption.AllList", map);
+	}
+
+
+
+
 	//페이징
 	@Override
 	public int getTotalCount(HashMap<String, String> map) {

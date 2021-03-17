@@ -70,11 +70,15 @@ public class AdoptionController {
 		map.put("end", end + "");
 		
 		List<AdoptionDTO> list = adao.getList(map);
+		List<AdoptionDTO> AllList = adao.getAllList(map);
 		
 		
 		//이미지는 하나만 넣을 것
 		for (int i=0; i<list.size(); i++) {
 		
+			AdoptionDTO dto = new AdoptionDTO();
+			
+			
 			if(list.get(i).getImg() == null) {
 				
 				//더미데이터 이미지
@@ -201,6 +205,7 @@ public class AdoptionController {
 		request.setAttribute("pagebar", pagebar);
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("list", list);
+		request.setAttribute("AllList", AllList);
 		request.setAttribute("species", species);
 		
 		return "adoption/list";

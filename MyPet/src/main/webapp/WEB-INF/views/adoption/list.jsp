@@ -302,7 +302,11 @@
     <span class="title">입양하기</span>
     <!-- 지도&검색창 -->
     <div class="map-search">
-    	<div id="map">지도다</div>  
+    	<div id="map">
+    		
+    		
+    	
+    	</div>  
     	
     	<div class="pet-radio">
     		<c:if test="${empty species }">		
@@ -354,14 +358,21 @@
     		<span class="pet-title" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'">${dto.title }</span>
     		
     		<c:if test="${not empty dto.nameV }">
-    		<span class="pet-address">${dto.addressV }</span>
-    		<span class="pet-address">${dto.nameV }</span>
+	    		<span class="pet-address">${dto.addressV }</span>
+	    		<span class="pet-address">${dto.nameV }</span>
+	    		<input type="hidden" class="location-hidden" value="${dto.addressV }">
     		</c:if>
     		
+
     		<c:if test="${empty dto.nameV }">
-    		<span class="pet-address">${dto.addressS }</span>
-    		<span class="pet-address">${dto.nameS }</span>
+	    		<span class="pet-address">${dto.addressS }</span>
+	    		<span class="pet-address">${dto.nameS }</span>
+	    		<input type="hidden" class="location-hidden" value="${dto.addressS }">
     		</c:if>
+    	
+    	
+    	
+    		
     		
     		<div class="pet-seq"><span>no. ${dto.seqPet}</span><img class="like" src="../resources/images/like.png"></div>
     		<span class="state">${dto.state }</span>    		
@@ -392,17 +403,111 @@
    
    
    
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bc381e86fe3a181e10d9e43cfc83f97a"></script>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bc381e86fe3a181e10d9e43cfc83f97a&libraries=services,clusterer,drawing"></script>
 <script>
-	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	};
+
+
+
+	      var mapContainer = document.getElementById('map');
+	      var mapOption = {
+	          center: new daum.maps.LatLng(37.499293, 127.033236),
+	          level: 5
+	      };  
+	   
+	      var map = new daum.maps.Map(mapContainer, mapOption); 
+	   
+	      var geocoder = new daum.maps.services.Geocoder();
+	      
+	      var listData = [
+	         <c:forEach items="${AllList}" var = "adto">
+		      
+	         	<c:if test="${not empty adto.nameV}">
+		          '${adto.addressV}',
+		        </c:if>
+		        <c:if test="${empty adto.nameV}">
+		          '${adto.addressS}',
+		        </c:if>
+	          
+	         </c:forEach>
+	      ];
+	      
+	      
+	      var listDataName = [
+	         <c:forEach items="${AllList}" var = "adto">
+		         <c:if test="${not empty adto.nameV}">
+		          	'${adto.nameV}',
+		          </c:if>
+		          <c:if test="${empty adto.nameV}">
+		          	'${adto.nameS}',
+		          </c:if>	         
+	         </c:forEach>
+	          
+	      ];
+	      
+	 
+	      var listDataSeq = [
+              
+              <c:forEach items="${AllList}" var = "vdto">
+	              <c:if test="${not empty vdto.nameV}">
+		          	${vdto.seqVet},
+		          </c:if>
+		          <c:if test="${empty vdto.nameV}">
+		          	${vdto.seqShelter},
+		          </c:if>	         
+	               
+              </c:forEach>
+              
+           ];
+	      
+	      
+           listData.forEach(function(addr, index) {
+               geocoder.addressSearch(addr, function(result, status) {
+                   if (status === daum.maps.services.Status.OK) {
+                       var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+        
+                       var marker = new daum.maps.Marker({
+                           map: map,
+                           position: coords
+                       });
+                       var infowindow = new daum.maps.InfoWindow({
+                           content: '<div style="width:150px;text-align:center;padding:6px 0;">' + listDataName[index] + '</div>',
+                           disableAutoPan: true
+                       });
+
+	                  
+	                  //좌표 위치로 이동
+	                  map.setCenter(coords);
+	                  infowindow.open(map, marker);
+	                  
+	                 
+	                  <c:forEach items="${AllList}" var = "vdto">
+		              	<c:if test="${not empty vdto.nameV}">
+		                  daum.maps.event.addListener(marker, 'click', function(mouseEvent) {        
+		                      location.href='/mypet/vet/view.action?seq=' + listDataSeq[index];
+		                  });
+		                  
+		                  console.log(listDataSeq[index]);
+	                  	</c:if>
+	                  
+		                <c:if test="${empty vdto.nameV}">
+		                  daum.maps.event.addListener(marker, 'click', function(mouseEvent) {        
+		                      location.href='/mypet/shelter/view.action?seq=' + listDataSeq[index];
+		                  });
+		                  
+		                  console.log(listDataSeq[index]);
+	                  	</c:if>
+	                  </c:forEach>
+	              } 
+	          });
+	      });
 	
-	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
 	
+		
+       
+
 	
+ 
+ 
 	$(".form-control").click(function() {
 		$(this).css("color", "#301b01");
 	})
