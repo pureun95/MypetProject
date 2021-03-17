@@ -11,6 +11,10 @@
 	<select id="login_admin" resultType="adminDTO" parameterType="adminDTO">
 		select * from tblAdmin where id = #{id} and password = #{password}
 	</select>
+	
+	<select id="chatlist" resultType="chatMessageDto" parameterType="String">
+		select * from vwChat where user_id = #{user_id}
+	</select>
 
 </mapper>
 

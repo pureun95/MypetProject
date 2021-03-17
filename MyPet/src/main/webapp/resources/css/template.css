@@ -384,7 +384,7 @@ header {
 	border: 2px solid #301B00;
 	position: relative;
 	position: relative;
-	top: 105px; left : 130px;
+	top: 75px;
 	height: 40px;
 	font-family: 'Jal_Onuel' !important;
 	background-color: #301B00;
@@ -427,7 +427,7 @@ header {
 .logout2-scroll {
 	background-color: transparent;
 	position: relative;
-    top: -12px;
+    top: -41px;
     left: 100px;
 	border: 0px;
 	color: #301B00;
@@ -442,18 +442,31 @@ header {
 	    left: -20px;
 	    text-align: right;
    } */
-.head_id {
+.head_id, .head_id2 {
 	position: relative;
 	font-family: 'Jal_Onuel';
 	font-size: 16px;
 	color: #301B00;
-	top: 105px; left : -20px;
+	top: 105px; 
 	text-align: right;
 	width: fit-content;
 	left: -20px;
 }
 
+.head_id2 {
+	top: 108px;
+    left: -10px;
+}
+
 .head_id-scroll {
+	position: relative;
+	top: -10px; left : -20px;
+	width: 25px;
+	height: 25px;
+	left: -20px;
+}
+
+.head_id2-scroll {
 	position: relative;
 	top: -10px; left : -20px;
 	width: 25px;
@@ -522,14 +535,14 @@ ul, li {
 	cursor: pointer;
 }
 
-/* #menubar2-2 {
-    	position: relative;
-    	top: 121px;
-    } */
+.menubar2-2 {
+   	top: 123px;
+	left: -2px;
+}
 .menubar2-3 {
 	position: relative;
-	top: 126px;
-    left: 100px;
+    top: 127px;
+    left: 7px;
 }
 
 .menubar2-scroll {
@@ -550,8 +563,8 @@ ul, li {
 
 .menubar2-3-scroll {
 	position: relative;
-	top: 0px;
-    left: 90px;
+	top: 2px;
+    left: 0px;
 	width: 25px;
 	height: 25px;
 }

@@ -17,6 +17,13 @@ body {
 	font-size: 16px;
 	border: 1px solid transparent !important;
 	height: 1000px;
+	
+	width: 1300px;
+    margin: 0px auto;
+    margin-top: 210px;
+    padding: 20px 50px;
+        
+        
 }
 
 
