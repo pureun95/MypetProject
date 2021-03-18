@@ -8,26 +8,25 @@
 
 
 
- body {
+ 	body {
       font-family: 'NanumSquare';
     }
      
-
     #content{        
         width: 1300px;
         margin: 0px auto;
         margin-top: 150px;
         padding: 20px 50px;
         /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
-       }
+    	border: 0;
+    }
 
 
 
 
     /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
     #content{
-        height: 1000px;
+        height: 1400px;
     }
 
 
@@ -35,7 +34,8 @@
         /* border: 1px solid black; */
         display: block;
         text-align: center;
-        margin-top: 130px;
+        margin-top: 80px;
+        /*top 한번 수청 했음..기존 130px -> 80px*/
         margin-bottom: 50px;
         font-size: 30px;
         font-family: 'Jal_Onuel';
@@ -151,18 +151,116 @@
         margin-left: 1060px;
     }
 
+/* 달력 css */
+      #tblcal{
+          width: 1200px;
+          height: 300px;
+          margin: 0px auto;
+          border: 1px solid #999;
+   	border-collapse: collapse;
+      }
+
+      #tblcal th, #tblcal td {
+          border: 1px solid #999;
+      }
+
+      #tblcal th {
+          background-color: #b27208;
+          color: white;
+          padding: 5px;
+          font-size: 18px;
+          text-align: center;
+      }
+
+      #tblcal td {
+          height: 80px;
+          width: 115px;
+          vertical-align: top;
+          padding: 15px;
+          padding-top: 25px;
+          padding-bottom: 5px;
+          position: relative;
+      		text-align: justify;
+      }
+      
+      #tblcal td a:link{
+      	color:black;
+      	text-decoration: none;	
+      }
+      
+      #tblcal td a:visited{
+      	color:black;
+      	text-decoration: none;	
+      }
+
+      #tblcal td a:hover{
+      	color:#8B00FF;	
+      }
+     
+      
+      #tblcal td:hover{
+          background-color: #f6da42;
+    
+      }
+
+      #tblcal .no {
+          position: absolute;
+          right: 10px;
+          top: 9px;
+      }
+      
+      #tblcal td div {
+          font-size: 16px;
+          height: 70px;
+          overflow: hidden;
+      }
+      
+      #tblcal td:first-child .no {
+          color: red;
+          font-weight: bolder; 
+      }
+      
+      #tblcal td:last-child .no {
+          color: blue;
+          font-weight: bolder;
+      }
+
+
+
 </style>
 
 
     <div id="content">
-        <span class="board-name">MyPet_발자국</span>
-        <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기">
+        <span class="board-name">MyPet_발자국   <small id="today"></small></span>
+
+        
+        <table id="tblcal">
+            <thead>
+                <tr>
+                    <th>SUN</th>
+                    <th>MON</th>
+                    <th>TUE</th>
+                    <th>WED</th>
+                    <th>THU</th>
+                    <th>FRI</th>
+                    <th>SAT</th>
+                </tr>
+            </thead>
+            <tbody id='tbody1'>
+
+            </tbody>
+        </table>
+
+		<hr>
+
+
+        <div class="board-btn"><input type="button" class="btn common-btn" onclick="location.href='/mypet/activity/write.action'"  value="글쓰기">
         <input type="button" class="btn common-btn" value="삭제"></div>
         <table class="table table-condensed">
             <tr class="headtr">
                 <th class="firsttd">번호</th>
                 <th class="sectd">제목</th>
-                <th class="thirdtd">날짜</th>
+                <th class="thirdtd">활동일</th>
                 <th class="fourthtd">조회수</th>
             </tr>
             
@@ -211,10 +309,85 @@
         </div>
     </div>
    
+	<hr>
 
 
+<script>
 
-    <script>
+	var year = [];  
+	var month = [];
+	var date = [];
+	var txtinfo = [];
+	var seq =[];
+	let count =0;
+	
+	<c:forEach items="${listInfo}" var="dto">
+		console.log(count);	
+		year[count] = ${(dto.actDate).substring(0,4)};
+		month[count] = ${(dto.actDate).substring(5,7)};
+		date[count] = ${(dto.actDate).substring(8)};
+		txtinfo[count] = '${dto.title}';
+		seq[count] = ${dto.seqActivity};	
+		count++;
+	
+	</c:forEach>
 
+	
+    var now = new Date();
+    var lastDay = (new Date(now.getFullYear(), now.getMonth()+1, 0)).getDate(); 
+    var firstDay = (new Date(now.getFullYear(), now.getMonth(), 1)).getDay();
+    $("#today").text(now.getFullYear() + "." + (now.getMonth() + 1));
 
-    </script>
+    var temp = "";
+    temp = "<tr>";
+    for (var i=0; i<firstDay; i++) {
+        temp += "<td></td>";
+    }
+    
+    for (var i=1; i<=lastDay; i++) {
+
+        var schedule = "";    
+    	
+
+    	for( let k = 0; k < year.length ;k++){	
+    		
+	    	if(year[k] == now.getFullYear() ){	    		
+				if( month[k] == (now.getMonth()+1) ){
+					if( date[k] == i ){
+	    				schedule = '<a href="/mypet/activity/view.action?seqActivity='+seq[k]+'">'+txtinfo[k]+'</a>'; 			
+	    			
+					}			
+				}
+				
+			}
+    	}		
+        
+     
+        
+        temp += "<td>";
+        temp += "<span class='no'>" + i + "</span>";
+        temp += "<div>";
+        temp += schedule;
+        temp += "</div>";
+        temp += "</td>";
+        if ((i + firstDay) % 7 == 0) {
+            temp += "</tr><tr>";
+        }
+    }
+
+    var seed = 7;
+
+    if (7 - (lastDay % 7 + firstDay) < 0) {
+        seed = 14;
+    }
+
+    for (var i=0; i<(seed - (lastDay % 7 + firstDay)); i++) {
+        temp += "<td></td>";
+    }
+    temp += "</tr>";
+
+    tbody1.innerHTML = temp;
+
+    $("#tblcal td a").parent().parent().css("background-color","#f6da42");
+	
+</script>

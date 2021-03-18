@@ -24,6 +24,13 @@
 	
 	</select>
 	
+	<select id="act_list_info" resultType="com.test.mypet.board.activity.ActivityDTO" >
+		select *  from (
+			select rownum as rnum, a.* from (
+				select * from tblActivity order by seqActivity desc) a)
+
+	</select>
+	
 
 	<select id="act_view" parameterType="String" resultType="com.test.mypet.board.activity.ActivityDTO">
 		select * from tblActivity where seqActivity = #{seqActivity}

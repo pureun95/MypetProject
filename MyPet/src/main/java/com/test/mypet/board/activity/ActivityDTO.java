@@ -2,6 +2,12 @@ package com.test.mypet.board.activity;
 
 import lombok.Data;
 
+/**
+ * 활동 게시글 작성 DTO 입니다.
+ * @author 이대홍
+ *
+ */
+
 @Data
 public class ActivityDTO {
 
