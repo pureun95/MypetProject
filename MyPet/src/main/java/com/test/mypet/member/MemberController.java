@@ -66,6 +66,12 @@ public class MemberController {
 //		dto_admin.setPassword(password);
 //		
 		MemberDTO mdto = dao.memberLogin(dto);
+		
+		
+		session.setAttribute("seqUser", mdto.getSeqUser());
+		
+		
+		System.out.println(mdto.getSeqUser());
 //		AdminDTO adto = dao.adminLogin(dto_admin);
 
 //		System.out.println(mdto.getName());
@@ -127,7 +133,12 @@ public class MemberController {
 //		
 		
 		AdminDTO adto = dao.adminLogin(dto_admin);
-
+		
+		
+		
+		
+		session.setAttribute("seqAdmin", adto.getSeqAdmin());
+		System.out.println(adto.getSeqAdmin());
 		
 		System.out.println(dto_admin.getId());
 		
@@ -198,13 +209,15 @@ public class MemberController {
 		mv.setViewName("member//chat");
 		
 		
-		logger.info("아이디: "+ session.getId());
+		logger.info("아이디: "+ session.getId()); //세션 id
 		
 		System.out.println("normal chat page");
 		
-		List<ChatMessageDto> list = dao.list(session.getAttribute("id").toString());
+		List<ChatMessageDTO> list = dao.list(session.getAttribute("id").toString()); //id
 		System.out.println(list.size());
 		mv.addObject("list", list);
+		
+		
 
 		
 		return mv;

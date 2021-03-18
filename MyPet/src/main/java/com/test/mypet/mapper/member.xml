@@ -12,9 +12,20 @@
 		select * from tblAdmin where id = #{id} and password = #{password}
 	</select>
 	
-	<select id="chatlist" resultType="chatMessageDto" parameterType="String">
+	<select id="chatlist" resultType="chatMessageDTO" parameterType="String">
 		select * from vwChat where user_id = #{user_id}
 	</select>
+	
+	<insert id="addlist" parameterType="chatMessageDTO">
+		insert into tblChat (seqChat, seqAdmin, id, sender, content, writeTime) values (seqChat.nextVal, 1, #{user_id}, 0, #{dto.getContent()}, default)
+		<!-- insert into tblChat (seqChat, seqAdmin, id, sender, content, writeTime) values (seqChat.nextVal, 1, #{user_id}, 0, #{content}, default) -->
+	</insert>
+	
+<!-- 	<select id="seqUser" resultType="memberDTO" parameterType="String"> -->
+	<!-- <select id="seqUser" resultType="memberDTO" parameterType="Integer">
+		select distinct ct.seqUser from tbluser us inner join tblchat ct on us.sequser = ct.sequser where id=#{id};
+		select distinct tblchat.seqUser from tbluser inner join tblchat on tbluser.sequser = tblchat.sequser where id=#{id};
+	</select> -->
 
 </mapper>
 
