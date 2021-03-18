@@ -534,7 +534,7 @@
 				like[i].checked = true;
 				var ck = $('input[name=like]:checked').val();
 			} 
-		
+			
 		
 		/* 비회원인 경우 */
 		if(seqUser1 == null) {
