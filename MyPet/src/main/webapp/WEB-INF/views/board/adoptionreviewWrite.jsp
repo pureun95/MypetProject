@@ -25,6 +25,7 @@
     /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
     #content{
         height: 1100px;
+        border: 0px;
     }
 
 	
