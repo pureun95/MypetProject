@@ -162,9 +162,9 @@
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox" alt="1">
 				<c:forEach items="${glist}" var="dto" varStatus="status">
-				<div class="item <c:if test="${status.index==0}">active</c:if>"onclick="/mypet/goods/goods.action?seqGoods=${dto.seqGoods}">
+				<div class="item <c:if test="${status.index==0}">active</c:if>" >
 					<img src="/mypet/resources/images/goods${dto.image}" >
-					<div class="carousel-caption" style="color: #444">${dto.name}</div>
+					<div class="carousel-caption" style="color: #444"><a href="/mypet/goods/goods.action?seqGoods=${dto.seqGoods}">${dto.name}</a></div>
 				</div>
 				</c:forEach>
 			</div>

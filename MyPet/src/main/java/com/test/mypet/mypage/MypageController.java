@@ -23,7 +23,7 @@ public class MypageController {
 	//예약신청서 목록보기
 	@RequestMapping(value="/mypage/reservationlist.action")
 	public String reservationList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		
+		session.setAttribute("seqUser", "6");
 		
 		List<VwReservationDTO> list = dao.getMyReservationList((String)session.getAttribute("seqUser"));
 		
