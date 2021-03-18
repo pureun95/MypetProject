@@ -5,7 +5,9 @@ import lombok.Data;
 @Data
 public class AdoptionDTO {
 	
+	private String seqUser;
 	private String seqAdoption;
+	private String seqLike; 
 	
 	private String seqPet;
 	private String title;
