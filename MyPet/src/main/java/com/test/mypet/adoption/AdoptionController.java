@@ -243,7 +243,6 @@ public class AdoptionController {
 	public void likes(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption, String seqUser) {
 		
 		
-
 		System.out.println("글번호: " + seqAdoption);
 		
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -260,29 +259,28 @@ public class AdoptionController {
 		System.out.println("결과 : " + insert);
 		
 		
+		//이전페이지 이동
+		String forward = request.getHeader("referer");
+		
 		try {
 			if (result == 1) {
-				response.sendRedirect("/mypet/adoption/list.action");
+				response.sendRedirect(forward);
 			} else {
-				response.sendRedirect("/mypet/adoption/list.action");
+				response.sendRedirect(forward);
 			}
 		} catch(Exception e) {
 			System.out.println(e);
 		}
-				
-		
-		
-		
+								
 	}
 	
 	
 	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
 	public String adoptionView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		
-		//임시 session값 부여
-						
+					
 		String seqUser = (String) session.getAttribute("seqUser");
-				
+		
 		AdoptionDTO dto = adao.getView(seqAdoption);
 		
 		request.setAttribute("dto", dto);

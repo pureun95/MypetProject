@@ -64,7 +64,7 @@
     	margin-top: 7px;
     }
     
-    .like {
+    .label-like {
     	/* border: 1px solid black; */
     	width: 24px;
     	height: 24px;
@@ -76,7 +76,7 @@
     	cursor: pointer;
     }
     
-    .like:hover {
+    .label-like:hover {
     	background-image: url(/mypet/resources/images/heart.png);
     }
     
@@ -291,7 +291,9 @@
 <div id="content">
 	<div class="title-box">
 		<span class="state">${dto.state }</span><span class="title">${dto.title }</span>
-		<div class="like-count"><img class="like" src="../resources/images/like.png">
+		<div class="like-count">
+			<label class="label-like" for="like" onclick="ck_user(${dto.seqAdoption })"></label>
+    		<input type="radio" name="like" class="rd" id="like" value="${dto.seqAdoption }" style="display: none">
 		<span class="count">${dto.likes }</span></div>
 	</div>
 	
@@ -305,7 +307,8 @@
 	<input type="button" class="btn common-btn" value="입양예약하기" onclick="modal()">
 	</c:if>
 	
-	<input type="hidden" class="seqUser" value="${seqUser }">
+	<input type="hidden" class="seqUser1" value="${seqUser }">
+	<input type="hidden" class="likeCount" value="${dto.likes }">
 	<div class="detail">
 	
 	<!-- 이미지 split -->
@@ -420,6 +423,42 @@
 		e.preventDefault();
 		$('#modal').modal("hide");
 	});
+	
+	
+	//찜하기
+	var seqUser1 = $(".seqUser1").val();
+	var label = $(".label-like");
+	var like = $("#like");
+	var no;
+	
+	
+	//라벨 체크 -> 라디오버튼 체크 -> 그 값을 가지고 ok로 넘긴다.
+	function ck_user(no) {
+			
+		like.checked = true;
+		var ck = $(like).val();
+		alert(ck);
+		
+		/* 비회원인 경우 */
+		if(seqUser1 == null) {
+			$('#modal').modal("show");
+			
+		} else {
+			$(".modal-body > p").html("찜목록에 추가되었습니다.");
+			$('#modal').modal("show");
+				
+			setTimeout(function() {
+				location.href= '/mypet/adoption/likesOk.action?seqAdoption='+ ck + '&seqUser=${seqUser}';
+			}, 2000);
+			 	
+					
+		}
+			
+	}		
+	
+			
+		
+	
 	
 	
 </script>
