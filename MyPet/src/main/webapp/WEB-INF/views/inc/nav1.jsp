@@ -40,7 +40,7 @@
   
   $(window).scroll(function() {
      var height = $(document).scrollTop();
-     console.log(height);
+     //console.log(height);
      
      $("#plist_bar1").prop("checked",false);
      $(".nav1").css("background-color", "transparent");

@@ -37,6 +37,7 @@
     .review {
     	border-left: 1px solid black;
     	border-right: 1px solid black;
+    	border-bottom: 1px solid black;
     	width: 1200px;
     	height: 700px;
     	margin-left: 350px;
@@ -47,15 +48,35 @@
     }
     
     .talent {
-    	border:1px solid black;
+    	/* border:1px solid black; */
     	width: 100%;
     	height: 500px;
     }
     
+    .img {
+    	padding-top: 100px;
+    	padding-bottom: 100px;
+    	position: absolute;
+    }
+    
+    #img2 {
+    	margin-left: -450px;
+    }
+    
+    #img3 {
+    	margin-left: -900px;
+    }
+    
+    #img4 {
+    	margin-left: -1350px;
+    }
+
+    
+    
 </style>
 
 <div id="content1">
-		<img src="/mypet/resources/images/intro/5.jpg" id="slideImg">
+	<img src="/mypet/resources/images/intro/5.jpg" id="slideImg">
 </div> 
 
 <div class="review">
@@ -63,7 +84,10 @@
 </div>
 
 <div class="talent">
-
+	<img src="/mypet/resources/images/talent/1.jpg" id="img1" class="img">
+	<img src="/mypet/resources/images/talent/2.jpg" id="img2" class="img">
+	<img src="/mypet/resources/images/talent/3.jpg" id="img3" class="img">
+	<img src="/mypet/resources/images/talent/4.jpg" id="img4" class="img">
 </div>
 
 <script>
@@ -81,6 +105,35 @@
 	}
 	
 	setInterval(changeImg, 3000);
+	
+    //부모의 넓이
+    var width = $(".img").parent().width();
+    
+    console.log(width)
+
+   // console.log($(".img").width());
+
+    var timer = setInterval(function() {
+
+        $("#img1").css('left', $("#img1").offset().left + 50);
+        $("#img2").css('left', ($("#img2").offset().left) + 500);
+        $("#img3").css('left', ($("#img3").offset().left) + 950);
+        $("#img4").css('left', ($("#img4").offset().left) + 1400);
+
+        if((($("#img1").offset().left)+200) > width) {
+        	console.log($("#img1").offset().left+400);
+            $("#img1").css('left', 0);
+        }
+         if((($("#img2").offset().left)+200) > width) {
+            $("#img2").css('left', $("#img1").offset().left);
+        }
+        if((($("#img3").offset().left)+200) > width) {
+            $("#img3").css('left', $("#img1").offset().left);
+        }
+         if((($("#img4").offset().left)+200) > width) {
+            $("#img4").css('left', $("#img1").offset().left);
+        } 
+    }, 800);
 	
 </script>
 
