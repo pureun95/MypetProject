@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 
 <style>
@@ -27,7 +27,8 @@
 
     /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
     #content{
-        height: 1000px;
+        height: auto;
+        border: 0px;
     }
 
 
@@ -191,6 +192,13 @@
 	background-color: #b27208;
 	color: white;
 }
+table tr {
+	display: none;
+}
+
+table tr:nth-child(1), table tr:nth-child(2) {
+	display: block;
+}
 
 </style>
 
@@ -200,7 +208,7 @@
 
         <table class="table table-condensed">
         	<tr>
-        		<c:forEach items="${rlist}" var="dto" begin="0" end="3">
+        		<c:forEach items="${rlist}" var="dto" varStatus="count">
             	<td>
             		<div class="innerbox">
             			<div style="width:254px; height:301px; margin:auto;">
@@ -216,74 +224,81 @@
 								</c:forEach>
 								</div>
 								<div class="titlecover">
-									<a href="/mypet/board/adoptionreviewview.action?seqAdoptionReview=${dto.seqAdoptionReview}">${dto.title}<span class="badge">${dto.viewcount}</span></a>
-									<div>${dto.content}</div>
+									<c:set var="TextValue" value="${dto.title}"/>
+									<a href="/mypet/board/adoptionreviewview.action?seqAdoptionReview=${dto.seqAdoptionReview}">${fn:substring(TextValue,0,15)}<c:if test="${fn:length(TextValue)>15}">...</c:if><span class="badge">${dto.viewCount}</span></a>
+									<c:set var="TextValue2" value="${dto.content}"/>
+									<div>${fn:substring(TextValue2,0,15)}<c:if test="${fn:length(TextValue2)>15}">...</c:if></div>
 								</div>
 							</div>
 						</div>
             		</div>
             	</td>
+            	<c:if test="${count.count%4==0}">
+            		<tr>
+            	</c:if>
             	</c:forEach>
             </tr>
-            <tr>	
-            	<c:forEach items="${rlist}" var="dto" begin="4" end="7">
-            	<td>
-            		<div class="innerbox">
-            			<div style="width:254px; height:301px; margin:auto;">
-		
-							<!-- 가운데 o 모양 페이지 표시 -->
-							<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-								<!-- Wrapper for slides -->
-								<div class="carousel-inner" role="listbox">
-								<c:forEach items="${fn:split(dto.image, ',') }" var="img" varStatus="status">
-									<div class="item <c:if test="${status.index==0}">active</c:if>">
-										<img class="imgitems"src="/mypet${img}"   alt="1">
-									</div>
-								</c:forEach>
-								</div>
-								<div class="titlecover">
-									<a href="/mypet/board/adoptionreviewview.action?seqAdoptionReview=${dto.seqAdoptionReview}">${dto.title}<span class="badge">${dto.viewcount}</span></a>
-									<div>${dto.content}</div>
-								</div>
-							</div>
-						</div>
-            		</div>
-            	</td>
-            	</c:forEach>
-            </tr>
-            <tr id="box"></tr>
+            
+           
+            
         </table>
 
         <!-- 글쓰기 버튼 아래 -->
         <!-- <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기"></div> -->
         <!-- 페이지바/검색창 -->
-        
         <div class="btnwrap" style="text-align: center;">
-            <button id="btnmore" class="btn btnself" onclick="alert('밑으로 8개 더 만들기');">더보기</button>
+        	<button id="btnmore" class="btn btnself" onclick="more()">더보기</button>
             <button id="btnwrite" class="btn btnself" onclick="location.href='/mypet/board/adoptionreviewwrite.action';">글쓰기</button>
-            <input type="hidden" id="hdnstart">
-            <input type="hidden" id="hdnend">
         </div>
     </div>
    
-
-
-
-    <script>
+   <script>
 		
-    	$('#btnmore').click(function() {
-    		
-    		
-    		var code = $('#box').html();
-    		
-    		alert(code);
-			
-    		code += '<c:forEach items="${rlist}" var="dto" begin="8" end="11"><td><div class="innerbox"><div style="width:254px; height:301px; margin:auto;"><div id="carousel-example-generic" class="carousel slide" data-ride="carousel"><div class="carousel-inner" role="listbox"><c:forEach items="${fn:split(dto.image, ',') }" var="img" varStatus="status"><div class="item <c:if test="${status.index==0}">active</c:if>"><img class="imgitems"src="/mypet${img}"   alt="1"></div></c:forEach></div><div class="titlecover"><a href="/mypet/board/adoptionreviewview.action?seqAdoptionReview=${dto.seqAdoptionReview}">${dto.title}<span class="badge">${dto.viewcount}</span></a><div>${dto.content}</div></div></div></div></div></td></c:forEach></tr><tr><c:forEach items="${rlist}" var="dto" begin="12" end="15"><td><div class="innerbox"><div style="width:254px; height:301px; margin:auto;"><div id="carousel-example-generic" class="carousel slide" data-ride="carousel"><div class="carousel-inner" role="listbox"><c:forEach items="${fn:split(dto.image, ',') }" var="img" varStatus="status"><div class="item <c:if test="${status.index==0}">active</c:if>"><img class="imgitems"src="/mypet${img}"   alt="1"></div></c:forEach></div><div class="titlecover"><a href="/mypet/board/adoptionreviewview.action?seqAdoptionReview=${dto.seqAdoptionReview}">${dto.title}<span class="badge">${dto.viewcount}</span></a><div>${dto.content}</div></div></div></div></div></td></c:forEach>';
-    		
-    		
-    		alert(code);
-    		
-    		$('#box').html(code);
-    	})
+   	let count = 1;
+   	
+   	function more() {
+   		if(count==1) {
+	   		$('table tr:nth-child(3)').css("display","block");
+	   		count++;
+   		} else if(count==2) {
+   			$('table tr:nth-child(4)').css("display","block");
+	   		count++;
+   		} else if(count==3) {
+   			$('table tr:nth-child(5)').css("display","block");
+	   		count++;
+   		} else if(count==4) {
+   			$('table tr:nth-child(6)').css("display","block");
+	   		count++;
+   		} else if(count==5) {
+   			$('table tr:nth-child(7)').css("display","block");
+	   		count++;
+   		} else if(count==6) {
+   			$('table tr:nth-child(8)').css("display","block");
+	   		count++;
+   		} else if(count==7) {
+   			$('table tr:nth-child(9)').css("display","block");
+	   		count++;
+   		} else if(count==8) {
+   			$('table tr:nth-child(10)').css("display","block");
+	   		count++;
+   		} else if(count==9) {
+   			$('table tr:nth-child(11)').css("display","block");
+	   		count++;
+   		} else if(count==10) {
+   			$('table tr:nth-child(12)').css("display","block");
+	   		count++;
+   		} else if(count==11) {
+   			$('table tr:nth-child(13)').css("display","block");
+	   		count++;
+   		} else if(count==12) {
+   			$('table tr:nth-child(14)').css("display","block");
+	   		count++;
+   		}
+   		
+   	}
+		
+   </script>
 
-    </script>
+
+
+    

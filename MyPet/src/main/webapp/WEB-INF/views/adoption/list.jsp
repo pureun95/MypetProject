@@ -14,10 +14,8 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
         border: 1px solid black;
        	font-family: 'NanumSquare';
-        /* margin-right: px; */
     }
     
     .title {
@@ -156,7 +154,7 @@
     .list-detail {
     	border: 1px solid #eee;
     	width: 281px;
-    	height: 430px;
+    	height: 440px;
     	float: left;
     	margin-left: 90px;
     	margin-bottom: 120px;    
@@ -172,7 +170,8 @@
     	margin-left: 5px;
     	margin-top: 10px;
 	    font-size: 12px;	    
-	    height: 30px;
+	    height: 40px;
+	    /* float: left; */
     }
     
     .list-detail > .state {
@@ -228,20 +227,32 @@
 	
 	.like {
 		/* border: 1px solid black; */
-		width: 28px;
-    	height: 28px;
-    	background-image: url(/mypet/resources/images/like.png);
-		background-size: cover;
-    	background-position: 50% 50%;
-    	margin-top: -45px;
-    	margin-left: 240px;
-    	background-color: transparent;
-    	cursor: pointer;
-    	/* float: left; */
+	    width: 28px;
+	    height: 28px;
+	    background-image: url(/mypet/resources/images/like.png);
+	    background-size: cover;
+	    background-position: 50% 50%;
+	    /* margin-top: -45px; */
+	    margin-left: 170px;
+	    background-color: transparent;
+	    cursor: pointer;
+	    float: left;
 	}
 	
 	.like:hover {
 		background-image: url(/mypet/resources/images/heart.png);
+	}
+	
+	.likes-count {
+		display: block;
+	    float: left;
+	    margin-top: 3px;
+    	font-size: 14px;
+    	margin-left: 10px;
+	}
+	
+	.no {
+		margin-top: 6px;
 	}
 	
 	
@@ -294,6 +305,65 @@
     }
     
   
+  	/* 모달 */
+    
+    .modal-content {
+    	overflow: hidden;
+    }
+    
+    .close {
+    	position : absolute;
+    	top : 20px;
+    	right :10px;
+    	outline: none !important;	
+    }
+       
+    .modal-header, .modal-title {
+    	background-color: #f6da42;
+    	font-family: 'Jal_Onuel';
+    	font-size: 16px;
+    }
+    
+   	.modal-body{
+		font-family: 'NanumSquare';
+		text-align: center;
+		height : 90px;	
+		font-size: 16px;	
+	}
+	
+	.modal-body p {
+		margin-top: 25px;
+	}
+	
+	.modal-footer{
+		text-align: center;
+	}
+	
+
+    
+    
+    /* 모달창 */
+       
+    .modal-footer #check, .modal-footer #cancel {
+		font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 0px 10px;
+    	padding : 10px 12px;
+		border : none;
+	    color: white;
+		outline: none !important;	
+		border-radius : 5px;
+	}
+	.modal-footer #delete:hover, .modal-footer #cancel:hover{
+		color:black;
+	}
+	
+	
+	.modal-footer #check{ background-color: #b27208; }
+	.modal-footer #cancel{ background-color: #fab018; }
+	
+    }
+    
     
 </style>
 
@@ -352,7 +422,7 @@
     <div class="list">    	        	
     
     	<!-- 관리자가 보는 페이지 -->
-    	<c:forEach items="${list }" var="dto">
+    	<c:forEach items="${list }" var="dto" varStatus="status">
     	<div class="list-detail">    	
     		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'"><img class="img-pet" src="../resources/images/adoption/${dto.img }"></div>
     		<span class="pet-title" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'">${dto.title }</span>
@@ -370,15 +440,53 @@
 	    		<input type="hidden" class="location-hidden" value="${dto.addressS }">
     		</c:if>
     	
-    	
-    	
-    		
-    		
-    		<div class="pet-seq"><span>no. ${dto.seqPet}</span><img class="like" src="../resources/images/like.png"></div>
+
+    		<div class="pet-seq">
+    			<span class="no" style="float: left">no. ${dto.seqPet }</span>
+    			
+    			<input type="hidden" class="seqUser1" value="${seqUser }">
+    			<c:forEach items="${uList }" var="uList">
+    				<input type="hidden" class="seqUser2" value="${uList.seqUser }">
+    				<input type="hidden" class="seqLike" value="${uList.seqLike }">
+    			</c:forEach>
+								
+   		    			
+    			<label class="like" for="like${status.index}" onclick="ck_user(${dto.seqAdoption })"></label>
+    			<input type="radio" name="like" class="rd" id="like${status.index}" value="${dto.seqAdoption }" style="display: none">
+    			
+    			 
+    			<span class="likes-count">${dto.likes }</span>
+    		</div>
     		<span class="state">${dto.state }</span>    		
     	</div>
 		</c:forEach>		
-		
+	
+	
+	
+	<!-- 모달  -->
+	<div class="modal" tabindex="-1" role="dialog" id="modal">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content" id="modal-content">
+		     <div class="modal-header">
+		       <h5 class="modal-title">찜하기</h5>
+		       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		         <span aria-hidden="true">&times;</span>
+		       </button>
+		     </div>
+		     <div class="modal-body">
+		       <p>회원만 이용할 수 있습니다.</p>
+		     </div>
+		     <div class="modal-footer">
+		      <button type="submit" class="btn" id="check">확인</button>	        
+		     </div>
+		   </div>
+		 </div>
+	</div>
+	
+	
+	
+	
+	
 		
     <c:if test="${list.size() > 0 }">
     <!-- 페이지바 -->
@@ -406,13 +514,74 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bc381e86fe3a181e10d9e43cfc83f97a&libraries=services,clusterer,drawing"></script>
 <script>
 
+	
+	//찜하기 중복검사
+	var seqUser2 = $(".seqUser2").val();
+	var seqLike = $(".seqLike").val();
+	var seqUser1 = $(".seqUser1").val();
+	
+	var like = $('input[name=like]');
+	var label = $(".like");
+	var no;
+	
+	
+	//라벨 체크 -> 라디오버튼 체크 -> 그 값을 가지고 ok로 넘긴다.
+	function ck_user(no) {
+			
+		for(var i=0; i<like.length; i++) {
+			if(no == like[i].value) {
+								
+				like[i].checked = true;
+				var ck = $('input[name=like]:checked').val();
+			} 
+			
+		
+		/* 비회원인 경우 */
+		if(seqUser1 == null) {
+			$('#modal').modal("show");
+		}
+			
+		/* 찜하기 목록에 있는 경우 */
+		if(seqUser1 == seqUser2) {
+			$(".modal-body > p").html("이미 찜목록에 있습니다.");
+			$('#modal').modal("show");
+		
+		/* 찜하기 목록에 없는 경우 */
+		} else {
+			$(".modal-body > p").html("찜목록에 추가되었습니다.");
+			$('#modal').modal("show");
+			
+			setTimeout(function() {
+				location.href= '/mypet/adoption/likesOk.action?seqAdoption='+ ck + '&seqUser=${seqUser}';
+			}, 2000);
+		 	
+				
+		}
+		
+	}
+		
+}		
+			
+	
+	/* 모달 */
+	$('#check').click(function(e){
+		e.preventDefault();
+		$('#modal').modal("hide");
+	});
 
-
-	      var mapContainer = document.getElementById('map');
-	      var mapOption = {
-	          center: new daum.maps.LatLng(37.499293, 127.033236),
-	          level: 5
-	      };  
+	
+	/* 텍스트폼 클릭 시 폰트색 변경 */
+	$(".form-control").click(function() {
+		$(this).css("color", "#301b01");
+	})
+	
+	
+	
+	var mapContainer = document.getElementById('map');
+	var mapOption = {
+	      center: new daum.maps.LatLng(37.499293, 127.033236),
+	      level: 5
+	};  
 	   
 	      var map = new daum.maps.Map(mapContainer, mapOption); 
 	   
@@ -501,16 +670,12 @@
 	          });
 	      });
 	
-	
-		
-       
 
 	
- 
- 
-	$(".form-control").click(function() {
-		$(this).css("color", "#301b01");
-	})
+    
+	
+	
+	
 </script>
 
 

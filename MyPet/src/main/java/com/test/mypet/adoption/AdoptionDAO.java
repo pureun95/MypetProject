@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.test.mypet.member.MemberDTO;
+
 
 @Repository
 public class AdoptionDAO implements IAdoptionDAO {
@@ -48,6 +50,29 @@ public class AdoptionDAO implements IAdoptionDAO {
 	public AdoptionDTO getView(String seqAdoption) {
 			
 		return template.selectOne("adoption.view", seqAdoption);
+	}
+
+
+	//찜하기
+	@Override
+	public int getLikes(String seqAdoption) {
+		
+		return template.update("adoption.likes", seqAdoption);
+	}
+	
+	//유저의 찜하기
+	@Override
+	public List<AdoptionDTO> getLikesUser(String seqUser) {
+		
+		return template.selectList("adoption.likeUser", seqUser);
+	}
+
+
+
+	@Override
+	public int insertLikes(HashMap<String, String> map) {
+		
+		return template.insert("adoption.insertLikes", map);
 	}
 
 	

@@ -186,6 +186,11 @@
     
 
 	
+	.desc {
+		display: block;
+		
+		
+	}
 	
 </style>
 
@@ -224,6 +229,7 @@
 			<th>후원계좌</th>
 			<td>${sdto[0].account} (${sdto[0].name})</td>
 		</tr>
+
 		<form id="applyForm" method="POST" action="/mypet/shelter/applyok.action">
 			<tr id="list">
 				<!-- <td></td> -->
@@ -263,6 +269,7 @@
 				</td>
 			</tr>
 		</form>
+
 		<tr id="list">
 			<td colspan='3' class="map"><div id="map"></div></td>
 			<!-- <th></th> -->

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.test.mypet.goods.GoodsDTO;
 import com.test.mypet.goods.IGoodsDAO;
+import com.test.mypet.member.MemberDTO;
 
 @Controller
 public class AdoptionController {
@@ -30,14 +31,25 @@ public class AdoptionController {
 
 	//http://localhost:8090/mypet/adoption/list.action
 	@RequestMapping(value = "/adoption/list.action", method = { RequestMethod.GET })
-	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species) {
+	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species, String seqAdoption) {
 		
 		
+		String seqUser = (String) session.getAttribute("seqUser");
+		
+		System.out.println(session.getAttribute("seqUser"));
+		
+		
+		//찜하기 중복검사
+		List<AdoptionDTO> uList = adao.getLikesUser(seqUser);
+		
+		//검색
 		String search = request.getParameter("search");
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("search", search);
 		map.put("species", species);
+		map.put("seqUser", seqUser);
+		map.put("seqAdoption", seqAdoption);
 		
 		System.out.println("검색어: " + map);
 		
@@ -205,20 +217,76 @@ public class AdoptionController {
 		request.setAttribute("pagebar", pagebar);
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("list", list);
+		//찜하기
+		request.setAttribute("uList", uList);
 		request.setAttribute("AllList", AllList);
 		request.setAttribute("species", species);
+		request.setAttribute("seqUser", seqUser);
 		
 		return "adoption/list";
 
+	}
+	
+
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seqAdoption
+	 * @param seqUser
+	 * 
+	 * 회원번호와 입양글 번호를 가져온 후 찜하기 테이블에 넣는 메서드
+	 */
+	//http://localhost:8090/mypet/adoption/likesOk.action
+	@RequestMapping(value = "/adoption/likesOk.action", method = { RequestMethod.GET })
+	public void likes(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption, String seqUser) {
+		
+		
+
+		System.out.println("글번호: " + seqAdoption);
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("seqAdoption", seqAdoption);
+		map.put("seqUser", seqUser);
+		
+		//찜하기 수 올리기
+		int result = adao.getLikes(seqAdoption);
+		
+		//찜하기 테이블에 넣기
+		int insert = adao.insertLikes(map);
+		
+		System.out.println("결과 : " + result);
+		System.out.println("결과 : " + insert);
+		
+		
+		try {
+			if (result == 1) {
+				response.sendRedirect("/mypet/adoption/list.action");
+			} else {
+				response.sendRedirect("/mypet/adoption/list.action");
+			}
+		} catch(Exception e) {
+			System.out.println(e);
+		}
+				
+		
+		
+		
 	}
 	
 	
 	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
 	public String adoptionView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		
+		//임시 session값 부여
+						
+		String seqUser = (String) session.getAttribute("seqUser");
+				
 		AdoptionDTO dto = adao.getView(seqAdoption);
 		
 		request.setAttribute("dto", dto);
+		request.setAttribute("seqUser", seqUser);
 		
 		return "adoption/view";
 
@@ -249,9 +317,7 @@ public class AdoptionController {
 	//http://localhost:8090/mypet/adoption/checklist.action
 	@RequestMapping(value="/adoption/checklist.action", method={RequestMethod.GET})
 	public String checklist(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-		//임시 session값 부여
-		session.setAttribute("seqUser", "6");
-		session.setAttribute("id", "red1234");
+		
 		System.out.println(session.getAttribute("seqUser"));
 		System.out.println(session.getAttribute("id"));
 		return "adoption/checklist";		
@@ -303,8 +369,13 @@ public class AdoptionController {
 			,VwReservationDTO dto) {
 		
 		dao.insertReservation(dto);
-		
 		HashMap<String, String> map = new HashMap<String, String>();
+		
+		int c = gdao.getTotalCount(map);
+		String count = c + "";
+		
+		map.put("begin", "1");
+		map.put("end", count);
 		
 		List<GoodsDTO> glist = gdao.list(map);
 		

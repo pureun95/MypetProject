@@ -25,6 +25,7 @@
     /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
     #content{
         height: 1100px;
+        border: 0px;
     }
 
 	
@@ -51,7 +52,7 @@
 		margin-top: 170px;
 	}
 	
-	.board-write > .board-content {
+	.board-write .board-content {
 		min-height: 500px;
 		resize: none;
 		color: #9c9c9c;
@@ -164,7 +165,8 @@
 			<span class="title">입양후기 수정</span>
 			
 			<!-- 각자 본인의 게시판에 들어가면 option이 selected 되어있도록?! 해보고싶어서 넣어봤어요. -->
-			<select class="form-control multiple" disabled>
+			<form method="POST" action="/mypet/board/adoptionrevieweditok.action">
+			<select class="form-control multiple"  disabled>
 				<option selected disabled hidden>게시판을 선택해주세요.</option>
 				<option value="1">공지사항</option>
 				<option value="2">활동</option>		
@@ -173,20 +175,16 @@
 				<option value="5">자주하는질문</option>
 				<option value="6">유기동물신고</option>			
 			</select>
-	        <input type="text" class="form-control board-title" value="입양후기1 제목입니다.">	        	
-	        <textarea class="form-control board-content">입양후기 내용입니다.</textarea> 	    	                      		           		        
+	        <input type="text" id="title" name="title" class="form-control board-title" value="${dto.title}">	        	
+	        <textarea class="form-control board-content" name="content" >${dto.content}</textarea> 	    	                      		           		        
+	        <input type="hidden" id="seqAdoptionReview" name="seqAdoptionReview" value="${dto.seqAdoptionReview}">
 	        
-	        <div class="photo">	        	
-	        	<input type="file" id="file" class="board-file">	
-	        	<label for="file"></label>	
-	        	<span>사진</span>	  	       		
-	       	</div>
 	        
 	        <div class="board-btn">
 	        	<input type="button" class="btn common-btn delete" onclick="history.back()" value="취소">
-	        	<input type="button" class="btn common-btn ok" value="등록">		        		        	      
+	        	<input type="submit" class="btn common-btn ok" value="등록">   	      
 	        </div>
-	       
+	       </form>
         </div>	
 
     </div>
