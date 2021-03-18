@@ -74,6 +74,13 @@ public class AdoptionReviewDAO implements IAdoptionReviewDAO{
 		return template.insert("adoption_review.insertImageReviewY", dto);
 	}
 
+	//입양후기 삭제하기
+	@Override
+	public int deleteReview(AdoptionReviewDTO dto) {
+
+		return template.delete("adoption_review.deleteReview", dto);
+	}
+
 	
 
 

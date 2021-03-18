@@ -22,4 +22,6 @@ public interface IAdoptionReviewDAO {
 
 	int insertImageReviewY(AdoptionReviewDTO dto);
 
+	int deleteReview(AdoptionReviewDTO dto);
+
 }

@@ -25,6 +25,7 @@
     /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
     #content{
         height: 1100px;
+        border: 0px;
     }
 
 
@@ -119,7 +120,6 @@
 		</script>
 	</c:if>
     <div id="content">
-    
     	<div class="btn-group">
     		<input type="button" class="btn common-btn" value="목록" onclick="location.href='/mypet/board/adoptionreviewlist.action';">
     		<c:if test="${dto.seqUser==seqUser}">
@@ -189,8 +189,11 @@
 	           			<p>입양후기를 정말 삭제하시겠습니까?</p>
 	         		</div>
 	         		<div class="modal-footer">
-	            		<button type="submit" class="btn" id="delete">삭제</button>
-	           			<button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>           
+	         			<form method="POST" action="/mypet/board/adoptionreviewdelete.action">
+		         			<input type="hidden" name="seqAdoptionReview" value="${dto.seqAdoptionReview}">
+		            		<button type="submit" class="btn" id="delete">삭제</button>
+		           			<button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>
+	           			</form>           
 	         		</div>
 	      		</div>
 	     	</div>

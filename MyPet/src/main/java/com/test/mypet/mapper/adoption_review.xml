@@ -39,5 +39,11 @@
 	<insert id="insertImageReview" parameterType="adoptionReviewDTO">
 		insert into tblImageReview values(seqImageReview.nextVal, #{seqAdoptionReview}, default) 
 	</insert>
+	
+	<delete id="deleteReview" parameterType="adoptionReviewDTO" statementType="CALLABLE">
+		{call procDeleteAdoptionReview(#{seqAdoptionReview})}
+	</delete>
+	
+	
 
 </mapper>

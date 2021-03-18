@@ -167,6 +167,8 @@ public class BoardController {
 	   
 	   List<AdoptionReviewDTO> rlist = ardao.getList();
 	   
+	   session.setAttribute("id", "red1234");
+	   
 	   request.setAttribute("rlist", rlist);
 	   
 	   return "board/adoptionreviewList";
@@ -178,7 +180,7 @@ public class BoardController {
 	   
 	   String id = (String)session.getAttribute("id");
 	   String seqUser = ardao.getSeqUser(id);
-	   //로그인 하고있는 회원 번호
+	   //로그인 하고있는 회원 번호 설정
 	   session.setAttribute("seqUser", seqUser);
 	   
 	   
@@ -253,7 +255,12 @@ public class BoardController {
 			filename = getFileName(path, attach.getOriginalFilename());
 			
 			//이동시킬 최종 경로 + 파일명
-			File file = new File("E:\\4차 프로젝트(스프링)\\mypet\\MyPet\\src\\main\\webapp\\resources\\images\\review" + "\\" + filename);
+			
+			//경로 : 학원
+			String move1 = "E:\\4차 프로젝트(스프링)\\mypet\\MyPet\\src\\main\\webapp\\resources\\images\\review";
+			//경로 : 집
+			String move2 = "C:\\Users\\User\\Desktop\\mypet\\MyPet\\src\\main\\webapp\\resources\\images\\review";
+			File file = new File(move2 + "\\" + filename);
 			dto.setImage("/resources/images/review/"+filename);
 			//무조건 덮어쓰기 -> 중복 방지 -> 넘버링 직접 구현..
 			attach.transferTo(file); //renameTo()와 동일
@@ -339,7 +346,7 @@ public class BoardController {
 		
 	}
    
-   
+   //입양후기 수정 페이지
    @RequestMapping(value = "/board/adoptionreviewedit.action", method = { RequestMethod.GET })
    public String adoptionReviewEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview) {
 	   
@@ -351,9 +358,9 @@ public class BoardController {
 	   
    }
       
-   
+   //입양후기 수정 DB작업
    @RequestMapping(value = "/board/adoptionrevieweditok.action", method = { RequestMethod.POST })
-   public String adoptionReviewEditOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview, String content, String title) {
+   public void adoptionReviewEditOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview, String content, String title) {
 	   
 	   System.out.println(seqAdoptionReview);
 	   System.out.println(title);
@@ -366,12 +373,82 @@ public class BoardController {
 	   
 	   int result = ardao.updateReview(dto);
 	   System.out.println(result);
+	   try {
+		   
+		   if (result!=0) {
+			    response.setContentType("text/html; charset=UTF-8");
+	
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('입양 후기 수정이 성공하였습니다.');");
+				writer.print("location.href='/mypet/board/adoptionreviewlist.action';");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
+				
+			} else {
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('failed.');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
+			}
+	   } catch (IOException e) {
+		   e.printStackTrace();
+	   }	   
+	   
+   }
+   
+   //입양후기 삭제 DB작업
+   @RequestMapping(value = "/board/adoptionreviewdelete.action", method = { RequestMethod.POST })
+   public void adoptionReviewDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview) {
+	   
+	   System.out.println(seqAdoptionReview);
+	   
+	   AdoptionReviewDTO dto = new AdoptionReviewDTO();
+	   dto.setSeqAdoptionReview(seqAdoptionReview);
+	   
+	   
+	   int result = ardao.deleteReview(dto);
+	   
+	   System.out.println(result);
+	   
+	   try {
+		   
+		   if (result!=0) {
+			    response.setContentType("text/html; charset=UTF-8");
+	
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('입양 후기 삭제가 성공하였습니다.');");
+				writer.print("location.href='/mypet/board/adoptionreviewlist.action';");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
+				
+			} else {
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('failed.');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
+			}
+	   } catch (IOException e) {
+		   e.printStackTrace();
+	   }	   
 	      
-	   List<AdoptionReviewDTO> rlist = ardao.getList();
-		   
-	   request.setAttribute("rlist", rlist);
-		   
-	   return "board/adoptionreviewList";	   
 	   
    }
    

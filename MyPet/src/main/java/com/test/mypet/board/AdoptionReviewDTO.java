@@ -11,6 +11,7 @@ public class AdoptionReviewDTO {
 	private String image;
 	
 	private String lseq;
+	private String result;
 	
 	public String getSeqAdoptionReview() {
 		return seqAdoptionReview;
@@ -60,5 +61,11 @@ public class AdoptionReviewDTO {
 	}
 	public void setLseq(String lseq) {
 		this.lseq = lseq;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
 	}
 }
