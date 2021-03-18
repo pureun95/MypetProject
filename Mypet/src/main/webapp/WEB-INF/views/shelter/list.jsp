@@ -194,20 +194,24 @@
 
 		</div>
 		<div class="board-title">보호소</div>
-
+	
 			<form id="searchForm" method="GET" action="/mypet/shelter/list.action">
 				<div class="selectsearch">
-					<select class="location form-control">
-						<c:forEach items="${location}" var = "ldto">
-							<option>${ldto.location}</option>
-						</c:forEach>
-					</select>
 					
-					<select class="locationDetail form-control">
-						<c:forEach items="${location}" var = "ldto">
-							<option>${ldto.locationDetail}</option>
-						</c:forEach>
-					</select>	
+						<select class="location form-control" id="location" onchange="select();">
+							<option>시 / 도</option>
+							<c:forEach items="${location}" var="ldto">
+								<option value="${ldto.location}">${ldto.location}</option>
+							</c:forEach>
+						</select>
+						
+						<select class="locationDetail form-control" id="locationDetail">
+							<option>시 / 군 / 구</option>
+							<c:forEach items="${locationDetail}" var="lddto">
+								<option value="${lddto.locationDetail}">${lddto.locationDetail}</option>
+							</c:forEach>
+						</select>	
+					
 					
 		           	<input type="text" class="form-control" placeholder="보호소이름" id="search" name="search" required value="${search}">
 		           	<input type="button" class="btn" value="검색" name="search" onclick="$('#searchForm').submit();">	        	       
@@ -242,6 +246,84 @@
             </ul>      
 		</div>
 	</div>
+	
+	<!-- 셀렉트 박스 -->
+	<script>
+		$(document).ready(function(){
+			
+		     $("#location").on("change",function(){
+		    	 var selectValue = $(this).val(); //main category 에서 선택한 값
+	            	location.append("<option value=''>시 / 군 / 구</option>");
+	            for(var i=0;i<ldArr.length;i++){
+	                if(selectValue == ldArr[i].seqLocation){
+	                    
+	                	ldBox.append("<option value='"+ldArr[i].seqLocationDetail+"'>"+ldArr[i].locationDetail+"</option>");
+	                    
+		     });
+		     
+		 
+		});
+	
+	</script>
+	<!-- <script>
+	$(document).ready(function() {
+	    
+	    //시도 세팅
+	    var lArr = new Array();
+	    var lOb = new Object();
+	    
+	    //시도
+	    lOb = new Object();
+	    lOb.seqLocation = "";
+	    lOb.location = "";
+	    lArr.push(lOb);
+	    
+	    //시군구 세팅
+	    var ldlArr = new Array();
+	    var ldOb = new Object();
+	    
+	    //시군구
+	    ldOb = new Object();
+	    ldOb.seqLocation = "";
+	    ldOb.seqLocationDetail = ""
+	    ldOb.locationDetail = ""    
+	    ldlArr.push(ldOb);
+	    
+   
+	    //시도 셀렉트 박스 세팅
+	    var lBox = $("select[name='location']");
+	    
+	    for(var i=0;i<locationArr.length;i++){
+	        lBox.append("<option value='" + lArr[i].seqLocation+"'>" + lArr[i].location + "</option>");
+	    }
+	    
+	    //*********** 시도카테고리 선택 후 시군구 생성 ***********
+	    $(document).on("change","select[name='location']",function(){
+	        
+	        //두번째 셀렉트 박스를 삭제 시킨다.
+	        var ldBox = $("select[name='locationDetail']");
+	        	ldBox.children().remove(); //기존 리스트 삭제
+	        
+	        //선택한 첫번째 박스의 값을 가져와 일치하는 값을 두번째 셀렉트 박스에 넣는다.
+	        $("option:selected", this).each(function(){
+	            var selectValue = $(this).val(); //main category 에서 선택한 값
+	            	ldBox.append("<option value=''>시 / 군 / 구</option>");
+	            for(var i=0;i<ldArr.length;i++){
+	                if(selectValue == ldArr[i].seqLocation){
+	                    
+	                	ldBox.append("<option value='"+ldArr[i].seqLocationDetail+"'>"+ldArr[i].locationDetail+"</option>");
+	                    
+	                }
+	            }
+	        });
+	        
+	    });
+	        
+	});
+	
+	</script> -->
+	
+	
 	
 	<!-- 지도 -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9&libraries=services"></script>

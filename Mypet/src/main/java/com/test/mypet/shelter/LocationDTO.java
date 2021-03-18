@@ -5,6 +5,6 @@ import lombok.Data;
 @Data 
 public class LocationDTO {
 
+	private String seqLocation;
 	private String location;
-	private String locationDetail;
 }
