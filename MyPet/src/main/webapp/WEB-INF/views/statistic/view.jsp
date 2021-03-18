@@ -1,15 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<title>MyPet::유기 동물 및 MyPet 통계</title>
 
 <!--  이거는 스타일 수정 -->
 <style>
+#contentnav{
+	text-align: center;
+	padding-top:28px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-family: 'Jal_Onuel';
+    color: #301b01;
+    border: 0;
+}
+
 #content {
 	font-size: 16px;
 	height: 1100px;
 	overflow: hidden;
 	transition: 1s all;
-}
+	font-family: 'NanumSquare';
+    border: 0;   
+}	
 
 #stattbl, th, td {
 	
@@ -21,7 +34,8 @@
 	margin: 0px auto;
 }
 
-/*지도 칸 가장 중요하다.*/
+
+/* 지도 칸 가장 중요하다. */
 #statmap {
 	width: 600px;
 	height: 450px;
@@ -61,60 +75,59 @@
 	width: 85px;
 }
 
-/* 각 지역들의 차트 그래프 넣기 */
+
+
+/* 지도의 각 지역들의 차트 그래프 넣기 */
 .seoul {
 	/*top+height 높이가 -345가 될 수 있도록한다.*/
-	height: 20px;
+	height: 0px;
 	position: relative;
-	top: -365px;
+	top: -345px;
 	left: 180px;
 }
 
 .daegu {
-	height: 40px;
+	height: 0px;
 	/*top+height 높이가 -210가 될 수 있도록한다.*/
 	position: relative;
-	top: -250px;
+	top: -210px;
 	left: 340px;
 }
 
 .incheon {
-	height: 30px;
+	height: 0px;
 	/*top+height 높이가 -350가 될 수 있도록한다.*/
 	position: relative;
-	top: -380px;
+	top: -350px;
 	left: 75px;
 }
 
 .busan {
-	height: 25px;
+	height: 0px;
 	/*top+height 높이가 -150가 될 수 있도록한다.*/
 	position: relative;
-	top: -175px;
+	top: -150px;
 	left: 340px;
 }
 
-.busan {
-	
-}
 
 .gwaunggu {
-	height: 50px;
+	height: 0px;
 	/*top+height 높이가 -155가 될 수 있도록한다.*/
 	position: relative;
-	top: -205px;
+	top: -155px;
 	left: 75px;
 }
 
 .daejun {
-	height: 35px;
+	height: 0px;
 	/*top+height 높이가 -245가 될 수 있도록한다.*/
 	position: relative;
-	top: -280px;
+	top: -245px;
 	left: 125px;
 }
 
-/*옆에 있는 css*/
+/* 지도 옆에 있는 css */
 .statmapbtn {
 	width: 400px;
 	padding: 10px;
@@ -149,7 +162,7 @@
 	margin-left: 30px;
 }
 
-.statsearchinfo input[type=button] {
+.statsearchinfo button[type=submit] {
 	width: 60px;
 	border: 0;
 	text-align: center;
@@ -159,7 +172,8 @@
 	color: aliceblue;
 }
 
-/*subtable map*/
+
+/* 지도 subtable map*/
 .statmapsubtbl {
 	width: 380px;
 	margin: 0px auto;
@@ -244,6 +258,7 @@
 	vertical-align: middle;
 }
 
+
 /* 반달 차트  */
 .stathalfpie {
 	margin: 0 auto;
@@ -311,7 +326,7 @@
 	transition: 0.3s;
 }
 
-/*단어들 수정 입니다 */
+/* 단어들 수정 입니다  */
 #subinfotext1, #subinfotext2, #subinfotext3 {
 	float: left;
 	transition: 1s all;
@@ -368,7 +383,7 @@
 
 #subinfoanitext1 {
 	position: relative;
-	top: -230px;
+	top: -300px;
 	left: -300px;
 }
 
@@ -390,50 +405,57 @@
 	font-weight: bolder;
 }
 </style>
+
+
 <!-- 요 칸안에 내용작성하세요 -->
 <div id="content">
-	<div id="contentnav">주의 환기 문구를 넣어야지!!그래야지</div>
+	<div id="contentnav">
+		유기 동물 및 MyPet 통계 
+	</div>
 
 	<table id="stattbl">
 		<tr>
 			<th colspan="4">
 				<div class="well maintext_two">
 					유기 동물 전국 통계 -<small> 입양율</small>
-				</div>
-				</div>
-
+				</div>		
 			</th>
 		</tr>
+		
 		<tr>
-			<td class="statimg" colspan="3"><img id="statmap"
-				src="/mypet/resources/images/statistic/mapmain.jpg" alt="">
+			<td class="statimg" colspan="3">
+				<img id="statmap" src="/mypet/resources/images/statistic/mapmain.jpg" alt="">
 
 				<div class="statmainbar">
 					<div class="seoul statbar">
-						<textarea name="" class="stattext">서울특별시15%</textarea>
+						<textarea name="" class="stattext">서울특별시${mapInfo["서울특별시"]}%</textarea>
 					</div>
 
 					<div class="daegu statbar">
-						<textarea name="" class="stattext">대구광역시15%</textarea>
+						<textarea name="" class="stattext">대구광역시${mapInfo["대구광역시"]}%</textarea>
 					</div>
 
 					<div class="incheon statbar">
-						<textarea name="" class="stattext">인천광역시 15%</textarea>
+						<textarea name="" class="stattext">인천광역시 ${mapInfo["인천광역시"]}%</textarea>
 					</div>
 
 					<div class="busan statbar">
-						<textarea name="" class="stattext">부산광역시 15%</textarea>
+						<textarea name="" class="stattext">부산광역시 ${mapInfo["부산광역시"]}%</textarea>
 					</div>
 					<div class="gwaunggu statbar">
-						<textarea name="" class="stattext">광주광역시 15%</textarea>
+						<textarea name="" class="stattext">광주광역시 ${mapInfo["광주광역시"]}%</textarea>
 					</div>
 					<div class="daejun statbar">
-						<textarea name="" class="stattext">대전광역시 15%</textarea>
+						<textarea name="" class="stattext">대전광역시 ${mapInfo["대전광역시"]}%</textarea>
 					</div>
 					<!-- 전국 넣기 못하겠지?..-->
 					<div style="clear: both;"></div>
 
-				</div></td>
+				</div>
+				<div> [ 계산방법 : (해당지역 입양수 / 전국입양수) , 기간 : 2016 ~ 2020 년 ]</div>
+				<div><small>[${regression}]</small></div>
+			
+			</td>
 
 			<td class="statmapbtn">
 				<div class="alert alert-warning" style="text-align: center;">
@@ -441,8 +463,9 @@
 				</div>
 
 				<div class="statsel" style="text-align: center;">
-					<label for="location"> 지 역 &nbsp; &nbsp; &nbsp; &nbsp;
-						&nbsp; &nbsp;&nbsp; &nbsp; <select name="location" id="">
+					<label for="sellocation"> 지 역 &nbsp; &nbsp; &nbsp; &nbsp;
+						&nbsp; &nbsp;&nbsp; &nbsp; 
+						<select name="sellocation" id="">
 							<option value="">선택&nbsp;</option>
 							<option value="서울특별시">서울특별시&nbsp;</option>
 							<option value="인천광역시">인천광역시&nbsp;</option>
@@ -452,99 +475,137 @@
 							<option value="대전광역시">대전광역시&nbsp;</option>
 							<option value="울산광역시">울산광역시&nbsp;</option>
 							<option value="대구광역시">대구광역시&nbsp;</option>
-					</select>
+						</select>
 					</label>
 				</div>
 
 				<div class="statsel" style="text-align: center;">
 					<label for="yearmonth"> 연 도 &nbsp; &nbsp; &nbsp;&nbsp;
-						&nbsp; &nbsp; &nbsp; &nbsp; <select name="yearmonth" id="">
+						&nbsp; &nbsp; &nbsp; &nbsp; 
+						<select name="yearmonth" id="">
 							<option value="">선택&nbsp;</option>
 							<option value="2020">2020&nbsp;</option>
 							<option value="2019">2019&nbsp;</option>
 							<option value="2018">2018&nbsp;</option>
 							<option value="2017">2017&nbsp;</option>
 							<option value="2016">2016&nbsp;</option>
-					</select>
+						</select>
 					</label>
 				</div>
-				<div class="alert alert-warning  statsearchinfo">
-					<input type="button" value="검색"> <input type="text" name=""
-						id="statlocationname" value="" disabled> <input
-						type="text" name="" id="statdate" value="" disabled>
-				</div> <!--미니 테이블 이것 검색 결과 반환용도 -->
+				
+				<form method="GET" action="/mypet/stat/view.action">
+					<div class="alert alert-warning  statsearchinfo">
+						<input type="hidden" name="location" value="" > 
+						<input type="hidden" name="ymdate" value="" >
+						<button type="submit" >검색</button> 
+						
+						<input type="text" id="statlocationname" value="${location}" disabled> 
+						
+						<input type="text" id="statdate" value="${ymdate}" disabled>
+					</div>
+				</form> 
+				
+				
+				<!--미니 테이블 이것 검색 결과 반환용도 -->
 				<table class="table table-bordered statmapsubtbl">
 					<tr>
 						<th>안락사</th>
-						<td><input type="text" name="euthanasia" id="" value=""
-							disabled></td>
-						<th>입 양</th>
-						<td><input type="text" name="adoption" id="" value=""
-							disabled></td>
+						
+						<td>
+							<input type="text" name="euthanasia" id="" value="${dto.euthanasia}"
+							disabled>
 						</td>
+						
+						<th>입 양</th>
+						
+						<td>
+							<input type="text" name="adoption" id="" value="${dto.adoption}"
+							disabled>
+						</td>
+						
 					</tr>
+					
 					<tr>
 						<th>자연사</th>
-						<td><input type="text" name="death" id="" value="" disabled></td>
+						<td><input type="text" name="death" id="" value="${dto.death}" disabled></td>
 						<th>반 환</th>
-						<td><input type="text" name="return" id="" value="" disabled></td>
-						</td>
+						<td><input type="text" name="returning" id="" value="${dto.returning}" disabled></td>
+	
 					</tr>
+					
 					<tr>
 						<th>방 생</th>
-						<td><input type="text" name="semifarming" id="" value=""
-							disabled></td>
-						<th>보 호</th>
-						<td><input type="text" name="protection" id="" value=""
-							disabled></td>
+						<td>
+							<input type="text" name="semifarming" id="" value="${dto.semifarming}"
+							disabled>
 						</td>
+						<th>보 호</th>
+						<td>
+							<input type="text" name="protection" id="" value="${dto.protection}"
+							disabled>
+						</td>
+						
 					</tr>
+
 					<tr>
 						<th>기 증</th>
-						<td><input type="text" name="donation" id="" value=""
-							disabled></td>
+						<td>
+							<input type="text" name="donation" id="" value="${dto.donation}"
+							disabled>
+						</td>
 						<th>전 체</th>
-						<td><input type="text" name="stattotal" id="" value=""
-							disabled></td>
+						<td>
+							<input type="text" name="stattotal" id="" value="${dto.total}"
+							disabled>
 						</td>
 					</tr>
+
 					<tr>
-						<th colspan="4" id="subtbltr">위의 통계는 오차범위 10%가 있습니다. <small>
-								(단위 : 두) </small></th>
+						<th colspan="4" id="subtbltr">위의 통계는 오차범위 10%가 있습니다.
+						<small>(단위 : 두) </small>
+						</th>
 					</tr>
 
-				</table>
-
+				</table><!-- 미니 테이블 끝 -->
 
 			</td>
-
 
 		</tr>
 
 	</table>
+
 	<!-- 차트 테이블 위에가 1번 끝. -->
+
 	<hr>
-	<div class="well maintext_two">MYPET 통계자료</div>
+
+	<div class="well maintext_two">
+		MYPET 통계자료
+	</div>
+	
 	<table class="table table-bordered statmypet">
 		<tr>
 			<td colspan="2">
 				<div class="alert alert-info statmypetinfo">
 					<div class="totaluser">
-						전체 회원 수 : 10000 명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <span
-							class="statmypetsubinfo">입양신청 회원 수 : 5050 명 감사합니다.!</span>
+						전체 회원 수 : ${mapInfo["전체회원"]} 명 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp; 
+						<span class="statmypetsubinfo"> </span>
 					</div>
+					
 					<div class="totalanimal">
-						전체 동물 수 : 11234 마리 &nbsp; &nbsp; <span class="statmypetsubinfo">입양된
-							동물 수 : 5000 마리 &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-							&nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;입양가능 동물
-							수 : 2000마리 </span>
+						전체 동물 수 : ${mapInfo["전체동물"]} 마리 &nbsp; &nbsp; 
+						<span class="statmypetsubinfo">입양된
+							동물 수 : ${mapInfo["입양된동물"]}  마리 &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
+							&nbsp;&nbsp;입양가능 동물
+							수 : ${mapInfo["입양가능동물"]} 마리 
+						</span>
+						
 						<div id="statmypetaddinfo" style="float: right;">더 들여다보기</div>
+						
 						<div style="clear: both;"></div>
 					</div>
 				</div>
 			</td>
 		</tr>
-
 
 		<tr id="statmypetmaininfo">
 			<td>
@@ -552,41 +613,58 @@
 					<div style="font-size: 16px; font-weight: bolder;">
 						MYPET의 전체 동물입양 자료입니다. <small>( 입양가능 동물에 마우스를 올려보세요. )</small><br>
 					</div>
+
 					<hr>
+
 					<ul class="stathalfpie">
 						<li class="abled"></li>
 						<li></li>
 						<li></li>
 					</ul>
-					<div id="subinfotext1">
-						<textarea>입양가능15%</textarea>
 
+					<div id="subinfotext1">
+						<textarea>입양가능${mapInfo["입양가능"]}%</textarea>
 					</div>
+					
 					<div id="subinfotext2">
-						<textarea>입양완료50%</textarea>
+						<textarea>입양완료${mapInfo["입양완료"]}%</textarea>
 					</div>
+					
 					<div id="subinfotext3">
-						<textarea>기타사항10%</textarea>
+						<textarea>기타사항${mapInfo["기타사항"]}%</textarea>
 					</div>
+					
 					<div style="clear: both;"></div>
+					
+					<div>[(좌측)계산식 : 상태/전체동물, (우측)계산식 : 개체타입/입양가능동물] </div>
 				</div>
 			</td>
+	
 			<td>
-				<div class="statanimaltext well">생명과 함께한다는 결심에 신중!</div>
-				<div class="statanimaltext well">생명을 '사랑하기'
-					&nbsp;&nbsp;&nbsp;약속 ♡</div>
-				<div class="alert alert-warning statanimalpieaddinfo">사랑스런 동물이
-					기다리고 있어요!</div>
+				<div class="statanimaltext well">
+					생명과 함께한다는 결심에 신중!
+				</div>
+	
+				<div class="statanimaltext well">
+					생명을 '사랑하기' &nbsp;&nbsp;&nbsp;약속 ♡
+				</div>
+				
+				<div class="alert alert-warning statanimalpieaddinfo">
+					사랑스런 동물이 기다리고 있어요!
+				</div>
+				
 				<div class="statanimalpie"></div>
+				
 				<div id="subinfoanitext1">
-					<textarea>강아지50%</textarea>
-
+					<textarea>강아지${mapInfo["강아지"]}%</textarea>
 				</div>
+				
 				<div id="subinfoanitext2">
-					<textarea>고양이35%</textarea>
+					<textarea>고양이${mapInfo["고양이"]}%</textarea>
 				</div>
+				
 				<div id="subinfoanitext3">
-					<textarea>기타15%</textarea>
+					<textarea>기타${mapInfo["기타"]}%</textarea>
 				</div>
 
 				<div style="clear: both;"></div>
@@ -601,12 +679,52 @@
 
 
 <script>
+
+	$(window).ready(function(){
+	
+	    var mapTimer ="";
+	    
+	    var mapTimer = setTimeout(function(){
+	        
+	    var seoul_height = ${mapInfo["서울특별시"]}; 
+	    var seoul_top = -345-seoul_height;
+	    $(".seoul").css("height", seoul_height+"px" ).css( "top" ,  seoul_top+"px");
+	
+	    var daegu_height = ${mapInfo["대구광역시"]}; 
+	    var daegu_top = -210-daegu_height;
+	    $(".daegu").css("height", daegu_height+"px" ).css( "top" ,  daegu_top+"px");
+	
+	    var incheon_height = ${mapInfo["인천광역시"]}; 
+	    var incheon_top = -350-incheon_height;
+	    $(".incheon").css("height", incheon_height+"px" ).css( "top" ,  incheon_top+"px");
+	
+	    var busan_height = ${mapInfo["부산광역시"]}; 
+	    var busan_top = -150-busan_height;
+	    $(".busan").css("height", busan_height+"px" ).css( "top" ,  busan_top+"px");
+	
+	    var gwaunggu_height = ${mapInfo["광주광역시"]}; 
+	    var gwaunggu_top = -155-gwaunggu_height;
+	    $(".gwaunggu").css("height", gwaunggu_height+"px" ).css( "top" , gwaunggu_top+"px");
+	
+	    var daejun_height = ${mapInfo["대전광역시"]}; 
+	    var daejun_top = -245-daejun_height;
+	    $(".daejun").css("height", daejun_height+"px" ).css( "top" ,daejun_top+"px");
+	
+	
+	    },500);
+	
+	    mapTimer =0;
+	
+	});
+
+
+
 	/* 글자 값 받기 */
-	$(".statsel select[name='location']").change(function() {
-		$("#statlocationname").val($(this).val());
+	$(".statsel select[name='sellocation']").change(function() {
+		$("input[name=location]").val($(this).val());
 	})
 	$(".statsel select[name='yearmonth']").change(function() {
-		$("#statdate").val($(this).val());
+		$("input[name=ymdate]").val($(this).val());
 	})
 
 	/* */
@@ -659,21 +777,21 @@
 
 	 */
 
+	 
 	/*반달 올렸을떄 호버같은 역할 하기  둥근달 용 색상 조잘*/
 
 	$(".abled").mouseover(
 			function() {
 				$(".statanimaltext").css("display", "none");
-				$("#subinfoanitext1,#subinfoanitext2,#subinfoanitext3").css(
-						"opacity", "1");
+				$("#subinfoanitext1,#subinfoanitext2,#subinfoanitext3").css("opacity", "1");
 				$(".statanimalpieaddinfo").css("display", "block");
 
 				var i = 1;
 				var func1 = setInterval(function() {
-					if (i < 30) {
+					if (i < ${mapInfo["고양이"]} ) {
 						color1(i);
 						i++;
-					} else if (i < 50) {
+					} else if (i < ${mapInfo["기타"]+mapInfo["고양이"]} ) {
 						color2(i);
 						i++;
 					} else if (i < 101) {
@@ -689,7 +807,7 @@
 	function color1(i) {
 		$(".statanimalpie").css(
 				{
-					"background" : "conic-gradient(#A593E0 0% " + i
+					'background' : 'conic-gradient(#A593E0 0% ' + i
 							+ "%, #ffffff " + i + "% 100%)"
 				});
 
@@ -699,7 +817,7 @@
 		$(".statanimalpie")
 				.css(
 						{
-							"background" : "conic-gradient(#A593E0 0% 30%, #E0E3DA 30% "
+							'background' : 'conic-gradient(#A593E0 0% ${mapInfo["고양이"]}%, #E0E3DA ${mapInfo["고양이"]}% '
 									+ i + "%, #ffffff " + i + "% 100%)"
 						});
 
@@ -709,7 +827,7 @@
 		$(".statanimalpie")
 				.css(
 						{
-							"background" : "conic-gradient(#A593E0 0% 30%, #E0E3DA 30% 50%, #21f3d6 50% "
+							'background' : 'conic-gradient(#A593E0 0% ${mapInfo["고양이"]}%, #E0E3DA ${mapInfo["고양이"]}%  ${mapInfo["기타"]+mapInfo["고양이"]}%, #21f3d6  ${mapInfo["기타"]+mapInfo["고양이"]}%'
 									+ i + "%, #ffffff " + i + "% 100%)"
 						});
 
