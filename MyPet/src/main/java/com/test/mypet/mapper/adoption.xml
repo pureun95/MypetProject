@@ -54,5 +54,15 @@
 	<update id="likes" parameterType="String">
 		update tblAdoption set likes = (likes + 1) where seqAdoption = #{seqAdoption}
 	</update> 
+	
+	<!-- 찜하기 -->
+	<select id="likeUser" parameterType="String" resultType="adto">
+		select * from tblLike where seqUser = #{seqUser}
+	</select>
+	
+	<!-- 찜하기 넣기-->
+	<insert id="insertLikes" parameterType="HashMap">
+		insert into tblLike values(seqLike.nextVal,  #{seqAdoption}, #{seqUser})
+	</insert>
 
 </mapper>

@@ -3,6 +3,8 @@ package com.test.mypet.adoption;
 import java.util.HashMap;
 import java.util.List;
 
+import com.test.mypet.member.MemberDTO;
+
 
 public interface IAdoptionDAO {
 
@@ -32,7 +34,7 @@ public interface IAdoptionDAO {
 	
 	/**
 	 * 
-	 * @param 게시물번호
+	 * @param 게시물 번호
 	 * @return 입양글 상세정보
 	 */
 	AdoptionDTO getView(String seqAdoption);
@@ -40,8 +42,25 @@ public interface IAdoptionDAO {
 	
 	/**
 	 * 
-	 * @param 게시물번호
+	 * @param 게시물 번호
 	 * @return 쿼리 결과
 	 */
 	int getLikes(String seqAdoption);
+
+	
+	/**
+	 * 
+	 * @param 유저 번호
+	 * @return 유저의 찜하기 목록
+	 */
+	List<AdoptionDTO> getLikesUser(String seqUser);
+	
+	
+	/**
+	 * 
+	 * @param seqUser 유저번호
+	 * @param seqAdoption 입양글 번호
+	 * @return
+	 */
+	int insertLikes(HashMap<String, String> map);
 }
