@@ -117,19 +117,19 @@
         <table class="table table-condensed">
         	<tr class="headtr">
         		<td class="firstth" colspan="1">제목</td>
-        		<td class="firsttd" colspan="9">제목입니다.</td>
+        		<td class="firsttd" colspan="9">${ndto.title}</td>
         	</tr>
         	<tr class="headtr">
         		<td class="firstth" colspan="1">작성일</td>
-        		<td class="firsttd" colspan="9">2021-01-01</td>
+        		<td class="firsttd" colspan="9">${ndto.writeDate}</td>
         	</tr>
         	<tr class="headtr">
         		<td class="firstth" colspan="1">조회수</td>
-        		<td class="firsttd" colspan="9">13</td>
+        		<td class="firsttd" colspan="9">${ndto.viewCount}</td>
         	</tr>
         	<tr class="headtr">      	
         		<td class="firsttd" colspan="10" style="padding: 30px 50px">
-        			<div class="board-content">내용입니다.</div>        		
+        			<div class="board-content">${ndto.content}</div>        		
         		</td>
         	</tr>
         	
@@ -141,12 +141,23 @@
         	<tr class="headtr">      	
         		<td class="firstth" colspan="1">이전글</td>
         		<td class="firsttd" colspan="9">이전글입니다.</td>
+        		
+        		
+        		
         	</tr>
         	<tr class="headtr">      	
         		<td class="firstth" colspan="1" style="border-bottom: 1px solid #e8e8e8">다음글</td>
         		<td class="firsttd" colspan="9" style="border-bottom: 1px solid #e8e8e8">다음글입니다.</td>
         	</tr>
         </table>
+        
+      	<%-- <c:if test="${ndto.prevNum ne 0 }">
+			<a href="detail.action?seqNotice=${ndto.prevNum}">이전글</a>
+		</c:if> 
+		
+		<c:if test="${ndto.nextNum ne 0 }"> 
+			<a href="detail.action?seqNotice=${ndto.nextNum}">다음글</a>
+		</c:if>	  --%>
         
         
         <!-- <div class="btn-group">
