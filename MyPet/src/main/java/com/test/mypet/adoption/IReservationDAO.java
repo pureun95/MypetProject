@@ -4,21 +4,21 @@ import java.util.List;
 
 public interface IReservationDAO {
 
-	VwReservationDTO getUserInfo(Object attribute);
+	VwReservationDTO getUserInfo(Object id);
 
 	List<VetDTO> getVetList(String address);
 
 	int insertReservation(VwReservationDTO dto);
 
-	List<VwReservationDTO> getMyReservationList(String attribute);
+	List<VwReservationDTO> getMyReservationList(String seqUser);
 
 	VwReservationDTO getReservationView(String seqReservation);
 
-	List<VwReservationDTO> getMyReservationListWithNoResponse(String attribute);
+	List<VwReservationDTO> getMyReservationListWithNoResponse(String seqUser);
 
-	List<VwReservationDTO> getMyReservationListShelter(String attribute);
+	List<VwReservationDTO> getMyReservationListShelter(String seqUser);
 
-	List<VwReservationDTO> getMyReservationListShelterWithNoResponse(String attribute);
+	List<VwReservationDTO> getMyReservationListShelterWithNoResponse(String seqUser);
 
 
 }

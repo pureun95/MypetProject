@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
+<title>MyPet::활동게시판</title>
+
+
 <style>
-
-
 
 	body {
 	   font-family: 'NanumSquare';
@@ -17,7 +19,7 @@
         margin-top: 150px;
         padding: 20px 50px;
         /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
+        border: 0;
        }
 
 
@@ -103,8 +105,8 @@
         margin-left: 1060px;
     }
 
-</style>
 
+</style>
 
     <div id="content">
     
@@ -123,10 +125,12 @@
         		<td class="firstth" colspan="1">작성일</td>
         		<td class="firsttd" colspan="9">${dto.actDate}</td>
         	</tr>
+        	
         	<tr class="headtr">
         		<td class="firstth" colspan="1">조회수</td>
         		<td class="firsttd" colspan="9">${dto.viewCount}</td>
         	</tr>
+        	
         	<tr class="headtr">      	
         		<td class="firsttd" colspan="10" style="padding: 30px 50px">
         			<div class="board-content">${dto.content}</div>        		
@@ -136,12 +140,14 @@
         	<!-- 첨부파일?! -->
         	<tr class="headtr">      	
         		<td class="firstth" colspan="1">첨부파일</td>
-        		<td class="firsttd" colspan="9">일단 넣었습니다~</td>
+        		<td class="firsttd" colspan="9">없음</td>
         	</tr>
+        	
         	<tr class="headtr">      	
         		<td class="firstth" colspan="1">이전글</td>
         		<td class="firsttd" colspan="9">${preDto.title}</td>
         	</tr>
+        	
         	<tr class="headtr">      	
         		<td class="firstth" colspan="1" style="border-bottom: 1px solid #e8e8e8">다음글</td>
         		<td class="firsttd" colspan="9" style="border-bottom: 1px solid #e8e8e8">${nextDto.title}</td>
@@ -162,9 +168,7 @@
    
 
 
-
- <!--  modal  esc 방지 ! data-keyboard="false" -->
-    <div class="modal fade" id="act_delete" tabindex="-1" role="dialog" aria-labelledby="spon_modal" data-backdrop="static">
+	<div class="modal fade" id="act_delete" tabindex="-1" role="dialog" aria-labelledby="spon_modal" data-backdrop="static">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
@@ -183,8 +187,6 @@
         </div>
       </div>
 
-    <script>
-	
-    		
+<script>
 
-    </script>
+</script>

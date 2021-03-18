@@ -31,7 +31,13 @@ public class ShelterDAO implements IShelter{
 	@Override
 	public List<LocationDTO> location() {
 		
-		return template.selectList("shelter.list");
+		return template.selectList("shelter.location");
+	}
+	
+	@Override
+	public List<LocationDetailDTO> locationDetail() {
+		
+		return template.selectList("shelter.locationDetail");
 	}
 
 
@@ -47,6 +53,9 @@ public class ShelterDAO implements IShelter{
 		
 		return template.selectOne("shelter.count",map);
 	}
+
+
+
 
 
 

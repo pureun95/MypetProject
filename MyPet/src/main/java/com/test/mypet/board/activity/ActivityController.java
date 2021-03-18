@@ -11,13 +11,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
+/**
+ * 활동 게시판의 페이지 클래스 입니다.
+ * @author 이대홍
+ *
+ */
 @Controller
 public class ActivityController {
 
 	@Autowired
 	private IActivityDAO dao;
-	
+
+	/**
+	 * 황동게시판의 전체 리스트를 10개씩 출력해 반환하는 메소드입니다.
+	 * @param request
+	 * @param response 
+	 * @param session 관리자정보
+	 * @param page 페이지번호
+	 * @return jsp 호출
+	 */
 	
 	@RequestMapping(value="activity/list.action", method= {RequestMethod.GET})
 	public String act_list(HttpServletRequest request, 
@@ -115,18 +127,23 @@ public class ActivityController {
 		}
 		
 		
-
-		
-	
-		
 		List<ActivityDTO> list = dao.list(map);
 		
 		for(ActivityDTO dto  : list) {
 			dto.setActDate(dto.getActDate().substring(0,10));
 		}
 		
+		// 달력용 전체 리스트 가져오기 
+		List<ActivityDTO> listInfo = dao.list_info();
+		for(ActivityDTO dto  : listInfo) {
+			dto.setActDate(dto.getActDate().substring(0,10));
+		}
+		
 		
 		request.setAttribute("list", list);
+		
+		request.setAttribute("listInfo", listInfo);
+	
 		request.setAttribute("search", search);
 		request.setAttribute("pagebar", pagebar);
 		request.setAttribute("nowPage", nowPage);
@@ -139,6 +156,15 @@ public class ActivityController {
 		return "board/act_list";
 	}
 	
+	
+	/**
+	 * 황동게시판의 한개의 글 정보를 반환하는 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seqActivity 활동 글 번호
+	 * @return
+	 */
 	
 	@RequestMapping(value="activity/view.action")
 	public String act_view(HttpServletRequest request, 
@@ -164,5 +190,53 @@ public class ActivityController {
 		
 		return "board/act_view";
 	}
+	
+	/**
+	 * 활동 글 작성 메소드 입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seqadmin 관리자번호
+	 * @return
+	 */
+	
+	
+	@RequestMapping(value="/activity/write.action", method= {RequestMethod.GET})
+	public String act_write(HttpServletRequest request, 
+			HttpServletResponse response, 
+			HttpSession session,
+			
+			String seqAdmin ) {
+		
+		seqAdmin ="1";
+		request.setAttribute("seqAdmin", seqAdmin);
+		
+		return "board/act_write";
+	}
+	
+	
+	/**
+	 * 활동글의 작성 DB업무 연동용 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param content 글내용
+	 * @param title 글 제목
+	 */
+	
+	@RequestMapping(value="/activity/writeok.action", method= {RequestMethod.GET})
+	public void act_writeok(HttpServletRequest request, 
+			HttpServletResponse response, 
+			HttpSession session,String content, String title ) {
+		
+		ActivityDTO dto = new ActivityDTO();
+		
+		dto.setContent(content);
+		dto.setContent(title);
+		
+		int result = dao.writer(dto);
+		
+	}
+	
 	
 }

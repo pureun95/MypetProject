@@ -1,11 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-  <title>mypet add</title> 
+	
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+  <title>MyPet::후원</title> 
 
 
 <!--  이거는 스타일 수정 -->
-<style>
  <style>
+
+#contentnav{
+	text-align: center;
+	padding-top:28px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-family: 'Jal_Onuel';
+    color: #301b01;
+    border: 0;
+}
 
 
 /* 광고 슬라이드 */
@@ -16,49 +27,50 @@ margin: 0 auto;
 height:300px;
 }
 */
-/* 효과 슬라이드  */
-        #sponad ul,li{
-            list-style: none;
-            margin: 0px;
-            padding: 0px;
-        }
 
-        [name="slide"]{
-            display: none;
-        }
-        /*slidebox = prepare*/
-        #sponad {
-           width: 100%;
-           margin: 0px auto;
-           height: 200px;
-        }
-        #sponad img{
-            max-width: 100%;
-            width: 1200px;
-            height: 200px;
-        }
-        #sponad .slidelist{
-            white-space: nowrap;
-            font-size: 0;
-            overflow: hidden;
-        }
-        #sponad .slideitem{
-            position: relative;
-            display: inline-block;
-            vertical-align: middle;
-            width: 100%;
-            transition: all .35s;
-        }
-        
-        #sponad .slideitem label{
-            position: absolute;
-            z-index: 1;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 20px;
-            border-radius: 50%;
-            cursor: pointer;
-        }
+/* 효과 슬라이드  */
+#sponad ul,li{
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+[name="slide"]{
+    display: none;
+}
+/*slidebox = prepare*/
+#sponad {
+   width: 100%;
+   margin: 0px auto;
+   height: 200px;
+}
+#sponad img{
+    max-width: 100%;
+    width: 1200px;
+    height: 200px;
+}
+#sponad .slidelist{
+    white-space: nowrap;
+    font-size: 0;
+    overflow: hidden;
+}
+#sponad .slideitem{
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: all .35s;
+}
+
+#sponad .slideitem label{
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
 label .left{
     left:20px;
@@ -130,6 +142,7 @@ label .right{
     98%{left: 100%;}
     100%{left: 0%;}
 }
+
 
 /* 1번 테이블 안의 tr- td 1첫번쨰것*/
 .board-name {
@@ -268,6 +281,8 @@ label .right{
 
     #content{
         height: 1200px;
+        font-family: 'NanumSquare';
+        border: 0;
     }
 
     .totalspon{
@@ -341,7 +356,7 @@ label .right{
         text-align: center;
     }
 
-    #spon_addimg{
+    .spon_addimg{
         display: block;
         float: left;
         width: 150px;
@@ -353,66 +368,70 @@ label .right{
     }
 
     
-    #spon_addimg:hover{
+    .spon_addimg_hover:hover{
         transform: rotate(360deg);
+        cursor:pointer;
         opacity: 0;
     }
 
 
-/**/
+/* modal 관련 css */
 
-.modal-content{
-}
-
-.spon_modal_img{
-    width: 60px;
-    height: 60px;
-}
-
-.modal-header{
-height: 80px;
-font-size: 24px;
-font-weight: bolder;
-background-color: #f1acac;
-
-}
-
-.cardnumber_span{
-    text-align: center;
-    width: 400px;
-    margin: 10px 31px;
-    display: inline-block;
-}
-
-.cardnumber input[type=number]{
-    text-align: center;
-    width: 70px;
-    height: 30px;
-    font-size: 16px;
-    font-weight: bolder;
-    margin-left: 10px;
-    border: 1px solid #b27208;
-    border-radius: 3px;
-}
-
-.cardnumber input[type=number]:nth-child(2),.cardnumber input[type=number]:nth-child(4){
-    -webkit-text-security:disc;
-}
-
-.cardnumber input[type=number]:nth-child(2):hover,
-.cardnumber input[type=number]:nth-child(4):hover{
-    background-color: #f1acac;
-    color: #e3e3e3;
-    -webkit-text-security:none;
-}
-
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
+		.modal-content{
+		}
+		
+		.spon_modal_img{
+		    width: 60px;
+		    height: 60px;
+		}
+		
+		.modal-header{
+		height: 80px;
+		font-size: 24px;
+		font-weight: bolder;
+		background-color: #f1acac;
+		
+		}
+		
+		.cardnumber_span{
+		    text-align: center;
+		    width: 400px;
+		    margin: 10px 31px;
+		    display: inline-block;
+		}
+		
+		.cardnumber input[type=number]{
+		    text-align: center;
+		    width: 70px;
+		    height: 30px;
+		    font-size: 16px;
+		    font-weight: bolder;
+		    margin-left: 10px;
+		    border: 1px solid #b27208;
+		    border-radius: 3px;
+		}
+		
+		.card_pass,
+		.cardnumber input[type=number]:nth-child(2),
+		.cardnumber input[type=number]:nth-child(4){
+		    -webkit-text-security:disc;
+		}
+		
+		.card_pass:hover,
+		.cardnumber input[type=number]:nth-child(2):hover,
+		.cardnumber input[type=number]:nth-child(4):hover{
+		    background-color: #f1acac;
+		    color: #e3e3e3;
+		    -webkit-text-security:none;
+		}
+		
+		
+		input[type="number"]::-webkit-outer-spin-button,
+		input[type="number"]::-webkit-inner-spin-button {
+		    -webkit-appearance: none;
+		    margin: 0;
+		}
+	
 
 
 
@@ -527,57 +546,67 @@ input[type="number"]::-webkit-inner-spin-button {
 
         }
 
-    </style>
+		/*추가 방식 */
+	
+		.she_deep_info:hover {
+			cursor: pointer;	
+		}
+</style>
 
 
 <!-- 요 칸안에 내용작성하세요 -->
 <div id="content">
-	        <div id="contentnav">
-            개인 서브네비입니다.
-        </div>
-        <hr>
-        <div id="sponad">
-            <input type="radio" name="slide" id="slide01" checked>
-            <input type="radio" name="slide" id="slide02">
-            <input type="radio" name="slide" id="slide03">
-            <input type="radio" name="slide" id="slide04">
-            <ul class="slidelist">
-                <li class="slideitem">
-                    <div>
-                        <label for="slide04" class="left"></label>
-                        <label for="slide02" class="right"></label>
-                        <img alt="step1" src="/mypet/resources/images/sponsor/catty14.png">
+    <div id="contentnav">
+       MyPet 동물 보호소 후원 
+    </div>
+        
+    <hr>
+	<!-- 광고효과 -->        
+    <div id="sponad">
+        <input type="radio" name="slide" id="slide01" checked>
+        <input type="radio" name="slide" id="slide02">
+        <input type="radio" name="slide" id="slide03">
+        <input type="radio" name="slide" id="slide04">
+        <ul class="slidelist">
+            <li class="slideitem">
+                <div>
+                    <label for="slide04" class="left"></label>
+                    <label for="slide02" class="right"></label>
+                    <img alt="step1" src="/mypet/resources/images/sponsor/ad3.jpg">
 
-                    </div>
-                </li>
-                <li class="slideitem">
-                    <div>
-                        <label for="slide01" class="left"></label>
-                        <label for="slide03" class="right"></label>
-                        <div class="img"><img alt="step2" src="/mypet/resources/images/sponsor/catty02.png"></div> 
-                    </div>
-                </li>
-                <li class="slideitem">
-                    <div>
-                        <label for="slide02" class="left"></label>
-                        <label for="slide04" class="right"></label>
-                        <img alt="step3" src="/mypet/resources/images/sponsor/catty21.png"> 
-                         </div>
-                </li>
-                <li class="slideitem">
-                    <div>
-                        <label for="slide03" class="left"></label>
-                        <label for="slide01" class="right"></label>
-                        <img alt="step4" src="/mypet/resources/images/sponsor/catty10.png"> 
-                    </div>
-                </li>
-            </ul>
-        </div>
+                </div>
+            </li>
+            <li class="slideitem">
+                <div>
+                    <label for="slide01" class="left"></label>
+                    <label for="slide03" class="right"></label>
+                    <div class="img"><img alt="step2" src="/mypet/resources/images/sponsor/ad2.jpg"></div> 
+                </div>
+            </li>
+            <li class="slideitem">
+                <div>
+                    <label for="slide02" class="left"></label>
+                    <label for="slide04" class="right"></label>
+                    <img alt="step3" src="/mypet/resources/images/sponsor/ad1.jpg"> 
+                     </div>
+            </li>
+            <li class="slideitem">
+                <div>
+                    <label for="slide03" class="left"></label>
+                    <label for="slide01" class="right"></label>
+                    <img alt="step4" src="/mypet/resources/images/sponsor/ad4.jpg"> 
+                </div>
+            </li>
+        </ul>
+    </div>
 
-        <hr>
-        <div class="totalspon">
-           2020년 전체 후원 누적 금액 : <span class="totalspon_money">123,453,566</span>원 감사합니다. 
-        </div>
+    <hr>
+
+    <div class="totalspon">
+       2020년 전체 후원 누적 금액 : <span class="totalspon_money">${sum}</span>원 감사합니다. <small>[ 2020년 기준 후원금액 ]</small>
+    </div>
+	<!-- 미니 테이블 -->
+	
         <table id="tblsponsor">
             <tr>
                 <td id="tblspontd1">
@@ -587,123 +616,59 @@ input[type="number"]::-webkit-inner-spin-button {
                             <th class="firsttd">전화번호</th>
                             <th class="fourthtd">후원 금액</th>
                         </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>보호소명</td>
-                            <td>010-1234-5678</td>
-                            <td>100,000,000 원</td>
-                        </tr>
+                  
+                        <c:forEach items="${list}" var="dto">
+	                        <tr class="tr2">
+	                            <td>
+	                             <label class="she_deep_info">
+	                             	${dto.name}
+	                             	<input type="hidden" value="${dto.seqShelter}">
+	                             </label>
+	                            
+	                            </td>
+	                            <td>${dto.tel}</td>
+	                            <td>${dto.sponSum} 원</td>
+	                        </tr>
+                        </c:forEach>
                         
-                        <!-- 10개 vs 15개 -->
-                        
-                        <!--
-                        <tr class="tr2">
-                            <td>11</td>
-                            <td>공지사항 제목입니다.</td>
-                            <td>2021-01-01</td>
-                            <td>32</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>12</td>
-                            <td>공지사항 제목입니다.</td>
-                            <td>2021-01-01</td>
-                            <td>32</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>13</td>
-                            <td>공지사항 제목입니다.</td>
-                            <td>2021-01-01</td>
-                            <td>32</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>14</td>
-                            <td>공지사항 제목입니다.</td>
-                            <td>2021-01-01</td>
-                            <td>32</td>
-                        </tr>
-                        <tr class="tr2">
-                            <td>15</td>
-                            <td>공지사항 제목입니다.</td>
-                            <td>2021-01-01</td>
-                            <td>32</td>
-                        </tr>
-                        -->
                     </table>
-                            <div class="pageSearch">
-            <!-- 페이지바 -->
-            <ul class="pagination">
-                <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li><a>3</a></li>
-                <li><a>4</a></li>
-                <li><a>5</a></li>
-                <li><a>6</a></li>
-                <li><a>7</a></li>
-                <li><a>8</a></li>
-                <li><a>9</a></li>
-                <li><a>10</a></li>
-                <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
-            </ul>       
-
-            <!-- 검색창 & 검색 버튼 -->
-            <input type="textbox" class="form-control search-text">
-            <input type="button" class="btn common-btn" value="검색">
-        </div>
+	       			
+	       			 <div class="pageSearch">
+			            <!-- 페이지바 -->
+			            <ul class="pagination">
+			            	${pagebar}
+			            <!-- 
+			                <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
+			                <li><a>1</a></li>
+			                <li><a>2</a></li>
+			                <li><a>3</a></li>
+			                <li><a>4</a></li>
+			                <li><a>5</a></li>
+			                <li><a>6</a></li>
+			                <li><a>7</a></li>
+			                <li><a>8</a></li>
+			                <li><a>9</a></li>
+			                <li><a>10</a></li>
+			                <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
+			             -->
+			            </ul>       
+			
+			            <!-- 검색창 & 검색 버튼 -->
+			            <input type="textbox" class="form-control search-text">
+			            <input type="button" class="btn common-btn" value="검색">
+			        </div>
 
                 </td>
+                
                 <!--위가 1번 tr td-->
                 <td>
+                
                     <div class="board-write">
                         <div class="she_main"> 보호소 소개 </div>
                         <hr>
-                        <div class="she_name she_info"><span>보호소</span>강아지좋아</div>
-                        <div class="she_add she_info"><span>주소</span>서울 특별시 영등포구 테레한로 1204호-304</div>
-                        <div class="she_tel she_info"><span>전화번호</span>010 - 1234 - 5678</div>
+                        <div class="she_name she_info"><span>보호소</span><span></span></div>
+                        <div class="she_add she_info"><span>주소</span><span></span></div>
+                        <div class="she_tel she_info"><span>전화번호</span><span></span></div>
                         <div class="account she_info"><span>계좌번호</span>쌍용금융 <span class="ac_number">1234567890123411</span>
                         </div>
                         <div class="she_info">보호소 소개</div>
@@ -714,10 +679,11 @@ input[type="number"]::-webkit-inner-spin-button {
                     <div class="board-btn">
                         <input type="button" class="btn common-btn" value="후원하기" data-toggle="modal" data-target="#spon_mainmodal">
 
-                        <input type="button" class="btn common-btn" value="내역조회"></div>
+                        <input type="button" class="btn common-btn sponsor_list" value="내역조회"></div>
                         
-                        <img src="/mypet/resources/images/sponsor/catty01.png" alt=""
-                        id="spon_addimg">
+                        <div class="spon_addimg spon_addimg_hover spon_addimg_evt">
+                        	<img src="/mypet/resources/images/sponsor/catty01.png" alt="클릭시지도">
+                        </div>
                 </td>
             </tr>
 
@@ -728,149 +694,274 @@ input[type="number"]::-webkit-inner-spin-button {
    <!--  modal  esc 방지 ! data-keyboard="false" -->
     <div class="modal fade" id="spon_mainmodal" tabindex="-1" role="dialog" aria-labelledby="spon_modal" data-backdrop="static">
         <div class="modal-dialog" role="document">
+          
           <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <img src="/mypet/resources/images/sponsor/myhome.png" class="spon_modal_img">
                 MyHomePay
             </div>
+            
+            <form method="POST" action="/mypet/sponsor/sponok.action">
             <div class="modal-body">
-            <div class="she_reci"><span>받는분</span>MYPET동물유치원</div>
+            	<div class="she_reci"><span>받는분</span>MYPET동물유치원</div>
             
-            <div class="paytext"> 신용 / 체크카드 </div>
+            	<div class="paytext"> 신용 / 체크카드 </div>
             
-            <div class="cardinfo">
-            <div class="cardnumber cardinfo_sub">
-                <span>카드번호</span>
-                <span class="cardnumber_span">
-                <input type="number" inputmode="numeric" min="1000" max="9999" maxlength="4" oninput="length(this);" required>
-                &nbsp;&nbsp;- 
-                <input type="number" inputmode="numeric" min="1000" max="9999" maxlength="4" oninput="length(this);" required>
-                &nbsp;&nbsp;- 
-                <input type="number" inputmode="numeric" min="1000" max="9999" maxlength="4" oninput="length(this);" required>
-                &nbsp;&nbsp;-
-                <input type="number" inputmode="numeric" min="1000" max="9999" maxlength="4" oninput="length(this); " required>
+            	<div class="cardinfo">
+		            <div class="cardnumber cardinfo_sub">
+		                <span>카드번호</span>
+		                <span class="cardnumber_span">
+		                <input type="number" inputmode="numeric" min="1000" max="9999" maxlength="4" oninput="length(this);" required>
+		                &nbsp;&nbsp;- 
+		                <input type="number" inputmode="numeric" min="1000" max="9999" maxlength="4" oninput="length(this);" required>
+		                &nbsp;&nbsp;- 
+		                <input type="number" inputmode="numeric" min="1000" max="9999" maxlength="4" oninput="length(this);" required>
+		                &nbsp;&nbsp;-
+		                <input type="number" inputmode="numeric" min="1000" max="9999" maxlength="4" oninput="length(this); " required>
+		
+			            </span>
+		             
+		            
+		             </div>
+            
+			        <div class="cardinfo_sub">
+			            <span>유효기간</span>
+			            <span class="authdate">
+			            <input type="number" inputmode="numeric" min="1" max="12" maxlength="2" oninput="length(this);" placeholder="MM" required>
+			            &nbsp;&nbsp;&nbsp; /&nbsp;&nbsp;&nbsp;
+			            <input type="number" inputmode="numeric" min="00" max="99" maxlength="2" oninput="length(this);" placeholder="YY" required>
+			        </span>
+			        </div>
+			       
+			        <div class="cardinfo_sub">
+			            <span>비밀번호</span>
+			            <input type="number" class="card_pass" inputmode="numeric" min="0" max="99" maxlength="2" oninput="length(this);"
+			            placeholder="카드 비밀번호 앞 두자리" name="content" required>
+			            <!-- 원래는 비밀번호의 name이 다른이름이여야 합니다.테스트용 -->
+			        </div>
+			        
+			        <div class="cardinfo_sub"> 
+			            <span>인증번호</span>
+			            <span class="auth_span">
+			            <input type="number" id="auth" inputmode="numeric" min="0" max="999999" maxlength="6" oninput="length(this);"
+			            placeholder="인증번호" required>
+			            
+			            <input type="hidden" id="authcopy">
+			
+			            <input type="button" value="확인" class="spon_auth_che" >
+			            <input type="button" value="생성" class="spon_auth_btn" >
+			            <span class="spon_timer">00분00초</span>
+			            </span>
+			        </div>
 
-            </span>
-             
+			        <div class="cardinfo_btn">
+	           
+			            <span class="spon_money" style="margin-right: 150px;">
+			                <label for="money"></label>
+					                송금액 <small>(단위 : 원)</small>
+	
+			                <input type="number" id="money" name="money" inputmode="numeric"
+				                step="1000" maxlength="7" oninput="length(this);" required>
+				                	원
+				        </span>
+				
+			            <label for="agree">
+				            <span class="agree_info">개인정보제공 동의</span>
+				            <input type="checkbox" id="agree">             
+			            </label>
+		    
+			        </div>
+	   
+	   		 </div>
+	            <div style="margin-top: 15px;margin-left: 25px;">해당 카드의 명의자분 성함으로 결제가 진행됩니다.</div>
             
-             </div>
-            
-        <div class="cardinfo_sub">
-            <span>유효기간</span>
-            <span class="authdate">
-            <input type="number" inputmode="numeric" min="1" max="12" maxlength="2" oninput="length(this);" placeholder="MM" required>
-            &nbsp;&nbsp;&nbsp; /&nbsp;&nbsp;&nbsp;
-            <input type="number" inputmode="numeric" min="00" max="99" maxlength="2" oninput="length(this);" placeholder="YY" required>
-        </span>
-        </div>
-       
-        <div class="cardinfo_sub">
-            <span>비밀번호</span>
-            <input type="number" class="card_pass" inputmode="numeric" min="0" max="99" maxlength="2" oninput="length(this);"
-            placeholder="카드 비밀번호 앞 두자리" required>
-        </div>
-        
-        <div class="cardinfo_sub"> 
-            <span>인증번호</span>
-            <span class="auth_span">
-            <input type="number" id="auth" inputmode="numeric" min="0" max="999999" maxlength="6" oninput="length(this);"
-            placeholder="인증번호" required>
-            
-            <input type="hidden" id="authcopy">
-
-            <input type="button" value="확인" class="spon_auth_che" >
-            <input type="button" value="생성" class="spon_auth_btn" >
-            <span class="spon_timer">00분00초</span>
-            </span>
-        </div>
-
-        <div class="cardinfo_btn">
-           
-            <span class="spon_money" style="margin-right: 150px;">
-                <label for="money"></label>
-                송금액 <small>(단위 : 원)</small>
-                <input type="number" id="money" name="money" inputmode="numeric"
-                step="1000" maxlength="7" oninput="length(this);"
-                required>
-                원
-            </span>
-
-            <label for="agree">
-            <span class="agree_info">개인정보제공 동의</span>
-            <input type="checkbox" id="agree">             
-            </label>
-            
-
-
-        </div>
-   
-    </div>
-            <div style="margin-top: 15px;margin-left: 25px;">해당 카드의 명의자분 성함으로 결제가 진행됩니다.</div>
-            
-        </div>
-            <div class="modal-footer">
-              <button type="button" class="btn spon_modalbtn_save paycheck">후원결제</button>
-              <button type="button" class="btn spon_modalbtn_false" data-dismiss="modal">닫기</button>
-            </div>
           </div>
-        </div>
-      </div>
+	            <div class="modal-footer">
+	              <button type="submit" class="btn spon_modalbtn_save paycheck">후원결제</button>
+	              <button type="button" class="btn spon_modalbtn_false" data-dismiss="modal">닫기</button>
+	            </div>
+         </div>
+  		</form>
+  
+  
+       </div> <!-- modal content -->
+  
+  </div>
 
 
 <script>
 
 
-function length(max){
-    if(max.value.length>max.maxLength){
-        max.value =max.value.slice(0,max.maxLength);
-    }
-}
+	function length(max){
+	    if(max.value.length>max.maxLength){
+	        max.value =max.value.slice(0,max.maxLength);
+	    }
+	}
 
 /*타이머 */
-$(".spon_auth_btn").click(function(){
+	$(".spon_auth_btn").click(function(){
+	
+	    alert("인증번호 : "+555555);
+	    $("#authcopy").val(555555);
+		var time = 180;
+		var min = "";
+		var sec = "";
+		
+		var timer = setInterval(function(){
+		    min =parseInt(time/60);
+		    sec =time%60;
+		    $(".spon_timer").text(min+"분"+sec+"초");
+		    time--;
+		    if(time<0){
+		        clearInterval(timer);
+		        $(".spon_timer").text("시간초과");
+		    }
+		
+		},1000);
+		
+	
+	});
+	
+	
+	$(".agree_info").click(function(){
+	    var txtinfo = "제1조 (구매신청) 이용자는 인터넷을 이용하여 이하의 방법에 의하여 구매를 신청합니다. 성명, 주소, 전화번호 입력  상품의 선택"+
+	    "제 2조 (구매계약의성립) 등등등..";
+	    
+	    alert(txtinfo);
+	})
+	
+	/*
+	$(".paycheck").click(function(){
+	    alert("결제가 완료되었습니다. + 정보 어쩌구 + 후원해 주셔서 감사합니다.");
+	    $(".spon_modalbtn_false").click();
+	});
+	*/
+	
+	
+	$(".spon_auth_che").click(function(){
+	    alert("인증성공했다고하자.");
+	
+	    $("#auth").css("background","#e3e3e3") .attr("disabled",true);
+	
+	});
 
-    alert("인증번호 : "+555555);
-    $("#authcopy").val(555555);
-var time = 180;
-var min = "";
-var sec = "";
+/* 모달1 끝 */
 
-var timer = setInterval(function(){
-    min =parseInt(time/60);
-    sec =time%60;
-    $(".spon_timer").text(min+"분"+sec+"초");
-    time--;
-    if(time<0){
-        clearInterval(timer);
-        $(".spon_timer").text("시간초과");
-    }
+	$(".sponsor_list").click(function(){
+		alert("서비스 준비중입니다.");
+		 
+	})
 
-},1000);
+	
+</script>
 
 
-});
 
+<!-- ajax   -->
 
-$(".agree_info").click(function(){
-    var txtinfo = "제1조 (구매신청) 이용자는 인터넷을 이용하여 이하의 방법에 의하여 구매를 신청합니다. 성명, 주소, 전화번호 입력  상품의 선택"+
-    "제 2조 (구매계약의성립) 등등등..";
-    
-    alert(txtinfo);
-})
-
-$(".paycheck").click(function(){
-    alert("결제가 완료되었습니다. + 정보 어쩌구 + 후원해 주셔서 감사합니다.");
-    $(".spon_modalbtn_false").click();
-});
-
-$(".spon_auth_che").click(function(){
-    alert("인증성공했다고하자.");
-
-    $("#auth").css("background","#e3e3e3") .attr("disabled",true);
-
-});
-
-
+<script>
+	$(".she_deep_info").click(function(){
+	 
+	    console.log($(this).children(1).val());
+		
+	    var txt = "";
+		$.ajax({
+			type:"GET",
+			url:"/mypet/sponsor/viewtest.action",
+			data:"seqShelter="+$(this).children(1).val(),
+			dataType:"text",
+			success:function(result){
+	
+			txt = result.split('+');
+		
+			$(".she_name span:nth-child(2)").text(txt[0]);
+			$(".she_add span:nth-child(2)").text(txt[1]);
+			$(".she_tel span:nth-child(2)").text(txt[2]);
+						
+				if(txt[3] == 'null' ||txt[3] == null || txt[3] == ''){
+					$(".she_content").val('');			
+				}else{
+					$(".she_content").val(txt[3]);
+				};
+			
+			},
+			
+			error:function(a,b,c){
+				console.log(a,b,c);
+			}
+			
+		});
+		
+	});
 
 </script>
+
+<!-- 여기서 부터 지도입니다.  -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=0b98d001d6c169e0913693978eb930c7&libraries=services,clusterer,drawing"></script>
+
+<script>
+
+	$(".spon_addimg_evt").click(function(){
+		var timer_addmap ="";
+		
+		timer_addmap = setTimeout(() => {
+			$(".spon_addimg").html("");
+		    $(".spon_addimg").removeClass("spon_addimg_hover");
+		    
+		    $(".spon_addimg").attr("id","map")
+		    
+		}, 300);
+		
+	    timer_addmap =0;
+	    
+	    timer_addmap = setTimeout(() => {
+	    	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+			mapOption = {
+			    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+			    level: 3 // 지도의 확대 레벨
+			};  
+			
+			//지도를 생성합니다    
+			var map = new kakao.maps.Map(mapContainer, mapOption); 
+			
+			//주소-좌표 변환 객체를 생성합니다
+			var geocoder = new kakao.maps.services.Geocoder();
+			
+			//주소로 좌표를 검색합니다
+			geocoder.addressSearch('경기 용인시 처인구 중부대로 1074-1 용인시 동물보호센터', function(result, status) {
+			
+			// 정상적으로 검색이 완료됐으면 
+			 if (status === kakao.maps.services.Status.OK) {
+			
+			    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+			
+			    // 결과값으로 받은 위치를 마커로 표시합니다
+			    var marker = new kakao.maps.Marker({
+			        map: map,
+			        position: coords
+			    });
+			
+			    // 인포윈도우로 장소에 대한 설명을 표시합니다
+			    var infowindow = new kakao.maps.InfoWindow({
+			        content: '<div style="width:150px;text-align:center;padding:6px 0;">동물보소호</div>'
+			    });
+			    infowindow.open(map, marker);
+			
+			    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+			    map.setCenter(coords);
+			} 
+			});    
+
+		}, 500);
+		
+	   $(".spon_addimg").removeClass("spon_addimg_evt");
+	  
+	});
+	
+
+</script>
+
+
+
+

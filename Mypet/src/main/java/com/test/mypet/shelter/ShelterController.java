@@ -115,11 +115,16 @@ public class ShelterController {
 					+ "</li>", n);
 		}
 		
-		/* List<LocationDTO> location = dao.location(); */
+		List<LocationDTO> location = dao.location();
+		List<LocationDetailDTO> locationDetail = dao.locationDetail();
+		
+		System.out.println("location"+location.size()); //***
 		
 		List<ShelterDTO> list = dao.list(map);
 		
 		request.setAttribute("list", list);
+		request.setAttribute("location", location);
+		request.setAttribute("locationDetail", locationDetail);
 		request.setAttribute("search", search);
 		request.setAttribute("pagebar", pagebar);
 		request.setAttribute("nowPage", nowPage);
