@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.test.mypet.member.AdminDTO;
-import com.test.mypet.member.ChatMessageDto;
+import com.test.mypet.member.ChatMessageDTO;
 
 @Controller
 public class ChatController {

@@ -28,10 +28,32 @@ public class MemberDAO implements IMemberDAO {
 	}
 	
 	@Override
-	public List<ChatMessageDto> list(String user_id) {
+	public List<ChatMessageDTO> list(String user_id) {
 
 		return template.selectList("member.chatlist", user_id);
 	}
+	
+	
+//	@Override
+//	public int addlist(ChatMessageDto dto) {
+//
+//		return template.insert("member.addlist", dto);
+//	}
+	
+	
+	@Override
+	public int addlist(ChatMessageDTO chatMessageDto) {
+
+		
+		return template.insert("member.addlist", chatMessageDto);
+	}
+	
+//	@Override
+//	public int checkUser(String user_id) {
+////		public ChatMessageDTO checkUser(String user_id) {
+//
+//		return template.selectOne("member.seqUser", user_id);
+//	}
 
 	
 }

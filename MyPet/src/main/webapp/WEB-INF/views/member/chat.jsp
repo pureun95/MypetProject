@@ -1,143 +1,3 @@
-<!-- 여기서부터 -->
-<%-- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>  
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!-- jQuery, bootstrap CDN -->
-	<script src="/mypet/resources/js/jquery-1.12.4.js"></script>
-	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script> msie 문제 해결
-	<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script> -->
-	<script src="/mypet/resources/js/bootstrap.js"></script>
-	<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/latest/js/bootstrap.min.js"></script> -->
-	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"> -->
-	<!-- <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> -->
-	<!-- Zebra-Dialog CDN -->
-	<!-- <script src="resources/js/dialog/zebra_dialog.src.js"></script> -->
-	<!-- <link rel="stylesheet" href="resources/css/dialog/zebra_dialog.css" type="text/css"/> -->
-	<!-- SocketJS CDN -->
-	<script src="https://cdn.jsdelivr.net/sockjs/1/sockjs.min.js"></script>
-	
-	<title>Chatting page</title>
-</head>
-<body>
-	<h1>Chatting Page (id: ${userid})</h1>
-	<div>
-		<input type="button" id="chattinglistbtn" value="채팅 참여자 리스트">
-	</div>
-	<br>
-	<div>
-		<div>
-			<input type="text" id="message"/>
-    		<input type="button" id="sendBtn" value="전송"/>
-    	</div>
-    	<br>
-    	<div class="well" id="chatdata">
-    		<!-- User Session Info Hidden -->
-    		<input type="hidden" value='${userid}' id="sessionuserid">
-    	</div>
-	</div>
-</body>
-<script type="text/javascript">
-$(function(){
-	$("#chattinglistbtn").click(function(){
-		/* var infodialog = new $.Zebra_Dialog('<strong>Message:</strong><br><br><p>채팅방 참여자 리스트</p>',{ */
-			title: 'Chatting List',
-			type: 'confirmation',
-			print: false,
-			width: 260,
-			buttons: ['닫기'],
-			onClose: function(caption){
-				if(caption == '닫기'){
-					//alert('yes click');
-				}
-			}
-		});
-    });
-});
-</script>
-<script type="text/javascript">
-//websocket을 지정한 URL로 연결
-var sock= new SockJS("<c:url value="/echo"/>");
-//websocket 서버에서 메시지를 보내면 자동으로 실행된다.
-sock.onmessage = onMessage;
-//websocket 과 연결을 끊고 싶을때 실행하는 메소드
-sock.onclose = onClose;
-$(function(){
-	$("#sendBtn").click(function(){
-		console.log('send message...');
-        sendMessage();
-    });
-});
-        
-function sendMessage(){      
-	//websocket으로 메시지를 보내겠다.
-  	sock.send($("#message").val());     
-}
-            
-//evt 파라미터는 websocket이 보내준 데이터다.
-function onMessage(evt){  //변수 안에 function자체를 넣음.
-	var data = evt.data;
-	var sessionid = null;
-	var message = null;
-	
-	//문자열을 splite//
-	var strArray = data.split('|');
-	
-	for(var i=0; i<strArray.length; i++){
-		console.log('str['+i+']: ' + strArray[i]);
-	}
-	
-	//current session id//
-	var currentuser_session = $('#sessionuserid').val();
-	console.log('current session id: ' + currentuser_session);
-	
-	sessionid = strArray[0]; //현재 메세지를 보낸 사람의 세션 등록//
-	message = strArray[1]; //현재 메세지를 저장//
-	
-	//나와 상대방이 보낸 메세지를 구분하여 영역을 나눈다.//
-	if(sessionid == currentuser_session){
-		var printHTML = "<div class='well'>";
-		printHTML += "<div class='alert alert-info'>";
-		printHTML += "<strong>["+sessionid+"] -> "+message+"</strong>";
-		printHTML += "</div>";
-		printHTML += "</div>";
-		
-		$("#chatdata").append(printHTML);
-	} else{
-		var printHTML = "<div class='well'>";
-		printHTML += "<div class='alert alert-warning'>";
-		printHTML += "<strong>["+sessionid+"] -> "+message+"</strong>";
-		printHTML += "</div>";
-		printHTML += "</div>";
-		
-		$("#chatdata").append(printHTML);
-	}
-	
-	console.log('chatting data: ' + data);
-	
-  	/* sock.close(); */
-}
-    
-function onClose(evt){
-	$("#data").append("연결 끊김");
-}    
-</script>
-</html>
- --%>
- 
- 
- 
- 
- 
- 
- 
- 
- <!-- 후 여기부터.. -->
  <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -222,7 +82,7 @@ body {
 }
 
 .send {
-	position: static;
+	position: relative;
 	bottom: 0px;
 	right: 0px;
 	left: 0px;
@@ -236,6 +96,7 @@ body {
 	background-color: rgb(255, 255, 255);
 	/* box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 6px 0px; */
 	padding: 0;
+	top: 90px;
 }
 
 .table-bordered>tbody>tr>td {
@@ -275,27 +136,30 @@ td .chatfooter {
 }
 
 .messages {
-	height: 75%;
-	margin-top: 80px;
+	/* height: 75%; */
+	margin-top: 0px;
+    position: relative;
+    top: 100px;
+        margin-bottom: 10px;
 }
 
 .sendBtn {
-	width: 46px;
-	display: flex;
-	align-self: stretch;
-	-webkit-box-align: center;
-	align-items: center;
-	-webkit-box-pack: center;
-	justify-content: center;
-	cursor: pointer;
-	z-index: 20;
-	outline: none;
-	color: white;
-	background-color: #B27208;
-	top: 20px;
-	position: relative;
-	font-size: 13px;
-	left: 14px;
+	width: 50px;
+    display: flex;
+    align-self: stretch;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 20;
+    outline: none;
+    color: white;
+    background-color: #B27208;
+    top: 20px;
+    position: relative;
+    font-size: 13px;
+    left: 10px;
 }
 
 #chatout {
@@ -335,24 +199,29 @@ td .chatfooter {
 }
 
 .content_admin {
-	
+	text-align: left;
+	margin-top: 5px;
+	float: left;
+	margin-bottom: 8px;
 }
 
 .content_user {
 	text-align: left;
 	margin-top: 5px;
 	float: right;
+	margin-bottom: 8px;
 }
 
 #intochat {
 position: absolute;
     z-index: 2;
     top: 65px;
-    left: 55px;
+    left: 9px;
     font-size: 13px;
     border: transparent;
     background-color: #B27208;
     color: white;
+    width: 95%;
 }
 </style>
 </head>
@@ -374,9 +243,10 @@ position: absolute;
 							name="chatout" onclick="closeSocket();"> <!-- onclick="onClose();"> -->
 					</div>
 
-				</div>
+		</div>
 		
-        <button type="button" onclick="openSocket();" class="btn btn-default" id="intochat">채팅 시작</button>
+		<!-- 채팅 시작전에 채팅 시작버튼 꼭 눌러주세요~~ -->
+        <button type="button" onclick="openSocket();" class="btn btn-default" id="intochat">채팅 시작</button> 
         <!-- <button type="button" onclick="closeSocket();">대회방 나가기</button> -->
         
         
@@ -384,9 +254,31 @@ position: absolute;
         
         
         <!-- Server responses get written here -->
-    <div id="messages" class = "messages" style="width: 100%; height: 380px; padding: 15px; overflow: auto;"> <!-- 기존class - content -->
-    ${list.size()}
+    <div id="messages" class = "messages" style="width: 100%; height: 360px; padding: 15px; overflow: auto;"> <!-- 기존class - content -->
+    <%-- ${list.size()} --%>
     
+    	<!-- <div> -->
+		<c:forEach items="${list}" var="chatMessageDto">
+
+			<c:if test="${chatMessageDto.sender == 1}">
+			<div class="chat_title title_admin">마이펫</div>
+			</c:if>
+			<c:if test="${chatMessageDto.sender == 0}">
+			<div class="chat_title title_user">${chatMessageDto.user_id}님</div>
+			</c:if>
+			<%-- <div>${chatMessageDto.sender}</div> --%>
+			
+			<c:if test="${chatMessageDto.sender == 1}">
+			<div class="chat_content content_admin">${chatMessageDto.content}</div>
+			</c:if>
+			
+			<c:if test="${chatMessageDto.sender == 0}">
+			<div class="chat_content content_user">${chatMessageDto.content}</div>
+			</c:if>
+
+			<div style="clear: both;"></div>
+	
+		</c:forEach>    
     
     </div>
     <!-- messages -->
@@ -407,6 +299,12 @@ position: absolute;
 					<td style="border-bottom-left-radius: 16px;"><input
 						type="text" name="sender" id="sender" value="${sessionScope.id}"
 						style="display: none;"></td>
+					
+					<!-- 오류나면 삭제하기 -->
+					<%-- <td style="border-bottom-left-radius: 16px;"><input
+						type="text" name="senderseq" id="senderseq" value="${chatMessageDto.seqUser}"
+						style="display: none;"></td> --%>
+					<!-- 여기까지 seqUser가져오려고 추가한 부분-->	
 						
 					<td><input type="text" id="messageinput" placeholder="대화내용을 입력하세요." class="chatfooter" ></td>
 					
@@ -420,21 +318,10 @@ position: absolute;
         	</table>
         	<%-- System.out.println(${id}); --%>
         </div>
-        <!-- send -->
+        <!-- send -->   
         
-        
-        
-    	<br/><br/><br/>
-  		<!-- 메세지 입력 :  -->
-        <%-- <input type="text" id="sender" value="${sessionScope.id}" style="display: none;">
-        <input type="text" id="messageinput"> --%>
-        <!-- <button type="button" onclick="send();">메세지 전송</button> -->
-        <!-- <button type="button" onclick="javascript:clearText();">대화내용 지우기</button> -->
-        <%-- System.out.println(${id}); --%>
-    <!-- </div> -->
-    
-    
-    
+    	<!-- <br/><br/><br/> -->
+  
     </div>
     <!-- col-sm-12 col-md-9 -->
     </div>
@@ -488,23 +375,62 @@ position: absolute;
         
         //메시지 보내기
         function send(){
-           // var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
-            var text = document.getElementById("messageinput").value+","+document.getElementById("sender").value;
+           
+           
+           //이게 원본
+           var text = document.getElementById("messageinput").value+","+document.getElementById("sender").value;
+           
+           //오류나면 얘삭제하기
+           /*   var text = document.getElementById("messageinput").value;
+            var text2 = document.getElementById("sender").value; */ 
+            
+            
+            //원본
             ws.send(text);
             text = "";
+ 
+            //얘삭제
+           /*   ws.send(text, text2);
+            text = "";
+            text2 = "";  */
         }
         
         
         
         
         function closeSocket(){
-            ws.close();
             self.close();
+            ws.close();
         }
         
-        function writeResponse(text){
-            messages.innerHTML += "<br/>"+text;
+        //원본
+         function writeResponse(text){
+//            messages.innerHTML += "<br/>"+text;
+//            messages.innerHTML += "<br/>"+ "<div style='font-weight: bold;'>" + text + "</div>";
+
+			if (text.indexOf("님") != -1) {
+	            messages.innerHTML += "<div style='font-weight: bold; margin-bottom:8px !important; text-align: right'>" + text + "</div>";
+
+			} else if (text == "마이펫 채팅에 연결 되었습니다.") {
+	            messages.innerHTML += "<div style='margin-bottom:15px; text-align: center'>" + text + "</div>";
+	            
+        	} else if (text.indexOf("마이펫") != -1) { //마이펫 단어가 있으면
+        		messages.innerHTML += "<div style='font-weight: bold; margin-bottom:8px !important; text-align: left'>" + text.substr(0,3) + "</div>" + "<div style='margin-bottom: 15px; text-align: left; font-size: 14px; background-color: #F4F4F4; padding: 8px 8px; border-radius: 12px; width: fit-content; max-width: 260px; float: left;'>" + text.substr(3) + "</div> <div style='clear: both;'></div>";
+        		
+        	
+        	 } else if (text.indexOf("마이펫") == -1) {
+	            messages.innerHTML += "<div style='margin-bottom: 15px; text-align: right; font-size: 14px; background-color: #F4F4F4; padding: 8px 8px; border-radius: 12px; width: fit-content; max-width: 260px; float: right;'>" + text + "</div> <div style='clear: both;'></div>"; 				
+			}
+        
         }
+        
+         /* function writeResponse(text, text2){
+//          messages.innerHTML += "<br/>"+text;
+          messages.innerHTML += "<br/>"+ "<div>" + text2 + "</div>";
+          messages.innerHTML += "<br/>"+ "<div>" + text + "</div>";
+      }   */
+        
+        
         function clearText(){
             console.log(messages.parentNode);
             messages.parentNode.removeChild(messages)

@@ -3,16 +3,18 @@ package com.test.mypet.member;
 import lombok.Data;
 
 @Data
-public class ChatMessageDto {
+public class ChatMessageDTO {
 
 
 	String user_id;
 	String admin_id;
 	
 	String seqChat;
+	String seqUser;
+	String seqAdmin;
 
 	String sender;
-	String contet;
+	String content;
 	String writeTime;
 	
 
