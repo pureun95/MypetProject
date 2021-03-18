@@ -57,7 +57,11 @@
 	
 	<!-- 찜하기 -->
 	<select id="likeUser" parameterType="String" resultType="adto">
-		select * from tblLike where seqUser = #{seqUser}
+		select a.seqAdoption as seqAdoption,
+		    l.seqUser as seqUser
+		from tblLike l
+		right outer join tblAdoption a on a.seqAdoption = l.seqAdoption 
+		where a.seqAdoption = #{seqAdoption}
 	</select>
 	
 	<!-- 찜하기 넣기-->

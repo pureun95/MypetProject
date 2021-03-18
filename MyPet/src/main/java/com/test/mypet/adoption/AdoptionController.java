@@ -33,16 +33,14 @@ public class AdoptionController {
 	@RequestMapping(value = "/adoption/list.action", method = { RequestMethod.GET })
 	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species, String seqAdoption) {
 		
-		//임시 session값 부여
-		
-		session.setAttribute("seqUser", "90"); session.setAttribute("id", "red1234");
 		
 		String seqUser = (String) session.getAttribute("seqUser");
 		
 		System.out.println(session.getAttribute("seqUser"));
 		
 		
-		
+		//찜하기 중복검사
+		List<AdoptionDTO> uList = adao.getLikesUser(seqUser);
 		
 		//검색
 		String search = request.getParameter("search");
@@ -53,10 +51,6 @@ public class AdoptionController {
 		map.put("seqUser", seqUser);
 		map.put("seqAdoption", seqAdoption);
 		
-		
-		//찜하기 중복검사
-		List<AdoptionDTO> uList = adao.getLikesUser(seqUser);
-				
 		System.out.println("검색어: " + map);
 		
 		//페이징
@@ -247,7 +241,9 @@ public class AdoptionController {
 	//http://localhost:8090/mypet/adoption/likesOk.action
 	@RequestMapping(value = "/adoption/likesOk.action", method = { RequestMethod.GET })
 	public void likes(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption, String seqUser) {
-			
+		
+		
+
 		System.out.println("글번호: " + seqAdoption);
 		
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -283,9 +279,14 @@ public class AdoptionController {
 	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
 	public String adoptionView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		
+		//임시 session값 부여
+						
+		String seqUser = (String) session.getAttribute("seqUser");
+				
 		AdoptionDTO dto = adao.getView(seqAdoption);
 		
 		request.setAttribute("dto", dto);
+		request.setAttribute("seqUser", seqUser);
 		
 		return "adoption/view";
 

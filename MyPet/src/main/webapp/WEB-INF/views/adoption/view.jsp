@@ -229,7 +229,62 @@
 	    width: 140px;
     }
     
-   
+   /* 모달 */
+    
+    .modal-content {
+    	overflow: hidden;
+    }
+    
+    .close {
+    	position : absolute;
+    	top : 20px;
+    	right :10px;
+    	outline: none !important;	
+    }
+       
+    .modal-header, .modal-title {
+    	background-color: #f6da42;
+    	font-family: 'Jal_Onuel';
+    	font-size: 16px;
+    }
+    
+   	.modal-body{
+		font-family: 'NanumSquare';
+		text-align: center;
+		height : 90px;	
+		font-size: 16px;	
+	}
+	
+	.modal-body p {
+		margin-top: 25px;
+	}
+	
+	.modal-footer{
+		text-align: center;
+	}
+	
+    
+    /* 모달창 */
+       
+    .modal-footer #check, .modal-footer #cancel {
+		font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 0px 10px;
+    	padding : 10px 12px;
+		border : none;
+	    color: white;
+		outline: none !important;	
+		border-radius : 5px;
+	}
+	.modal-footer #delete:hover, .modal-footer #cancel:hover{
+		color:black;
+	}
+	
+	
+	.modal-footer #check{ background-color: #b27208; }
+	.modal-footer #cancel{ background-color: #fab018; }
+	
+    }
    
 </style>
 
@@ -240,9 +295,17 @@
 		<span class="count">${dto.likes }</span></div>
 	</div>
 	
-	
+	<!-- 회원만 입양예약 가능 -->
+	<c:if test="${not empty seqUser }">
 	<input type="button" class="btn common-btn" value="입양예약하기" onclick="location.href='/mypet/adoption/writereservation.action?seqPet=${dto.seqPet}'">
+	</c:if>
 	
+	<!-- 비회원일 경우 -->
+	<c:if test="${empty seqUser }">
+	<input type="button" class="btn common-btn" value="입양예약하기" onclick="modal()">
+	</c:if>
+	
+	<input type="hidden" class="seqUser" value="${seqUser }">
 	<div class="detail">
 	
 	<!-- 이미지 split -->
@@ -315,6 +378,27 @@
 </div>
 
 
+	<!-- 모달  -->
+	<div class="modal" tabindex="-1" role="dialog" id="modal">
+		<div class="modal-dialog" role="document">
+		  <div class="modal-content" id="modal-content">
+		     <div class="modal-header">
+		       <h5 class="modal-title">입양예약하기</h5>
+		       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		         <span aria-hidden="true">&times;</span>
+		       </button>
+		     </div>
+		     <div class="modal-body">
+		       <p>회원만 이용할 수 있습니다.</p>
+		     </div>
+		     <div class="modal-footer">
+		      <button type="submit" class="btn" id="check">확인</button>	        
+		     </div>
+		   </div>
+		 </div>
+	</div>
+
+
 <script>
 	
 	/* 서브 이미지 클릭하면 메인 이미지로 오기 */
@@ -324,5 +408,18 @@
 		
 		$(".img").attr("src", img);
 	})
+	
+	
+	/* 비회원이 입양예약하기 누르는 경우 */
+	function modal() {		
+		$('#modal').modal("show");		
+	}
+	
+	/* 모달 */
+	$('#check').click(function(e){
+		e.preventDefault();
+		$('#modal').modal("hide");
+	});
+	
 	
 </script>
