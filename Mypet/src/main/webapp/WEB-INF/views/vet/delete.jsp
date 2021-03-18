@@ -94,26 +94,29 @@
 
 <div id="content">
 	<button id="delete" class="btn">삭제</button>
-
-	<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
-	  <div class="modal-dialog" role="document">
-	    <div class="modal-content" id="modal-content">
-	      <div class="modal-header">
-	        <h5 class="modal-title">동물병원 정보 삭제하기</h5>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-	          <span aria-hidden="true">&times;</span>
-	        </button>
-	      </div>
-	      <div class="modal-body">
-	        <p>동물병원을 정말 삭제하시겠습니까?</p>
-	      </div>
-	      <div class="modal-footer">
-	      	<button type="submit" class="btn" id="delete">삭제</button>
-	        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
-	      </div>
-	    </div>
-	  </div>
-	</div>
+	
+	<form method="POST" action="mypet/vet/deleteok.action">
+		<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content" id="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">동물병원 정보 삭제하기</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>동물병원을 정말 삭제하시겠습니까?</p>
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="submit" class="btn" id="delete">삭제</button>
+		        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<input type="hidden" name="seq" value="${seqVet}">
+	</form>
 </div>
 
 

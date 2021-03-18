@@ -11,5 +11,10 @@
 	<select id="get" parameterType="String" resultType="fdto">
 		select * from vwFaq where seqFaq = #{seqFaq}
 	</select>
+	
+	<insert id="add" parameterType="fdto">
+		insert into tblFaq (seqFaq, seqCategory, title, content, files, writeDate) 
+			values (seqFaq.nextVal, #{seqCategory}, #{title}, #{content}, #{files}, sysdate)
+	</insert>
 
 </mapper>

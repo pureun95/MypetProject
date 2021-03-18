@@ -216,7 +216,7 @@
 		           	<input type="text" class="form-control" placeholder="보호소이름" id="search" name="search" required value="${search}">
 		           	<input type="button" class="btn" value="검색" name="search" onclick="$('#searchForm').submit();">	        	       
 			     	<span>
-			        	<input type="button" class="btn" value="등록" id="add" onclick="location.href='/mypet/vet/add.action'">   
+			        	<input type="button" class="btn" value="등록" id="add" onclick="location.href='/mypet/shelter/add.action'">  
 					</span>
 			     </div>
 	        </form>

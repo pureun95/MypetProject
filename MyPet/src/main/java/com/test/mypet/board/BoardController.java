@@ -97,6 +97,23 @@ public class BoardController {
 		return "board/faqAdd";
 
 	}
+	
+	@RequestMapping(value = "/board/faqAddok.action", method = { RequestMethod.POST })
+	public void faqAddok(HttpServletRequest request, HttpServletResponse response, HttpSession session, FaqDTO fdto) {
+		
+		int result = dao.add(fdto);
+		
+		try {
+			
+			if(result == 1) {
+				response.sendRedirect("/mypet/board/faqList.action");
+			}else {
+				response.sendRedirect("/mypet/board/faqAdd.action");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 
 	@RequestMapping(value = "/board/faqEdit.action", method = { RequestMethod.GET })
 	public String faqEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {

@@ -135,6 +135,7 @@ public class VetController {
 		
 		VetDTO vdto = dao.get(seq);
 		request.setAttribute("vdto", vdto);
+		request.setAttribute("seqVet", seq);
 		
 		return "vet.view";
 	}
@@ -142,6 +143,26 @@ public class VetController {
 	@RequestMapping(value="/vet/add.action")
 	public String add() {
 		return "vet.add";
+	}
+	
+	@RequestMapping(value="/vet/addok.action", method = { RequestMethod.POST })
+	public void addok(HttpServletRequest request, HttpServletResponse response, HttpSession session, VetDTO vdto) {
+		
+	
+		int result = dao.add(vdto);
+		
+		try {
+			
+			if(result == 1) {
+				response.sendRedirect("/mypet/vet/list.action");
+			}else {
+				response.sendRedirect("/mypet/vet/add.action");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		
 	}
 	
 	@RequestMapping(value="/vet/edit.action")
@@ -154,6 +175,7 @@ public class VetController {
 		return "vet.edit";
 	}
 	
+	@RequestMapping(value="/vet/editok.action", method = { RequestMethod.POST })
 	public void editok(HttpServletRequest request, HttpServletResponse response, HttpSession session, VetDTO vdto) {
 		
 		int result = dao.edit(vdto);
@@ -169,8 +191,8 @@ public class VetController {
 		}
 	}
 	
-	@RequestMapping(value="/vet/delete.action")
-	public String delete() {
+	@RequestMapping(value="/vet/deleteok.action")
+	public String delete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
 		return "vet.delete";
 	}
 

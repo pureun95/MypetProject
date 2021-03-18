@@ -128,6 +128,7 @@
 	      	<input type="submit" class="btn" value="수정" id="edit">
 	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}'">
 	    </div>
+	    <input type="hidden" name="seq" value="${vdto.seqVet}">
 	</form>
 </div>
 

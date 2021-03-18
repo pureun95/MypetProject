@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+ <!-- 제이쿼리 ui css -->
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ 
+ <!-- //제이쿼리 ui js -->
+ <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <title>MyPet::동물병원 상세정보</title>	
 <style>
@@ -103,7 +111,7 @@
 	
 	}
 	
-	.btns #edit, .btns #delete {		
+	.btns #edit, .btns #delete, .btns #deletebtn {		
 		text-align: center;
 		float : right;
 	}
@@ -214,11 +222,11 @@
 	<div class="board-title">${vdto.name} 상세정보</div>
 	<div class="btns"> 
 		<!-- 삭제버튼 모달 -->
-		<input type="button" value="삭제" id="delete" class="btn">
+		<button id="delete" class="btn">삭제</button>
 			<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
-				  <div class="modal-dialog" role="document">
-				    <div class="modal-content" id="modal-content">
-				      <div class="modal-header">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content" id="modal-content">
+			      <div class="modal-header">
 				        <h5 class="modal-title">동물병원 정보 삭제하기</h5>
 				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 				          <span aria-hidden="true">&times;</span>
@@ -245,43 +253,7 @@
 			<td>${vdto.name}
 			<!-- <input type="button" class="btn" value="진료예약하기" id="res" onclick="$('#searchForm').submit();"> -->
 			<button id="apply" class="btn">진료예약하기</button>
-			<div class="modal" tabindex="-1" role="dialog" id="applymodal">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content" id="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">${vdto.name} 진료 예약하기</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			      	<table class="applytable">
-			      		<tr id="apply_tr">
-			      			<td id="apply_td">반려동물 이름</td>
-			      			<td><input type="text" class="form-control" id="name"></td>
-			      		</tr>
-			      		<tr id="apply_tr">
-			      			<td id="apply_td">반려동물 종류</td>
-			      			<td><input type="text" class="form-control" id="species"></td>
-			      		</tr>
-			      		<tr id="apply_tr">
-			      			<td id="apply_td">진료사유</td>
-			      			<td><input type="text" class="form-control"  id="reason"></td>
-			      		</tr>
-			      		<tr id="apply_tr">
-			      			<td id="apply_td">날짜</td>
-			      			<td><input type="text" class="form-control"  id="date"></td>
-			      		</tr>
-			      	</table>
-			        <p>${vdto.name} 진료를 예약하시겠습니까?</p>
-			      </div>
-			      <div class="modal-footer">
-			      	<button type="submit" class="btn" id="apply">예약</button>
-			        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
-			      </div>
-			    </div>
-			  </div>
-			</div>
+			
 			</td>
 		</tr>		
 		<tr id="list">
@@ -318,6 +290,69 @@
 	
 </div>
 
+<!-- 삭제하기 모달 -->
+	<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content" id="modal-content">
+	      <div class="modal-header">
+		        <h5 class="modal-title">동물병원 정보 삭제하기</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>동물병원을 정말 삭제하시겠습니까?</p>
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="submit" class="btn" id="delete">삭제</button>
+		        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+
+
+<!-- 진료예약 모달 -->
+	<div class="modal" tabindex="-1" role="dialog" id="applymodal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content" id="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">${vdto.name} 진료 예약하기</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	      	<table class="applytable">
+	      		<tr id="apply_tr">
+	      			<td id="apply_td">반려동물 이름</td>
+	      			<td><input type="text" class="form-control" id="name"></td>
+	      		</tr>
+	      		<tr id="apply_tr">
+	      			<td id="apply_td">반려동물 종류</td>
+	      			<td><input type="text" class="form-control" id="species"></td>
+	      		</tr>
+	      		<tr id="apply_tr">
+	      			<td id="apply_td">진료사유</td>
+	      			<td><input type="text" class="form-control"  id="reason"></td>
+	      		</tr>
+	      		<tr id="apply_tr">
+	      			<td id="apply_td">날짜</td>
+	      			<td><input type="text" class="form-control"  id="date"></td>
+	      		</tr>
+	      	</table>
+	        <p>${vdto.name} 진료를 예약하시겠습니까?</p>
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="submit" class="btn" id="applyok">예약</button>
+	        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+
 <!-- 진료예약 -->
 <script>
 	/* 진료예약 */
@@ -325,6 +360,12 @@
 		e.preventDefault();
 		$('#applymodal').modal("show");
 	});
+	
+	$('#applyok').click(function(e){
+		e.preventDefault();
+		$('#applymodal').modal("hide");
+	});
+	
 
 	/* 날짜 */
 	$("#date").datepicker({
@@ -332,9 +373,12 @@
 	    minDate: "-1M -5D",
 	    maxDate: "+1M +5D"
 	});
+	$(function() {
+	    $("#date").datepicker();
+	});
 	
 	/* 삭제 */
-	$('#delete').click(function(e){
+	$('#deletebtn').click(function(e){
 		e.preventDefault();
 		$('#deletemodal').modal("show");
 	});

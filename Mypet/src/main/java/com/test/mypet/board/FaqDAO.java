@@ -28,4 +28,10 @@ public class FaqDAO implements IFaq{
 		return template.selectOne("faq.get", seqFaq);
 	}
 
+	@Override
+	public int add(FaqDTO fdto) {
+		
+		return template.insert("faq.add", fdto);
+	}
+
 }

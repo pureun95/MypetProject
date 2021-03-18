@@ -6,7 +6,7 @@ import lombok.Data;
 public class FaqDTO {
 	
 	private String seqFaq;
-	private String category;
+	private String seqCategory;
 	private String title;
 	private String content;
 	private String files;

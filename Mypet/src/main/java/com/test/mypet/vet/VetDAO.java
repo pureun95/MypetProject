@@ -30,13 +30,19 @@ public class VetDAO implements IVet{
 	@Override
 	public int edit(VetDTO vdto) {
 		
-		return template.update("vet.edit",vdto);
+		return template.update("vet.edit",vdto); 
 	}
 
 	@Override
 	public int getTotalCount(HashMap<String, String> map) {
 		
 		return template.selectOne("vet.count",map);
+	}
+
+	@Override
+	public int add(VetDTO vdto) {
+		
+		return template.insert("vet.add", vdto);
 	}
 
 
