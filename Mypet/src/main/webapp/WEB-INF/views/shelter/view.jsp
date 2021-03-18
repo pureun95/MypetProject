@@ -183,6 +183,8 @@
 	.modal-footer #cancel{ background-color: #fab018; }
 	
     }
+    
+
 	
 	
 </style>
@@ -222,38 +224,45 @@
 			<th>후원계좌</th>
 			<td>${sdto[0].account} (${sdto[0].name})</td>
 		</tr>
-		<tr id="list">
-			<!-- <td></td> -->
-			<th>봉사활동</th>
-			<td>
-			<c:forEach items="${sdto}" var="dto">
-				<input type="checkbox">${dto.startDate} ~ ${dto.endDate}
-			</c:forEach>
-			
-<!-- 			<input type="button" class="btn" value="봉사예약하기" id="vol" onclick="$('#searchForm').submit();"> -->
-			<button id="apply" class="btn">봉사신청하기</button>
-			<div class="modal" tabindex="-1" role="dialog" id="applymodal">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content" id="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">${sdto[0].name} 봉사 신청하기</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			      	<div>${dto.startDate} ~ ${dto.endDate}</div>
-			        <p>${sdto[0].name} 봉사활동을 신청하시겠습니까?</p>
-			      </div>
-			      <div class="modal-footer">
-			      	<button type="submit" class="btn" id="apply">신청</button>
-			        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
-			      </div>
-			    </div>
-			  </div>
-			</div>
-			</td>
-		</tr>
+		<form id="applyForm" method="POST" action="/mypet/shelter/applyok.action">
+			<tr id="list">
+				<!-- <td></td> -->
+				<th>봉사활동</th>
+				<td>
+				<c:forEach items="${sdto}" var="dto">
+					<table>
+						<tr>
+							<td style="width:20px;"><input type="checkbox" id="volunteerCb" name="cb"></td>
+							<td>${dto.startDate} ~ ${dto.endDate}</td>
+						</tr>
+					</table>
+				</c:forEach>
+				
+	<!-- 			<input type="button" class="btn" value="봉사예약하기" id="vol" onclick="$('#searchForm').submit();"> -->
+				<button id="apply" class="btn" onclick="check()">봉사신청하기</button>
+				<div class="modal" tabindex="-1" role="dialog" id="applymodal">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content" id="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title">${sdto[0].name} 봉사 신청하기</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	<div>${dto.startDate} ~ ${dto.endDate}</div>
+				        <p>${sdto[0].name} 봉사활동을 신청하시겠습니까?</p>
+				      </div>
+				      <div class="modal-footer">
+				      	<button type="submit" class="btn" id="apply">신청</button>
+				        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+				      </div>
+				    </div>
+				  </div>
+				</div>
+				</td>
+			</tr>
+		</form>
 		<tr id="list">
 			<td colspan='3' class="map"><div id="map"></div></td>
 			<!-- <th></th> -->
@@ -269,6 +278,27 @@
 
 <!-- 봉사활동 신청 -->
 <script>
+	function check(){
+		var form = document.applyForm
+		var checkcount = 0;
+		
+		for(i=0; i<form.elements.length; i++){
+			if(form.elements[i].name == "cb"){
+				if(document.applyForm.all[i].checked == true){
+					checkcount++;
+			}
+			}
+		}
+		
+		if(checkcount == 0){
+			alert("한 개 이상의 봉사활동을 선택하셔야 합니다.");
+			return;
+		}
+		applyForm.submit();
+		
+		
+	}
+
 	$('#apply').click(function(e){
 		e.preventDefault();
 		$('#applymodal').modal("show");

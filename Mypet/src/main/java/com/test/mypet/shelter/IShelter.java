@@ -10,10 +10,14 @@ public interface IShelter {
 	List<ShelterDTO> get(String seq);
 	/*ShelterVolDTO get(String seq);*/
 
-	List<LocationDTO> location();
-
 	int edit(ShelterDTO sdto);
 
 	int getTotalCount(HashMap<String, String> map);
+
+	/* List<LocationDTO> location(HashMap<String, String> map); */
+
+	List<LocationDTO> location();
+
+	List<LocationDetailDTO> locationDetail();
 
 }
