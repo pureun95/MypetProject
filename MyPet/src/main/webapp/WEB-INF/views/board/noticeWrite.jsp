@@ -167,27 +167,29 @@
 			<!-- 각자 본인의 게시판에 들어가면 option이 selected 되어있도록?! 해보고싶어서 넣어봤어요. -->
 			<select class="form-control multiple">
 				<option selected disabled hidden>게시판을 선택해주세요.</option>
-				<option value="1">공지사항</option>
+				<option value="1" selected>공지사항</option>
 				<option value="2">활동</option>		
 				<option value="3">봉사활동신청</option>
 				<option value="4">입양후기</option>
 				<option value="5">자주하는질문</option>
 				<option value="6">유기동물신고</option>			
 			</select>
-	        <input type="text" class="form-control board-title" onclick="this.value=''" placeholder="제목을 입력해주세요.">	        	
-	        <textarea class="form-control board-content" onclick="this.value=''" placeholder="내용을 입력해주세요."></textarea> 	    	                      		           		        
-	        
-	        <div class="photo">	        	
-	        	<input type="file" id="file" class="board-file">	
-	        	<label for="file"></label>	
-	        	<span>사진</span>	  	       		
-	       	</div>
-	        
-	        <div class="board-btn">
-	        	<input type="button" class="btn common-btn delete" value="취소">
-	        	<input type="button" class="btn common-btn ok" value="등록">		        		        	      
-	        </div>
-	       
+			
+			<form method="POST" action="/mypet/board/noticeWriteOk.action">
+		        <input type="text" class="form-control board-title" onclick="this.value=''" name="title" placeholder="제목을 입력해주세요.">	        	
+		        <textarea class="form-control board-content" style="resize: none; min-height:400px;" onclick="this.value=''" name="content" placeholder="내용을 입력해주세요."></textarea> 	    	                      		           		        
+		        
+		        <!-- <div class="photo">	        	
+		        	<input type="file" id="file" class="board-file" name="image">	
+		        	<label for="file"></label>	
+		        	<span>사진</span>	  	       		
+		       	</div> -->
+		        
+		        <div class="board-btn">
+		        	<input type="button" class="btn common-btn delete" onclick="location.href='/mypet/board/noticeList.action'"value="취소">
+		        	<input type="submit" class="btn common-btn ok" value="등록">		        		        	      
+		        </div>
+	       </form>
         </div>	
 
     </div>
