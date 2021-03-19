@@ -264,9 +264,7 @@ public class BoardController {
 		int result = volunteerDAO.applyVolunteer(map);
 		
 		
-		try {
-			//이전페이지 이동
-			String forward = request.getHeader("referer");
+		try {			
 			
 			
 			if(result == 1) {
@@ -274,14 +272,15 @@ public class BoardController {
 
 				PrintWriter writer = response.getWriter();
 				writer.print("<html><body>");
-				writer.print("<script>");
-				writer.print("alert('봉사활동 신청완료 되었습니다.');");
+				writer.print("<script>");	
+				writer.print("alert('봉사활동 신청 완료되었습니다.');");
+				writer.print("history.back();");
 				writer.print("</script>");
 				writer.print("</body></html>");
 				
 				writer.close();
 				
-				response.sendRedirect(forward);
+				
 			} else {
 				
 				PrintWriter writer = response.getWriter();
@@ -863,8 +862,8 @@ public class BoardController {
    }
    
 
-   
+}
    
    
 
-}
+

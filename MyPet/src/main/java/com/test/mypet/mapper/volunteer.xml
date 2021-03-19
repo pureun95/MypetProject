@@ -5,7 +5,7 @@
 <mapper namespace="volunteer">
 	
 	<select id="seqUser" parameterType="String" resultType="VolunteerDTO">
-		select * from tblUser where id = #{id}		
+		select * from vallMember where id = #{id}		
 	</select> 
 	
 	<select id="list" parameterType="HashMap" resultType="VolunteerDTO">

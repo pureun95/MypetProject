@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.test.mypet.board.VolunteerDTO;
 import com.test.mypet.member.MemberDTO;
 
 
@@ -17,24 +18,35 @@ public class AdoptionDAO implements IAdoptionDAO {
 	private SqlSessionTemplate template;
 	
 	
-	//페이징 리스트
+	//회원번호
+	@Override
+	public AdoptionDTO getSeqUser(String id) {
+		
+		return template.selectOne("adoption.seqUser", id);
+	}
+	
+	
+	//관리자 페이징 리스트
 	@Override
 	public List<AdoptionDTO> getList(HashMap<String, String> map) {
 		
 		return template.selectList("adoption.list", map);
 		 
 	}
+	
+	//유저가 보는 입양 리스트
+	@Override
+	public List<AdoptionDTO> getUserList(HashMap<String, String> map) {
+			
+		return template.selectList("adoption.userList", map);
+	}
 
-	
-	
 	//전체 리스트
 	@Override
 	public List<AdoptionDTO> getAllList(HashMap<String, String> map) {
 		
 		return template.selectList("adoption.AllList", map);
 	}
-
-
 
 
 	//페이징
@@ -68,11 +80,20 @@ public class AdoptionDAO implements IAdoptionDAO {
 	}
 
 
-
+	
+	//찜하기 테이블에 넣기
 	@Override
 	public int insertLikes(HashMap<String, String> map) {
 		
 		return template.insert("adoption.insertLikes", map);
+	}
+
+
+	//이전글 & 다음글
+	@Override
+	public List<AdoptionDTO> getForNext(String seqAdoption) {
+		
+		return template.selectList("adoption.fornext", seqAdoption);
 	}
 
 	

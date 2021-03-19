@@ -149,3 +149,61 @@ as
 SELECT distinct LISTAGG(image, ',') WITHIN GROUP (ORDER BY seqImagePet asc) OVER (PARTITION BY seqpet) 
 AS img, seqpet 
 FROM tblImagePet order by seqPet asc;
+
+
+
+
+--회원이 보는 입양리스트
+create or replace view vUserPet
+as
+select 
+    p.seqPet as seqPet,
+    p.seqVet as seqVet,
+    p.seqShelter as seqShelter,
+    p.species as species,
+    p.breed as breed,
+    p.sizes as sizes,
+    p.age as age,
+    case
+        when p.gender = 0 then '남아'
+        when p.gender = 1 then '여아'
+    end as gender,
+    
+    case
+        when p.state = 0 then '입양가능'
+        when p.state = 1 then '입양완료'
+    end as state,
+    
+    case 
+        when  p.neutralization = 0 then 'O'
+        when p.neutralization = 1 then 'X'
+    end as neu,
+    
+    case 
+        when p.vaccination = 0 then 'O'
+        when p.vaccination = 1 then 'X'
+    end as vaccination,
+    
+    case 
+        when img.img is null then 'nopic.png'
+        else img.img 
+    end as img,
+    v.name as nameV,
+    v.address as addressV,
+    v.tel as telV,
+    
+    s.name as nameS,
+    s.address as addressS,
+    s.tel as telS,
+    
+    a.title as title,
+    a.content as content,
+    a.likes as likes,
+    a.seqadoption as seqAdoption
+    
+    
+from tblPet p left outer join tblShelter s on s.seqshelter = p.seqshelter
+    left outer join tblVet v on v.seqvet = p.seqVet 
+        left outer join vImagePet img on p.seqpet = img.seqpet
+            inner join tblAdoption a on a.seqPet = p.seqPet
+where p.state in(1,0);
