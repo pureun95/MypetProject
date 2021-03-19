@@ -321,9 +321,9 @@
 		
 		<div class="subimg">
 			<c:forEach var="img" items="${arr }">
-			<img class="img-sub" src="../resources/images/adoption/${img }" alt="${img }">
-			<input type="hidden" class="hidden" value="${img }">
-		</c:forEach>
+				<img class="img-sub" src="../resources/images/adoption/${img }" alt="${img }">
+				<input type="hidden" class="hidden" value="${img }">
+			</c:forEach>
 		</div>
 		
 	</div>

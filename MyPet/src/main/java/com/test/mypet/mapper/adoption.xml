@@ -13,7 +13,7 @@
 		<if test="search != null">
 			where nameV like '%' || #{search} || '%' or nameS like '%' || #{search} || '%' or title like '%' || #{search} ||'%'
 		</if>
-			order by seqAdoption desc) a) where rnum between #{begin} and #{end}
+			order by seqAdoption desc) a) where rnum between #{begin} and #{end}	
 		
 	</select>
 	

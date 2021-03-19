@@ -34,9 +34,7 @@ public class AdoptionController {
 	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species, String seqAdoption) {
 		
 		
-		String seqUser = (String) session.getAttribute("seqUser");
-		
-		System.out.println(session.getAttribute("seqUser"));
+		String seqUser = "6";
 		
 		
 		//찜하기 중복검사
@@ -81,6 +79,7 @@ public class AdoptionController {
 		map.put("begin", begin + "");
 		map.put("end", end + "");
 		
+		
 		List<AdoptionDTO> list = adao.getList(map);
 		List<AdoptionDTO> AllList = adao.getAllList(map);
 		
@@ -107,8 +106,6 @@ public class AdoptionController {
 				
 				list.get(i).setImg(img[0]);
 			}
-			
-			
 			
 		}
 		

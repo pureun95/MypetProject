@@ -110,11 +110,13 @@
         width: 1200px;
         height: 130px;
         margin-top: 50px;
-        padding: 0px 360px;
+        padding: 0px 300px;
+        text-align: center;
     }
 
     /* 게시판 검색창 공통 클래스 */
     .search-text {
+    	margin-left: 400px;
         width: 340px;
         float: left;
         margin-right: 20px;
@@ -143,21 +145,31 @@
     }
 
     /* 페이지바 */
-
+	
+	
     .pagination {
-        width: 700px;
+       /*  width: 700px; */
         height: 40px;
+        margin-top: 60px;
+        text-align: center;
     }
+    
+    .pagination> li {
+    	margin: 0px;
+    }
+    
+    
     .pagination> li > a {
-		border-color : #ccc;
-		color: #301b01;
-        font-size: 16px;
-        float: left;
+		border-color : #ccc !important;
+		color: #301b01 !important;
+        font-size: 16px !important;
+        background-color: transparent !important;    
+        cursor: pointer !important;
 	}
 
-    .pagination>li>a:hover {
-        background-color: #b27208;
-        color: white;
+    .pagination> li > a:hover {
+        background-color: #b27208 !important;
+        color: white !important;
     }
 
     .board-btn {
@@ -169,12 +181,21 @@
         margin-left: 1125px;
     }
 
+
+	#search-btn {
+		float: left;	
+		
+	}
 </style>
 
 
     <div id="content">
         <span class="board-name">봉사활동신청</span>
-        <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기"></div>
+        <div class="board-btn">
+        	<c:if test="${seqUser < 6 }">
+        	<input type="button" class="btn common-btn" value="글쓰기" onclick="location.href='/mypet/board/volunteerWrite.action'">
+        	</c:if>
+        </div>
         <table class="table table-condensed">
             <tr class="headtr">
                 <th class="firsttd">번호</th>
@@ -184,101 +205,37 @@
                 <th class="thirdtd">작성일</th>
                 <th class="fifthtd">조회수</th>
             </tr>
-            <tr class="tr2" onclick="location.href='/mypet/board/volunteerView.action'">
-                <td class="center">1</td>
-                <td>[봉사활동명] 봉사활동 할 사람 모여라</td>
-                <td class="center">마감</td>
-                <td class="center">2021-01-01 ~ 2021-01-30</td>
-                <td class="center">2021-01-01</td>
-                <td class="center">32</td>
+            <c:forEach items="${list }" var="dto">
+            <tr class="tr2" onclick="location.href='/mypet/board/volunteerView.action?seqVolunteer=${dto.seqVolunteer }'">
+                <td class="center">${dto.seqVolunteer }</td>
+                <td>[${dto.name }] ${dto.title }</td>
+                <td class="center">${dto.state }</td>
+                <td class="center">${dto.startDate } ~ ${dto.endDate }</td>
+                <td class="center">${dto.writeDate }</td>
+                <td class="center">${dto.count }</td>
             </tr>
-			<tr class="tr2">
-                <td class="center">1</td>
-                <td>[봉사활동명] 제목</td>
-                <td class="center">마감</td>
-                <td class="center">2021-01-01 ~ 2021-01-30</td>
-                <td class="center">2021-01-01</td>
-                <td class="center">32</td>
-            </tr>
-            <tr class="tr2">
-                <td class="center">1</td>
-                <td>[봉사활동명] 제목</td>
-                <td class="center">마감</td>
-                <td class="center">2021-01-01 ~ 2021-01-30</td>
-                <td class="center">2021-01-01</td>
-                <td class="center">32</td>
-            </tr>
-            <tr class="tr2">
-                <td class="center">1</td>
-                <td>[봉사활동명] 제목</td>
-                <td class="center">마감</td>
-                <td class="center">2021-01-01 ~ 2021-01-30</td>
-                <td class="center">2021-01-01</td>
-                <td class="center">32</td>
-            </tr>
-            
-
-            <!-- 10개 vs 15개 -->
-            
-            <!--
-            <tr class="tr2">
-                <td>11</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>12</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>13</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>14</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            <tr class="tr2">
-                <td>15</td>
-                <td>공지사항 제목입니다.</td>
-                <td>2021-01-01</td>
-                <td>32</td>
-            </tr>
-            -->
+			</c:forEach>
         </table>
 
         <!-- 글쓰기 버튼 아래 -->
         <!-- <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기"></div> -->
-        <!-- 페이지바/검색창 -->
         
-        <div class="pageSearch">
+        
+        <!-- 페이지바/검색창 -->            
+        <div class="pageSearch" style="clear: both">
+          <c:if test="${list.size() > 0 }">
             <!-- 페이지바 -->
-            <ul class="pagination">
-                <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li><a>3</a></li>
-                <li><a>4</a></li>
-                <li><a>5</a></li>
-                <li><a>6</a></li>
-                <li><a>7</a></li>
-                <li><a>8</a></li>
-                <li><a>9</a></li>
-                <li><a>10</a></li>
-                <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
-            </ul>       
-
-            <!-- 검색창 & 검색 버튼 -->
-            <input type="text" class="form-control search-text">
-            <input type="button" class="btn common-btn" value="검색">
+	            <ul class="pagination">
+	                 ${pagebar }
+	            </ul> 
+			</c:if>
         </div>
+        
+        <!-- 검색창 & 검색 버튼 -->
+        <form method="GET" action="/mypet/board/volunteerList.action">
+        	<input type="text" name="search" class="form-control search-text">
+        	<input type="submit" class="btn common-btn" id="search-btn" value="검색">
+        </form>
     </div>
    
 

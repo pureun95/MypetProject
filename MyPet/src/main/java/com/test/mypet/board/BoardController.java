@@ -3,6 +3,7 @@ package com.test.mypet.board;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +17,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.test.mypet.adoption.AdoptionDTO;
+
 @Controller
 public class BoardController {
 	
 
 	@Autowired
 	IAdoptionReviewDAO ardao;
+	
+	//박지현
+	@Autowired
+	IVolunteerDAO volunteerDAO;
 	
 	//http://localhost:8090/mypet/board/template_list.action
 	@RequestMapping(value = "/board/template_list.action", method = { RequestMethod.GET })
@@ -51,29 +58,244 @@ public class BoardController {
 		
 		
 	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return 봉사활동 리스트
+	 */
 	//http://localhost:8090/mypet/board/volunteerList.action
 	@RequestMapping(value = "/board/volunteerList.action", method = { RequestMethod.GET })
 	public String volunteer_list(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		
+		VolunteerDTO dto = new VolunteerDTO();
+		String seqUser = "";
+				
+		//세션에서 유저 아이디 받아오기
+		String id = (String)session.getAttribute("id");
+		if(id == null) {
+			dto.setSeqUser(null);			
+		} else {
+			dto = volunteerDAO.getSeqUser(id);			
+		}
+		
+		seqUser = dto.getSeqUser();
+					
+		//회원번호
+		session.setAttribute("seqUser", seqUser);
+		
+		//검색
+	    String search = request.getParameter("search");
+	            
+	    HashMap<String, String> map = new HashMap<String, String>();
+	    map.put("search", search);
+	            
+	      	  
+	    System.out.println("검색어: " + map);
+	      
+	    //페이징
+	    int nowPage = 0;      //현재 페이지 번호
+	    int totalCount = 0;      //총 게시물 수
+	    int pageSize = 10;      //한페이지당 출력 개수
+	    int totalPage = 0;      //총 페이지 수
+	    int begin = 0;         //rnum 시작 번호
+	    int end = 0;         //rnum 끝 번호
+	    int n = 0;            //페이지바 관련 변수
+	    int loop = 0;         //페이지바 관련 변수
+	    int blockSize = 10;      //페이지바 관련 변수
+	                        
+	                        
+	    String page = request.getParameter("page");
+	                        
+	    if (page == null || page == "") {
+	         //기본 -> page = 1
+	         nowPage = 1;
+	      } else {
+	         nowPage = Integer.parseInt(page);
+	      }
+	                        
+	      begin = ((nowPage - 1) * pageSize) + 1;
+	      end = begin + pageSize -1;
+	                        
+	      map.put("begin", begin + "");
+	      map.put("end", end + "");
+	      
+	      
+	      
+	      totalCount = volunteerDAO.getTotalCount(map);
+	      
+	      System.out.println("카운트!!!!!!!!!!" + totalCount);
+	      
+	      totalPage = (int)Math.ceil((double)totalCount / pageSize);
+	                  
+	      String pagebar = "";
+	                  
+	      loop = 1;
+	      n = ((nowPage -1) / blockSize) * blockSize +1;
+	                  
+	                  
+	      if ( n == 1 ) {
+	         pagebar += String.format("<li class='disabled'>"
+	                           + "            <a href=\"#!\" aria-label=\"Previous\">"
+	                           + "                <span aria-hidden=\"true\">&laquo;</span>"
+	                           + "            </a>"
+	                           + "        </li>");         
+	      } else {
+	         
+	         pagebar += String.format("<li>"
+	                  + "            <a href=\"/mypet/board/volunteerList.action?page=%d\" aria-label=\"Previous\">"
+	                  + "                <span aria-hidden=\"true\">&laquo;</span>"
+	                  + "            </a>"
+	                  + "        </li>", n - 1);
+	            
+	      }
+	         
+	         
+	                     
+	      
+	      while (!(loop > blockSize || n > totalPage)) {
+	                     
+	         if (nowPage == n) {
+	            pagebar += "<li class='active'>";            
+	         } else {
+	            pagebar += "<li>";                        
+	         }
+	                     
+	            pagebar += String.format("<a href=\"/mypet/board/volunteerList.action?&page=%d\">%d</a></li>", n, n);
+	                  
+	               loop++;
+	               n++;
+	      }
 
-		return "board/volunteer_list";
+	                  
+	         //다음 페이지로 이동
+	         if (n > totalPage) { 
+	               //링크에 샵만 있으면 맨위로 올라가므로 #뒤에 ! 붙여주기.
+	            pagebar += String.format("<li class='disabled'>"
+	                           + "            <a href=\"#!\" aria-label=\"Next\">"
+	                           + "                <span aria-hidden=\"true\">&raquo;</span>"
+	                           + "            </a>"
+	                           + "        </li>");
+	                     
+	         } else { //여전히 다음페이지가 존재하는 경우엔 링크 있는 애로 생성.         
+	            
+	            pagebar += String.format("<li>"
+	                     + "            <a href=\"/mypet/board/volunteerList.action?page=%d\" aria-label=\"Next\">"
+	                     + "                <span aria-hidden=\"true\">&raquo;</span>"
+	                     + "            </a>"
+	                     + "        </li>", n);
+	         }
+	         
+	         List<VolunteerDTO> volunteerList = volunteerDAO.list(map);            
+	      request.setAttribute("search", search);
+	      request.setAttribute("pagebar", pagebar);
+	      request.setAttribute("nowPage", nowPage);
+	      request.setAttribute("list", volunteerList);
+	      request.setAttribute("seqUser", seqUser);
+	      
+	      
+	      return "board/volunteer_list";
+
 
 	}
 	
 	
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seqVolunteer
+	 * @return 봉사활동 상세정보
+	 */
 	//http://localhost:8090/mypet/board/volunteerView.action
 	@RequestMapping(value = "/board/volunteerView.action", method = { RequestMethod.GET })
-	public String volunteer_view(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-
+	public String volunteer_view(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVolunteer) {
+		
+		//세션에서 유저번호 받아오기
+		String seqUser = (String) session.getAttribute("seqUser");
+				
+		List<VolunteerDTO> list = volunteerDAO.getView(seqVolunteer);
+		
+		//이전글, 다음글
+		List<VolunteerDTO> fornext = volunteerDAO.getForNext(seqVolunteer);
+		
+		//봉사활동 seq의 max, min 번호
+		List<VolunteerDTO> maxmin = volunteerDAO.getMaxMin();
+		
+		
+		request.setAttribute("list", list);
+		request.setAttribute("seqUser", seqUser);
+		request.setAttribute("fornext", fornext);
+		request.setAttribute("maxmin", maxmin);
+		request.setAttribute("seqVolunteer", seqVolunteer);
+		
 		return "board/volunteer_view";
 
 	}
 		
 		
-	//http://localhost:8090/mypet/board/volunteerList.action
+	//http://localhost:8090/mypet/board/volunteerWrite.action
 	@RequestMapping(value = "/board/volunteerWrite.action", method = { RequestMethod.GET })
-	public String volunteer_write(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public String volunteer_write(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVolunteer) {
 
 		return "board/volunteer_write";
+
+	}
+	
+
+	@RequestMapping(value = "/board/volunteerOk.action", method = { RequestMethod.GET })
+	public String volunteer_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVolunteer, String seqUser) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("seqVolunteer", seqVolunteer);
+		map.put("seqUser", seqUser);
+		
+		
+		int result = volunteerDAO.applyVolunteer(map);
+		
+		
+		try {
+			//이전페이지 이동
+			String forward = request.getHeader("referer");
+			
+			
+			if(result == 1) {
+				response.setContentType("text/html; charset=UTF-8");
+
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('봉사활동 신청완료 되었습니다.');");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
+				
+				response.sendRedirect(forward);
+			} else {
+				
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('봉사활동 신청에 실패했습니다.');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		
+		
+		return "board/volunteerOk";
 
 	}
 	
@@ -451,6 +673,8 @@ public class BoardController {
 	      
 	   
    }
+   
+
    
    
    
