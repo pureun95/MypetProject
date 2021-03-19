@@ -413,10 +413,10 @@ public class AdoptionController {
 	public String writeReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
 		//임시 session값 부여
-		session.setAttribute("seqUser", "6");
-		session.setAttribute("id", "red1234");
-		System.out.println(session.getAttribute("seqUser"));
-		System.out.println(session.getAttribute("id"));
+//		session.setAttribute("seqUser", "6");
+//		session.setAttribute("id", "red1234");
+//		System.out.println(session.getAttribute("seqUser"));
+//		System.out.println(session.getAttribute("id"));
 
 		VwReservationDTO dto = dao.getUserInfo(session.getAttribute("id"));
 		

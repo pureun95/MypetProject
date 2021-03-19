@@ -635,10 +635,10 @@ public class BoardController {
     */
    @RequestMapping(value = "/board/adoptionreviewlist.action", method = { RequestMethod.GET })
    public String adoptionReviewList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+//	   임시세션값
+//	   session.setAttribute("id", "red1234");
 	   
 	   List<AdoptionReviewDTO> rlist = ardao.getList();
-	   
-	   session.setAttribute("id", "red1234");
 	   
 	   request.setAttribute("rlist", rlist);
 	   
@@ -659,8 +659,8 @@ public class BoardController {
 	   
 	   String id = (String)session.getAttribute("id");
 	   String seqUser = ardao.getSeqUser(id);
-	   //로그인 하고있는 회원 번호 설정
-	   session.setAttribute("seqUser", seqUser);
+	   //임시 로그인 하고있는 회원 번호 설정
+	   //session.setAttribute("seqUser", seqUser);
 	   
 	   
 	   AdoptionReviewDTO dto = ardao.getInfo(seqAdoptionReview);
@@ -691,7 +691,7 @@ public class BoardController {
    @RequestMapping(value = "/board/adoptionreviewwrite.action", method = { RequestMethod.GET })
    public String adoptionReviewWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	   //임시로 부여한 세션(회원 로그인)
-	   session.setAttribute("id", "mola991011");
+	   //session.setAttribute("id", "mola991011");
 	   
 	   
 	   return "board/adoptionreviewWrite";
