@@ -58,7 +58,7 @@
 			</div> 
 			<div class="menu">
 				<div class="memu-img" id="img-fifth"></div>
-				<span>추가분</span>
+				<span onclick="location.href='/mypet/mypage/reservationlist.action'">입양예약</span>
 			</div> 
 		 </div>
 	
