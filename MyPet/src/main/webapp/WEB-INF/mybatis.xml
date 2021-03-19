@@ -28,6 +28,10 @@
 		<typeAlias alias="goodsDTO" type="com.test.mypet.goods.GoodsDTO"/>
 		<!-- 신고하기 게시판 dto -->
 		<typeAlias alias="reportBoardDTO" type="com.test.mypet.reportboard.ReportBoardDTO"/>
+		
+		<!-- 봉사활동 게시판 -->
+		<typeAlias type="com.test.mypet.board.VolunteerDTO" alias="VolunteerDTO"/>
+		
 	</typeAliases>
 	
 
