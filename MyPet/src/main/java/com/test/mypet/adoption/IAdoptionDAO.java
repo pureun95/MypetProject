@@ -9,7 +9,7 @@ import com.test.mypet.member.MemberDTO;
 public interface IAdoptionDAO {
 
 	/**
-	 * 페이징 입양 리스트 불러오는 메서드
+	 * 입양 리스트 불러오는 메서드
 	 * @param map 검색결과
 	 * @return 입양리스트
 	 */
