@@ -7,6 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 
+/**
+ * 입양예약 DB작업 전담 클래스
+ * @author 이준오
+ *
+ */
 @Repository
 public class ReservationDAO implements IReservationDAO {
 
