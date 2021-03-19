@@ -189,7 +189,7 @@
 		
 		<div class="board-write">
 			<span class="title">FAQ 등록하기</span>
-			
+			<form method="POST" action="/mypet/board/faqAddok.action">
 			<!-- 각자 본인의 게시판에 들어가면 option이 selected 되어있도록?! 해보고싶어서 넣어봤어요. -->
 			<select class="form-control multiple">
 				<option selected disabled hidden>게시판을 선택해주세요.</option>
@@ -208,13 +208,6 @@
 			</select>
 	        <input type="text" class="form-control board-title" onclick="this.value=''" placeholder="제목을 입력해주세요.">	        	
 	        <textarea class="form-control board-content" onclick="this.value=''" placeholder="내용을 입력해주세요."></textarea> 	    	                      		           		        
-	        <div class="fagtail">
-	        	<span class="glyphicon glyphicon-question-sign"></span>
-        		<ul>
-        			<li>추가로 자세한 답변을 원하신다면 <span id="chat" onclick="location.href='/mypet/board/faqList.action'">채팅</span>을 이용해주세요.</li>
-        			<li>추가로 자세한 전화문의를 원하신다면 0000-0000로 연락주세요.</li>
-        		</ul>
-        	</div>
 	        
 	        <div class="photo">
 	        	
@@ -226,7 +219,9 @@
 		        <input type="submit" class="btn common-btn" id="add" value="등록">
 		        <input type="button" class="btn common-btn" id="cancel" value="취소" onclick="location.href='/mypet/board/faqList.action'">		        
         	</div>
-        </div>	
+        	</form>
+        </div>
+        	
 
     </div>
    

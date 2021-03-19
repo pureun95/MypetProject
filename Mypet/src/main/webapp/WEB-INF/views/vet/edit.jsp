@@ -9,16 +9,11 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
+        border: none;
+        height: auto;
        
-        /* margin-right: px; */
     }
 
-    /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
-    #content{
-        height: auto;
-    }
 
 /*     #contentnav {
         border: 1px solid black;
@@ -27,7 +22,7 @@
         padding: 20px 20px;
     } */
     
----------------------------------------------------------------------------
+/* --------------------------------------------------------------------------- */
 
 	/* 페이지타이틀 */
     #board-title{
@@ -128,6 +123,7 @@
 	      	<input type="submit" class="btn" value="수정" id="edit">
 	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}'">
 	    </div>
+	    <input type="hidden" name="seq" value="${vdto.seqVet}">
 	</form>
 </div>
 

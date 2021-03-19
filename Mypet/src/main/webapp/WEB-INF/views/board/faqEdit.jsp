@@ -189,31 +189,31 @@
 		
 		<div class="board-write">
 			<span class="title">FAQ 수정하기</span>
-			
-			<!-- 각자 본인의 게시판에 들어가면 option이 selected 되어있도록?! 해보고싶어서 넣어봤어요. -->
-			<select class="form-control multiple">
-				<option selected disabled>FAQ 카테고리</option>
-				<option value="1">입양</option>
-				<option value="2">봉사</option>		
-				<option value="3">굿즈</option>	
-				<option value="4">동물병원</option>
-				<option value="5">보호소</option>
-				<option value="6">기타</option>		
-			</select>
-	        <input type="text" class="form-control board-title" onclick="this.value=''" value="${fdto.title}">	        	
-	        <textarea class="form-control board-content" onclick="this.value=''">${fdto.content}</textarea> 	    	                      		           		        
-	        
-	        
-	        <div class="photo">
-	        	
-	        	<input type="file" id="file" class="board-file">	
-	        	<label for="file"></label>	
-	        	<span>사진</span>	  	       		
-	       	</div>	        
-	        <div class="btns">
-		        <input type="submit" class="btn common-btn" id="add" value="수정">
-		        <input type="button" class="btn common-btn" id="cancel" value="취소" onclick="location.href='/mypet/board/faqList.action'">		        
-        	</div>
+			<form method="POST" action="/mypet/board/faqEditok.action">
+				<select class="form-control multiple">
+					<option selected disabled>FAQ 카테고리</option>
+					<option value="1">입양</option>
+					<option value="2">봉사</option>		
+					<option value="3">굿즈</option>	
+					<option value="4">동물병원</option>
+					<option value="5">보호소</option>
+					<option value="6">기타</option>		
+				</select>
+		        <input type="text" class="form-control board-title" value="${fdto.title}">	        	
+		        <textarea class="form-control board-content">${fdto.content}</textarea> 	    	                      		           		        
+		        
+		        
+		        <div class="photo">
+		        	
+		        	<input type="file" id="file" class="board-file">	
+		        	<label for="file"></label>	
+		        	<span>사진</span>	  	       		
+		       	</div>	        
+		        <div class="btns">
+			        <input type="submit" class="btn common-btn" id="add" value="수정">
+			        <input type="button" class="btn common-btn" id="cancel" value="취소" onclick="location.href='/mypet/board/faqList.action'">		        
+	        	</div>
+        	</form>
         </div>	
 
     </div>

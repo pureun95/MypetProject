@@ -22,6 +22,7 @@
    			image = #{image},
    			address = #{address},
    			tel = #{tel},
+   			time = #{time},
    			treatment = #{treatment}
    				where seqVet = #{seqVet}
    </update>
@@ -29,6 +30,10 @@
    <select id="count" parameterType="HashMap" resultType="int">
 		select count(*) as count from  tblVet		
 	</select>
-
+	
+	<insert id="add" parameterType="vdto">
+		insert into tblVet (seqVet, image, name, address, tel, treatment, time, content) 
+			values (seqVet.nextVal, default, #{name}, #{address}, #{tel}, #{treatment}, #{time}, null)
+	</insert>
 
 </mapper>

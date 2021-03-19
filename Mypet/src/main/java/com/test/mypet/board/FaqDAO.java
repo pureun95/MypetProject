@@ -1,5 +1,6 @@
 package com.test.mypet.board;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -26,6 +27,18 @@ public class FaqDAO implements IFaq{
 	public FaqDTO get(String seqFaq) {
 		
 		return template.selectOne("faq.get", seqFaq);
+	}
+
+	@Override
+	public int add(FaqDTO fdto) {
+		
+		return template.insert("faq.add", fdto);
+	}
+
+	@Override
+	public int getTotalCount(HashMap<String, String> map) {
+		
+		return template.selectOne("faq.count",map);
 	}
 
 }

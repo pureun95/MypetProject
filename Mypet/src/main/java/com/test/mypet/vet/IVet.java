@@ -15,6 +15,10 @@ public interface IVet {
 
 	int getTotalCount(HashMap<String, String> map);
 
+	int add(VetDTO vdto);
+
+	int delete(String seqVet);
+
 
 
 }

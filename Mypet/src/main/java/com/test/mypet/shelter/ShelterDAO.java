@@ -55,6 +55,13 @@ public class ShelterDAO implements IShelter{
 	}
 
 
+	@Override
+	public int add(ShelterDTO sdto) {
+		
+		return template.insert("shelter.add", sdto);
+	}
+
+
 
 
 

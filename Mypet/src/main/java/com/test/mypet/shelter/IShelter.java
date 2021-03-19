@@ -20,4 +20,6 @@ public interface IShelter {
 
 	List<LocationDetailDTO> locationDetail();
 
+	int add(ShelterDTO sdto);
+
 }

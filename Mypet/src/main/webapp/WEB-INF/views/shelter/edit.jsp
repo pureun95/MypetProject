@@ -9,16 +9,10 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
-       
-        /* margin-right: px; */
-    }
-
-    /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
-    #content{
+        border: none;
         height: auto;
     }
+
 
 /*     #contentnav {
         border: 1px solid black;
@@ -27,7 +21,7 @@
         padding: 20px 20px;
     } */
     
----------------------------------------------------------------------------
+/* --------------------------------------------------------------------------- */
 
 	/* 페이지타이틀 */
     #board-title{
@@ -93,33 +87,33 @@
 
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
-	<div id="board-title">${sdto.name} 수정하기</div>
+	<div id="board-title">${sdto[0].name} 수정하기</div>
 	
 	<form method="POST" action="/mypet/shelter/editok.action">
 		<table class="table table-default">
 			<tr>
 				<th id="list">이름</th>
-				<td><input type="text" class="form-control" value="${sdto.name}"></td>
+				<td><input type="text" class="form-control" value="${sdto[0].name}"></td>
 			</tr>
 			<tr>
 				<th id="list">주소</th>
-				<td><input type="text"  class="form-control" value="${sdto.address}"></td>
+				<td><input type="text"  class="form-control" value="${sdto[0].address}"></td>
 			</tr>
 			<tr>
 				<th id="list">전화번호</th>
-				<td><input type="text"  class="form-control" value="${sdto.tel}"></td>
+				<td><input type="text"  class="form-control" value="${sdto[0].tel}"></td>
 			</tr>
 			<tr>
 				<th id="list">진료시간</th>
-				<td><input type="text"  class="form-control" value="${sdto.time}"></td>
+				<td><input type="text"  class="form-control" value="${sdto[0].time}"></td>
 			</tr>
 			<tr>
 				<th id="list">후원계좌</th>
-				<td><input type="text"  class="form-control" value="${sdto.account} (${sdto.name})"></td>
+				<td><input type="text"  class="form-control" value="${sdto[0].account} (${sdto[0].name})"></td>
 			</tr>
 			<tr>
 				<th id="list">봉사활동</th>
-				<td><input type="text"  class="form-control" value="${sdto.startDate} ~ ${sdto.endDate}"></td>
+				<td><input type="text"  class="form-control" value="${dto.startDate} ~ ${dto.endDate}"></td>
 			</tr>
 			<tr>
 				<th id="list">로고 or 이미지</th>
@@ -130,10 +124,10 @@
 		
 		<div class="btns">
 	      	<input type="submit" class="btn" value="수정" id="edit">
-	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}'">
+	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/shelter/view.action?seq=${sdto[0].seqShelter}'">
 	    </div>
 	    
-    	<input type="hidden" name="seq" value="${sdto.seqShelter}">
+    	<input type="hidden" name="seq" value="${sdto[0].seqShelter}">
     </form>
 </div>
 

@@ -264,6 +264,7 @@
 
     <div id="content">
         <span class="board-name">FAQ</span>
+        <form id="searchForm" method="GET" action="/mypet/board/faqList.action">
         <div class="board-btn">
         	<span class="category">
 	        	<button class="item" id="adopt">입양</button>
@@ -303,7 +304,7 @@
 	        	</div>
 	        	<div class="btns">
         			<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/board/faqEdit.action?seq=${fdto.seqFaq}';">
-           			<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/board/faqDelete.action'">           	
+           			<input type="button" value="삭제" id="delete" class="btn">           	
             	</div>
             	</td>
             </tr>
@@ -316,31 +317,50 @@
         
         <div class="pageSearch">
             <!-- 페이지바 -->
-            <ul class="pagination">
-                <li><a href=\"#!\" aria-label=\"Previous\"><span aria-hidden=\"true\">&laquo;</span></a></li>
-                <li><a>1</a></li>
-                <li><a>2</a></li>
-                <li><a>3</a></li>
-                <li><a>4</a></li>
-                <li><a>5</a></li>
-                <li><a>6</a></li>
-                <li><a>7</a></li>
-                <li><a>8</a></li>
-                <li><a>9</a></li>
-                <li><a>10</a></li>
-                <li><a href=\"#!\" aria-label=\"Next\"><span aria-hidden=\"true\">&raquo;</span></a></li>
-            </ul>       
+            <%-- <ul class="pagination">
+            	${pagebar}
+            </ul>   --%>     
 
             <!-- 검색창 & 검색 버튼 -->
             <input type="textbox" class="form-control search-text">
-            <input type="button" class="btn common-btn" value="검색">
+            <input type="button" class="btn common-btn" value="검색" onclick="$('#searchForm').submit();">
         </div>
+        </form>
     </div>
    
 </div>
 
+<!-- 삭제하기 모달 -->
+	<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content" id="modal-content">
+	      <div class="modal-header">
+		        <h5 class="modal-title">FAQ 삭제하기</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>FAQ를 정말 삭제하시겠습니까?</p>
+		      </div>
+		      <div class="modal-footer">
+		      	<button type="submit" class="btn" id="deleteok">삭제</button>
+		        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		
+
 <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script>
+	/* 삭제 */
+	$('#delete').click(function(e){
+		e.preventDefault();
+		$('#deletemodal').modal("show");
+	});
+
+	/* 상세내용 보여주기 */
     $(document).ready(function(){
 
     	$("#table tr:odd").addClass("odd");

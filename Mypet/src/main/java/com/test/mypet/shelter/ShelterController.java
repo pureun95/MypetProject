@@ -148,12 +148,33 @@ public class ShelterController {
 		return "shelter.add";
 	}
 	
+	@RequestMapping(value="/shelter/addok.action", method= {RequestMethod.POST})
+	public void addok(HttpServletRequest request, HttpServletResponse response, HttpSession session, ShelterDTO sdto) {
+		
+		int result = dao.add(sdto);
+		
+		try {
+			
+			if(result == 1) {
+				response.sendRedirect("/mypet/shelter/list.action");
+			}else {
+				response.sendRedirect("/mypet/shetler/add.action");
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		
+	}
+		
+	
+	
 	@RequestMapping(value="/shelter/edit.action")
 	public String edit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
 		
-//		ShelterDTO sdto = dao.get(seq);
-//		
-//		request.setAttribute("sdto", sdto);
+		List<ShelterDTO> sdto = dao.get(seq);
+		
+		request.setAttribute("sdto", sdto);
 		
 		return "shelter.edit";
 	}
@@ -176,9 +197,13 @@ public class ShelterController {
 
 	}
 	
-	@RequestMapping(value="/shelter/delete.action")
-	public String delete() {
+	@RequestMapping(value="/shelter/delete.action", method= {RequestMethod.GET})
+	public String delete(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		return "shelter.delete";
+	}
+	
+	@RequestMapping(value="/shelter/deleteok.action", method= {RequestMethod.POST})
+	public void deleteok(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	}
 
 }

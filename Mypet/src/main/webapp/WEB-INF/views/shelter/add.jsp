@@ -9,16 +9,10 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
-       
-        /* margin-right: px; */
-    }
-
-    /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
-    #content{
+        border: none;
         height: auto;
-    }
+       
+  	}
 
 /*     #contentnav {
         border: 1px solid black;
@@ -27,7 +21,7 @@
         padding: 20px 20px;
     } */
     
----------------------------------------------------------------------------
+/* --------------------------------------------------------------------------- */
 
 	/* 페이지타이틀 */
     #board-title{
@@ -94,42 +88,44 @@
 <div id="content">
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
 	<div id="board-title">보호소 등록하기</div>
-	<table class="table table-default">
-		<tr>
-			<th id="list">이름</th>
-			<td><input type="text" class="form-control"></td>
-		</tr>
-		<tr>
-			<th id="list">주소</th>
-			<td><input type="text"  class="form-control"></td>
-		</tr>
-		<tr>
-			<th id="list">전화번호</th>
-			<td><input type="text"  class="form-control"></td>
-		</tr>
-		<tr>
-			<th id="list">진료시간</th>
-			<td><input type="text"  class="form-control"></td>
-		</tr>
-		<tr>
-			<th id="list">후원계좌</th>
-			<td><input type="text"  class="form-control"></td>
-		</tr>
-		<tr>
-			<th id="list">봉사활동</th>
-			<td><input type="text"  class="form-control"></td>
-		</tr>
-		<tr>
-			<th id="list">로고 or 이미지</th>
-			<td><input type="file"  class="form-control"></td>
-		</tr>
+	<form method="POST" action="/mypet/shelter/addok.action">
+		<table class="table table-default">
+			<tr>
+				<th id="list">이름</th>
+				<td><input type="text" class="form-control"></td>
+			</tr>
+			<tr>
+				<th id="list">주소</th>
+				<td><input type="text"  class="form-control"></td>
+			</tr>
+			<tr>
+				<th id="list">전화번호</th>
+				<td><input type="text"  class="form-control"></td>
+			</tr>
+			<tr>
+				<th id="list">진료시간</th>
+				<td><input type="text"  class="form-control"></td>
+			</tr>
+			<tr>
+				<th id="list">후원계좌</th>
+				<td><input type="text"  class="form-control"></td>
+			</tr>
+			<tr>
+				<th id="list">봉사활동</th>
+				<td><input type="text"  class="form-control"></td>
+			</tr>
+			<tr>
+				<th id="list">로고 or 이미지</th>
+				<td><input type="file"  class="form-control"></td>
+			</tr>
+			
+		</table>
 		
-	</table>
-	
-	<div class="btns">
-      	<input type="submit" class="btn" value="등록" id="add">
-      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/list.action'">
-    </div>
+		<div class="btns">
+	      	<input type="submit" class="btn" value="등록" id="add">
+	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/list.action'">
+	    </div>
+    </form>
 </div>
 
 

@@ -38,6 +38,11 @@
 	<select id="locationDetail" resultType="lddto">
 		select * from tblLocationDetail 
 	</select>
+	
+	<insert id="add" parameterType="sdto">
+		insert into tblShelter (seqVet, image, name, address, tel, account, time, content) 
+			values (seqShelter.nextVal, default, #{name}, #{address}, #{tel}, #{account}, #{time}, null)
+	</insert>
 
 
 </mapper>
