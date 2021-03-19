@@ -29,9 +29,7 @@
         width: 1300px;
         margin: 0px auto;
         margin-top: 150px;
-        padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
+        padding: 20px 50px;     
        }
 
 
