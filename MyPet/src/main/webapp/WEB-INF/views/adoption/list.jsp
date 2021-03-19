@@ -449,9 +449,9 @@
     		<div class="pet-seq">
     			<span class="no" style="float: left">no. ${dto.seqPet }</span>
     			
-    			<input type="hidden" class="seqUser1" value="${seqUser }">
+    			<input type="hidden" name="seqUser" class="seqUser" value="${seqUser }">
     			<c:forEach items="${uList }" var="uList">
-    				<input type="hidden" class="seqUser2" value="${uList.seqUser }">
+    	
     				<input type="hidden" class="seqLike" value="${uList.seqLike }">
     			</c:forEach>
 								
@@ -471,48 +471,46 @@
 	
 	
 	
-	<!-- 회원이 보는 페이지 -->
-    	<c:if test="${seqUser >= '6'}">
-    	<c:forEach items="${list }" var="dto" varStatus="status">
-    	<c:if test="${dto.state != '삭제완료' }">
+	<!-- 회원& 비회원이 보는 페이지 -->
+    	<c:if test="${empty seqUser or seqUser >= 6}">
+    	<c:forEach items="${userList }" var="udto" varStatus="status">
     	<div class="list-detail">    	
-    		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'"><img class="img-pet" src="../resources/images/adoption/${dto.img }"></div>
-    		<span class="pet-title" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'">${dto.title }</span>
+    		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${udto.seqAdoption}'"><img class="img-pet" src="../resources/images/adoption/${udto.img }"></div>
+    		<span class="pet-title" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${udto.seqAdoption}'">${udto.title }</span>
     		
-    		<c:if test="${not empty dto.nameV }">
-	    		<span class="pet-address">${dto.addressV }</span>
-	    		<span class="pet-address">${dto.nameV }</span>
-	    		<input type="hidden" class="location-hidden" value="${dto.addressV }">
+    		<c:if test="${not empty udto.nameV }">
+	    		<span class="pet-address">${udto.addressV }</span>
+	    		<span class="pet-address">${udto.nameV }</span>
+	    		<input type="hidden" class="location-hidden" value="${udto.addressV }">
     		</c:if>
     		
 
-    		<c:if test="${empty dto.nameV }">
-	    		<span class="pet-address">${dto.addressS }</span>
-	    		<span class="pet-address">${dto.nameS }</span>
-	    		<input type="hidden" class="location-hidden" value="${dto.addressS }">
+    		<c:if test="${empty udto.nameV }">
+	    		<span class="pet-address">${udto.addressS }</span>
+	    		<span class="pet-address">${udto.nameS }</span>
+	    		<input type="hidden" class="location-hidden" value="${udto.addressS }">
     		</c:if>
     	
 
     		<div class="pet-seq">
-    			<span class="no" style="float: left">no. ${dto.seqPet }</span>
+    			<span class="no" style="float: left">no. ${udto.seqPet }</span>
     			
-    			<input type="hidden" class="seqUser1" value="${seqUser }">
+    			<input type="hidden" name="seqUser" value="${seqUser }">
     			<c:forEach items="${uList }" var="uList">
     				<input type="hidden" class="seqUser2" value="${uList.seqUser }">
     				<input type="hidden" class="seqLike" value="${uList.seqLike }">
     			</c:forEach>
 								
    		    			
-    			<label class="like" for="like${status.index}" onclick="ck_user(${dto.seqAdoption })"></label>
-    			<input type="radio" name="like" class="rd" id="like${status.index}" value="${dto.seqAdoption }" style="display: none">
+    			<label class="like" for="like${status.index}" onclick="ck_user(${udto.seqAdoption })"></label>
+    			<input type="radio" name="seqAdoption" class="rd" id="like${status.index}" value="${udto.seqAdoption }" style="display: none">
     			
     			 
-    			<span class="likes-count">${dto.likes }</span>
+    			<span class="likes-count">${udto.likes }</span>
     		</div>
     		
-    		<span class="state">${dto.state }</span>    		
+    		<span class="state">${udto.state }</span>    		
     	</div>
-    	</c:if>
 		</c:forEach>		
 		</c:if>
 	
@@ -565,52 +563,42 @@
 <script>
 
 	
-	//찜하기 중복검사
-	var seqUser2 = $(".seqUser2").val();
+	//찜하기
 	var seqLike = $(".seqLike").val();
-	var seqUser1 = $(".seqUser1").val();
+	var seqUser = $("input[name=seqUser]").val();
 	
-	var like = $('input[name=like]');
+	var seqAdoption = $('input[name=like]');
 	var label = $(".like");
 	var no;
+	var ck;
 	
 	
 	//라벨 체크 -> 라디오버튼 체크 -> 그 값을 가지고 ok로 넘긴다.
 	function ck_user(no) {
-			
-		for(var i=0; i<like.length; i++) {
-			if(no == like[i].value) {
-								
-				like[i].checked = true;
-				var ck = $('input[name=like]:checked').val();
-			} 
-			
 		
-		/* 비회원인 경우 */
-		if(seqUser1 == null) {
-			$('#modal').modal("show");
-		}
-			
-		/* 찜하기 목록에 있는 경우 */
-		if(seqUser1 == seqUser2) {
-			$(".modal-body > p").html("이미 찜목록에 있습니다.");
+		if(seqUser == "") {
 			$('#modal').modal("show");
 		
-		/* 찜하기 목록에 없는 경우 */
 		} else {
+			for(var i=0; i<seqAdoption.length; i++) {
+				
+				if(no == seqAdoption[i].value) {
+									
+					seqAdoption[i].checked = true;
+					ck = $('input[name=seqAdoption]:checked').val();						
+				} 	
+			}
+			
 			$(".modal-body > p").html("찜목록에 추가되었습니다.");
 			$('#modal').modal("show");
 			
 			setTimeout(function() {
-				location.href= '/mypet/adoption/likesOk.action?seqAdoption='+ ck + '&seqUser=${seqUser}';
+				location.href= '/mypet/adoption/likesOk.action?seqAdoption='+ ck + '&seqUser=' + seqUser;
 			}, 2000);
-		 	
-				
+									
 		}
 		
-	}
-		
-}		
+	}					
 			
 	
 	/* 모달 */

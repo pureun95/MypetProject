@@ -9,6 +9,13 @@ import com.test.mypet.member.MemberDTO;
 public interface IAdoptionDAO {
 
 	/**
+	 * 
+	 * @param id
+	 * @return 유저번호
+	 */
+	AdoptionDTO getSeqUser(String id);
+	
+	/**
 	 * 입양 리스트 불러오는 메서드
 	 * @param map 검색결과
 	 * @return 입양리스트
@@ -63,4 +70,23 @@ public interface IAdoptionDAO {
 	 * @return
 	 */
 	int insertLikes(HashMap<String, String> map);
+
+	
+	/**
+	 * 
+	 * @param seqAdoption 입양글 번호
+	 * @return 이전글 & 다음글
+	 */
+	List<AdoptionDTO> getForNext(String seqAdoption);
+
+	
+	/**
+	 * 회원이 보는 입양 리스트 불러오는 메서드
+	 * @param map 검색결과
+	 * @return 입양리스트
+	 */
+	List<AdoptionDTO> getUserList(HashMap<String, String> map);
+
+
+	
 }

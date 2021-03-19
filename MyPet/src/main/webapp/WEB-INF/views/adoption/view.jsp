@@ -176,6 +176,9 @@
     	border-bottom: 1px solid #ddd;
     }
     
+    .fornext {
+    	cursor: pointer;
+    }
     
     /* 게시판 textarea */
     .info {
@@ -307,8 +310,8 @@
 	<input type="button" class="btn common-btn" value="입양예약하기" onclick="modal()">
 	</c:if>
 	
-	<input type="hidden" class="seqUser1" value="${seqUser }">
-	<input type="hidden" class="likeCount" value="${dto.likes }">
+	<input type="hidden" name="seqUser" class="seqUser" value="${seqUser }">
+	<input type="hidden" name="likeCount" class="likeCount" value="${dto.likes }">
 	<div class="detail">
 	
 	<!-- 이미지 split -->
@@ -365,18 +368,40 @@
 	
 	<!-- 이전글 & 다음글 -->
 	<table class="table">
+		
 		<tr class="headtr">      	
 	       <td class="firstth" style="width: 100px">이전글</td>
-	       <td class="firsttd">이전글입니다.</td>
+	       <c:forEach items="${fdto }" var="fdto">
+		       <c:if test="${fdto.seqAdoption < seqAdoption }">
+		       <td class="firsttd fornext" onclick="location.href='/mypet/adoption/view.action?seqAdoption=' + ${seqAdoption - 1}">${fdto.title }</td>
+		       </c:if>
+	       </c:forEach>
 	    </tr>
+	    
 	    <tr class="headtr">      	
 	       <td class="firstth" style="border-bottom: 1px solid #e8e8e8">다음글</td>
-	       <td class="firsttd" style="border-bottom: 1px solid #e8e8e8">다음글입니다.</td>
+	       <c:forEach items="${fdto }" var="fdto">
+	       		<c:if test="${fdto.seqAdoption > seqAdoption }">
+	       		 <td class="firsttd fornext" style="border-bottom: 1px solid #e8e8e8" onclick="location.href='/mypet/adoption/view.action?seqAdoption=' + ${seqAdoption + 1}">${fdto.title }</td>
+		       </c:if>
+	       </c:forEach>	      
 	    </tr>
+	    
 	</table>
 	
-	<input type="button" class="btn common-btn" value="목록" onclick="location.href='/mypet/adoption/list.action'">
 	
+	<!-- 회원일 경우 -->
+	<c:if test="${empty seqUser or seqUser > 5}">
+	<input type="button" class="btn common-btn" value="목록" onclick="location.href='/mypet/adoption/list.action'">
+	</c:if>
+	
+	
+	<!-- 관리자일 경우 -->
+	<c:if test="${seqUser < 6}">
+	<input type="button" class="btn common-btn list-btn" style="margin-left: 700px" value="목록" onclick="location.href='/mypet/adoption/list.action'">
+	<input type="button" class="btn common-btn edit-btn" style="margin-left: 0px" value="수정" onclick="location.href='/mypet/adoption/edit.action?seqAdoption=${seqAdoption }'">
+	<input type="button" class="btn common-btn del-btn" style="margin-left: 0px" value="삭제" onclick="location.href='/mypet/adoption/delete.actionseqAdoption=${seqAdoption }'">
+	</c:if>
 
 </div>
 
@@ -386,7 +411,7 @@
 		<div class="modal-dialog" role="document">
 		  <div class="modal-content" id="modal-content">
 		     <div class="modal-header">
-		       <h5 class="modal-title">입양예약하기</h5>
+		       <h5 class="modal-title">찜하기</h5>
 		       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		         <span aria-hidden="true">&times;</span>
 		       </button>
@@ -404,6 +429,13 @@
 
 <script>
 	
+	//찜하기
+	var seqUser = $("input[name='seqUser']").val();
+	var label = $(".label-like");
+	var like = $("input[name='seqAdoption']");
+	var no;
+
+
 	/* 서브 이미지 클릭하면 메인 이미지로 오기 */
 	$(".img-sub").click(function() {
 		
@@ -413,11 +445,6 @@
 	})
 	
 	
-	/* 비회원이 입양예약하기 누르는 경우 */
-	function modal() {		
-		$('#modal').modal("show");		
-	}
-	
 	/* 모달 */
 	$('#check').click(function(e){
 		e.preventDefault();
@@ -425,40 +452,22 @@
 	});
 	
 	
-	//찜하기
-	var seqUser1 = $(".seqUser1").val();
-	var label = $(".label-like");
-	var like = $("#like");
-	var no;
-	
-	
+		
 	//라벨 체크 -> 라디오버튼 체크 -> 그 값을 가지고 ok로 넘긴다.
 	function ck_user(no) {
 			
 		like.checked = true;
-		var ck = $(like).val();
-		alert(ck);
 		
-		/* 비회원인 경우 */
-		if(seqUser1 == null) {
-			$('#modal').modal("show");
-			
-		} else {
-			$(".modal-body > p").html("찜목록에 추가되었습니다.");
-			$('#modal').modal("show");
-				
-			setTimeout(function() {
-				location.href= '/mypet/adoption/likesOk.action?seqAdoption='+ ck + '&seqUser=${seqUser}';
-			}, 2000);
-			 	
-					
+		/* 비회원 & 관리자인 경우 */
+		if(seqUser == "" || seqUser < 6) {
+			$('#modal').modal("show");	
+		} else {			
+			location.href= '/mypet/adoption/likesOk.action?seqAdoption='+ no + '&seqUser=${seqUser}';			 	
 		}
 			
 	}		
 	
-			
-		
-	
+
 	
 	
 </script>

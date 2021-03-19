@@ -1,5 +1,6 @@
 package com.test.mypet.adoption;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.test.mypet.board.VolunteerDTO;
 import com.test.mypet.goods.GoodsDTO;
 import com.test.mypet.goods.IGoodsDAO;
 import com.test.mypet.member.MemberDTO;
@@ -34,11 +36,27 @@ public class AdoptionController {
 	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species, String seqAdoption) {
 		
 		
-		String seqUser = "6";
+		AdoptionDTO dto = new AdoptionDTO();
+		
+		String seqUser = "";
+				
+		//세션에서 유저 아이디 받아오기
+		String id = (String)session.getAttribute("id");
+		
+		if(id == null) {
+			dto.setSeqUser(null);			
+		} else {
+			dto = adao.getSeqUser(id);			
+		}
+		
+		seqUser = dto.getSeqUser();
+					
+		//회원번호
+		session.setAttribute("seqUser", seqUser);
 		
 		
 		//찜하기 중복검사
-		List<AdoptionDTO> uList = adao.getLikesUser(seqUser);
+		/* List<AdoptionDTO> uList = adao.getLikesUser(seqUser); */
 		
 		//검색
 		String search = request.getParameter("search");
@@ -82,14 +100,11 @@ public class AdoptionController {
 		
 		List<AdoptionDTO> list = adao.getList(map);
 		List<AdoptionDTO> AllList = adao.getAllList(map);
-		
+		List<AdoptionDTO> userList = adao.getUserList(map);
 		
 		//이미지는 하나만 넣을 것
 		for (int i=0; i<list.size(); i++) {
 		
-			AdoptionDTO dto = new AdoptionDTO();
-			
-			
 			if(list.get(i).getImg() == null) {
 				
 				//더미데이터 이미지
@@ -107,6 +122,23 @@ public class AdoptionController {
 				list.get(i).setImg(img[0]);
 			}
 			
+		}
+		
+		
+		//이미지는 하나만 넣을 것
+		for (int i=0; i<userList.size(); i++) {
+				
+			if(userList.get(i).getImg() == null) {
+						
+				userList.get(i).setImg("nopic.png");
+						
+			} else {
+						
+				String[] img = userList.get(i).getImg().split(",");
+						
+				userList.get(i).setImg(img[0]);
+			}
+					
 		}
 		
 		
@@ -214,8 +246,10 @@ public class AdoptionController {
 		request.setAttribute("pagebar", pagebar);
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("list", list);
+		request.setAttribute("userList", userList);
+		
 		//찜하기
-		request.setAttribute("uList", uList);
+		/* request.setAttribute("uList", uList); */
 		request.setAttribute("AllList", AllList);
 		request.setAttribute("species", species);
 		request.setAttribute("seqUser", seqUser);
@@ -256,14 +290,29 @@ public class AdoptionController {
 		System.out.println("결과 : " + insert);
 		
 		
-		//이전페이지 이동
-		String forward = request.getHeader("referer");
-		
 		try {
 			if (result == 1) {
-				response.sendRedirect(forward);
+				response.setContentType("text/html; charset=UTF-8");
+
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");	
+				writer.print("alert('찜목록에 추가되었습니다.');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
 			} else {
-				response.sendRedirect(forward);
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('이미 찜목록에 있습니다.');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
 			}
 		} catch(Exception e) {
 			System.out.println(e);
@@ -275,13 +324,35 @@ public class AdoptionController {
 	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
 	public String adoptionView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		
-					
-		String seqUser = (String) session.getAttribute("seqUser");
+		AdoptionDTO dto = new AdoptionDTO();
 		
-		AdoptionDTO dto = adao.getView(seqAdoption);
+		String seqUser = "";
+				
+		//세션에서 유저 아이디 받아오기
+		String id = (String)session.getAttribute("id");
+		
+		if(id == null) {
+			dto.setSeqUser(null);			
+		} else {
+			dto = adao.getSeqUser(id);			
+		}
+		
+		seqUser = dto.getSeqUser();
+					
+		//회원번호
+		session.setAttribute("seqUser", seqUser);
+				
+		
+		//이전글 & 다음글
+		List<AdoptionDTO> fdto = adao.getForNext(seqAdoption);
+		
+		//상세보기
+		dto = adao.getView(seqAdoption);
 		
 		request.setAttribute("dto", dto);
+		request.setAttribute("fdto", fdto);
 		request.setAttribute("seqUser", seqUser);
+		request.setAttribute("seqAdoption", seqAdoption);
 		
 		return "adoption/view";
 

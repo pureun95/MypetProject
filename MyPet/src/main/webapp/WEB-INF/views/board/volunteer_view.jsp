@@ -224,9 +224,7 @@
         margin-left: 1060px;
     }
     
-    
-    
-    /* modal */
+      
     
      /* 모달창 */
     
@@ -312,8 +310,8 @@
     	</div>
     
     	<c:forEach items="${list }" var="dto">
-    	<input type="hidden" class="seq" value="${seqUser }">
-    	<input type="hidden" class="seq" value="${dto.seqVolunteer }">
+    	<input type="hidden" class="seq" name="seqUser" value="${seqUser }">
+    	<input type="hidden" class="seq" name="seqVolunteer" value="${dto.seqVolunteer }">
     	
         <table class="table table-condensed">
         	<tr class="headtr">
@@ -383,7 +381,7 @@
         	
         	<c:forEach items="${fornext }" var="fdto">
 	        	<c:if test="${dto.seqVolunteer > fdto.seqVolunteer }">
-	        	<tr class="headtr">      	
+	        	<tr class="headtr" style="cursor: pointer" onclick="location.href='/mypet/board/volunteerView.action?seqVolunteer=${fdto.seqVolunteer }'">      	
 	        		<td class="firstth" colspan="1">이전글</td>
 	        		<td class="firsttd" colspan="9">[${fdto.name}] ${fdto.title }</td>
 	        	</tr>
@@ -411,7 +409,7 @@
         	
         	
 	        	<c:if test="${dto.seqVolunteer < fdto.seqVolunteer }">
-	        	<tr class="headtr">      	
+	        	<tr class="headtr" style="cursor: pointer" onclick="location.href='/mypet/board/volunteerView.action?seqVolunteer=${fdto.seqVolunteer }'">      	
 	        		<td class="firstth" colspan="1" style="border-bottom: 1px solid #e8e8e8">다음글</td>
 	        		<td class="firsttd" colspan="9" style="border-bottom: 1px solid #e8e8e8">[${fdto.name}] ${fdto.title }</td>
 	        	</tr>
@@ -478,7 +476,9 @@
 	var list = new Array();
 	
 	/* 회원번호, 봉사활동 번호 */
-	var seq = new Array();
+	var seqUser = $("input[name='seqUser']").val();
+	var seqVolunteer = $("input[name='seqVolunteer']").val();
+	
 	var i = 0;		
 	
 	$(document).ready(function() {
@@ -486,18 +486,13 @@
 		$("input[name=img-split]").each(function(index, item) {
 			list.push($(item).val());    		    		
 		});
-		
-		$("input[name=seq]").each(function(index, item) {
-			seq.push($(item).val());    
-			
-			alert(seq);
-		});
+				
 	});
 
-
+	
+	/* 봉사활동 신청 모달 */
 	$('#ok').click(function(e){
-		alert(seqUser);
-		if (seqUser == null) {
+		if (seqUser== null || seqUser < 6) {
 			$(".modal-title").html("알림");
     		$("p").html("회원만 이용가능합니다.");
     		$('#okmodal').modal("show");
@@ -512,7 +507,7 @@
 	$('#check').click(function(e){
 		e.preventDefault();
 		
-		location.href='/mypet/board/volunteerOk.action?seqVolunteer=${dto.seqVolunteer}&seqUser=${seqUser}';
+		location.href='/mypet/board/volunteerOk.action?seqVolunteer=' + seqVolunteer + '&seqUser=' + seqUser;
 		
 		$('#okmodal').modal("show");
 		$('#modal').modal("hide");
@@ -520,8 +515,7 @@
 
    
 
-    /* 화살표 누르면 사진 바꾸기 */
-        
+    /* 화살표 누르면 사진 바꾸기 */        
     $(".arrow2").click(function() {
     	
     	i++;
