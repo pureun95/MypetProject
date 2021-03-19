@@ -369,13 +369,12 @@
 
 
   <div id="content">
+  
     <span class="title">입양하기</span>
     <!-- 지도&검색창 -->
     <div class="map-search">
     	<div id="map">
-    		
-    		
-    	
+    		    		
     	</div>  
     	
     	<div class="pet-radio">
@@ -406,6 +405,7 @@
     		<label for="etc" onclick="location.href='/mypet/adoption/list.action?species=3'">기타동물</label>    		
     	</div>
     	
+    	
     	<div class="search-box">
 	    	<form method="GET" action="/mypet/adoption/list.action">
 	    		<input type="text" class="form-control" name="search" placeholder="검색 키워드를 입력해주세요." onfocus="this.value=''">
@@ -413,15 +413,20 @@
 	    	</form>
     	</div>
     	
-    </div>
+    </div><!-- map.search -->
+    
     
     <!-- 관리자만 보여주기 -->
+   	<c:if test="${seqUser < '6'}">
     <input type="button" class="btn common-btn" value="글쓰기" onclick="location.href='/mypet/adoption/write.action'">
+    </c:if>
+    
     
     <!-- 9개씩 나오기 -->
     <div class="list">    	        	
     
     	<!-- 관리자가 보는 페이지 -->
+    	<c:if test="${seqUser < '6'}">
     	<c:forEach items="${list }" var="dto" varStatus="status">
     	<div class="list-detail">    	
     		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'"><img class="img-pet" src="../resources/images/adoption/${dto.img }"></div>
@@ -460,9 +465,77 @@
     		<span class="state">${dto.state }</span>    		
     	</div>
 		</c:forEach>		
+		</c:if>
 	
 	
 	
+	
+	
+	<!-- 회원이 보는 페이지 -->
+    	<c:if test="${seqUser >= '6'}">
+    	<c:forEach items="${list }" var="dto" varStatus="status">
+    	<c:if test="${dto.state != '삭제완료' }">
+    	<div class="list-detail">    	
+    		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'"><img class="img-pet" src="../resources/images/adoption/${dto.img }"></div>
+    		<span class="pet-title" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'">${dto.title }</span>
+    		
+    		<c:if test="${not empty dto.nameV }">
+	    		<span class="pet-address">${dto.addressV }</span>
+	    		<span class="pet-address">${dto.nameV }</span>
+	    		<input type="hidden" class="location-hidden" value="${dto.addressV }">
+    		</c:if>
+    		
+
+    		<c:if test="${empty dto.nameV }">
+	    		<span class="pet-address">${dto.addressS }</span>
+	    		<span class="pet-address">${dto.nameS }</span>
+	    		<input type="hidden" class="location-hidden" value="${dto.addressS }">
+    		</c:if>
+    	
+
+    		<div class="pet-seq">
+    			<span class="no" style="float: left">no. ${dto.seqPet }</span>
+    			
+    			<input type="hidden" class="seqUser1" value="${seqUser }">
+    			<c:forEach items="${uList }" var="uList">
+    				<input type="hidden" class="seqUser2" value="${uList.seqUser }">
+    				<input type="hidden" class="seqLike" value="${uList.seqLike }">
+    			</c:forEach>
+								
+   		    			
+    			<label class="like" for="like${status.index}" onclick="ck_user(${dto.seqAdoption })"></label>
+    			<input type="radio" name="like" class="rd" id="like${status.index}" value="${dto.seqAdoption }" style="display: none">
+    			
+    			 
+    			<span class="likes-count">${dto.likes }</span>
+    		</div>
+    		
+    		<span class="state">${dto.state }</span>    		
+    	</div>
+    	</c:if>
+		</c:forEach>		
+		</c:if>
+	
+	
+	
+
+		
+    <c:if test="${list.size() > 0 }">
+    <!-- 페이지바 -->
+    <div class="pageSearch" style="clear: both">
+	      <!-- 페이지바 -->
+	       <ul class="pagination">
+	            ${pagebar }
+	       </ul>     
+     </div>
+    </c:if>
+    
+    <!-- 페이지바 -->
+    
+    </div>
+    
+    
+    
 	<!-- 모달  -->
 	<div class="modal" tabindex="-1" role="dialog" id="modal">
 		<div class="modal-dialog" role="document">
@@ -481,30 +554,7 @@
 		     </div>
 		   </div>
 		 </div>
-	</div>
-	
-	
-	
-	
-	
-		
-    <c:if test="${list.size() > 0 }">
-    <!-- 페이지바 -->
-    <div class="pageSearch" style="clear: both">
-	      <!-- 페이지바 -->
-	       <ul class="pagination">
-	            ${pagebar }
-	       </ul>     
-     </div>
-    </c:if>
-    
-    <!-- 페이지바 -->
-    
     </div>
-    
-    
-    
-    
 
    <!-- content -->
    </div> 
