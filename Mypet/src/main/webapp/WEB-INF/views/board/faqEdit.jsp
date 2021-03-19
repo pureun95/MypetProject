@@ -64,11 +64,12 @@
 		color: #9c9c9c;
 	}
 	
+	.board-write textarea {
+		min-height: 200px;
+	}
 	
 	
 	
-
-
     /* 버튼 공통 클래스 */
 
   
@@ -136,6 +137,7 @@
     .board-write > select > option {
     	color: #301b01;
     }
+    
     
     /* 버튼 */
     
@@ -213,6 +215,7 @@
 			        <input type="submit" class="btn common-btn" id="add" value="수정">
 			        <input type="button" class="btn common-btn" id="cancel" value="취소" onclick="location.href='/mypet/board/faqList.action'">		        
 	        	</div>
+	        	<input type="hidden" name="seq" value="${fdto.seqFaq}">
         	</form>
         </div>	
 
@@ -222,7 +225,11 @@
 
 
     <script>
+    
+    /* 기존 카테고리 유지 */
+    $(".multiple").val("${fdto.seqCategory}").prop("selected", true);
 		
+    
     /* 제목&내용 클릭 했을 때는 기본폰트 색상 */
     
     $(".board-title").click(function() {

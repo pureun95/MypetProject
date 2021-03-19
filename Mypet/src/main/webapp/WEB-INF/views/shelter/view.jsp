@@ -10,7 +10,7 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        /border: none;
+        border: none;
         height: auto;
     }
 
@@ -306,6 +306,11 @@
 		e.preventDefault();
 		$('#deletemodal').modal("show");
 	});
+	
+	$('#apply').click(function(e){
+		e.preventDefault();
+		$('#applymodal').modal("show");
+	});
 
 	function check(){
 		var form = document.applyForm
@@ -328,10 +333,7 @@
 		
 	}
 
-	$('#apply').click(function(e){
-		e.preventDefault();
-		$('#applymodal').modal("show");
-	});
+	
 </script>
 
 

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.test.mypet.vet.VetDTO;
+
 
 /**
  * 게시판 관련 컨트롤러 클래스입니다.
@@ -449,10 +451,36 @@ public class BoardController {
 
 	}
 	
+	@RequestMapping(value="/board/faqEditok.action", method = { RequestMethod.POST })
+	public void editok(HttpServletRequest request, HttpServletResponse response, HttpSession session, FaqDTO fdto) {
+		
+		int result = dao.edit(fdto);
+		
+		try {
+			if(result == 1) {
+				response.sendRedirect("/mypet/board/faqView.action?seqFaq=" + fdto.getSeqFaq());
+			}else {
+				response.sendRedirect("/mypet/board/faqEdit.action?seqFaq=" + fdto.getSeqFaq());
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 	@RequestMapping(value = "/board/faqDeleteok.action", method = { RequestMethod.GET })
-	public String faqDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public void faqDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqFaq) {
 
-		return "board/faqDelete";
+		int result = dao.delete(seqFaq);
+		
+		try {
+			if (result == 1) {
+				response.sendRedirect("/mypet/board/faqList.action");
+			} else {
+				response.sendRedirect("/mypet/board/faqView.action?seqFaq=" + seqFaq);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
 
 	}
   

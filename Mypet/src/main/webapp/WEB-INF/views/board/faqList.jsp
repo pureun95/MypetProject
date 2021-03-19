@@ -264,6 +264,7 @@
 
     <div id="content">
         <span class="board-name">FAQ</span>
+      
         <form id="searchForm" method="GET" action="/mypet/board/faqList.action">
         <div class="board-btn">
         	<span class="category">
@@ -281,8 +282,7 @@
             <tr class="headtr">
                 <th class="firsttd">번호</th>
                 <th class="sectd">카테고리</th>
-                <th class="thirdtd">제목</th>
-                <!-- <th class="thirdtd">날짜</th> -->         
+                <th class="thirdtd">제목</th>      
             </tr>
             
          <c:forEach items="${list}" var = "fdto">
@@ -298,34 +298,38 @@
             	<div class="faqtail">
 		        	<span class="glyphicon glyphicon-question-sign"></span>
 	        		<ul>
-	        			<li id="item">추가로 자세한 답변을 원하신다면 <span id="chat" onclick="location.href='/mypet/board/faqList.action'">채팅</span>을 이용해주세요.</li>
-	        			<li id="item">전화문의를 원하신다면 0000-0000로 연락주세요.</li>
+	        			<li id="item">추가로 자세한 답변을 원하신다면 <span id="chat" onclick="location.href='/mypet/member/chat.action'">채팅</span>을 이용해주세요.</li>
+	        			<li id="item">전화문의를 원하신다면 1234-5678로 연락주세요.</li>
 	        		</ul>
 	        	</div>
 	        	<div class="btns">
-        			<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/board/faqEdit.action?seq=${fdto.seqFaq}';">
+        			<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/board/faqEdit.action?seq=${fdto.seqFaq}&seqCategory=${fdto.seqCategory}';">
            			<input type="button" value="삭제" id="delete" class="btn">           	
             	</div>
             	</td>
             </tr>
             </c:forEach>
         </table>
+        </form>
 
-        <!-- 글쓰기 버튼 아래 -->
-        <!-- <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기"></div> -->
+       
         <!-- 페이지바/검색창 -->
         
         <div class="pageSearch">
             <!-- 페이지바 -->
             <%-- <ul class="pagination">
             	${pagebar}
-            </ul>   --%>     
-
+            </ul>   --%>  
+            
             <!-- 검색창 & 검색 버튼 -->
-            <input type="textbox" class="form-control search-text">
-            <input type="button" class="btn common-btn" value="검색" onclick="$('#searchForm').submit();">
+	         <form id="searchForm" method="GET" action="/mypet/vet/list.action">
+	           	<input type="textbox" class="form-control search-text">
+	           	<input type="button" class="btn common-btn" value="검색" onclick="$('#searchForm').submit();">
+	       	 </form>
+               
+
         </div>
-        </form>
+        
     </div>
    
 </div>

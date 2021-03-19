@@ -23,5 +23,16 @@
 	<select id="count" parameterType="HashMap" resultType="int">
 		select count(*) as count from  tblFaq		
 	</select>
+	
+	<update id="edit" parameterType="fdto">
+		update tblFaq set
+			title = #{title},
+			content = #{content}
+				where seqFaq = #{seqFaq}
+	</update>
+	
+	<select id="delete" parameterType="String">
+		delete from tblFaq where seqFaq = #{seqFaq}
+	</select>
 
 </mapper>

@@ -18,5 +18,9 @@ public interface IFaq {
 
 	int getTotalCount(HashMap<String, String> map);
 
+	int edit(FaqDTO fdto);
+
+	int delete(String seqFaq);
+
 
 }

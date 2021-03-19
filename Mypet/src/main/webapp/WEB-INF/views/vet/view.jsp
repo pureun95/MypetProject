@@ -101,12 +101,11 @@
 		border : none;
 	    color: white;   
 		background-color: #b27208;		
-		border-radius : 5px;
 		outline: none !important;	
 	
 	}
 	
-	.btns #edit, .btns #delete, .btns #deletebtn {		
+	.btns #edit, .btns #delete{		
 		text-align: center;
 		float : right;
 	}
@@ -154,7 +153,7 @@
    	.modal-body{
 		font-family: 'NanumSquare';
 		text-align: center;
-		height : 200px;	
+		height : auto;	
 		font-size: 16px;	
 		margin-bottom:10px;
 	}
@@ -217,26 +216,7 @@
 	<div class="board-title">${vdto.name} 상세정보</div>
 	<div class="btns"> 
 		<!-- 삭제버튼 모달 -->
-		<button id="delete" class="btn">삭제</button>
-			<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content" id="modal-content">
-			      <div class="modal-header">
-				        <h5 class="modal-title">동물병원 정보 삭제하기</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      <div class="modal-body">
-				        <p>동물병원을 정말 삭제하시겠습니까?</p>
-				      </div>
-				      <div class="modal-footer">
-				      	<button type="submit" class="btn" id="delete">삭제</button>
-				        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
-				      </div>
-				    </div>
-				  </div>
-				</div>
+		<input type="button" value="삭제" id="delete" class="btn">			
 		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/vet/edit.action?seq=${vdto.seqVet}';">
 	</div>
 	<table class="table table-default">
@@ -290,13 +270,13 @@
 	  <div class="modal-dialog" role="document">
 	    <div class="modal-content" id="modal-content">
 	      <div class="modal-header">
-		        <h5 class="modal-title">동물병원 정보 삭제하기</h5>
+		        <h5 class="modal-title">${vdto.name} 정보 삭제하기</h5>
 		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 		          <span aria-hidden="true">&times;</span>
 		        </button>
 		      </div>
 		      <div class="modal-body">
-		        <p>동물병원을 정말 삭제하시겠습니까?</p>
+		        <p>${vdto.name} 정말 삭제하시겠습니까?</p>
 		      </div>
 		      <div class="modal-footer">
 		      	<button type="submit" class="btn" id="deleteok">삭제</button>
@@ -350,6 +330,12 @@
 
 <!-- 진료예약 -->
 <script>
+	/* 삭제 */
+	$('#delete').click(function(e){
+		e.preventDefault();
+		$('#deletemodal').modal("show");
+	});
+
 	/* 진료예약 */
 	$('#apply').click(function(e){
 		e.preventDefault();
@@ -372,11 +358,7 @@
 	    $("#date").datepicker();
 	});
 	
-	/* 삭제 */
-	$('#delete').click(function(e){
-		e.preventDefault();
-		$('#deletemodal').modal("show");
-	});
+	
 </script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a71ed926053f00dc51c27f804020abc9&libraries=services"></script>

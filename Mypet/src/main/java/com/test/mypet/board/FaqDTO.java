@@ -10,8 +10,8 @@ public class FaqDTO {
 	private String category;
 	private String title;
 	private String content;
-	private String files;
-	private String writeDate;
+//	private String files;
+//	private String writeDate;
 	
 
 }

@@ -35,5 +35,9 @@
 		insert into tblVet (seqVet, image, name, address, tel, treatment, time, content) 
 			values (seqVet.nextVal, default, #{name}, #{address}, #{tel}, #{treatment}, #{time}, null)
 	</insert>
+	
+	<select id="delete" parameterType="String">
+		delete from tblVet where seqVet = #{seqVet}
+	</select>
 
 </mapper>
