@@ -30,5 +30,19 @@
 			ORDER BY seqNotice DESC) result1
 		WHERE seqNotice=#{seqNotice};
 	</select>
+	
+	
+	
+	<insert id="write" parameterType="NoticeDTO">		
+		insert into tblNotice (seqNotice, title, content, writeDate, viewCount, image) values (seqNotice.nextVal, #{title}, #{content}, default , default, null)
+	</insert>
+	
+	<update id="updateViewCount" parameterType="NoticeDTO">>
+		update tblNotice set viewCount = #{viewCount} where seqNotice = #{seqNotice}
+	</update>
+	
+	
+	
+	
 
 </mapper>

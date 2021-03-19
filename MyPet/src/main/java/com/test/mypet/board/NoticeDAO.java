@@ -96,6 +96,25 @@ public class NoticeDAO implements INoticeDAO {
 				//return template.selectOne("notice.get", seqNotice);
 			
 	}
+	
+	
+	@Override
+	public int write(NoticeDTO ndto) {
+
+		return template.insert("notice.write", ndto);
+	}
+	
+	
+	//조회수 증가
+	@Override
+	public void updateViewCount(NoticeDTO ndto) {
+
+		
+		template.update("notice.updateViewCount", ndto);
+		
+	}
+	
+	
 
 }
 	
