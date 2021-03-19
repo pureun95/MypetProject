@@ -153,6 +153,23 @@
     	text-align: center;
     }
     
+    /* 채팅아이콘 */
+.chaticon {
+	/* border: 1px solid black; */
+	width: 70px;
+	height: 70px;
+	position: fixed;
+	right: 5px;
+	bottom: 5px;
+	/* margin-left: 30px; */
+	background-image: url('/mypet/resources/images/chat/chatimg.png');
+	background-size: cover;
+	background-position: 50% 50%;
+	/* margin-right: 10px; */
+	z-index: 100;
+	cursor:pointer;
+}
+    
     
    
 
@@ -196,7 +213,8 @@
    
 
 
-
+	<div class="chaticon" id="chaticon"></div>
+	
     <script>
 		
     /* 제목&내용 클릭 했을 때는 기본폰트 색상 */
@@ -210,6 +228,17 @@
 	$(".board-content").click(function() {
 		$(this).css("color", "#301b01")
 	}); 
+	
+	
+
+	/* 채팅 */
+	var chaticon = document.getElementById("chaticon");
+
+	chaticon.onclick = function() {
+
+	 	window.open("/mypet/member/chat.action", "a", "width=350, height=600"); 
+
+	}
 	
 
     
