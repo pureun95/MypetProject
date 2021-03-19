@@ -11,4 +11,8 @@ public interface INoticeDAO {
 	NoticeDTO get(String seqNotice);
 
 	NoticeDTO getDetail(String seqNotice);
+
+	int write(NoticeDTO ndto);
+
+	void updateViewCount(NoticeDTO ndto);
 }

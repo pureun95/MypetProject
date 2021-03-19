@@ -110,7 +110,7 @@ a:hover {
 .common-btn {
 	background-color: #b27208;
 	color: white;
-	float: left;
+	float: right;
 	margin-right: 10px;
 	font-family: 'Jal_Onuel';
 }
@@ -188,8 +188,11 @@ a:hover {
 	</c:if> --%>
 
 	<div class="board-btn">
-		<input type="button" class="btn common-btn" value="글쓰기"> <input
-			type="button" class="btn common-btn" value="삭제">
+	
+		<c:if test="${id == 'Administrator1'}">
+		<input type="button" class="btn common-btn" value="글쓰기" onclick="location.href='/mypet/board/noticeWrite.action';"> 
+		<!-- <input type="button" class="btn common-btn" value="삭제"> -->
+		</c:if>
 	</div>
 	<table class="table table-condensed">
 		<tr class="headtr">
@@ -215,10 +218,6 @@ a:hover {
 		</c:forEach>
 
 	</table>
-
-	<!-- 글쓰기 버튼 아래 -->
-	<!-- <div class="board-btn"><input type="button" class="btn common-btn" value="글쓰기"></div> -->
-	<!-- 페이지바/검색창 -->
 
 	<div class="pageSearch">
 		<!-- 페이지바 -->
