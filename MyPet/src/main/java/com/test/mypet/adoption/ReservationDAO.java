@@ -21,7 +21,6 @@ public class ReservationDAO implements IReservationDAO {
 		System.out.println("object = "+object);
 		String id = (String)object;
 		System.out.println("id = " + id);
-		System.out.println("template " + (template == null));
 		return template.selectOne("adoption_reservation.getUserInfo", id);
 	}
 

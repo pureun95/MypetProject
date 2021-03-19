@@ -364,8 +364,13 @@ public class AdoptionController {
 			,VwReservationDTO dto) {
 		
 		dao.insertReservation(dto);
-		
 		HashMap<String, String> map = new HashMap<String, String>();
+		
+		int c = gdao.getTotalCount(map);
+		String count = c + "";
+		
+		map.put("begin", "1");
+		map.put("end", count);
 		
 		List<GoodsDTO> glist = gdao.list(map);
 		

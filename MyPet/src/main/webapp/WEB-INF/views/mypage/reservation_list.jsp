@@ -141,15 +141,22 @@ ul, li {
 			<td class="underlinetxt"><a href="/mypet/mypage/reservationview.action?seqReservation=${dto.seqReservation}">${dto.seqReservation}</a></td>
 			<td class="underlinetxt" >
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" onclick="petInfo(${dto.seqPet});">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
 					${dto.species}/${dto.breed}
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>품종 : ${dto.breed}</a></li>
+						<li class="underlinetxt" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqPet}'"><a>품종 : ${dto.breed}</a><small style="padding-left: 10px;">※ 품종을 클릭하면 상세페이지로 이동합니다.</small></li>
 						<li><a>분류 : ${dto.species}</a></li>
 						<li><a>나이 : ${dto.age}</a></li>
-						<li><a>성별 : ${dto.gender}</a></li>
+						<li><a>성별 :
+							<c:if test="${dto.gender==0}">
+								여자
+							</c:if>
+							<c:if test="${dto.gender==1}">
+								남자
+							</c:if> 
+						</a></li>
 						<li><a>중성화여부 : 
 							<c:if test="${dto.neutralization==0}">
 								X
@@ -167,10 +174,7 @@ ul, li {
 							</c:if>
 						
 						</a></li>
-						<li><a>사진<small style="float:right;">※ 사진을 누르면 상세페이지로 이동합니다.</small></a></li>
-						<li class="divider"></li>
-						<li style="cursor:pointer;" onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${dto.image}"></a></li>
-						<li class="divider"></li>
+						
 					</ul>
 				</li>
 			</td>
@@ -224,10 +228,17 @@ ul, li {
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>품종 : ${ndto.breed}</a></li>
+						<li class="underlinetxt" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${ndto.seqPet}'"><a>품종 : ${ndto.breed}</a><small style="padding-left: 10px;">※ 품종을 클릭하면 상세페이지로 이동합니다.</small></li>
 						<li><a>분류 : ${ndto.species}</a></li>
 						<li><a>나이 : ${ndto.age}</a></li>
-						<li><a>성별 : ${ndto.gender}</a></li>
+						<li><a>성별 :
+							<c:if test="${ndto.gender==0}">
+								여자
+							</c:if>
+							<c:if test="${ndto.gender==1}">
+								남자
+							</c:if> 
+						</a></li>
 						<li><a>중성화여부 : 
 							<c:if test="${ndto.neutralization==0}">
 								X
@@ -245,10 +256,6 @@ ul, li {
 							</c:if>
 						
 						</a></li>
-						<li><a>사진<small style="float:right;">※ 사진을 누르면 상세페이지로 이동합니다.</small></a></li>
-						<li class="divider"></li>
-						<li style="cursor:pointer;" onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${ndto.image}"></a></li>
-						<li class="divider"></li>
 					</ul>
 				</li>
 			</td>
@@ -288,10 +295,17 @@ ul, li {
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>품종 : ${sdto.breed}</a></li>
+						<li class="underlinetxt" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${sdto.seqPet}'"><a>품종 : ${sdto.breed}</a><small style="padding-left: 10px;">※ 품종을 클릭하면 상세페이지로 이동합니다.</small></li>
 						<li><a>분류 : ${sdto.species}</a></li>
 						<li><a>나이 : ${sdto.age}</a></li>
-						<li><a>성별 : ${sdto.gender}</a></li>
+						<li><a>성별 :
+							<c:if test="${sdto.gender==0}">
+								여자
+							</c:if>
+							<c:if test="${sdto.gender==1}">
+								남자
+							</c:if>
+						</a></li>
 						<li><a>중성화여부 : 
 							<c:if test="${sdto.neutralization==0}">
 								X
@@ -309,10 +323,6 @@ ul, li {
 							</c:if>
 						
 						</a></li>
-						<li><a>사진<small style="float:right;">※ 사진을 누르면 상세페이지로 이동합니다.</small></a></li>
-						<li class="divider"></li>
-						<li style="cursor:pointer;" onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${sdto.image}"></a></li>
-						<li class="divider"></li>
 					</ul>
 				</li>
 			</td>
@@ -367,10 +377,17 @@ ul, li {
 					<span class="caret"></span>
 					</a>
 					<ul class="dropdown-menu" role="menu">
-						<li><a>품종 : ${sndto.breed}</a></li>
+						<li class="underlinetxt" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${sndto.seqPet}'"><a>품종 : ${sndto.breed}</a><small style="padding-left: 10px;">※ 품종을 클릭하면 상세페이지로 이동합니다.</small></li>
 						<li><a>분류 : ${sndto.species}</a></li>
 						<li><a>나이 : ${sndto.age}</a></li>
-						<li><a>성별 : ${sndto.gender}</a></li>
+						<li><a>성별 : 
+							<c:if test="${sndto.gender==0}">
+								여자
+							</c:if>
+							<c:if test="${sndto.gender==1}">
+								남자
+							</c:if>
+						</a></li>
 						<li><a>중성화여부 : 
 							<c:if test="${sndto.neutralization==0}">
 								X
@@ -388,10 +405,6 @@ ul, li {
 							</c:if>
 						
 						</a></li>
-						<li><a>사진<small style="float:right;">※ 사진을 누르면 상세페이지로 이동합니다.</small></a></li>
-						<li class="divider"></li>
-						<li style="cursor:pointer;" onclick="location.href='/mypet/adoption/view.action'"><a><img class="animalimg" src="/mypet/resources/images/adoption/${sndto.image}"></a></li>
-						<li class="divider"></li>
 					</ul>
 				</li>
 			</td>

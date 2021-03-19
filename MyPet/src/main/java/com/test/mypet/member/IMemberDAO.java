@@ -13,7 +13,16 @@ public interface IMemberDAO {
 	// 로그인(관리자)
 	public AdminDTO adminLogin(AdminDTO dto_admin);
 
-	public List<ChatMessageDto> list(String user_id);
+	public List<ChatMessageDTO> list(String user_id);
+
+	public int addlist(ChatMessageDTO dto);
+
+//	public ChatMessageDTO checkUser(String seqUser);
+//	public int checkUser(String seqUser);
+
+//	public int addlist(ChatMessageDto dto);
+
+	
 
 	
 }
