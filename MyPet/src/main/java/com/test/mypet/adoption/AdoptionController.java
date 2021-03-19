@@ -16,6 +16,11 @@ import com.test.mypet.goods.GoodsDTO;
 import com.test.mypet.goods.IGoodsDAO;
 import com.test.mypet.member.MemberDTO;
 
+/**
+ * 입양하기 관련 컨트롤러 클래스입니다.
+ * @author 이준오
+ *
+ */
 @Controller
 public class AdoptionController {
 	
@@ -314,6 +319,13 @@ public class AdoptionController {
 	}
 
 	
+	/**
+	 * 입양하기 > 체크리스트 페이지 출력 메소드입니다.
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @return 체크리스트 페이지 출력.
+	 */
 	//http://localhost:8090/mypet/adoption/checklist.action
 	@RequestMapping(value="/adoption/checklist.action", method={RequestMethod.GET})
 	public String checklist(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -323,6 +335,13 @@ public class AdoptionController {
 		return "adoption/checklist";		
 	}
 	
+	/**
+	 * 체크리스트 > 입양예약신청서 작성 페이지 출력 메소드입니다.
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @return 입양예약신청서 작성 페이지 출력.
+	 */
 	//http://localhost:8090/mypet/adoption/writereservation.action
 	@RequestMapping(value="/adoption/writereservation.action", method={RequestMethod.GET})
 	public String writeReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -350,6 +369,14 @@ public class AdoptionController {
 		return "adoption/write_reservation";		
 	}
 	
+	/**
+	 * 작성한 입양예약신청서 내용확인 페이지 출력 메소드입니다.
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @param dto 입양예약신청 객체입니다.
+	 * @return 입양예약신청서 내용확인 페이지 출력.
+	 */
 	//http://localhost:8090/mypet/adoption/viewreservation.action
 	@RequestMapping(value="/adoption/viewreservation.action", method={RequestMethod.POST})
 	public String viewReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session	
@@ -363,6 +390,14 @@ public class AdoptionController {
 		
 		return "adoption/view_reservation";		
 	}
+	/**
+	 * 입양예약신청서 추가 DB작업 요청 및 추가 완료 후 안내 페이지 출력 메소드입니다.
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @param dto 입양예약신청 객체입니다.
+	 * @return 예약완료 후 안내 페이지 출력.
+	 */
 	//http://localhost:8090/mypet/adoption/sendreservation.action
 	@RequestMapping(value="/adoption/sendreservation.action", method={RequestMethod.POST})
 	public String sendReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session

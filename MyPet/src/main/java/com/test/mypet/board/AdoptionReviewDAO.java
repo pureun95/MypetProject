@@ -7,11 +7,17 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+/**
+ * 입양후기 게시판 DB작업 전담 클래스입니다.
+ * @author 이준오
+ *
+ */
 @Repository
 public class AdoptionReviewDAO implements IAdoptionReviewDAO{
 	
 	@Autowired
 	SqlSessionTemplate template;
+	
 	
 	//전체 입양후기 게시글 얻기
 	@Override

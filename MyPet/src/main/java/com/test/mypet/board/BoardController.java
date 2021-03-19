@@ -18,6 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 
+/**
+ * 게시판 관련 컨트롤러 클래스입니다.
+ * @author 박지현, 윤지현, 이준오
+ *
+ */
 
 @Controller
 public class BoardController {
@@ -289,7 +294,13 @@ public class BoardController {
 //   }
       
 //준오님
-   
+   /**
+    * 입양후기 전체 목록을 요청 및 페이지를 출력하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @return 입양후기 게시판 메인 페이지 출력.
+    */
    @RequestMapping(value = "/board/adoptionreviewlist.action", method = { RequestMethod.GET })
    public String adoptionReviewList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	   
@@ -303,6 +314,14 @@ public class BoardController {
 	   
    }
    
+   /**
+    * 입양후기 게시글 정보를 요청 및 페이지를 출력하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @param seqAdoptionReview 입양후기 번호입니다.
+    * @return 입양후기 게시판 > 입양후기 게시글 페이지 출력.
+    */
    @RequestMapping(value = "/board/adoptionreviewview.action", method = { RequestMethod.GET })
    public String adoptionReviewView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview) {
 	   
@@ -330,6 +349,13 @@ public class BoardController {
 	   return "board/adoptionreviewView";
 	   
    }
+   /**
+    * 입양후기 게시글 작성페이지를 요청하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @return 입양후기 게시판 > 게시글작성 페이지 출력.
+    */
    @RequestMapping(value = "/board/adoptionreviewwrite.action", method = { RequestMethod.GET })
    public String adoptionReviewWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	   //임시로 부여한 세션(회원 로그인)
@@ -340,6 +366,14 @@ public class BoardController {
 	   
    }
    
+   /**
+    * 입양후기 게시글 작성 DB작업을 요청하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @param title 게시글 제목입니다.
+    * @param content 게시글 내용 본문입니다.
+    */
    @RequestMapping(value = "/board/adoptionreviewwriteok.action", method = { RequestMethod.POST })
    public void adoptionReviewWriteOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, String title, String content) {
 	   
@@ -436,7 +470,12 @@ public class BoardController {
 	   
    }
    
-
+   /**
+    * 같은 이름의 파일이 있는지 검사하는 메소드
+    * @param path 파일의 실제 저장된 경로입니다.
+    * @param filename 파일명입니다.
+    * @return 중복을 제거한 파일명을 반환합니다.
+    */
 	private String getFileName(String path, String filename) {
 		
 		
@@ -474,6 +513,14 @@ public class BoardController {
 		
 	}
    
+	/**
+	 * 입양후기 게시글 정보를 요청 및 게시글 수정 페이지를 출력하는 메소드
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @param seqAdoptionReview 입양후기 번호입니다.
+	 * @return 입양후기 수정페이지 출력.
+	 */
    //입양후기 수정 페이지
    @RequestMapping(value = "/board/adoptionreviewedit.action", method = { RequestMethod.GET })
    public String adoptionReviewEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview) {
@@ -485,7 +532,16 @@ public class BoardController {
 	   return "board/adoptionreviewEdit";
 	   
    }
-      
+   
+   /**
+    * 입양후기 게시글 수정 DB작업을 요청하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @param seqAdoptionReview 입양후기 번호입니다.
+    * @param content 입양후기 본문입니다.
+    * @param title 입양후기 제목입니다.
+    */
    //입양후기 수정 DB작업
    @RequestMapping(value = "/board/adoptionrevieweditok.action", method = { RequestMethod.POST })
    public void adoptionReviewEditOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview, String content, String title) {
@@ -533,6 +589,13 @@ public class BoardController {
 	   
    }
    
+   /**
+    * 입양후기 게시글 삭제 DB작업을 요청하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @param seqAdoptionReview 입양후기 번호입니다.
+    */
    //입양후기 삭제 DB작업
    @RequestMapping(value = "/board/adoptionreviewdelete.action", method = { RequestMethod.POST })
    public void adoptionReviewDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview) {
