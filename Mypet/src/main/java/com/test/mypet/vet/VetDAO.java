@@ -45,5 +45,11 @@ public class VetDAO implements IVet{
 		return template.insert("vet.add", vdto);
 	}
 
+	@Override
+	public int delete(String seqVet) {
+		
+		return template.delete("vet.delete", seqVet);
+	}
+
 
 }

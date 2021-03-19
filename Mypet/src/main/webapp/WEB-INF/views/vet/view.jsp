@@ -18,16 +18,11 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
-       
-        /* margin-right: px; */
-    }
-
-    /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
-    #content{
+        border: none;
         height: auto;
     }
+
+    
 
 /*     #contentnav {
         border: 1px solid black;
@@ -304,7 +299,7 @@
 		        <p>동물병원을 정말 삭제하시겠습니까?</p>
 		      </div>
 		      <div class="modal-footer">
-		      	<button type="submit" class="btn" id="delete">삭제</button>
+		      	<button type="submit" class="btn" id="deleteok">삭제</button>
 		        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
 		      </div>
 		    </div>
@@ -378,7 +373,7 @@
 	});
 	
 	/* 삭제 */
-	$('#deletebtn').click(function(e){
+	$('#delete').click(function(e){
 		e.preventDefault();
 		$('#deletemodal').modal("show");
 	});

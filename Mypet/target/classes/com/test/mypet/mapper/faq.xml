@@ -6,6 +6,9 @@
 
 	<select id="list" resultType="fdto">
 		select * from vwFaq order by seqFaq asc
+		<if test="search !=null and search !=''">
+			where title like '%' || #{search} || '%'
+		</if>	
 	</select>
 	
 	<select id="get" parameterType="String" resultType="fdto">
@@ -16,5 +19,9 @@
 		insert into tblFaq (seqFaq, seqCategory, title, content, files, writeDate) 
 			values (seqFaq.nextVal, #{seqCategory}, #{title}, #{content}, #{files}, sysdate)
 	</insert>
+	
+	<select id="count" parameterType="HashMap" resultType="int">
+		select count(*) as count from  tblFaq		
+	</select>
 
 </mapper>

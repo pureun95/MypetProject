@@ -27,18 +27,14 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
+        border: none;
+        height: auto;
        
         /* margin-right: px; */
     }
 
-    /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
-    #content{
-        height: auto;
-    }
 
-----------------------------------------------------------------
+/* ---------------------------------------------------------------- */
      #contentnav{
     	height : 50px;
     	border :none !important;
@@ -198,7 +194,7 @@
 			<form id="searchForm" method="GET" action="/mypet/shelter/list.action">
 				<div class="selectsearch">
 					
-						<select class="location form-control" id="location" onchange="select();">
+						<select class="location form-control" id="location" >
 							<option>시 / 도</option>
 							<c:forEach items="${location}" var="ldto">
 								<option value="${ldto.location}">${ldto.location}</option>
@@ -252,6 +248,8 @@
 		$(document).ready(function(){
 			
 		     $("#location").on("change",function(){
+		    	 console.log($(this).val());
+		     /* }
 		    	 var selectValue = $(this).val(); //main category 에서 선택한 값
 	            	location.append("<option value=''>시 / 군 / 구</option>");
 	            for(var i=0;i<ldArr.length;i++){
@@ -259,7 +257,7 @@
 	                    
 	                	ldBox.append("<option value='"+ldArr[i].seqLocationDetail+"'>"+ldArr[i].locationDetail+"</option>");
 	                    
-		     });
+		     }); */
 		     
 		 
 		});

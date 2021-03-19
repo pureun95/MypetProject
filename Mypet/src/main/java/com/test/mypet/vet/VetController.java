@@ -192,8 +192,21 @@ public class VetController {
 	}
 	
 	@RequestMapping(value="/vet/deleteok.action")
-	public String delete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
-		return "vet.delete";
+	public void delete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVet) {
+		
+		int result = dao.delete(seqVet);
+		
+		try {
+			if (result == 1) {
+				response.sendRedirect("/mypet/vet/list.action");
+			} else {
+				response.sendRedirect("/mypet/vet/view.action?seqVet=" + seqVet);
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+	
 	}
 
 }

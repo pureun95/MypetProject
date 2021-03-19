@@ -10,17 +10,11 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
-       
-        /* margin-right: px; */
-    }
-
-    /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
-    #content{
+        border: none;
         height: auto;
+       
     }
-
+    
 /*     #contentnav {
         border: 1px solid black;
         width: 1200px;
@@ -28,20 +22,21 @@
         padding: 20px 20px;
     } */
     
----------------------------------------------------------------------------
+/*---------------------------------------------------------------------------*/
 
+
+    
 	/* 페이지타이틀 */
-    #content #board-title{
+    #board-title{
     	font-size : 30px;
     	text-align : center;
     	display: block;
     	margin-top: 130px;
     	margin-bottom: 50px;
     	font-family: 'Jal_Onuel';
-    	/* font-family: 'JSDongkang-Regular'; */
-    	/* font-family: 'JSDongkang-Bold'; */
     	color: #301b01;
     }
+    
     
     /* 테이블 */
     .table{

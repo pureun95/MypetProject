@@ -172,9 +172,9 @@ public class ShelterController {
 	@RequestMapping(value="/shelter/edit.action")
 	public String edit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
 		
-//		ShelterDTO sdto = dao.get(seq);
-//		
-//		request.setAttribute("sdto", sdto);
+		List<ShelterDTO> sdto = dao.get(seq);
+		
+		request.setAttribute("sdto", sdto);
 		
 		return "shelter.edit";
 	}

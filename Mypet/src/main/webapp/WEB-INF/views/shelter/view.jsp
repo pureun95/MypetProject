@@ -10,16 +10,11 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
-       
-        /* margin-right: px; */
-    }
-
-    /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
-    #content{
+        /border: none;
         height: auto;
     }
+
+    
 
 /*     #contentnav {
         border: 1px solid black;
@@ -27,7 +22,7 @@
         height: 100px;
         padding: 20px 20px;
     } */
--------------------------------   
+/* ------------------------------- */   
     /* 페이지타이틀 */
     .board-title{
     	font-size : 30px;
@@ -198,7 +193,7 @@
 	<!-- <div id="contentnav">개인 서브네비입니다.</div> -->
 	<div class="board-title">${sdto[0].name} 상세정보</div>
 	<div class="btns"> 
-		<input type="button" value="삭제" id="delete" class="btn" onclick="location.href='/mypet/shelter/delete.action?seq=${sdto[0].seqShelter}';">
+		<input type="button" value="삭제" id="delete" class="btn">
 		<input type="button" value="수정" id="edit" class="btn" onclick="location.href='/mypet/shelter/edit.action?seq=${sdto[0].seqShelter}';">
 	</div>
 	<table class="table table-default">
@@ -283,15 +278,42 @@
 	
 </div>
 
+<!-- 삭제하기 모달 -->
+<div class="modal" tabindex="-1" role="dialog" id="deletemodal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content" id="modal-content">
+      <div class="modal-header">
+	        <h5 class="modal-title">${sdto[0].name} 삭제하기</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        <p>${sdto[0].name} 정말 삭제하시겠습니까?</p>
+	      </div>
+	      <div class="modal-footer">
+	      	<button type="submit" class="btn" id="deleteok">삭제</button>
+	        <button type="button" class="btn" id="cancel" data-dismiss="modal" >취소</button>	        
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 <!-- 봉사활동 신청 -->
 <script>
+	/* 삭제 */
+	$('#delete').click(function(e){
+		e.preventDefault();
+		$('#deletemodal').modal("show");
+	});
+
 	function check(){
 		var form = document.applyForm
 		var checkcount = 0;
 		
 		for(i=0; i<form.elements.length; i++){
 			if(form.elements[i].name == "cb"){
-				if(document.applyForm.all[i].checked == true){
+				if(form.elements[i].checked == true){
 					checkcount++;
 			}
 			}

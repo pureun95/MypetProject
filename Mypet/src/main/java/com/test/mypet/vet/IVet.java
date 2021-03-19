@@ -17,6 +17,8 @@ public interface IVet {
 
 	int add(VetDTO vdto);
 
+	int delete(String seqVet);
+
 
 
 }

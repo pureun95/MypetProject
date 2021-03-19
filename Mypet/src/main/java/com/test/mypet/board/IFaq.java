@@ -1,5 +1,6 @@
 package com.test.mypet.board;
 
+import java.util.HashMap;
 import java.util.List;
 
 /***
@@ -14,6 +15,8 @@ public interface IFaq {
 	FaqDTO get(String seq);
 
 	int add(FaqDTO fdto);
+
+	int getTotalCount(HashMap<String, String> map);
 
 
 }
