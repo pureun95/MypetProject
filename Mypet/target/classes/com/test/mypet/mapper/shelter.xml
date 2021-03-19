@@ -40,9 +40,13 @@
 	</select>
 	
 	<insert id="add" parameterType="sdto">
-		insert into tblShelter (seqVet, image, name, address, tel, account, time, content) 
+		insert into tblShelter (seqShelter, image, name, address, tel, account, time, content) 
 			values (seqShelter.nextVal, default, #{name}, #{address}, #{tel}, #{account}, #{time}, null)
 	</insert>
+	
+	<select id="delete" parameterType="String">
+		delete from tblShelter where seqShelter = #{seqShelter}
+	</select>
 
 
 </mapper>

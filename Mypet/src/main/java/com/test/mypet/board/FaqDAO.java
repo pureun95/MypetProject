@@ -41,4 +41,16 @@ public class FaqDAO implements IFaq{
 		return template.selectOne("faq.count",map);
 	}
 
+	@Override
+	public int edit(FaqDTO fdto) {
+		
+		return template.update("faq.edit", fdto);
+	}
+
+	@Override
+	public int delete(String seqFaq) {
+		
+		return template.delete("faq.delete", seqFaq);
+	}
+
 }
