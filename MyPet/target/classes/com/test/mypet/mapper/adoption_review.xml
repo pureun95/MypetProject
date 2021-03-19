@@ -21,7 +21,7 @@
 	</update>
 	<!-- 회원번호 조회 -->
 	<select resultType="String" id="getSeqUser" parameterType="String">
-		select seqUser from tblUser where id = #{id} 
+		select seqUser from vwUserCheck where id = #{id} 
 	</select>
 	<!-- 입양후기 작성 -->
 	<insert id="insertReview" parameterType="adoptionReviewDTO">

@@ -5,4 +5,10 @@ import java.util.List;
 public interface INoticeDAO {
 
 	List<NoticeDTO> noticeList();
+
+	int getTotalCount();
+
+	NoticeDTO get(String seqNotice);
+
+	NoticeDTO getDetail(String seqNotice);
 }

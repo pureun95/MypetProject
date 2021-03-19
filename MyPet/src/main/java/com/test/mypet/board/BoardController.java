@@ -3,6 +3,7 @@ package com.test.mypet.board;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,12 +17,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+
+/**
+ * 게시판 관련 컨트롤러 클래스입니다.
+ * @author 박지현, 윤지현, 이준오
+ *
+ */
+
 @Controller
 public class BoardController {
 	
 
 	@Autowired
 	IAdoptionReviewDAO ardao;
+	
+	//박지현
+	@Autowired
+	IVolunteerDAO volunteerDAO;
 	
 	//http://localhost:8090/mypet/board/template_list.action
 	@RequestMapping(value = "/board/template_list.action", method = { RequestMethod.GET })
@@ -51,29 +63,243 @@ public class BoardController {
 		
 		
 	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return 봉사활동 리스트
+	 */
 	//http://localhost:8090/mypet/board/volunteerList.action
 	@RequestMapping(value = "/board/volunteerList.action", method = { RequestMethod.GET })
 	public String volunteer_list(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+		
+		
+		VolunteerDTO dto = new VolunteerDTO();
+		String seqUser = "";
+				
+		//세션에서 유저 아이디 받아오기
+		String id = (String)session.getAttribute("id");
+		if(id == null) {
+			dto.setSeqUser(null);			
+		} else {
+			dto = volunteerDAO.getSeqUser(id);			
+		}
+		
+		seqUser = dto.getSeqUser();
+					
+		//회원번호
+		session.setAttribute("seqUser", seqUser);
+		
+		//검색
+	    String search = request.getParameter("search");
+	            
+	    HashMap<String, String> map = new HashMap<String, String>();
+	    map.put("search", search);
+	            
+	      	  
+	    System.out.println("검색어: " + map);
+	      
+	    //페이징
+	    int nowPage = 0;      //현재 페이지 번호
+	    int totalCount = 0;      //총 게시물 수
+	    int pageSize = 10;      //한페이지당 출력 개수
+	    int totalPage = 0;      //총 페이지 수
+	    int begin = 0;         //rnum 시작 번호
+	    int end = 0;         //rnum 끝 번호
+	    int n = 0;            //페이지바 관련 변수
+	    int loop = 0;         //페이지바 관련 변수
+	    int blockSize = 10;      //페이지바 관련 변수
+	                        
+	                        
+	    String page = request.getParameter("page");
+	                        
+	    if (page == null || page == "") {
+	         //기본 -> page = 1
+	         nowPage = 1;
+	      } else {
+	         nowPage = Integer.parseInt(page);
+	      }
+	                        
+	      begin = ((nowPage - 1) * pageSize) + 1;
+	      end = begin + pageSize -1;
+	                        
+	      map.put("begin", begin + "");
+	      map.put("end", end + "");
+	      
+	      
+	      
+	      totalCount = volunteerDAO.getTotalCount(map);
+	      
+	      System.out.println("카운트!!!!!!!!!!" + totalCount);
+	      
+	      totalPage = (int)Math.ceil((double)totalCount / pageSize);
+	                  
+	      String pagebar = "";
+	                  
+	      loop = 1;
+	      n = ((nowPage -1) / blockSize) * blockSize +1;
+	                  
+	                  
+	      if ( n == 1 ) {
+	         pagebar += String.format("<li class='disabled'>"
+	                           + "            <a href=\"#!\" aria-label=\"Previous\">"
+	                           + "                <span aria-hidden=\"true\">&laquo;</span>"
+	                           + "            </a>"
+	                           + "        </li>");         
+	      } else {
+	         
+	         pagebar += String.format("<li>"
+	                  + "            <a href=\"/mypet/board/volunteerList.action?page=%d\" aria-label=\"Previous\">"
+	                  + "                <span aria-hidden=\"true\">&laquo;</span>"
+	                  + "            </a>"
+	                  + "        </li>", n - 1);
+	            
+	      }
+	         
+	         
+	                     
+	      
+	      while (!(loop > blockSize || n > totalPage)) {
+	                     
+	         if (nowPage == n) {
+	            pagebar += "<li class='active'>";            
+	         } else {
+	            pagebar += "<li>";                        
+	         }
+	                     
+	            pagebar += String.format("<a href=\"/mypet/board/volunteerList.action?&page=%d\">%d</a></li>", n, n);
+	                  
+	               loop++;
+	               n++;
+	      }
 
-		return "board/volunteer_list";
+	                  
+	         //다음 페이지로 이동
+	         if (n > totalPage) { 
+	               //링크에 샵만 있으면 맨위로 올라가므로 #뒤에 ! 붙여주기.
+	            pagebar += String.format("<li class='disabled'>"
+	                           + "            <a href=\"#!\" aria-label=\"Next\">"
+	                           + "                <span aria-hidden=\"true\">&raquo;</span>"
+	                           + "            </a>"
+	                           + "        </li>");
+	                     
+	         } else { //여전히 다음페이지가 존재하는 경우엔 링크 있는 애로 생성.         
+	            
+	            pagebar += String.format("<li>"
+	                     + "            <a href=\"/mypet/board/volunteerList.action?page=%d\" aria-label=\"Next\">"
+	                     + "                <span aria-hidden=\"true\">&raquo;</span>"
+	                     + "            </a>"
+	                     + "        </li>", n);
+	         }
+	         
+	         List<VolunteerDTO> volunteerList = volunteerDAO.list(map);            
+	      request.setAttribute("search", search);
+	      request.setAttribute("pagebar", pagebar);
+	      request.setAttribute("nowPage", nowPage);
+	      request.setAttribute("list", volunteerList);
+	      request.setAttribute("seqUser", seqUser);
+	      
+	      
+	      return "board/volunteer_list";
+
 
 	}
 	
 	
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seqVolunteer
+	 * @return 봉사활동 상세정보
+	 */
 	//http://localhost:8090/mypet/board/volunteerView.action
 	@RequestMapping(value = "/board/volunteerView.action", method = { RequestMethod.GET })
-	public String volunteer_view(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-
+	public String volunteer_view(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVolunteer) {
+		
+		//세션에서 유저번호 받아오기
+		String seqUser = (String) session.getAttribute("seqUser");
+				
+		List<VolunteerDTO> list = volunteerDAO.getView(seqVolunteer);
+		
+		//이전글, 다음글
+		List<VolunteerDTO> fornext = volunteerDAO.getForNext(seqVolunteer);
+		
+		//봉사활동 seq의 max, min 번호
+		List<VolunteerDTO> maxmin = volunteerDAO.getMaxMin();
+		
+		
+		request.setAttribute("list", list);
+		request.setAttribute("seqUser", seqUser);
+		request.setAttribute("fornext", fornext);
+		request.setAttribute("maxmin", maxmin);
+		request.setAttribute("seqVolunteer", seqVolunteer);
+		
 		return "board/volunteer_view";
 
 	}
 		
 		
-	//http://localhost:8090/mypet/board/volunteerList.action
+	//http://localhost:8090/mypet/board/volunteerWrite.action
 	@RequestMapping(value = "/board/volunteerWrite.action", method = { RequestMethod.GET })
-	public String volunteer_write(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public String volunteer_write(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVolunteer) {
 
 		return "board/volunteer_write";
+
+	}
+	
+
+	@RequestMapping(value = "/board/volunteerOk.action", method = { RequestMethod.GET })
+	public String volunteer_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVolunteer, String seqUser) {
+
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("seqVolunteer", seqVolunteer);
+		map.put("seqUser", seqUser);
+		
+		
+		int result = volunteerDAO.applyVolunteer(map);
+		
+		
+		try {			
+			
+			
+			if(result == 1) {
+				response.setContentType("text/html; charset=UTF-8");
+
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");	
+				writer.print("alert('봉사활동 신청 완료되었습니다.');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
+				
+				
+			} else {
+				
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('봉사활동 신청에 실패했습니다.');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		
+		
+		return "board/volunteerOk";
 
 	}
 	
@@ -137,48 +363,179 @@ public class BoardController {
   
 //푸른님
    
-   @Autowired // 의존 주입하기
-	private INoticeDAO noticeDAO;
-   
-   @RequestMapping(value = "/board/noticeList.action", method = { RequestMethod.GET })
-   public String noticeList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-      
-	   
-	   List<NoticeDTO> noticeList = noticeDAO.noticeList();
-
-		request.setAttribute("noticeList", noticeList);
-		
-		
-		
-		
-	   
-      return "board/noticeList";
-      
-   }
-   
-   @RequestMapping(value = "/board/noticeView.action", method = { RequestMethod.GET })
-   public String noticeView(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-      
-      return "board/noticeView";
-      
-   }
-   
-   @RequestMapping(value = "/board/noticeWrite.action", method = { RequestMethod.GET })
-   public String noticeWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-      
-      return "board/noticeWrite";
-      
-   }
-   
-   @RequestMapping(value = "/board/noticeEdit.action", method = { RequestMethod.GET })
-   public String noticeEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-      
-      return "board/noticeEdit";
-   
-   }
+//   @Autowired // 의존 주입하기
+//	private INoticeDAO noticeDAO;
+//   
+//   @RequestMapping(value = "/board/noticeList.action", method = { RequestMethod.GET })
+//   public String noticeList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+//      
+//	   
+//	   HashMap<String, String> map = new HashMap<String, String>();
+//	   
+//	   //검색
+////	   String search = request.getParameter("search");
+////		
+////		if (!(search == null || search.equals(""))) {
+////			map.put("search", search);
+////		}
+//		
+//		//noticeview.action -> 새로고침 조회수 증가 방지 -> 플래그 생성
+//		session.setAttribute("read", false);
+//	   
+//	   
+//		//페이징
+//		int nowPage = 0;      //현재 페이지 번호
+//		int totalCount = 0;      //총 게시물 수
+//		int pageSize = 10;      //한페이지당 출력 개수
+//		int totalPage = 0;      //총 페이지 수
+//		int begin = 0;         //rnum 시작 번호
+//		int end = 0;         //rnum 끝 번호
+//		int n = 0;            //페이지바 관련 변수
+//		int loop = 0;         //페이지바 관련 변수
+//		int blockSize = 9;      //페이지바 관련 변수
+//
+//		String page = request.getParameter("page");
+//
+//		if (page == null || page == "") {
+//			//기본 -> page = 1
+//			nowPage = 1;
+//		} else {
+//			nowPage = Integer.parseInt(page);
+//		}
+//
+//
+//		begin = ((nowPage - 1) * pageSize) + 1;
+//		end = begin + pageSize -1;
+//
+//		//우리가만든 해쉬맵은 스트링이기 때문에 begin과 end도 문자열로 만들어서 넘기기.
+//		map.put("begin", begin + "");
+//		map.put("end", end + "");
+//
+//		totalCount = noticeDAO.getTotalCount();
+//
+//		totalPage = (int)Math.ceil((double)totalCount / pageSize);
+//
+//		String pagebar = "";
+//
+//		loop = 1;
+//		n = ((nowPage -1) / blockSize) * blockSize +1;
+//
+//
+//		if ( n == 1 ) {
+//			pagebar += String.format("<li class='disabled'>"
+//					+ "            <a href=\"#!\" aria-label=\"Previous\">"
+//					+ "                <span aria-hidden=\"true\">&laquo;</span>"
+//					+ "            </a>"
+//					+ "        </li>");         
+//		} else {
+//			pagebar += String.format("<li>"
+//					+ "            <a href=\"/mypet/board/noticeList.action?page=%d\" aria-label=\"Previous\">"
+//					+ "                <span aria-hidden=\"true\">&laquo;</span>"
+//					+ "            </a>"
+//					+ "        </li>", n - 1);
+//		}
+//
+//
+//		while (!(loop > blockSize || n > totalPage)) {
+//
+//			if (nowPage == n) {
+//				pagebar += "<li class='active'>";            
+//			} else {
+//				pagebar += "<li>";                        
+//			}
+//
+//			pagebar += String.format("<a href=\"/mypet/board/noticeList.action?page=%d\">%d</a></li>", n, n);
+//
+//			loop++;
+//			n++;
+//		}
+//
+//
+//		//다음 페이지로 이동
+//		if (n > totalPage) { 
+//			//링크에 샵만 있으면 맨위로 올라가므로 #뒤에 ! 붙여주기.
+//			pagebar += String.format("<li class='disabled'>"
+//					+ "            <a href=\"#!\" aria-label=\"Next\">"
+//					+ "                <span aria-hidden=\"true\">&raquo;</span>"
+//					+ "            </a>"
+//					+ "        </li>");
+//
+//		} else { //여전히 다음페이지가 존재하는 경우엔 링크 있는 애로 생성.         
+//			pagebar += String.format("<li>"
+//					+ "            <a href=\"/mypet/board/noticeList.action?page=%d\" aria-label=\"Next\">"
+//					+ "                <span aria-hidden=\"true\">&raquo;</span>"
+//					+ "            </a>"
+//					+ "        </li>", n);
+//		}
+//		
+//		
+//	   
+//	   List<NoticeDTO> noticeList = noticeDAO.noticeList();
+//
+//		request.setAttribute("noticeList", noticeList);
+//		//request.setAttribute("search", search);
+//	    request.setAttribute("pagebar", pagebar);
+//	    request.setAttribute("nowPage", nowPage);
+//
+//	   
+//      return "board/noticeList";
+//      
+//   }
+//   
+//   @RequestMapping(value = "/board/noticeView.action", method = { RequestMethod.GET })
+//   public String noticeView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqNotice) {
+//      
+////	   String id = session.getId();
+////	   System.out.println(id);
+//	   
+//	   System.out.println("seqNotice" + seqNotice);
+//	   
+//	   NoticeDTO ndto = noticeDAO.get(seqNotice);
+//	   
+//	   request.setAttribute("ndto", ndto);
+//	   
+//	   
+//	   NoticeDAO.getDetail(request);              
+//	   
+//	   
+//	   
+//	   
+//      return "board/noticeView";
+//      
+//   }
+//   
+//   
+//   //글 자세히 보기 요청 처리
+//// 	@RequestMapping("/board/detail")
+//// 	public String detail(HttpServletRequest request){
+//// 		NoticeDAO.getDetail(request);
+//// 		//view page 로 forward 이동해서 글 자세히 보기 
+/////// 		return "board/detail";
+//// 		return "board/noticeView";
+//// 	}
+//   
+//   @RequestMapping(value = "/board/noticeWrite.action", method = { RequestMethod.GET })
+//   public String noticeWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+//      
+//      return "board/noticeWrite";
+//      
+//   }
+//   
+//   @RequestMapping(value = "/board/noticeEdit.action", method = { RequestMethod.GET })
+//   public String noticeEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+//      
+//      return "board/noticeEdit";
+//   
+//   }
       
 //준오님
-   
+   /**
+    * 입양후기 전체 목록을 요청 및 페이지를 출력하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @return 입양후기 게시판 메인 페이지 출력.
+    */
    @RequestMapping(value = "/board/adoptionreviewlist.action", method = { RequestMethod.GET })
    public String adoptionReviewList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	   
@@ -192,6 +549,14 @@ public class BoardController {
 	   
    }
    
+   /**
+    * 입양후기 게시글 정보를 요청 및 페이지를 출력하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @param seqAdoptionReview 입양후기 번호입니다.
+    * @return 입양후기 게시판 > 입양후기 게시글 페이지 출력.
+    */
    @RequestMapping(value = "/board/adoptionreviewview.action", method = { RequestMethod.GET })
    public String adoptionReviewView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview) {
 	   
@@ -219,6 +584,13 @@ public class BoardController {
 	   return "board/adoptionreviewView";
 	   
    }
+   /**
+    * 입양후기 게시글 작성페이지를 요청하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @return 입양후기 게시판 > 게시글작성 페이지 출력.
+    */
    @RequestMapping(value = "/board/adoptionreviewwrite.action", method = { RequestMethod.GET })
    public String adoptionReviewWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 	   //임시로 부여한 세션(회원 로그인)
@@ -229,6 +601,14 @@ public class BoardController {
 	   
    }
    
+   /**
+    * 입양후기 게시글 작성 DB작업을 요청하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @param title 게시글 제목입니다.
+    * @param content 게시글 내용 본문입니다.
+    */
    @RequestMapping(value = "/board/adoptionreviewwriteok.action", method = { RequestMethod.POST })
    public void adoptionReviewWriteOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, String title, String content) {
 	   
@@ -325,7 +705,12 @@ public class BoardController {
 	   
    }
    
-
+   /**
+    * 같은 이름의 파일이 있는지 검사하는 메소드
+    * @param path 파일의 실제 저장된 경로입니다.
+    * @param filename 파일명입니다.
+    * @return 중복을 제거한 파일명을 반환합니다.
+    */
 	private String getFileName(String path, String filename) {
 		
 		
@@ -363,6 +748,14 @@ public class BoardController {
 		
 	}
    
+	/**
+	 * 입양후기 게시글 정보를 요청 및 게시글 수정 페이지를 출력하는 메소드
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @param seqAdoptionReview 입양후기 번호입니다.
+	 * @return 입양후기 수정페이지 출력.
+	 */
    //입양후기 수정 페이지
    @RequestMapping(value = "/board/adoptionreviewedit.action", method = { RequestMethod.GET })
    public String adoptionReviewEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview) {
@@ -374,7 +767,16 @@ public class BoardController {
 	   return "board/adoptionreviewEdit";
 	   
    }
-      
+   
+   /**
+    * 입양후기 게시글 수정 DB작업을 요청하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @param seqAdoptionReview 입양후기 번호입니다.
+    * @param content 입양후기 본문입니다.
+    * @param title 입양후기 제목입니다.
+    */
    //입양후기 수정 DB작업
    @RequestMapping(value = "/board/adoptionrevieweditok.action", method = { RequestMethod.POST })
    public void adoptionReviewEditOk(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview, String content, String title) {
@@ -422,6 +824,13 @@ public class BoardController {
 	   
    }
    
+   /**
+    * 입양후기 게시글 삭제 DB작업을 요청하는 메소드
+    * @param request 자원을 전달할 변수입니다.
+    * @param response 자원을 받아올 변수입니다.
+    * @param session 세션 객체입니다.
+    * @param seqAdoptionReview 입양후기 번호입니다.
+    */
    //입양후기 삭제 DB작업
    @RequestMapping(value = "/board/adoptionreviewdelete.action", method = { RequestMethod.POST })
    public void adoptionReviewDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoptionReview) {
@@ -469,7 +878,9 @@ public class BoardController {
 	   
    }
    
+
+}
    
    
 
-}
+

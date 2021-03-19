@@ -124,10 +124,30 @@ a:hover {
 	outline: none !important;
 }
 
+/* 검색결과 */
+#searchResult {
+	width: auto;
+	position: relative;
+	margin-top: 20px;
+	display: inline-block;
+	left: -40px;
+}
+
+/* 목록 */
+#basic-addon4 {
+	outline: none;
+	position: relative;
+	float: right;
+	top: -58px;
+	left: -135px;
+	width: 65px;
+}
+
 /* 페이지바 */
 .pagination {
-	width: 700px;
+	/* width: 700px; */
 	height: 40px;
+	margin: 20px auto;
 }
 
 .pagination>li>a {
@@ -135,6 +155,11 @@ a:hover {
 	color: #301b01;
 	font-size: 16px;
 	float: left;
+}
+
+.pagination>.active>a {
+	background-color: #b27208;
+	border-color: #b27208;
 }
 
 .pagination>li>a:hover {
@@ -155,6 +180,13 @@ a:hover {
 
 <div id="content">
 	<span class="board-name">공지사항</span>
+
+	<%-- <c:if test="${not empty search}">
+		<div class="message well well-sm" id="searchResult">
+			'${search}'(으)로 ${noticeList.size()}건의 게시물을 검색했습니다.
+		</div>
+	</c:if> --%>
+
 	<div class="board-btn">
 		<input type="button" class="btn common-btn" value="글쓰기"> <input
 			type="button" class="btn common-btn" value="삭제">
@@ -166,11 +198,17 @@ a:hover {
 			<th class="thirdtd">날짜</th>
 			<th class="fourthtd">조회수</th>
 		</tr>
+		
+		<%-- <c:if test="${noticeList.size() == 0}">
+			<tr>
+				<td colspan="5" style="text-align: center;">게시물이 없습니다.</td>
+			</tr>
+		</c:if> --%>
 		<c:forEach items="${noticeList}" var="noticeDTO">
 			<tr class="tr2">
 				<td>${noticeDTO.seqNotice}</td>
 				<td><a
-					href="/mypet/board/noticeview.action?seqNotice=${noticeDTO.seqNotice}">${noticeDTO.title}</a></td>
+					href="/mypet/board/noticeView.action?seqNotice=${noticeDTO.seqNotice}">${noticeDTO.title}</a></td>
 				<td>${fn:substring(noticeDTO.writeDate,0,10)}</td>
 				<td>${noticeDTO.viewCount}</td>
 			</tr>
@@ -192,13 +230,24 @@ a:hover {
 		</div>
 		<div style="width: 100%;">
 			<button type="button" class="btn btn-default" id="basic-addon4"
-				onclick="location.href='/Myhome_project/Myhome/user/boardchecklist.do';">목록</button>
+				onclick="location.href='/mypet/board/noticeList.action';">목록</button>
 		</div>
 		<div style="clear: both;"></div>
 
-		<!-- 검색창 & 검색 버튼 -->
-		<input type="textbox" class="form-control search-text"> <input
-			type="button" class="btn common-btn" value="검색">
+		<!-- 검색창 : 시간되면 추가해보기.. -->
+
+
+	<%-- 	<form id="searchForm" method="GET"
+			action="/mypet/board/noticeList.action">
+
+			<input type="textbox" class="form-control search-text"
+				placeholder="제목, 내용을입력해주세요." id="search" name="search" required
+				value="${search}"> <input type="button"
+				class="btn common-btn" value="검색"
+				onclick="$('#searchForm').submit();">
+		</form>
+		<div style="clear: both;"></div> --%>
+
 	</div>
 </div>
 

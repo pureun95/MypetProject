@@ -1,5 +1,6 @@
 package com.test.mypet.adoption;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 
@@ -12,10 +13,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.test.mypet.board.VolunteerDTO;
 import com.test.mypet.goods.GoodsDTO;
 import com.test.mypet.goods.IGoodsDAO;
 import com.test.mypet.member.MemberDTO;
 
+/**
+ * 입양하기 관련 컨트롤러 클래스입니다.
+ * @author 이준오
+ *
+ */
 @Controller
 public class AdoptionController {
 	
@@ -34,13 +41,27 @@ public class AdoptionController {
 	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species, String seqAdoption) {
 		
 		
-		String seqUser = (String) session.getAttribute("seqUser");
+		AdoptionDTO dto = new AdoptionDTO();
 		
-		System.out.println(session.getAttribute("seqUser"));
+		String seqUser = "";
+				
+		//세션에서 유저 아이디 받아오기
+		String id = (String)session.getAttribute("id");
+		
+		if(id == null) {
+			dto.setSeqUser(null);			
+		} else {
+			dto = adao.getSeqUser(id);			
+		}
+		
+		seqUser = dto.getSeqUser();
+					
+		//회원번호
+		session.setAttribute("seqUser", seqUser);
 		
 		
 		//찜하기 중복검사
-		List<AdoptionDTO> uList = adao.getLikesUser(seqUser);
+		/* List<AdoptionDTO> uList = adao.getLikesUser(seqUser); */
 		
 		//검색
 		String search = request.getParameter("search");
@@ -81,16 +102,14 @@ public class AdoptionController {
 		map.put("begin", begin + "");
 		map.put("end", end + "");
 		
+		
 		List<AdoptionDTO> list = adao.getList(map);
 		List<AdoptionDTO> AllList = adao.getAllList(map);
-		
+		List<AdoptionDTO> userList = adao.getUserList(map);
 		
 		//이미지는 하나만 넣을 것
 		for (int i=0; i<list.size(); i++) {
 		
-			AdoptionDTO dto = new AdoptionDTO();
-			
-			
 			if(list.get(i).getImg() == null) {
 				
 				//더미데이터 이미지
@@ -108,8 +127,23 @@ public class AdoptionController {
 				list.get(i).setImg(img[0]);
 			}
 			
-			
-			
+		}
+		
+		
+		//이미지는 하나만 넣을 것
+		for (int i=0; i<userList.size(); i++) {
+				
+			if(userList.get(i).getImg() == null) {
+						
+				userList.get(i).setImg("nopic.png");
+						
+			} else {
+						
+				String[] img = userList.get(i).getImg().split(",");
+						
+				userList.get(i).setImg(img[0]);
+			}
+					
 		}
 		
 		
@@ -217,8 +251,10 @@ public class AdoptionController {
 		request.setAttribute("pagebar", pagebar);
 		request.setAttribute("nowPage", nowPage);
 		request.setAttribute("list", list);
+		request.setAttribute("userList", userList);
+		
 		//찜하기
-		request.setAttribute("uList", uList);
+		/* request.setAttribute("uList", uList); */
 		request.setAttribute("AllList", AllList);
 		request.setAttribute("species", species);
 		request.setAttribute("seqUser", seqUser);
@@ -243,7 +279,6 @@ public class AdoptionController {
 	public void likes(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption, String seqUser) {
 		
 		
-
 		System.out.println("글번호: " + seqAdoption);
 		
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -262,31 +297,67 @@ public class AdoptionController {
 		
 		try {
 			if (result == 1) {
-				response.sendRedirect("/mypet/adoption/list.action");
+				response.setContentType("text/html; charset=UTF-8");
+
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");	
+				writer.print("alert('찜목록에 추가되었습니다.');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
 			} else {
-				response.sendRedirect("/mypet/adoption/list.action");
+				PrintWriter writer = response.getWriter();
+				writer.print("<html><body>");
+				writer.print("<script>");
+				writer.print("alert('이미 찜목록에 있습니다.');");
+				writer.print("history.back();");
+				writer.print("</script>");
+				writer.print("</body></html>");
+				
+				writer.close();
 			}
 		} catch(Exception e) {
 			System.out.println(e);
 		}
-				
-		
-		
-		
+								
 	}
 	
 	
 	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
 	public String adoptionView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		
-		//임시 session값 부여
-						
-		String seqUser = (String) session.getAttribute("seqUser");
+		AdoptionDTO dto = new AdoptionDTO();
+		
+		String seqUser = "";
 				
-		AdoptionDTO dto = adao.getView(seqAdoption);
+		//세션에서 유저 아이디 받아오기
+		String id = (String)session.getAttribute("id");
+		
+		if(id == null) {
+			dto.setSeqUser(null);			
+		} else {
+			dto = adao.getSeqUser(id);			
+		}
+		
+		seqUser = dto.getSeqUser();
+					
+		//회원번호
+		session.setAttribute("seqUser", seqUser);
+				
+		
+		//이전글 & 다음글
+		List<AdoptionDTO> fdto = adao.getForNext(seqAdoption);
+		
+		//상세보기
+		dto = adao.getView(seqAdoption);
 		
 		request.setAttribute("dto", dto);
+		request.setAttribute("fdto", fdto);
 		request.setAttribute("seqUser", seqUser);
+		request.setAttribute("seqAdoption", seqAdoption);
 		
 		return "adoption/view";
 
@@ -314,6 +385,13 @@ public class AdoptionController {
 	}
 
 	
+	/**
+	 * 입양하기 > 체크리스트 페이지 출력 메소드입니다.
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @return 체크리스트 페이지 출력.
+	 */
 	//http://localhost:8090/mypet/adoption/checklist.action
 	@RequestMapping(value="/adoption/checklist.action", method={RequestMethod.GET})
 	public String checklist(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -323,6 +401,13 @@ public class AdoptionController {
 		return "adoption/checklist";		
 	}
 	
+	/**
+	 * 체크리스트 > 입양예약신청서 작성 페이지 출력 메소드입니다.
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @return 입양예약신청서 작성 페이지 출력.
+	 */
 	//http://localhost:8090/mypet/adoption/writereservation.action
 	@RequestMapping(value="/adoption/writereservation.action", method={RequestMethod.GET})
 	public String writeReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
@@ -350,6 +435,14 @@ public class AdoptionController {
 		return "adoption/write_reservation";		
 	}
 	
+	/**
+	 * 작성한 입양예약신청서 내용확인 페이지 출력 메소드입니다.
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @param dto 입양예약신청 객체입니다.
+	 * @return 입양예약신청서 내용확인 페이지 출력.
+	 */
 	//http://localhost:8090/mypet/adoption/viewreservation.action
 	@RequestMapping(value="/adoption/viewreservation.action", method={RequestMethod.POST})
 	public String viewReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session	
@@ -363,6 +456,14 @@ public class AdoptionController {
 		
 		return "adoption/view_reservation";		
 	}
+	/**
+	 * 입양예약신청서 추가 DB작업 요청 및 추가 완료 후 안내 페이지 출력 메소드입니다.
+	 * @param request 자원을 전달할 변수입니다.
+     * @param response 자원을 받아올 변수입니다.
+     * @param session 세션 객체입니다.
+	 * @param dto 입양예약신청 객체입니다.
+	 * @return 예약완료 후 안내 페이지 출력.
+	 */
 	//http://localhost:8090/mypet/adoption/sendreservation.action
 	@RequestMapping(value="/adoption/sendreservation.action", method={RequestMethod.POST})
 	public String sendReservation(HttpServletRequest request, HttpServletResponse response, HttpSession session

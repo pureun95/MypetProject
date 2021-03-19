@@ -122,7 +122,7 @@
     <div id="content">
     	<div class="btn-group">
     		<input type="button" class="btn common-btn" value="목록" onclick="location.href='/mypet/board/adoptionreviewlist.action';">
-    		<c:if test="${dto.seqUser==seqUser}">
+    		<c:if test="${dto.seqUser==seqUser || seqUser==1 || seqUser==2 || seqUser==3 || seqUser==4 || seqUser==5}">
     		<input type="button" class="btn common-btn" value="수정" onclick="location.href='/mypet/board/adoptionreviewedit.action?seqAdoptionReview=${dto.seqAdoptionReview}';">
         	<input type="button" id="delete" class="btn common-btn" value="삭제">
         	</c:if>

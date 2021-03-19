@@ -369,13 +369,12 @@
 
 
   <div id="content">
+  
     <span class="title">입양하기</span>
     <!-- 지도&검색창 -->
     <div class="map-search">
     	<div id="map">
-    		
-    		
-    	
+    		    		
     	</div>  
     	
     	<div class="pet-radio">
@@ -406,6 +405,7 @@
     		<label for="etc" onclick="location.href='/mypet/adoption/list.action?species=3'">기타동물</label>    		
     	</div>
     	
+    	
     	<div class="search-box">
 	    	<form method="GET" action="/mypet/adoption/list.action">
 	    		<input type="text" class="form-control" name="search" placeholder="검색 키워드를 입력해주세요." onfocus="this.value=''">
@@ -413,15 +413,20 @@
 	    	</form>
     	</div>
     	
-    </div>
+    </div><!-- map.search -->
+    
     
     <!-- 관리자만 보여주기 -->
+   	<c:if test="${seqUser < '6'}">
     <input type="button" class="btn common-btn" value="글쓰기" onclick="location.href='/mypet/adoption/write.action'">
+    </c:if>
+    
     
     <!-- 9개씩 나오기 -->
     <div class="list">    	        	
     
     	<!-- 관리자가 보는 페이지 -->
+    	<c:if test="${seqUser < '6'}">
     	<c:forEach items="${list }" var="dto" varStatus="status">
     	<div class="list-detail">    	
     		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${dto.seqAdoption}'"><img class="img-pet" src="../resources/images/adoption/${dto.img }"></div>
@@ -444,9 +449,9 @@
     		<div class="pet-seq">
     			<span class="no" style="float: left">no. ${dto.seqPet }</span>
     			
-    			<input type="hidden" class="seqUser1" value="${seqUser }">
+    			<input type="hidden" name="seqUser" class="seqUser" value="${seqUser }">
     			<c:forEach items="${uList }" var="uList">
-    				<input type="hidden" class="seqUser2" value="${uList.seqUser }">
+    	
     				<input type="hidden" class="seqLike" value="${uList.seqLike }">
     			</c:forEach>
 								
@@ -460,9 +465,75 @@
     		<span class="state">${dto.state }</span>    		
     	</div>
 		</c:forEach>		
+		</c:if>
 	
 	
 	
+	
+	
+	<!-- 회원& 비회원이 보는 페이지 -->
+    	<c:if test="${empty seqUser or seqUser >= 6}">
+    	<c:forEach items="${userList }" var="udto" varStatus="status">
+    	<div class="list-detail">    	
+    		<div class="img" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${udto.seqAdoption}'"><img class="img-pet" src="../resources/images/adoption/${udto.img }"></div>
+    		<span class="pet-title" onclick="location.href='/mypet/adoption/view.action?seqAdoption=${udto.seqAdoption}'">${udto.title }</span>
+    		
+    		<c:if test="${not empty udto.nameV }">
+	    		<span class="pet-address">${udto.addressV }</span>
+	    		<span class="pet-address">${udto.nameV }</span>
+	    		<input type="hidden" class="location-hidden" value="${udto.addressV }">
+    		</c:if>
+    		
+
+    		<c:if test="${empty udto.nameV }">
+	    		<span class="pet-address">${udto.addressS }</span>
+	    		<span class="pet-address">${udto.nameS }</span>
+	    		<input type="hidden" class="location-hidden" value="${udto.addressS }">
+    		</c:if>
+    	
+
+    		<div class="pet-seq">
+    			<span class="no" style="float: left">no. ${udto.seqPet }</span>
+    			
+    			<input type="hidden" name="seqUser" value="${seqUser }">
+    			<c:forEach items="${uList }" var="uList">
+    				<input type="hidden" class="seqUser2" value="${uList.seqUser }">
+    				<input type="hidden" class="seqLike" value="${uList.seqLike }">
+    			</c:forEach>
+								
+   		    			
+    			<label class="like" for="like${status.index}" onclick="ck_user(${udto.seqAdoption })"></label>
+    			<input type="radio" name="seqAdoption" class="rd" id="like${status.index}" value="${udto.seqAdoption }" style="display: none">
+    			
+    			 
+    			<span class="likes-count">${udto.likes }</span>
+    		</div>
+    		
+    		<span class="state">${udto.state }</span>    		
+    	</div>
+		</c:forEach>		
+		</c:if>
+	
+	
+	
+
+		
+    <c:if test="${list.size() > 0 }">
+    <!-- 페이지바 -->
+    <div class="pageSearch" style="clear: both">
+	      <!-- 페이지바 -->
+	       <ul class="pagination">
+	            ${pagebar }
+	       </ul>     
+     </div>
+    </c:if>
+    
+    <!-- 페이지바 -->
+    
+    </div>
+    
+    
+    
 	<!-- 모달  -->
 	<div class="modal" tabindex="-1" role="dialog" id="modal">
 		<div class="modal-dialog" role="document">
@@ -481,30 +552,7 @@
 		     </div>
 		   </div>
 		 </div>
-	</div>
-	
-	
-	
-	
-	
-		
-    <c:if test="${list.size() > 0 }">
-    <!-- 페이지바 -->
-    <div class="pageSearch" style="clear: both">
-	      <!-- 페이지바 -->
-	       <ul class="pagination">
-	            ${pagebar }
-	       </ul>     
-     </div>
-    </c:if>
-    
-    <!-- 페이지바 -->
-    
     </div>
-    
-    
-    
-    
 
    <!-- content -->
    </div> 
@@ -515,52 +563,42 @@
 <script>
 
 	
-	//찜하기 중복검사
-	var seqUser2 = $(".seqUser2").val();
+	//찜하기
 	var seqLike = $(".seqLike").val();
-	var seqUser1 = $(".seqUser1").val();
+	var seqUser = $("input[name=seqUser]").val();
 	
-	var like = $('input[name=like]');
+	var seqAdoption = $('input[name=like]');
 	var label = $(".like");
 	var no;
+	var ck;
 	
 	
 	//라벨 체크 -> 라디오버튼 체크 -> 그 값을 가지고 ok로 넘긴다.
 	function ck_user(no) {
-			
-		for(var i=0; i<like.length; i++) {
-			if(no == like[i].value) {
-								
-				like[i].checked = true;
-				var ck = $('input[name=like]:checked').val();
-			} 
-			
 		
-		/* 비회원인 경우 */
-		if(seqUser1 == null) {
-			$('#modal').modal("show");
-		}
-			
-		/* 찜하기 목록에 있는 경우 */
-		if(seqUser1 == seqUser2) {
-			$(".modal-body > p").html("이미 찜목록에 있습니다.");
+		if(seqUser == "") {
 			$('#modal').modal("show");
 		
-		/* 찜하기 목록에 없는 경우 */
 		} else {
+			for(var i=0; i<seqAdoption.length; i++) {
+				
+				if(no == seqAdoption[i].value) {
+									
+					seqAdoption[i].checked = true;
+					ck = $('input[name=seqAdoption]:checked').val();						
+				} 	
+			}
+			
 			$(".modal-body > p").html("찜목록에 추가되었습니다.");
 			$('#modal').modal("show");
 			
 			setTimeout(function() {
-				location.href= '/mypet/adoption/likesOk.action?seqAdoption='+ ck + '&seqUser=${seqUser}';
+				location.href= '/mypet/adoption/likesOk.action?seqAdoption='+ ck + '&seqUser=' + seqUser;
 			}, 2000);
-		 	
-				
+									
 		}
 		
-	}
-		
-}		
+	}					
 			
 	
 	/* 모달 */
