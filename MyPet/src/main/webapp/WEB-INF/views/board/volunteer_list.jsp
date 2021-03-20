@@ -169,6 +169,11 @@
         background-color: #b27208 !important;
         color: white !important;
     }
+    
+    .pagination> .active > a {
+    	background-color: #b27208 !important;
+    	color: white !important;
+    }
 
     .board-btn {
        /*  border: 1px solid black; */
