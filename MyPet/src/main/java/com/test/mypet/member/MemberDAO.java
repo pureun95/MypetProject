@@ -59,7 +59,12 @@ public class MemberDAO implements IMemberDAO {
 	public int idCheck(String id) {
 		
 		//int result = template.selectOne("member.idCheck", id);
+		id = id.replace("=", "");
 		int count = template.selectOne("member.idCheck", id);
+		
+		//str = str.replaceFirst(".$","");
+		System.out.println("dao count : " + count);
+		System.out.println("dao id : " + id);
 		return count;
 	}
 

@@ -148,13 +148,17 @@ margin-left: 8px;
 	margin-bottom: 15px;
 }
 
+.form-control {
+	
+}
+
 /* 아이디 중복체크 */
 .has-success {
-	border-color: red;
+	border-color: #43D329;
 }
 
 .has-error {
-	border-color: green;
+	border-color: red;
 }
 
 
@@ -197,6 +201,7 @@ margin-left: 8px;
 				<input type="button" id="btn_idchk" class="btn btn-default" value="중복확인">
 				<div style="clear: both;"></div>
 				<div class="subtxt">4자~12자리의 영문자, 숫자 / @,#$등 특수문자는 제외</div>	
+					
 					  
 				<span>비밀번호</span> 
 				<input type="password" class="form-control form-weight" id="password" name="password"> 
@@ -439,12 +444,15 @@ var header = "X-CSRF-TOKEN"; */
               async: true,
               type : 'post',
               data : id,
-              url : "/idCheck.action",
+
+
+              url : "http://localhost:8090/mypet/member/idCheck.action",
               dataType : "json",
+              //dataType : "text",
               //contentType: "application/json; charset=UTF-8",
               success : function(data) {
-                  if (data.count > 0) {
-                      
+//                  if (data.count > 0) {
+                  if (data > 0) {
                       alert("이미 존재하는 아이디입니다. 다른 아이디를 입력해주세요.");
                       //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
                       $(".divInputId").addClass("has-error")
@@ -455,8 +463,8 @@ var header = "X-CSRF-TOKEN"; */
                   } else {
                       alert("사용가능한 아이디입니다.");
                       //아이디가 존제할 경우 빨깡으로 , 아니면 파랑으로 처리하는 디자인
-                      $("#divInputId").addClass("has-success")
-                      $("#divInputId").removeClass("has-error")
+                      $(".divInputId").addClass("has-success")
+                      $(".divInputId").removeClass("has-error")
                       $("#userpwd").focus();
                       //아이디가 중복하지 않으면  idck = 1 
                       id_check = 1;
@@ -532,7 +540,7 @@ function validation() {
         return false;
     }
     
- /*    if(confirm("회원가입을 하시겠습니까?")){
+    if(confirm("회원가입을 하시겠습니까?")){
     	if (id_check == 0) {
     		alert("아이디 중복체크를 해주세요.");
         	return false;
@@ -543,13 +551,13 @@ function validation() {
     		
     	}
   
-    } */
+    } 
     
-     if(confirm("회원가입을 하시겠습니까?")){
+     /* if(confirm("회원가입을 하시겠습니까?")){
         alert("가입이 완료되었습니다. 로그인 후 이용해주세요.");
         $("#register").submit();
         return true;
-    } 
+    } */ 
     
 }
 

@@ -191,7 +191,7 @@
      var height = $(document).scrollTop();
      
      if ( height > 130) {
-        if ($("#plist_bar1").prop("checked")) {
+        if ($("#plist_bar1").prop("checked") || $("#plist_bar1-2").prop("checked") || $("#plist_bar1-3").prop("checked"))  {
 
            $(".nav1").css("left", "0%").css("z-index", "99").css("top",height+10+"px");
 
@@ -200,7 +200,7 @@
         }
      }else {
         
-        if ($("#plist_bar1").prop("checked")) {
+        if ($("#plist_bar1").prop("checked") || $("#plist_bar1-2").prop("checked") || $("#plist_bar1-3").prop("checked")) {
 
            $(".nav1").css("left", "0%").css("z-index", "99").css("top","150px");
 
@@ -216,6 +216,8 @@
      //console.log(height);
      
      $("#plist_bar1").prop("checked",false);
+     $("#plist_bar1-2").prop("checked",false);
+     $("#plist_bar1-3").prop("checked",false);
      $(".nav1").css("background-color", "white");
      $(".nav1").css("left", "-100%");
      
