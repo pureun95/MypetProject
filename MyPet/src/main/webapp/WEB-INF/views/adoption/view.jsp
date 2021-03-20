@@ -13,9 +13,7 @@
         height: auto;
         margin: 0px auto;
         margin-top: 210px;
-        padding: 20px 200px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
+        padding: 20px 200px;       
        	font-family: 'NanumSquare';
        	color: #301b01;
         /* margin-right: px; */

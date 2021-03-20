@@ -14,7 +14,7 @@
         margin: 0px auto;
         margin-top: 210px;
         padding: 20px 50px;
-        border: 1px solid black;
+        /* border: 1px solid black; */
        	font-family: 'NanumSquare';
     }
     
@@ -293,7 +293,10 @@
         color: white !important;
     }
 
-    
+    .pagination> .active > a {
+    	background-color: #b27208 !important;
+    	color: white !important;
+    }
     
 
     /* 게시판 검색창 공통 클래스 */

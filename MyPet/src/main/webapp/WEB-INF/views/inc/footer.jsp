@@ -73,17 +73,18 @@
     	font-family: 'NanumSquare';
 	}
 	
-	#table {
+	#footer-table {
 		border: 0px solid transparent;
 	}
 	
-	.th {
+	#footer-table > tbody > .headtr > .th {
 		width: 130px; 
 		height: 20px;
 		font-size: 13px;
+		text-align: left !important;
 	}
 	
-	.td {
+	#footer-table > tbody > .headtr > .td {
 		text-align: left;
 		width: 400px;
 		font-size: 13px;
@@ -97,7 +98,6 @@
 	.copy {
 		/* border: 1px solid black; */
 		width: 500px;
-/* 		height: 50px; */
 		text-align: left;
 		float: left;
 		margin-top: 13px;
@@ -117,7 +117,7 @@
 	<div class="start">		
 		<div class="decs">
 			<span class="name">MYPET Coporation.</span>
-			<table id="table">
+			<table id="footer-table">
 				<tr class="headtr">
 					<th class="th">법인명</th>
 					<td class="td">마이펫</td>
