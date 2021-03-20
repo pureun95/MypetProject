@@ -253,6 +253,15 @@ public class BoardController {
 
 	}
 	
+	
+	//http://localhost:8090/mypet/board/volunteerEdit.action
+	@RequestMapping(value = "/board/volunteerEdit.action", method = { RequestMethod.GET })
+	public String volunteer_edit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVolunteer) {
+
+		return "board/volunteer_edit";
+
+	}
+	
 
 	@RequestMapping(value = "/board/volunteerOk.action", method = { RequestMethod.GET })
 	public String volunteer_ok(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVolunteer, String seqUser) {

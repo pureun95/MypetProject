@@ -187,7 +187,7 @@
     <div id="content">
 		
 		<div class="board-write">
-			<span class="title">봉사활동신청 글쓰기</span>
+			<span class="title">봉사활동신청 글수정</span>
 			
 			<!-- 각자 본인의 게시판에 들어가면 option이 selected 되어있도록?! 해보고싶어서 넣어봤어요. -->
 			<select class="form-control multiple">
