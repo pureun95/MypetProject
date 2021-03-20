@@ -6,6 +6,10 @@ import java.util.List;
 import com.test.mypet.member.MemberDTO;
 
 
+/**
+ * 입양글 DB작업 전담 인터페이스
+ * @author 박지현
+ */
 public interface IAdoptionDAO {
 
 	/**

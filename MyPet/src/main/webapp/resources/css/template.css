@@ -632,27 +632,6 @@ ul, li {
         top:-150px; */
 }
 
-#img-first {
-	background-image: url(../images/info.png);
-}
-
-#img-sec {
-	background-image: url(../images/like.png);
-}
-
-#img-third {
-	background-image: url(../images/shopping.png);
-}
-
-#img-fourth {
-	background-image: url(../images/volunteer.png);
-}
-
-#img-fifth {
-    background-image: url(../images/paw.png);
-}
-
-
 
 /* content */
 #content {

@@ -11,6 +11,10 @@ import com.test.mypet.board.VolunteerDTO;
 import com.test.mypet.member.MemberDTO;
 
 
+/**
+ * 입양리스트 DB작업 전담 클래스
+ * @author 박지현
+ */
 @Repository
 public class AdoptionDAO implements IAdoptionDAO {
 	

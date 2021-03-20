@@ -13,6 +13,27 @@
     	margin-top: -7px;
 	}
 	
+	#img-first {
+		background-image: url(/mypet/resources/images/info.png);
+	}
+
+	#img-sec {
+		background-image: url(/mypet/resources/images/like.png);
+	}
+	
+	#img-third {
+		background-image: url(/mypet/resources/images/shopping.png);
+	}
+	
+	#img-fourth {
+		background-image: url(/mypet/resources/images/volunteer.png);
+	}
+	
+	#img-fifth {
+	   	background-image: url(/mypet/resources/images/paw.png);
+	}
+
+	
 </style>
 
 <!-- ########################## header 시작 ########################## -->

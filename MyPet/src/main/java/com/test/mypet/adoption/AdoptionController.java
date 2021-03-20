@@ -20,7 +20,7 @@ import com.test.mypet.member.MemberDTO;
 
 /**
  * 입양하기 관련 컨트롤러 클래스입니다.
- * @author 이준오
+ * @author 이준오, 박지현
  *
  */
 @Controller
@@ -36,6 +36,15 @@ public class AdoptionController {
 	private IAdoptionDAO adao;
 
 
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param species
+	 * @param seqAdoption
+	 * @return
+	 */
 	//http://localhost:8090/mypet/adoption/list.action
 	@RequestMapping(value = "/adoption/list.action", method = { RequestMethod.GET })
 	public String adoptionList(HttpServletRequest request, HttpServletResponse response, HttpSession session, String species, String seqAdoption) {
@@ -325,7 +334,14 @@ public class AdoptionController {
 								
 	}
 	
-	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seqAdoption
+	 * @return
+	 */
 	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
 	public String adoptionView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		
@@ -365,7 +381,7 @@ public class AdoptionController {
 	
 	//http://localhost:8090/mypet/adoption/write.action
 	@RequestMapping(value="/adoption/write.action")
-	public String adoptionwrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+	public String adoptionwrite(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		
 		return "adoption/write";		
 	}
@@ -373,14 +389,14 @@ public class AdoptionController {
 	
 	//http://localhost:8090/mypet/adoption/edit.action
 	@RequestMapping(value="/adoption/edit.action")
-	public String edit() {
+	public String edit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		return "adoption.edit";		
 	}
 	
 	
 	//http://localhost:8090/mypet/adoption/del.action
 	@RequestMapping(value="/adoption/del.action")
-	public String del() {
+	public String del(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
 		return "adoption.del";		
 	}
 
