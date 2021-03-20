@@ -167,20 +167,20 @@
 		<li><a href="/mypet/stat/view.action">유기동물 통계</a></li>		
 	</ul>
 	<div class="custom custom1">
-		<img src='../resources/images/customer.png'>
+		<img src='/mypet/resources/images/customer.png'>
 		<span>1234-5678</span>
 	</div>
 	<div class="custom custom2">
-		<img src='../resources/images/mail.png'>
+		<img src='/mypet/resources/images/mail.png'>
 		<span>mypet@mypet.com</span>
 	</div>
 	
 	<div class='menu-linear'></div>
 	
 	<div class='nav-etc'>
-		<img src="../resources/images/facebook2.png">
-		<img src="../resources/images/instagram2.png">
-		<img src="../resources/images/youtube2.png">
+		<img src="/mypet/resources/images/facebook2.png">
+		<img src="/mypet/resources/images/instagram2.png">
+		<img src="/mypet/resources/images/youtube2.png">
 	</div>
 	<div class="sub-deco"></div>
 </div>
