@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
- <title>MyPet :: 입양하기</title>
- 
+ <title>MyPet::입양하기</title>
  
 <style>
 

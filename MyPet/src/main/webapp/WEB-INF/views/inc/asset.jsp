@@ -8,3 +8,4 @@
 
 <script src="/mypet/resources/js/jquery-1.12.4.js"></script>
 <script src="/mypet/resources/js/bootstrap.js"></script>
+<link rel="icon" href="/mypet/resources/images/favicon.ico" type="image/x-icon">

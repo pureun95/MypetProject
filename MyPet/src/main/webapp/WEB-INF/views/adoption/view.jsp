@@ -5,7 +5,8 @@
 
 
 
-<title>MyPet :: 상세보기</title>
+<title>MyPet::상세보기</title>
+
 <style>
  
  #content{
