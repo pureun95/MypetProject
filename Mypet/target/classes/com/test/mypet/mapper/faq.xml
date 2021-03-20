@@ -17,7 +17,7 @@
 	
 	<insert id="add" parameterType="fdto">
 		insert into tblFaq (seqFaq, seqCategory, title, content, files, writeDate) 
-			values (seqFaq.nextVal, #{seqCategory}, #{title}, #{content}, #{files}, sysdate)
+			values (seqFaq.nextVal, #{seqCategory}, #{title}, #{content}, null, sysdate)
 	</insert>
 	
 	<select id="count" parameterType="HashMap" resultType="int">
@@ -26,9 +26,10 @@
 	
 	<update id="edit" parameterType="fdto">
 		update tblFaq set
-			title = #{title},
-			content = #{content}
-				where seqFaq = #{seqFaq}
+			seqCategory = #{seqCategory},
+			title = #{title, jdbcType=VARCHAR},
+			content = #{content, jdbcType=VARCHAR}
+				where seqFaq = #{seqFaq, jdbcType=VARCHAR}
 	</update>
 	
 	<select id="delete" parameterType="String">

@@ -64,7 +64,9 @@
 		color: #9c9c9c;
 	}
 	
-	
+	.board-write textarea {
+		min-height: 200px;
+	}
 	
 	
 

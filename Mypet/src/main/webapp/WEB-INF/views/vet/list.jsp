@@ -70,7 +70,6 @@
     	font-size : 30px;
     	text-align : center;
     	display: block;
-    	margin-top: 100px;
     	margin-bottom: 50px;
     	font-family: 'Jal_Onuel';
     	color: #301b01;
@@ -116,11 +115,17 @@
 		text-decoration: none;
 	}
 	
+	#more {
+		width : 200px;
+		margin-bottom:100px;
+		margin-left :100px;
+	}
+	
 	
 	
 	/* 지도 */
 	#map {
-		width: 90%;
+		width: 80%;
 		height: 450px;
 		margin : 10px auto;
 	}
@@ -149,7 +154,7 @@
 		background-color : #f6da42;
 	}
 	
-	.table .name {
+	.table #name {
 		cursor: pointer;
 	} 
     
@@ -225,7 +230,7 @@
 			<c:forEach items="${list}" var="vdto">
 				<tr class="list">
 					<td>${vdto.seqVet}</td>
-					<td class="name" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}&search=${search}&page=${nowPage}'">${vdto.name}</td>
+					<td id="name" onclick="location.href='/mypet/vet/view.action?seq=${vdto.seqVet}&search=${search}&page=${nowPage}'">${vdto.name}</td>
 					<td>${vdto.address}</td>
 					<td>${vdto.tel}</td>
 				</tr>
@@ -237,6 +242,8 @@
                 ${pagebar}
             </ul>      
 		</div>
+		
+		<button class="btn" id ="more" onclick="window.open('/mypet/shelter/more.action','PopupMore','width=900,height=400,location=no,status=no,top=100,left=250,scrollbars=yes');">+ 동물병원 더 찾아보기</button>
 	</div>
 	
 	<!-- 지도 -->
