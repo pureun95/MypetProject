@@ -175,6 +175,23 @@ a:hover {
 .board-btn>input:nth-child(1) {
 	margin-left: 1060px;
 }
+
+/* 채팅아이콘 */
+.chaticon {
+	/* border: 1px solid black; */
+	width: 70px;
+	height: 70px;
+	position: fixed;
+	right: 5px;
+	bottom: 5px;
+	/* margin-left: 30px; */
+	background-image: url('/mypet/resources/images/chat/chatimg.png');
+	background-size: cover;
+	background-position: 50% 50%;
+	/* margin-right: 10px; */
+	z-index: 100;
+	cursor:pointer;
+}
 </style>
 
 
@@ -252,7 +269,17 @@ a:hover {
 
 
 
-
+<div class="chaticon" id="chaticon"></div>
 <script>
+
+
+/* 채팅 */
+var chaticon = document.getElementById("chaticon");
+
+chaticon.onclick = function() {
+
+ 	window.open("/mypet/member/chat.action", "a", "width=350, height=600"); 
+
+}
 	
 </script>

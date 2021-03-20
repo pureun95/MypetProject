@@ -54,6 +54,21 @@ public class MemberDAO implements IMemberDAO {
 //
 //		return template.selectOne("member.seqUser", user_id);
 //	}
+	
+	@Override
+	public int idCheck(String id) {
+		
+		//int result = template.selectOne("member.idCheck", id);
+		int count = template.selectOne("member.idCheck", id);
+		return count;
+	}
 
+	
+	@Override
+	public void register(MemberDTO ndto) {
+		
+		template.insert("member.register", ndto);
+		
+	}
 	
 }

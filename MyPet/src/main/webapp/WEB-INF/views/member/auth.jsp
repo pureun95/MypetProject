@@ -249,7 +249,7 @@ position: relative;
 			<input type="password" class="form-control readonly" id="pw" name="password" placeholder="패스워드" required></div>
 	
 			<div class="search">
-				<a href="/#">아이디 찾기</a> <span>|</span> <a href="/#">비밀번호 찾기</a> <span>|</span> <a href="/#">회원가입</a>
+				<a href="">아이디 찾기</a> <span>|</span> <a href="">비밀번호 찾기</a> <span>|</span> <a href="/mypet/member/register2.action">회원가입</a>
 			</div>
 	
 	
@@ -286,13 +286,6 @@ position: relative;
 /* 채팅 */
 var chaticon = document.getElementById("chaticon");
 
-var _width = '350';
-var _height = '600';
-
-// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기.. 오른쪽 아래 하단에 두는건..? right=0 bottom=0으로 두는데 왜 안되지??
-var _left = Math.ceil(( window.screen.width - _width )/2);
-var _top = Math.ceil(( window.screen.width - _height )/2); 
-
 chaticon.onclick = function() {
 
  	window.open("/mypet/member/chat.action", "a", "width=350, height=600"); 
@@ -300,6 +293,9 @@ chaticon.onclick = function() {
 }
 
 
+/* var _left = Math.ceil(( window.screen.width - _width )/2);
+var _top = Math.ceil(( window.screen.width - _height )/2); 
+ */
 
 
 /* 로그인 타입 바꾸기 */

@@ -17,6 +17,10 @@ public interface IMemberDAO {
 
 	public int addlist(ChatMessageDTO dto);
 
+	public void register(MemberDTO ndto);
+
+	public int idCheck(String id);
+
 //	public ChatMessageDTO checkUser(String seqUser);
 //	public int checkUser(String seqUser);
 

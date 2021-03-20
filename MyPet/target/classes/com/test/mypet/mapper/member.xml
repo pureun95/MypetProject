@@ -4,6 +4,10 @@
 
 <mapper namespace="member">
 
+	<insert id="register">
+		insert into tblUser (seqUser, id, password, name, address, birthdate, email, receiving, tel, state) values (seqUser.nextVal, #{id}, #{password}, #{name}, #{address}, #{birthdate}, #{email}, #{receiving}, #{tel}, 0)
+	</insert>
+
 	<select id="login" resultType="memberDTO" parameterType="memberDTO">
 		select * from tblUser where id = #{id} and password = #{password}
 	</select>
@@ -26,6 +30,11 @@
 		select distinct ct.seqUser from tbluser us inner join tblchat ct on us.sequser = ct.sequser where id=#{id};
 		select distinct tblchat.seqUser from tbluser inner join tblchat on tbluser.sequser = tblchat.sequser where id=#{id};
 	</select> -->
+	
+	<select id="idCheck" parameterType="String" resultType="Integer">
+		<!-- select id from tblUser where id = #{id} -->
+		select count(*) from tblUser where id = #{id}
+	</select>
 
 </mapper>
 

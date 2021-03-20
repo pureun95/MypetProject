@@ -2,8 +2,9 @@ package com.test.mypet.member;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,8 +14,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -187,18 +190,137 @@ public class MemberController {
 	
 	
 	
-	@RequestMapping(value = "/member/register.action", method = { RequestMethod.GET })
-	public String register(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+//	@RequestMapping(value = "/member/register.action", method = { RequestMethod.GET })
+//	public String register(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+//
+//		return "member/register";
+//
+//	}
+	
+	@RequestMapping(value = "/member/register2.action", method = { RequestMethod.GET })
+	public void register2get() throws Exception {
+		logger.info("get register");
+		
+	}
+	
+//	@RequestMapping(value = "/member/register2.action", method = { RequestMethod.POST })
+//	public String register2(HttpServletRequest request, HttpServletResponse response, HttpSession session, MemberDTO ndto) {
 
-		return "member/register";
+	@RequestMapping(value = "/member/register2.action", method = { RequestMethod.POST })
+	public String register2(HttpServletRequest request, HttpServletResponse response, MemberDTO ndto) {	
+		
+		String id = "";
+		String password = "";
+		String name = "";
+		
+		String  addr1= "";
+		String  addr2= "";
+		String  addr3= "";
+		String address = "";
+
+		String year = "";
+		String month = "";
+		String day = "";
+		
+		String birthdate = "";
+		String receiving = "";
+		
+		
+		
+		String email = "";
+		String tel = "";		
+		
+		try {
+			
+			request.setCharacterEncoding("UTF-8");
+			
+			id = request.getParameter("id");
+			password = request.getParameter("password");
+			name = request.getParameter("name");
+			
+			addr1= request.getParameter("addr1");
+			addr2= request.getParameter("addr2");
+			addr3= request.getParameter("addr3");
+			address = addr1+" "+addr2+" "+addr3;
+
+			year = request.getParameter("birth_year");
+			month = request.getParameter("birth_month");
+			day = request.getParameter("birth_day");
+			
+			birthdate = year+month+day;
+			receiving = "";
+			
+			if (request.getParameter("receiving") != null ) {
+				receiving = "1";
+			} else {
+				receiving = "0";
+				
+			}
+			
+			email = request.getParameter("email");
+			tel = request.getParameter("tel");
+			
+			ndto.setId(id);
+			ndto.setPassword(password);
+			ndto.setName(name);
+			ndto.setAddress(address);
+			ndto.setBirthdate(birthdate);
+			ndto.setEmail(email);
+			ndto.setReceiving(receiving);
+			ndto.setTel(tel);
+			
+			dao.register(ndto);
+			
+	
+
+
+			
+			//System.out.println(ndto.getAddress());
+			
+			//response.sendRedirect("/mypet/member/auth.action");
+			
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			//System.out.println("가입에러남");
+		}
+		
+		
+		logger.info("post register");
+		
+
+		return "member/auth";
 
 	}
 	
-	@RequestMapping(value = "/member/register2.action", method = { RequestMethod.GET })
-	public String register2(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-
-		return "member/register2";
-
+	//public String idCheck(@RequestBody String paramData) throws Exception {
+	@ResponseBody
+	@RequestMapping(value = "/member/idCheck.action")
+	public Map<Object, Object> idCheck(@RequestBody String id) {
+		
+		int count = 0;
+		Map<Object, Object> map = new HashMap<Object, Object>();
+		
+		count = dao.idCheck(id);
+		map.put("count", count);
+		
+		return map;
+		
+//		String id = paramData.trim();
+//		System.out.println(id);
+//		
+//		MemberDTO ndto = dao.idCheck(id);
+//		
+//		if(ndto != null) {
+//			return "-1";
+//		} else {
+//			System.out.println("null!!");
+//			return "0";
+//		}
+		
+//		int result = dao.idCheck(id);
+//		
+//		return result;
 	}
 	
 	
