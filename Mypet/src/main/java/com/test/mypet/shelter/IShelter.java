@@ -22,4 +22,6 @@ public interface IShelter {
 
 	int add(ShelterDTO sdto);
 
+	int delete(String seqShelter);
+
 }

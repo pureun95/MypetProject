@@ -62,6 +62,13 @@ public class ShelterDAO implements IShelter{
 	}
 
 
+	@Override
+	public int delete(String seqShelter) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 
 

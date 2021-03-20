@@ -68,7 +68,6 @@
     	font-size : 30px;
     	text-align : center;
     	display: block;
-    	margin-top: 100px;
     	margin-bottom: 50px;
     	font-family: 'Jal_Onuel';
     	color: #301b01;
@@ -115,10 +114,17 @@
 		text-decoration: none;
 	}
 	
+	#more {
+		width : 150px;
+		margin-bottom:100px;
+		margin-left :100px;
+	}
+	
 	/* 지도 */
 	#map {
-		width: 100%;
+		width: 80%;
 		height: 450px;
+		margin :10px auto;
 	}
 	
 	
@@ -145,7 +151,7 @@
 		background-color : #f6da42;
 	}
 	
-	.table .name {
+	.table #name {
 		cursor: pointer;
 	} 
     
@@ -155,7 +161,7 @@
      .pagebar {
      	width:1200px;
     	padding : 0px 360px;
-    	margin-bottom :100px;
+    	margin-bottom :20px;
     	margin-top : 30px;
     } 
     
@@ -229,7 +235,7 @@
 			<c:forEach items="${list}" var = "sdto">
 				<tr class="list">
 					<td>${sdto.seqShelter}</td>
-					<td class="name" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}&search=${search}'">${sdto.name}</td>
+					<td id="name" onclick="location.href='/mypet/shelter/view.action?seq=${sdto.seqShelter}&search=${search}'">${sdto.name}</td>
 					<td >${sdto.address}</td>
 					<td>${sdto.tel}</td>
 				</tr>
@@ -241,8 +247,11 @@
 				${pagebar}
             </ul>      
 		</div>
+		
+		<button class="btn" id ="more" onclick="window.open('/mypet/shelter/more.action','PopupMore','width=900,height=400,location=no,status=no,top=100,left=250,scrollbars=yes');">+ 보호소 더 찾아보기</button>
 	</div>
 	
+
 	<!-- 셀렉트 박스 -->
 	<script>
 		$(document).ready(function(){
@@ -263,64 +272,6 @@
 		});
 	
 	</script>
-	<!-- <script>
-	$(document).ready(function() {
-	    
-	    //시도 세팅
-	    var lArr = new Array();
-	    var lOb = new Object();
-	    
-	    //시도
-	    lOb = new Object();
-	    lOb.seqLocation = "";
-	    lOb.location = "";
-	    lArr.push(lOb);
-	    
-	    //시군구 세팅
-	    var ldlArr = new Array();
-	    var ldOb = new Object();
-	    
-	    //시군구
-	    ldOb = new Object();
-	    ldOb.seqLocation = "";
-	    ldOb.seqLocationDetail = ""
-	    ldOb.locationDetail = ""    
-	    ldlArr.push(ldOb);
-	    
-   
-	    //시도 셀렉트 박스 세팅
-	    var lBox = $("select[name='location']");
-	    
-	    for(var i=0;i<locationArr.length;i++){
-	        lBox.append("<option value='" + lArr[i].seqLocation+"'>" + lArr[i].location + "</option>");
-	    }
-	    
-	    //*********** 시도카테고리 선택 후 시군구 생성 ***********
-	    $(document).on("change","select[name='location']",function(){
-	        
-	        //두번째 셀렉트 박스를 삭제 시킨다.
-	        var ldBox = $("select[name='locationDetail']");
-	        	ldBox.children().remove(); //기존 리스트 삭제
-	        
-	        //선택한 첫번째 박스의 값을 가져와 일치하는 값을 두번째 셀렉트 박스에 넣는다.
-	        $("option:selected", this).each(function(){
-	            var selectValue = $(this).val(); //main category 에서 선택한 값
-	            	ldBox.append("<option value=''>시 / 군 / 구</option>");
-	            for(var i=0;i<ldArr.length;i++){
-	                if(selectValue == ldArr[i].seqLocation){
-	                    
-	                	ldBox.append("<option value='"+ldArr[i].seqLocationDetail+"'>"+ldArr[i].locationDetail+"</option>");
-	                    
-	                }
-	            }
-	        });
-	        
-	    });
-	        
-	});
-	
-	</script> -->
-	
 	
 	
 	<!-- 지도 -->

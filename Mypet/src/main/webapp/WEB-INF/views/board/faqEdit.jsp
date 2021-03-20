@@ -157,7 +157,7 @@
 	    outline: none !important; 
     }
     
-    .btns #add{ background-color: #b27208; }
+    .btns #edit{ background-color: #b27208; }
     
     .btns #cancel{ background-color: #fab018; }
     
@@ -212,7 +212,7 @@
 		        	<span>사진</span>	  	       		
 		       	</div>	        
 		        <div class="btns">
-			        <input type="submit" class="btn common-btn" id="add" value="수정">
+			        <input type="submit" class="btn common-btn" id="edit" value="수정">
 			        <input type="button" class="btn common-btn" id="cancel" value="취소" onclick="location.href='/mypet/board/faqList.action'">		        
 	        	</div>
 	        	<input type="hidden" name="seq" value="${fdto.seqFaq}">
