@@ -2,8 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
  
- <title>MyPet :: 입양하기</title>
- 
+ <title>MyPet::입양하기</title>
  
 <style>
 
@@ -20,8 +19,6 @@
         margin: 0px auto;
         margin-top: 150px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
        }
 
 
