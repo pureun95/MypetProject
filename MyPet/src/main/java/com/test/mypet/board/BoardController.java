@@ -247,7 +247,7 @@ public class BoardController {
 		
 	//http://localhost:8090/mypet/board/volunteerWrite.action
 	@RequestMapping(value = "/board/volunteerWrite.action", method = { RequestMethod.GET })
-	public String volunteer_write(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVolunteer) {
+	public String volunteer_write(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
 		return "board/volunteer_write";
 
