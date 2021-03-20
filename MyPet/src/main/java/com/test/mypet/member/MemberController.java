@@ -296,27 +296,31 @@ public class MemberController {
 	//public String idCheck(@RequestBody String paramData) throws Exception {
 	@ResponseBody
 	@RequestMapping(value = "/member/idCheck.action")
-	public Map<Object, Object> idCheck(@RequestBody String id) {
+	public int idCheck(@RequestBody String id) {
+	//public Map<Object, Object> idCheck(@RequestBody String id) {
 		
-		int count = 0;
-		Map<Object, Object> map = new HashMap<Object, Object>();
+//		int count = 0;
+//		Map<Object, Object> map = new HashMap<Object, Object>();
+//		
+		int count = dao.idCheck(id);
+		System.out.println(count);
+//		map.put("count", count);
+//		
+//		return map;
 		
-		count = dao.idCheck(id);
-		map.put("count", count);
-		
-		return map;
+		/////
 		
 //		String id = paramData.trim();
 //		System.out.println(id);
-//		
-//		MemberDTO ndto = dao.idCheck(id);
-//		
-//		if(ndto != null) {
-//			return "-1";
-//		} else {
-//			System.out.println("null!!");
-//			return "0";
-//		}
+		
+		//MemberDTO ndto = dao.idCheck(id);
+		
+		if(count >= 1) {
+			return 1;
+		} else {
+			System.out.println("null!!");
+			return 0;
+		}
 		
 //		int result = dao.idCheck(id);
 //		
