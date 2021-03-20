@@ -3,7 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
-<title>MyPet :: 봉사활동신청</title>
+<title>MyPet::봉사활동신청</title>
+
 <style>
 
 

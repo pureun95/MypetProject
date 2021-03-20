@@ -5,7 +5,7 @@
 
 
 
-<title>MyPet::상세보기</title>
+<title>MyPet::입양하기</title>
 
 <style>
  

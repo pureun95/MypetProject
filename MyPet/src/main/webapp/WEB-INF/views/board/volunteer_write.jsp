@@ -8,7 +8,7 @@
  <!-- //제이쿼리 ui js -->
  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  
- <title>MyPet :: 봉사활동신청</title>
+ <title>MyPet::봉사활동신청</title>
  
  
 <style>
