@@ -379,10 +379,18 @@ public class AdoptionController {
 
 	}
 	
+	
+	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return
+	 */
 	//http://localhost:8090/mypet/adoption/write.action
 	@RequestMapping(value="/adoption/write.action")
-	public String adoptionwrite(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
-		
+	public String adoptionwrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
+							
 		return "adoption/write";		
 	}
 	

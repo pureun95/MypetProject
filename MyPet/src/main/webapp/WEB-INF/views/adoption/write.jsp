@@ -119,7 +119,7 @@
 	}
 	
 	
-	input[type="radio"] {
+	.radio-btn > input[type="radio"] {
 		display: none;
 	}
 	
@@ -171,7 +171,13 @@
     .delete {
     	background-color: #fab018;    	
     }
-
+	
+	.btn-vet {
+		border: 1px solid #ccc;
+		background-color: transparent;
+		color: #9c9c9c;
+		
+	}
 
     
     /* 파일 */
@@ -208,7 +214,72 @@
     }
     
     
-   
+   /* 모달 */
+    
+    .modal-content {
+    	overflow: visible;
+    }
+    
+    .close {
+    	position : absolute;
+    	top : 20px;
+    	right :10px;
+    	outline: none !important;	
+    }
+       
+    .modal-header, .modal-title {
+    	background-color: #f6da42;
+    	font-family: 'Jal_Onuel';
+    	font-size: 16px;
+    }
+    
+   	.modal-body{
+		font-family: 'NanumSquare';
+		text-align: center;
+		height : 200px;	
+		font-size: 16px;	
+	}
+	
+	.modal-body p {
+		margin-top: 25px;
+	}
+	
+	.modal-footer{
+		text-align: center;
+	}
+	
+
+    
+    
+    /* 모달창 */
+       
+    .modal-footer #check, .modal-footer #cancel {
+		font-family: 'Jal_Onuel';
+		width : 70px;
+    	margin : 0px 10px;
+    	padding : 10px 12px;
+		border : none;
+	    color: white;
+		outline: none !important;	
+		border-radius : 5px;
+	}
+	.modal-footer #delete:hover, .modal-footer #cancel:hover{
+		color:black;
+	}
+	
+	
+	.modal-footer #check{ background-color: #b27208; }
+	.modal-footer #cancel{ background-color: #fab018; }
+	
+    }
+    
+    .headtr > .vet-radio {
+    	display: inline;
+    }
+    
+    .headtr > th {
+    	text-align: center;
+    }
 
 </style>
 
@@ -264,13 +335,12 @@
 		       	<label for="yes" class="gender">입양가능</label>
 		       	
 		       	<input type="radio" class="adoption" id="no" name="adtoption" value="1">
-		       	<label for="no" class="gender" id="no2">입양완료</label>
+		       	<label for="no" class="gender" id="no2">입양완료</label>		       			       
 	       	</div>
-	       		   
-	       	
+	       		       
 	        <!-- 상세내용 -->
 	        <textarea class="form-control board-content" onclick="this.value=''" placeholder="내용을 입력해주세요."></textarea> 	    	                      		           		        
-	        
+	        	 
 	        <div class="photo">	        	
 	        	<input type="file" id="file" class="board-file">	
 	        	<label for="file"></label>	
@@ -286,6 +356,10 @@
 
     </div>
    
+	
+	
+
+
 
 
 
@@ -304,7 +378,9 @@
 	}); 
 	
 	
-	
+	$(".btn-vet").click(function() {
+		$("#modal").modal("show");
+	})
 	
 	
     
