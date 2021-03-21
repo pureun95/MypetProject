@@ -206,16 +206,6 @@
     	margin-left: -1350px;
     }
     
-    .mouse-deco {
-    	border: 1px solid black;
-    	width: 100px;
-    	height: 100px;
-    	border-radius: 50%;
-    	position: absolute;
-    	top: 800px;
-    	
-    }
-
     
     
 </style>
@@ -285,8 +275,8 @@
         $("#img4").css('left', ($("#img4").offset().left) + 1400);
 
         if((($("#img1").offset().left)+200) > width) {
-        	console.log($("#img1").offset().left+400);
-            $("#img1").css('left', 0);
+        	console.log($("#img1").offset().left+420);
+            $("#img1").css('left', -380);
         }
          if((($("#img2").offset().left)+200) > width) {
             $("#img2").css('left', $("#img1").offset().left);
@@ -296,12 +286,14 @@
         }
          if((($("#img4").offset().left)+200) > width) {
             $("#img4").css('left', $("#img1").offset().left);
-        } 
+        }
+        
+    	 
+           
     }, 800);
 	 
 
 
-  		
   	
 </script>
 
