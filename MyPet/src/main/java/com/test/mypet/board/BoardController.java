@@ -314,12 +314,23 @@ public class BoardController {
 
 	}
 	
-	@Autowired
-	private IFaq dao;
 	
+	@Autowired
+	private IFaqDAO dao;
+	
+	/***
+	 * FAQ 전체 목록 요청 및 페이지를 출력하는 메소드입니다.
+	 * @param request 
+	 * @param response
+	 * @param session
+	 * @return FAQ 글 목록 및 상세정보
+	 */
 	@RequestMapping(value = "/board/faqList.action", method = { RequestMethod.GET })
 	public String faqList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
+		String seqUser = (String) session.getAttribute("seqUser");
+		session.setAttribute("seqUser", seqUser);
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		
 		String search = request.getParameter("search");
@@ -416,6 +427,7 @@ public class BoardController {
 		
 		List<FaqDTO> list = dao.list();
 		
+		request.setAttribute("seqUser", seqUser);
 		request.setAttribute("list", list);
 		request.setAttribute("search", search);
 		request.setAttribute("pagebar", pagebar);
@@ -425,6 +437,13 @@ public class BoardController {
 
 	}
 	
+	/***
+	 * FAQ 글 등록페이지를 요청하는 메소드 입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return FAQ 게시판 글 등록
+	 */
 	@RequestMapping(value = "/board/faqAdd.action", method = { RequestMethod.GET })
 	public String faqAdd(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
@@ -432,6 +451,13 @@ public class BoardController {
 
 	}
 	
+	/***
+	 * FAQ 글 등록 DB작업을 요청하는 메소드 입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param fdto
+	 */
 	@RequestMapping(value = "/board/faqAddok.action", method = { RequestMethod.POST })
 	public void faqAddok(HttpServletRequest request, HttpServletResponse response, HttpSession session, FaqDTO fdto) {
 		
@@ -449,6 +475,14 @@ public class BoardController {
 		}
 	}
 
+	/***
+	 * FAQ 글 수정페이지를 요청하는 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seq 글 번호
+	 * @return FAQ 글 수정
+	 */
 	@RequestMapping(value = "/board/faqEdit.action", method = { RequestMethod.GET })
 	public String faqEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
 
@@ -460,6 +494,13 @@ public class BoardController {
 
 	}
 	
+	/***
+	 * FAQ 게시판 글 수정 DB작업을 요청하는 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param fdto
+	 */
 	@RequestMapping(value="/board/faqEditok.action", method = { RequestMethod.POST })
 	public void editok(HttpServletRequest request, HttpServletResponse response, HttpSession session, FaqDTO fdto) {
 		
@@ -476,6 +517,13 @@ public class BoardController {
 		}
 	}
 	
+	/***
+	 * FAQ 게시판 글 삭제 DB작업을 요청하는 메소드 입니다. 
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seqFaq
+	 */
 	@RequestMapping(value = "/board/faqDeleteok.action", method = { RequestMethod.GET })
 	public void faqDelete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqFaq) {
 
