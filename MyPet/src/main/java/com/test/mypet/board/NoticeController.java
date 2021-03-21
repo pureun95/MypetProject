@@ -15,12 +15,27 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+/**
+ * 공지사항 메소드 관리 클래그
+ * @author 노푸른
+ *
+ */
 @Controller
 public class NoticeController {
 
+	/**
+	 * 공지사항 관련 db작업 전담 객체
+	 */
 	@Autowired // 의존 주입하기
 	private INoticeDAO noticeDAO;
 
+	/**
+	 * 공지사항 리스트 출력 메소드
+	 * @param request 자원을 전달할 변수
+	 * @param response 자원을 받아올 변수
+	 * @param session 세션 객체
+	 * @return 공지사항 리스트
+	 */
 	@RequestMapping(value = "/board/noticeList.action", method = { RequestMethod.GET })
 	public String noticeList(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
@@ -124,13 +139,18 @@ public class NoticeController {
 
 	}
 
+	/**
+	 * 공지사항 상세페이지 출력 메소드
+	 * @param request 자원을 전달할 변수
+	 * @param response 자원을 받아올 변수
+	 * @param session 세션 객체
+	 * @param seqNotice 공지사항 번호
+	 * @return 공지사항 상세페이지
+	 */
 	@RequestMapping(value = "/board/noticeView.action", method = { RequestMethod.GET })
 	public String noticeView(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			String seqNotice) {
-
-//		   String id = session.getId();
-//		   System.out.println(id);
-
+		
 		System.out.println("seqNotice" + seqNotice);
 
 
@@ -162,23 +182,18 @@ public class NoticeController {
 		request.setAttribute("preDTO", preDTO);
 		request.setAttribute("nextDTO", nextDTO);
 
-//		   NoticeDTO ndto2 = noticeDAO.getDetail(seqNotice);
-//		   request.setAttribute("ndto", ndto2);
-		// NoticeDAO.getDetail(seqNotice);
-
 		return "board/noticeView";
 
 	}
 
-	// 글 자세히 보기 요청 처리
-//	 	@RequestMapping("/board/detail")
-//	 	public String detail(HttpServletRequest request){
-//	 		NoticeDAO.getDetail(request);
-//	 		//view page 로 forward 이동해서 글 자세히 보기 
-//	/// 		return "board/detail";
-//	 		return "board/noticeView";
-//	 	}
 
+	/**
+	 * 공지사항 글쓰기 메소드
+	 * @param request 자원을 전달할 변수
+	 * @param response 자원을 받아올 변수
+	 * @param session 세션 객체
+	 * @return 공지사항 글쓰기 완료 페이지
+	 */
 	@RequestMapping(value = "/board/noticeWrite.action", method = { RequestMethod.GET })
 	public String noticeWrite(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
@@ -186,6 +201,13 @@ public class NoticeController {
 
 	}
 
+	/**
+	 * 공지사항 글쓰기 db작업을 요청하는 메소드
+	 * @param request 자원을 전달할 변수
+	 * @param response 자원을 받아올 변수
+	 * @param session 세션 객체
+	 * @param ndto 공지사항 객체
+	 */
 	@RequestMapping(value = "/board/noticeWriteOk.action", method = { RequestMethod.POST })
 	public void noticeWriteOk(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			NoticeDTO ndto) {
@@ -217,6 +239,13 @@ public class NoticeController {
 
 	}
 
+	/**
+	 * 공지사항 수정 메소드
+	 * @param request 자원을 전달할 변수
+	 * @param response 자원을 받아올 변수
+	 * @param session 세션 객체
+	 * @return 공지사항 수정 완료 페이지
+	 */
 	@RequestMapping(value = "/board/noticeEdit.action", method = { RequestMethod.GET })
 	public String noticeEdit(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 

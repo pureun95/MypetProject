@@ -20,22 +20,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * 회원가입, 로그인, 채팅 관리 컨트롤러
+ * @author 노푸른
+ *
+ */
 @Controller
 public class MemberController {
 
-//	@Autowired
-//	private MemberDAO dao;
-//	
-//	@Autowired
-//	MemberService memberService;
 
 	private static final Logger logger = LoggerFactory.getLogger(MemberController.class);
 	
 	
-	
+	/**
+	 * 회원관련 DB작업 전담 객체
+	 */
 	@Autowired
 	private IMemberDAO dao;
 
+	/**
+	 * 로그인 페이지를 출력하는 메소드
+	 * @param request 자원을 전달할 변수
+	 * @param response 자원을 받아올 변수
+	 * @param session 세션 객체
+	 * @return 로그인 페이지
+	 */
 	@RequestMapping(value = "/member/auth.action", method = { RequestMethod.GET })
 	public String auth(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
@@ -45,6 +54,14 @@ public class MemberController {
 
 
 	//유저 로그인
+	/**
+	 * 회원 로그인을 진행하는 메소드
+	 * @param request 자원을 받아 전달할 변수
+	 * @param response 자원을 받아올 변수 
+	 * @param session 세션 객체
+	 * @param id 아이디를 저장할 변수
+	 * @param password 패스워드를 저장할 변수
+	 */
 	@RequestMapping(value = "/member/login.action", method = { RequestMethod.POST })
 	public void login(HttpServletRequest request, HttpServletResponse response, HttpSession session, String id,	String password) { // 1.
 
@@ -112,6 +129,14 @@ public class MemberController {
 	//
 	
 	//관리자 로그인
+	/**
+	 * 관리자 로그인을 진행하는 메소드
+	 * @param request 자원을 전달할 변수
+	 * @param response 자원을 받아올 변수
+	 * @param session 세션 객체
+	 * @param id 아이디를 저장할 변수
+	 * @param password 패스워드를 저장할 변수
+	 */
 	@RequestMapping(value = "/member/login_admin.action", method = { RequestMethod.POST })
 	public void login_admin(HttpServletRequest request, HttpServletResponse response, HttpSession session, String id,	String password) { // 1.
 
@@ -164,7 +189,12 @@ public class MemberController {
 	}
 	
 	
-	
+	/**
+	 * 로그아웃을 진행하는 메소드
+	 * @param request 자원을 전달할 변수
+	 * @param response 자원을 받아올 변수
+	 * @param session 세션 객체
+	 */
 	@RequestMapping(value = "/member/logout.action", method = { RequestMethod.GET })
 	public void logout(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 
@@ -197,6 +227,10 @@ public class MemberController {
 //
 //	}
 	
+	/**
+	 * 다른페이지에서 회원가입 페이지로 이동할 때 호출하는 메소드
+	 * @throws Exception 예외처리
+	 */
 	@RequestMapping(value = "/member/register2.action", method = { RequestMethod.GET })
 	public void register2get() throws Exception {
 		logger.info("get register");
@@ -206,6 +240,13 @@ public class MemberController {
 //	@RequestMapping(value = "/member/register2.action", method = { RequestMethod.POST })
 //	public String register2(HttpServletRequest request, HttpServletResponse response, HttpSession session, MemberDTO ndto) {
 
+	/**
+	 * 회원가입 폼에서 제출을 눌렀을 때 클라이언트 정보를 서버로 전송하는 메소드
+	 * @param request 자원을 전달할 변수
+	 * @param response 자원을 받아올 변수
+	 * @param ndto 멤버 객체
+	 * @return 로그인 페이지
+	 */
 	@RequestMapping(value = "/member/register2.action", method = { RequestMethod.POST })
 	public String register2(HttpServletRequest request, HttpServletResponse response, MemberDTO ndto) {	
 		
@@ -294,6 +335,11 @@ public class MemberController {
 	}
 	
 	//public String idCheck(@RequestBody String paramData) throws Exception {
+	/**
+	 * 아이디 중복체크를 하는 메소드
+	 * @param id
+	 * @return 중복체크 결과
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/member/idCheck.action")
 	public int idCheck(@RequestBody String id) {
@@ -329,6 +375,13 @@ public class MemberController {
 	
 	
 
+	/**
+	 * 채팅화면을 출력하는 메소드
+	 * @param mv 웹소켓을 연결하는 객체
+	 * @param session 세셔녀 객체
+	 * @param id 아이디를 저장하는 객체
+	 * @return 채팅 페이지
+	 */
 	@RequestMapping(value = "/member/chat.action", method = RequestMethod.GET)
 	public ModelAndView chat(ModelAndView mv, HttpSession session, String id) {
 			
@@ -349,25 +402,6 @@ public class MemberController {
 		return mv;
 	}
 	
-	
-	
-	
-	
-	
-//	@RequestMapping(value = "/member/chatlist.action", method = { RequestMethod.GET })
-//	public String list(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-//
-//		// 1. DB 위임 -> select
-//		// 2. JSP 호출하기
-//
-//		
-//
-//		//return "member.chatlist";
-//
-//	}
-//	
-	
-	
-	
+
 
 }

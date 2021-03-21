@@ -2,6 +2,11 @@ package com.test.mypet.member;
 
 import lombok.Data;
 
+/**
+ * 맴버 객체
+ * @author 노푸른
+ *
+ */
 @Data
 public class MemberDTO {
 	
