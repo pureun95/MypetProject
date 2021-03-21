@@ -32,6 +32,49 @@
 	   	background-image: url(/mypet/resources/images/paw.png);
 	}
 	
+	/* 회원 */
+	#img-first2 {
+		background-image: url(/mypet/resources/images/info.png);
+	}
+
+	#img-sec2 {
+		background-image: url(/mypet/resources/images/like.png);
+	}
+	
+	#img-third2 {
+		background-image: url(/mypet/resources/images/shopping.png);
+	}
+	
+	#img-fourth2 {
+		background-image: url(/mypet/resources/images/volunteer.png);
+	}
+	
+	#img-fifth2 {
+	   	background-image: url(/mypet/resources/images/paw.png);
+	}
+	
+	/* 관리자 */
+	
+	#img-first3 {
+		background-image: url(/mypet/resources/images/info.png);
+	}
+
+	#img-sec3 {
+		background-image: url(/mypet/resources/images/like.png);
+	}
+	
+	#img-third3 {
+		background-image: url(/mypet/resources/images/shopping.png);
+	}
+	
+	#img-fourth3 {
+		background-image: url(/mypet/resources/images/volunteer.png);
+	}
+	
+	#img-fifth3 {
+	   	background-image: url(/mypet/resources/images/paw.png);
+	}
+	
 	
 </style>
 
