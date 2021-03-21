@@ -3,7 +3,12 @@ package com.test.mypet.shelter;
 import java.util.HashMap;
 import java.util.List;
 
-public interface IShelter {
+/***
+ * 보호소 DAO 인터페이스입니다.
+ * @author 윤지현
+ *
+ */
+public interface IShelterDAO {
 
 	List<ShelterDTO> list(HashMap<String, String> map);
 

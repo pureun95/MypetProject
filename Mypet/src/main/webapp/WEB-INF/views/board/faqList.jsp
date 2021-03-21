@@ -42,17 +42,10 @@
         margin: 0px auto;
         margin-top: 150px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
+        border: none;
+        height: auto;
        }
 
-
-
-
-    /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
-    #content{
-        height: auto;
-    }
 
 
     /* footer */
@@ -265,7 +258,12 @@
     <div id="content">
         <span class="board-name">FAQ</span>
       
-        <form id="searchForm" method="GET" action="/mypet/board/faqList.action">
+      <c:if test="${not empty search}">
+	        <div class="message well well-sm">
+	            '${search}'(으)로 ${list.size()}건의 게시물을 검색했습니다.
+        </div>
+        </c:if>
+        
         <div class="board-btn">
         	<span class="category">
 	        	<button class="item" id="adopt">입양</button>
@@ -275,7 +273,9 @@
 				<button class="item" id="shelter">보호소</button>
 				<button class="item" id="etc">기타</button>
 			</span>
+			
         	<span><input type="button" class="btn" value="글쓰기" id="add" onclick="location.href='/mypet/board/faqAdd.action'"></span>        
+        	
         </div>
   
         <table class="table table-condensed" id="table">
@@ -289,7 +289,7 @@
   			<tr class="tr2">
                 <td>${fdto.seqFaq}</td>
                 <td>${fdto.category}</td>
-                <td>${fdto.title}<span class="icon">▼</span></td>
+                <td>${fdto.title}</td>
             </tr>
             
             <tr class="tr3">
@@ -322,7 +322,7 @@
             </ul>   --%>  
             
             <!-- 검색창 & 검색 버튼 -->
-	         <form id="searchForm" method="GET" action="/mypet/vet/list.action">
+	         <form id="searchForm" method="GET" action="/mypet/board/faqList.action">
 	           	<input type="textbox" class="form-control search-text">
 	           	<input type="button" class="btn common-btn" value="검색" onclick="$('#searchForm').submit();">
 	       	 </form>
@@ -392,11 +392,11 @@
     	})
     }) */
     
-    	var tr2 = document.getElementsByClassName("tr2");
+/*     	var tr2 = document.getElementsByClassName("tr2");
     
-    	tr2.onclick = function(){
+    	$("#table .tr2").click(function(){
     		tr2.style.backgroundColor = "#F6DA42";
-    	};
+    	}); */
 
 </script>
 

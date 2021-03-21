@@ -7,8 +7,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+/***
+ * 보호소 DAO입니다.
+ * @author 윤지현
+ *
+ */
 @Repository
-public class ShelterDAO implements IShelter{
+public class ShelterDAO implements IShelterDAO{
 
 	@Autowired
 	private SqlSessionTemplate template;
@@ -27,7 +32,7 @@ public class ShelterDAO implements IShelter{
 	}
 	
 
-
+	
 	@Override
 	public List<LocationDTO> location() {
 		

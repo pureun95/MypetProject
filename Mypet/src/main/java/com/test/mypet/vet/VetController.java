@@ -28,12 +28,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.test.mypet.shelter.MoreDTO;
 
+/***
+ * 동물병원 관련 컨트롤러 클래스입니다.
+ * @author 윤지현
+ *
+ */
 @Controller
 public class VetController {
 	
 	@Autowired
-	private IVet dao;
+	private IVetDAO dao;
 	
+	/***
+	 * 동물병원 전체 목록 요청 및 페이지를 출력하는 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return 동물병원 목록
+	 */
 	@RequestMapping(value="/vet/list.action", method={RequestMethod.GET})
 	public String list(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		
@@ -144,6 +156,14 @@ public class VetController {
 		return "vet.list";
 	}
 	
+	/***
+	 * 동물병원 상세정보 요청 및 페이지를 출력하는 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seq
+	 * @return 동물병원 상세정보
+	 */
 	@RequestMapping(value="/vet/view.action")
 	public String view(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
 		
@@ -154,11 +174,25 @@ public class VetController {
 		return "vet.view";
 	}
 	
+	/***
+	 * 동물병원 등록페이지를 요청하는 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @return 동물병원 등록페이지
+	 */
 	@RequestMapping(value="/vet/add.action")
-	public String add() {
+	public String add(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
 		return "vet.add";
 	}
 	
+	/***
+	 * 동물병원 등록 DB작업을 요청하는 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param vdto
+	 */
 	@RequestMapping(value="/vet/addok.action", method = { RequestMethod.POST })
 	public void addok(HttpServletRequest request, HttpServletResponse response, HttpSession session, VetDTO vdto) {
 		
@@ -178,6 +212,14 @@ public class VetController {
 		
 		
 	}
+	/***
+	 * 동물병원 수정페이지를 요청하는 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seq
+	 * @return 동물병원 수정페이지
+	 */
 	@RequestMapping(value="/vet/edit.action")
 	public String edit(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seq) {
 		
@@ -188,6 +230,13 @@ public class VetController {
 		return "vet.edit";
 	}
 	
+	/***
+	 * 동물병원 수정 DB작업 요청 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param vdto
+	 */
 	@RequestMapping(value="/vet/editok.action", method = { RequestMethod.POST })
 	public void editok(HttpServletRequest request, HttpServletResponse response, HttpSession session, VetDTO vdto) {
 		
@@ -204,7 +253,13 @@ public class VetController {
 		}
 	}
 	
-
+	/***
+	 * 동물병원 삭제 DB작업 요청 메소드입니다.
+	 * @param request
+	 * @param response
+	 * @param session
+	 * @param seqVet
+	 */
 	@RequestMapping(value="/vet/deleteok.action")
 	public void delete(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqVet) {
 		
@@ -221,146 +276,153 @@ public class VetController {
 		}
 		
 	}
-		//주소 검색 + Open API
-		@RequestMapping(value="/vet/more.action", method={RequestMethod.GET})
-		public String more(HttpServletRequest request, HttpServletResponse response, String query) {
-			
-			ArrayList<MoreDTO> mlist = new ArrayList<MoreDTO>();
-			
-			
-			
-			if (query != null && query != "") {
-				//검색O
-				
-				String clientId = "SWbDIKDagbf75R1DVPDD"; //애플리케이션 클라이언트 아이디값"
-		        String clientSecret = "R7OTDnOLHW"; //애플리케이션 클라이언트 시크릿값"
-
-
-		        String text = null;
-		        
-		        try {
-		            text = URLEncoder.encode(query, "UTF-8");
-		        } catch (UnsupportedEncodingException e) {
-		            throw new RuntimeException("검색어 인코딩 실패",e);
-		        }
-
-
-		        String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text;    
-		        
-
-		        Map<String, String> requestHeaders = new HashMap<>();
-		        requestHeaders.put("X-Naver-Client-Id", clientId);
-		        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
-		        String responseBody = get(apiURL,requestHeaders);
-
-		        
-		        System.out.println(responseBody);
-		        
-		        try {
-		    	
-			        JSONParser parser = new JSONParser();
-			        
-			        //해석(구문분석)
-			        JSONObject json = (JSONObject)parser.parse(responseBody);
-			        			        
-			        System.out.println(json.get("total"));
-			        System.out.println(json.get("display"));
-			        
-			      //목록들(items)
-			        JSONArray list = (JSONArray)json.get("items");
-			        
-			        for (int i=0; i<list.size(); i++) {
-			        	
-			        	MoreDTO dto = new MoreDTO();
-			        	
-			        	JSONObject more = (JSONObject)list.get(i);
-			        	
-			        	String category = (String)more.get("category");
-			        	String title = (String)more.get("title");
-			        	String link = (String)more.get("link");
-			        	String description = (String)more.get("description");
-			        	String telephone = (String)more.get("telephone");
-			        	String address = (String)more.get("address");
-			        	String roadAddress = (String)more.get("roadAddress");
-			        	
-			        	//dto에 채워넣기
-			        	dto.setCategory(category);
-			        	dto.setTitle(title);
-			        	dto.setLink(link);
-			        	dto.setDescription(description);
-			        	dto.setTelephone(telephone);
-			        	dto.setAddress(address);
-			        	dto.setRoadAddress(roadAddress);
-			        	
-			        	//ArrayList에 담기
-			        	mlist.add(dto);
-			        }
-			        
-				} catch(Exception e) {
-		        	System.out.println(e);
-		        }
-	   	}		
+	//주소 검색 + Open API
+	/***
+	 * 주소검색 Open API 페이지 요청 및 출력하는 메소드입니다
+	 * @param request
+	 * @param response
+	 * @param query
+	 * @return 주소검색 페이지
+	 */
+	@RequestMapping(value="/vet/more.action", method={RequestMethod.GET})
+	public String more(HttpServletRequest request, HttpServletResponse response, String query) {
 		
-		//request에 넣어서 jsp에 넘기기
-		request.setAttribute("mlist", mlist);
-					     
-			return "vet/more";
-		} //more.action
+		ArrayList<MoreDTO> mlist = new ArrayList<MoreDTO>();
 		
 		
-		private String get(String apiUrl, Map<String, String> requestHeaders){
-	        HttpURLConnection con = connect(apiUrl);
+		
+		if (query != null && query != "") {
+			//검색O
+			
+			String clientId = "SWbDIKDagbf75R1DVPDD"; //애플리케이션 클라이언트 아이디값"
+	        String clientSecret = "R7OTDnOLHW"; //애플리케이션 클라이언트 시크릿값"
+
+
+	        String text = null;
+	        
 	        try {
-	            con.setRequestMethod("GET");
-	            for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
-	                con.setRequestProperty(header.getKey(), header.getValue());
-	            }
-
-
-	            int responseCode = con.getResponseCode();
-	            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
-	                return readBody(con.getInputStream());
-	            } else { // 에러 발생
-	                return readBody(con.getErrorStream());
-	            }
-	        } catch (IOException e) {
-	            throw new RuntimeException("API 요청과 응답 실패", e);
-	        } finally {
-	            con.disconnect();
+	            text = URLEncoder.encode(query, "UTF-8");
+	        } catch (UnsupportedEncodingException e) {
+	            throw new RuntimeException("검색어 인코딩 실패",e);
 	        }
-	    }
 
 
-	    private HttpURLConnection connect(String apiUrl){
+	        String apiURL = "https://openapi.naver.com/v1/search/local.json?query=" + text;    
+	        
+
+	        Map<String, String> requestHeaders = new HashMap<>();
+	        requestHeaders.put("X-Naver-Client-Id", clientId);
+	        requestHeaders.put("X-Naver-Client-Secret", clientSecret);
+	        String responseBody = get(apiURL,requestHeaders);
+
+	        
+	        System.out.println(responseBody);
+	        
 	        try {
-	            URL url = new URL(apiUrl);
-	            return (HttpURLConnection)url.openConnection();
-	        } catch (MalformedURLException e) {
-	            throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
-	        } catch (IOException e) {
-	            throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
+	    	
+		        JSONParser parser = new JSONParser();
+		        
+		        //해석(구문분석)
+		        JSONObject json = (JSONObject)parser.parse(responseBody);
+		        			        
+		        System.out.println(json.get("total"));
+		        System.out.println(json.get("display"));
+		        
+		      //목록들(items)
+		        JSONArray list = (JSONArray)json.get("items");
+		        
+		        for (int i=0; i<list.size(); i++) {
+		        	
+		        	MoreDTO dto = new MoreDTO();
+		        	
+		        	JSONObject more = (JSONObject)list.get(i);
+		        	
+		        	String category = (String)more.get("category");
+		        	String title = (String)more.get("title");
+		        	String link = (String)more.get("link");
+		        	String description = (String)more.get("description");
+		        	String telephone = (String)more.get("telephone");
+		        	String address = (String)more.get("address");
+		        	String roadAddress = (String)more.get("roadAddress");
+		        	
+		        	//dto에 채워넣기
+		        	dto.setCategory(category);
+		        	dto.setTitle(title);
+		        	dto.setLink(link);
+		        	dto.setDescription(description);
+		        	dto.setTelephone(telephone);
+		        	dto.setAddress(address);
+		        	dto.setRoadAddress(roadAddress);
+		        	
+		        	//ArrayList에 담기
+		        	mlist.add(dto);
+		        }
+		        
+			} catch(Exception e) {
+	        	System.out.println(e);
 	        }
-	    }
+   	}		
+	
+	//request에 넣어서 jsp에 넘기기
+	request.setAttribute("mlist", mlist);
+				     
+		return "vet/more";
+	} //more.action
+	
+	
+	private String get(String apiUrl, Map<String, String> requestHeaders){
+        HttpURLConnection con = connect(apiUrl);
+        try {
+            con.setRequestMethod("GET");
+            for(Map.Entry<String, String> header :requestHeaders.entrySet()) {
+                con.setRequestProperty(header.getKey(), header.getValue());
+            }
 
 
-	    private String readBody(InputStream body){
-	        InputStreamReader streamReader = new InputStreamReader(body);
+            int responseCode = con.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) { // 정상 호출
+                return readBody(con.getInputStream());
+            } else { // 에러 발생
+                return readBody(con.getErrorStream());
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("API 요청과 응답 실패", e);
+        } finally {
+            con.disconnect();
+        }
+    }
 
 
-	        try (BufferedReader lineReader = new BufferedReader(streamReader)) {
-	            StringBuilder responseBody = new StringBuilder();
+    private HttpURLConnection connect(String apiUrl){
+        try {
+            URL url = new URL(apiUrl);
+            return (HttpURLConnection)url.openConnection();
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("API URL이 잘못되었습니다. : " + apiUrl, e);
+        } catch (IOException e) {
+            throw new RuntimeException("연결이 실패했습니다. : " + apiUrl, e);
+        }
+    }
 
 
-	            String line;
-	            while ((line = lineReader.readLine()) != null) {
-	                responseBody.append(line);
-	            }
+    private String readBody(InputStream body){
+        InputStreamReader streamReader = new InputStreamReader(body);
 
 
-	            return responseBody.toString();
-	        } catch (IOException e) {
-	            throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
-	        }
-	    }
+        try (BufferedReader lineReader = new BufferedReader(streamReader)) {
+            StringBuilder responseBody = new StringBuilder();
+
+
+            String line;
+            while ((line = lineReader.readLine()) != null) {
+                responseBody.append(line);
+            }
+
+
+            return responseBody.toString();
+        } catch (IOException e) {
+            throw new RuntimeException("API 응답을 읽는데 실패했습니다.", e);
+        }
+    }
 
 }
