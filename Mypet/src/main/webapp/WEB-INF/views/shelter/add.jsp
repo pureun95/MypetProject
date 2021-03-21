@@ -123,7 +123,7 @@
 		
 		<div class="btns">
 	      	<input type="submit" class="btn" value="등록" id="add">
-	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/vet/list.action'">
+	      	<input type="button" class="btn" value="취소" id="cancel" onclick="location.href='/mypet/shelter/list.action'">
 	    </div>
     </form>
 </div>

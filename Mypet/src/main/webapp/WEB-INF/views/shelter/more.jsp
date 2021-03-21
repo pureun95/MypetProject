@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<title>MyPet::동물병원 더 찾아보기</title>
+<title>MyPet::보호소 더 찾아보기</title>
 <style>
 
 	 /* 잘 풀리는 오늘 */

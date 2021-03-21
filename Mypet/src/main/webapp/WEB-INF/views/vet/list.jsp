@@ -97,6 +97,11 @@
 		margin : 0px 10px;
 	}
 	
+	.message{
+		margin : 10px auto;
+		width : 1000px;
+	}
+	
 	.btn {
 		font-family: 'Jal_Onuel';
 		width : 70px;
@@ -219,6 +224,11 @@
         
 		
 		<div id="map"></div>
+		<c:if test="${not empty search}">
+	        <div class="message well well-sm">
+	            '${search}'(으)로 ${list.size()}건의 게시물을 검색했습니다.
+        </div>
+        </c:if>
 		<table class="table table-condan">
 			<tr>
 				<th>번호</th>
@@ -243,7 +253,7 @@
             </ul>      
 		</div>
 		
-		<button class="btn" id ="more" onclick="window.open('/mypet/shelter/more.action','PopupMore','width=900,height=400,location=no,status=no,top=100,left=250,scrollbars=yes');">+ 동물병원 더 찾아보기</button>
+		<button class="btn" id ="more" onclick="window.open('/mypet/vet/more.action','PopupMore','width=900,height=400,location=no,status=no,top=100,left=250,scrollbars=yes');">+ 동물병원 더 찾아보기</button>
 	</div>
 	
 	<!-- 지도 -->

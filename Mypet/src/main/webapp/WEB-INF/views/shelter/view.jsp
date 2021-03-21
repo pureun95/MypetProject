@@ -251,7 +251,6 @@
 				        </button>
 				      </div>
 				      <div class="modal-body">
-				      	<div>${dto.startDate} ~ ${dto.endDate}</div>
 				        <p>${sdto[0].name} 봉사활동을 신청하시겠습니까?</p>
 				      </div>
 				      <div class="modal-footer">

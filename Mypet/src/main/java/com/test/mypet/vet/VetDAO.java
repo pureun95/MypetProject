@@ -7,8 +7,13 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+/***
+ * 동물병원 DAO입니다.
+ * @author 윤지현
+ *
+ */
 @Repository
-public class VetDAO implements IVet{
+public class VetDAO implements IVetDAO{
 	
 	@Autowired
 	private SqlSessionTemplate template;

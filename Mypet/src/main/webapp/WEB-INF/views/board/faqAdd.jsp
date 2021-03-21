@@ -19,15 +19,10 @@
         margin: 0px auto;
         margin-top: 150px;
         padding: 20px 50px;
-        /* border: 1px solid rgb(230,229,235); */
-        border: 1px solid black;
+        border: none;
+        height: auto;
        }
 
-
-    /* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
-    #content{
-        height: 1300px;
-    }
 
 	
 	.title {

@@ -2,6 +2,11 @@ package com.test.mypet.board;
 
 import lombok.Data;
 
+/***
+ * FAQ 게시판 DTO입니다.
+ * @author 윤지현
+ *
+ */
 @Data
 public class FaqDTO {
 	

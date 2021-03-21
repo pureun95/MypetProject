@@ -2,6 +2,11 @@ package com.test.mypet.shelter;
 
 import lombok.Data;
 
+/***
+ * 보호소 DTO입니다.
+ * @author 윤지현
+ *
+ */
 @Data
 public class ShelterDTO {
 	
