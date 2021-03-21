@@ -40,10 +40,10 @@ public class AdoptionController {
 	 * 
 	 * @param request
 	 * @param response
-	 * @param session
-	 * @param species
-	 * @param seqAdoption
-	 * @return
+	 * @param session 
+	 * @param species 동물종류
+	 * @param seqAdoption 동물번호
+	 * @return 입양글 리스트 페이지 출력
 	 */
 	//http://localhost:8090/mypet/adoption/list.action
 	@RequestMapping(value = "/adoption/list.action", method = { RequestMethod.GET })
@@ -278,8 +278,8 @@ public class AdoptionController {
 	 * @param request
 	 * @param response
 	 * @param session
-	 * @param seqAdoption
-	 * @param seqUser
+	 * @param seqAdoption 입양글 번호
+	 * @param seqUser 유저 번호
 	 * 
 	 * 회원번호와 입양글 번호를 가져온 후 찜하기 테이블에 넣는 메서드
 	 */
@@ -339,8 +339,8 @@ public class AdoptionController {
 	 * @param request
 	 * @param response
 	 * @param session
-	 * @param seqAdoption
-	 * @return
+	 * @param seqAdoption 입양글 번호
+	 * @return 입양글 상세보기 페이지 출력
 	 */
 	@RequestMapping(value = "/adoption/view.action", method = { RequestMethod.GET })
 	public String adoptionView(HttpServletRequest request, HttpServletResponse response, HttpSession session, String seqAdoption) {
