@@ -551,6 +551,12 @@ label .right{
 		.she_deep_info:hover {
 			cursor: pointer;	
 		}
+		.cardinfo_sub{
+		padding-top: 0px;
+		}
+		.cardinfo_add{
+		padding-top: 15px;
+		}
 </style>
 
 
@@ -705,10 +711,25 @@ label .right{
             <form method="POST" action="/mypet/sponsor/sponok.action">
             <div class="modal-body">
             	<div class="she_reci"><span>받는분</span>MYPET동물유치원</div>
-            
+            	<hr>
             	<div class="paytext"> 신용 / 체크카드 </div>
             
             	<div class="cardinfo">
+		            <div class="cardnumber cardinfo_sub cardinfo_add">
+		                <span>등록된카드</span>
+		                <span class="cardnumber_span">
+		                
+		       <span style="display: inline-block; width:80px; 
+		       background-color: #f1acac; border:1px solid #f1acac;
+		       border-radius:3px; color:white;">
+		                쌍용</span>
+		                
+		                
+			            </span>
+		             
+		            
+		             </div>
+
 		            <div class="cardnumber cardinfo_sub">
 		                <span>카드번호</span>
 		                <span class="cardnumber_span">
@@ -762,7 +783,7 @@ label .right{
 					                송금액 <small>(단위 : 원)</small>
 	
 			                <input type="number" id="money" name="money" inputmode="numeric"
-				                step="1000" maxlength="7" oninput="length(this);" required>
+				                step="1000" maxlength="7" oninput="length(this);" style="text-align: right" required>
 				                	원
 				        </span>
 				
