@@ -5,7 +5,6 @@
 <style>
 	
 
-	/* 후에 template.css로 옮길 것 */
 	.logo-scroll {
        	background-position: 50% 50%;
        	background-repeat: no-repeat;
@@ -32,7 +31,7 @@
 	#img-fifth {
 	   	background-image: url(/mypet/resources/images/paw.png);
 	}
-
+	
 	
 </style>
 
@@ -48,7 +47,7 @@
 			</span>
 		</div>
 		
-		<div class="pheadercontent pheadercontent2"></div>
+		<div class="pheadercontent pheadercontent2" onclick="location.href='/mypet/main.action'"></div>
 		<div class="pheadercontent pheadercontent3">
 			<span class="head_list2"> 
 			<label for="plist_bar2" class="menubar2">
@@ -147,7 +146,7 @@
 <c:if test="${not empty id and id != 'Administrator1'}">
 <header id="header2">
 	<div id="headersub2">
-		<div id="pheadercontent1-2" class="pheadercontent">
+		<div id="pheadercontent1-2" class="pheadercontent" >
 			<span class="head_list"> <label for="plist_bar1-2"
 				class="menubar"> <input type="checkbox" id="plist_bar1-2"
 					style="display: none;">

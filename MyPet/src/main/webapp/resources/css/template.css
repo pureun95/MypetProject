@@ -329,15 +329,11 @@ header {
 	text-align: center;
 }
 
-/* 건드릴까 말까.. */
-/* #pheadercontent2,#pheadercontent3{
-        
-    }
-     */
 .pheadercontent2 {
 	background-image: url(/mypet/resources/images/logo.png);
 	background-size: cover;
 	background-position: 50% 50%;
+	cursor: pointer;
 }
 
 .pheadercontent3 {
