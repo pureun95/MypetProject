@@ -19,15 +19,23 @@ import org.springframework.stereotype.Controller;
 
 
 
-
+/**
+ * 웹소켓 메소드 관리 클래스
+ * @author 노푸른
+ *
+ */
 @Controller
 @ServerEndpoint(value="/member/echo.action")
 public class WebSocketChat {
 	
-	//@Autowired
-	//private IMemberDAO dao;
+	/**
+	 * 회원관련 db작업 전담 객체
+	 */
 	private IMemberDAO dao = SpringContext.getBean(MemberDAO.class);
 	
+	/**
+	 * 세션을 저장하는 배열
+	 */
 	private static final List<Session> sessionList=new ArrayList<Session>();
 	
     private static final Logger logger = LoggerFactory.getLogger(WebSocketChat.class);
@@ -37,6 +45,10 @@ public class WebSocketChat {
         System.out.println("dao: " + (dao == null));
     }
     
+    /**
+     * 채팅 시작을 위해 웹소켓 연결하는 메소드
+     * @param session 세션 객체
+     */
     @OnOpen
     public void onOpen(Session session) {
         logger.info("Open session id:"+session.getId());
@@ -59,23 +71,13 @@ public class WebSocketChat {
     /*
      * 모든 사용자에게 메시지를 전달한다.
      */
+    /**
+     * 채팅 메시지를 모든 사용자에게 전송하는 메소드
+     * @param self 채팅을 보낸사람이 본인인지 구분하는 변수
+     * @param sender 채팅을 보낸 사람
+     * @param message 메시지 내용을 저장하는 변수
+     */
     private void sendAllSessionToMessage(Session self, String sender, String message) {
-    	
-//        try {
-//            for(Session session : WebSocketChat.sessionList) {
-//                if((!self.getId().equals(session.getId())) && (!self.getId().equals("Administrator1"))) {
-//                    session.getBasicRemote().sendText(sender+" : "+message);
-//                } else if ((!self.getId().equals(session.getId())) && (self.getId().equals("Administrator1"))) {
-//                	session.getBasicRemote().sendText("마이펫 : "+message);
-//                }
-//                
-//                
-//                
-//            }
-//        }catch (Exception e) {
-//
-//            System.out.println(e.getMessage());
-//        }
     	
         try {
         	for(Session session : WebSocketChat.sessionList) {
@@ -95,17 +97,14 @@ public class WebSocketChat {
         }
     }
     
-    
-    
-    
-    
-    
-    
-//    @Autowired
-//    private IMemberDAO dao;
-    
+
     /*
      * 내가 입력하는 메세지
+     */
+    /**
+     * 본인이 입력한 메시지를 전송하는 메소드
+     * @param message 메시지 내용
+     * @param session 세션 객체
      */
     @OnMessage
     public void onMessage(String message,Session session) {
@@ -165,6 +164,10 @@ public class WebSocketChat {
         
     }
     
+    /**
+     * 채팅 종료 메소드
+     * @param session 세션 객체
+     */
     @OnClose
     public void onClose(Session session) {
         logger.info("Session "+session.getId()+" has ended");

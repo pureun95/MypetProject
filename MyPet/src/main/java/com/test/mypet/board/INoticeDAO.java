@@ -2,6 +2,11 @@ package com.test.mypet.board;
 
 import java.util.List;
 
+/**
+ * 공지사항 관련 db작업 전담 인터페이스
+ * @author 노푸른
+ *
+ */
 public interface INoticeDAO {
 
 	List<NoticeDTO> noticeList();

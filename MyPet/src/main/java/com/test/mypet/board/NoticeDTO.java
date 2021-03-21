@@ -2,6 +2,11 @@ package com.test.mypet.board;
 
 import lombok.Data;
 
+/**
+ * 공지사항 객체
+ * @author 노푸른
+ *
+ */
 @Data
 public class NoticeDTO {
 	
@@ -11,12 +16,7 @@ public class NoticeDTO {
 	private String writeDate;
 	private String viewCount;
 	private String image;
-	
 	private String id;
-	
-//	private int prevNum; //이전글의 글번호를 담을 필드
-//	private int nextNum; //다음글의 글번호를 담을 필드
-	
 	private String lseq;
 	private String result;
 
