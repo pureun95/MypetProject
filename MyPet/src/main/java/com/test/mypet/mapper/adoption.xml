@@ -94,5 +94,23 @@
 	<insert id="insertLikes" parameterType="HashMap">
 		insert into tblLike values(seqLike.nextVal,  #{seqAdoption}, #{seqUser})
 	</insert>
+	
+	
+	<!-- 동물병원 리스트 -->
+	<select id="getVet" parameterType="HashMap" resultType="adto">
+		select * from (select a.*, rownum as rnum from (select seqVet, name as nameV, address as addressV from tblVet order by seqVet desc) a) where rnum between #{begin} and #{end}	         
+	</select>
+	
+	
+	<!-- 동물병원 총 개수 -->
+	<select id="getVetCount" resultType="int">
+		select count(*) from tblVet         
+	</select>
+	
+	
+	<!-- 보호소 리스트 -->
+	<select id="getShelter" parameterType="HashMap" resultType="adto">
+		select * from (select a.*, rownum as rnum from (select seqShelter, name as nameS, address as addressS from tblShelter order by seqShelter desc) a) where rnum between #{begin} and #{end}
+	</select>
 
 </mapper>

@@ -90,7 +90,28 @@ public interface IAdoptionDAO {
 	 * @return 입양리스트
 	 */
 	List<AdoptionDTO> getUserList(HashMap<String, String> map);
-
-
+	
+	
+	/**
+	 * 
+	 * @return 동물병원 리스트
+	 */
+	List<AdoptionDTO> getVetList(HashMap<String, String> map);
+	
+	/***
+	 * 
+	 * @return 동물병원 총 개수
+	 */	
+	int getVetCount();
+	
+	
+	/**
+	 * 
+	 * @return 보호소 리스트
+	 */
+	List<AdoptionDTO> getShelterList(HashMap<String, String> map);
+	
+	
+	
 	
 }

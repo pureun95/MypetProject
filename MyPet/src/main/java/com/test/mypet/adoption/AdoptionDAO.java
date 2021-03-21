@@ -101,6 +101,33 @@ public class AdoptionDAO implements IAdoptionDAO {
 	}
 
 	
+	//동물병원 리스트
+	@Override
+	public List<AdoptionDTO> getVetList(HashMap<String, String> map) {
+		
+		return template.selectList("adoption.getVet");
+	}
+
+	
+	//동물병원 총 개수
+	@Override
+	public int getVetCount() {
+		
+		return template.selectOne("adoption.getVetCount");
+	}
+
+		
+	//보호소 리스트
+	@Override
+	public List<AdoptionDTO> getShelterList(HashMap<String, String> map) {
+		
+		return template.selectList("adoption.getShelter");
+	}
+	
+	
+	
+
+	
 	
 	
 
