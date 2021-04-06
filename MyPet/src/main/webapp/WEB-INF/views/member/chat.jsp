@@ -14,7 +14,14 @@
 
 
 <title>MyPet::채팅하기</title>
+
+
+
+
 <style>
+
+/* 추가 시험중 */
+
 * {
 	margin: 0;
 	padding: 0;
