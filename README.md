@@ -27,5 +27,8 @@
 
 
 # 기능 스크린샷
-<img src="https://user-images.githubusercontent.com/77381499/113775003-049ebb00-9763-11eb-8901-13e51c980d25.png"  width="300"> <img src="https://user-images.githubusercontent.com/77381499/113774997-036d8e00-9763-11eb-9392-8576bee27a24.png"  width="300">
-<img src="https://user-images.githubusercontent.com/77381499/113774999-04062480-9763-11eb-8bd7-9e7c681bf146.png"  width="300">
+* 회원가입 및 로그인
+<img src="https://user-images.githubusercontent.com/77381499/113775659-087f0d00-9764-11eb-85cb-9dfc2f59dcc5.png"  width="500"> <img src="https://user-images.githubusercontent.com/77381499/113775668-09b03a00-9764-11eb-9ec6-8b47961e974f.png"  width="500">
+<br>
+* 채팅 및 소개페이지
+<img src="https://user-images.githubusercontent.com/77381499/113775793-2c425300-9764-11eb-8662-95b83d0aa779.png"  width="300"> <img src="https://user-images.githubusercontent.com/77381499/113775770-277d9f00-9764-11eb-8312-6efdf1456b6b.png"  width="300"> <img src="https://user-images.githubusercontent.com/77381499/113775777-28aecc00-9764-11eb-829b-7c7f59a8ad7b.png"  width="300">
