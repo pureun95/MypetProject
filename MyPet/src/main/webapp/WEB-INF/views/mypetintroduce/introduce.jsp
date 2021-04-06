@@ -471,6 +471,7 @@
 		var cicle2 = document.getElementById('cicle2');
 		var cicle3 = document.getElementById('cicle3');
 
+		
 
 		img1.onmouseenter = function() {
 			img1.style.transform = "scale(1.15)";
