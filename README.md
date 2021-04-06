@@ -27,6 +27,5 @@
 
 
 # 기능 스크린샷
-<img src="https://user-images.githubusercontent.com/77381499/113775003-049ebb00-9763-11eb-8901-13e51c980d25.png"  width="300">
-<img src="https://user-images.githubusercontent.com/77381499/113774997-036d8e00-9763-11eb-9392-8576bee27a24.png"  width="300">
+<img src="https://user-images.githubusercontent.com/77381499/113775003-049ebb00-9763-11eb-8901-13e51c980d25.png"  width="300"> <img src="https://user-images.githubusercontent.com/77381499/113774997-036d8e00-9763-11eb-9392-8576bee27a24.png"  width="300">
 <img src="https://user-images.githubusercontent.com/77381499/113774999-04062480-9763-11eb-8bd7-9e7c681bf146.png"  width="300">
