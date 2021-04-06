@@ -448,7 +448,6 @@
 		var _width = '350';
 		var _height = '600';
 
-		// 팝업을 가운데 위치시키기 위해 아래와 같이 값 구하기.. 오른쪽 아래 하단에 두는건..? right=0 bottom=0으로 두는데 왜 안되지??
 		var _left = Math.ceil((window.screen.width - _width) / 2);
 		var _top = Math.ceil((window.screen.width - _height) / 2);
 
@@ -472,18 +471,6 @@
 		var cicle2 = document.getElementById('cicle2');
 		var cicle3 = document.getElementById('cicle3');
 
-		/* function zoomIn(event) {
-			event.target.style.transform = "scale(1.15)";
-			event.target.style.zIndex = 1;
-			event.target.style.transition = "all 0.5s";
-
-		}
-
-		function zoomOut(event) {
-			event.target.style.transform = "scale(1)";
-			event.target.style.zIndex = 0;
-			event.target.style.transition = "all 0.5s";
-		} */
 
 		img1.onmouseenter = function() {
 			img1.style.transform = "scale(1.15)";
