@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class MemberService {
 	
 	/**
-	 * 멤버 db작업 전담 인터페시으
+	 * 멤버 db작업 전담 인터페
 	 */
 	@Autowired
 	IMemberDAO imemberDAO;
