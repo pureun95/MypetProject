@@ -41,14 +41,6 @@ public class NoticeController {
 
 		HashMap<String, String> map = new HashMap<String, String>();
 
-		// 검색
-//		   String search = request.getParameter("search");
-//			
-//			if (!(search == null || search.equals(""))) {
-//				map.put("search", search);
-//			}
-
-		// noticeview.action -> 새로고침 조회수 증가 방지 -> 플래그 생성
 		session.setAttribute("read", false);
 
 		// 페이징
@@ -153,23 +145,8 @@ public class NoticeController {
 		
 		System.out.println("seqNotice" + seqNotice);
 
-
-		// 조회수증가
-//		if (session.getAttribute("read") == null || (boolean) session.getAttribute("read") == false) {
-//
-//			noticeDAO.updateViewCount(ndto);
-//			session.setAttribute("read", true);
-//		}
 		NoticeDTO ndto = noticeDAO.get(seqNotice);
-		
-//		int vcount = Integer.parseInt(ndto.getViewCount());
-//		   vcount++;
-//		   String temp = vcount + "";
-//		   ndto.setViewCount(temp);
-//
-//		   noticeDAO.updateViewCount(ndto);
-
-		
+			
 		
 		request.setAttribute("ndto", ndto);
 
@@ -213,13 +190,6 @@ public class NoticeController {
 			NoticeDTO ndto) {
 
 		ndto.setId((String) session.getAttribute("id"));
-
-//		 //2. 첨부 파일 처리하기
-//			MultipartHttpServletRequest multi = (MultipartHttpServletRequest)request;
-//		   
-//			MultipartFile image = multi.getFile("image");
-//			
-//			String filename = "";
 
 		int result = noticeDAO.write(ndto);
 
