@@ -17,7 +17,7 @@
 	/* margin-right: px; */
 }
 
-/* main의 너비가 커기면 위의 min-whith도 커져야 footer가 맞습니다.*/
+
 #content {
 	height: 1500px;
 	font-family: NanumSquare;
@@ -222,32 +222,22 @@ margin-left: 8px;
 				<select name="birth_day" id="birth_day" title="일" class="custom-select"></select>
 				</div>
 				
-				
-				
-				
-<!-- <input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br> -->
+
 <br>
-<!-- <input type="text" id="sample6_detailAddress" placeholder="상세주소"> -->
-<!-- <input type="text" id="sample6_extraAddress" placeholder="참고항목"> -->
+
 				
 				
 				
-				<%-- <c:if test="${#birth_year option:checked && #birth_month option:checked && #birth_day option:checked}">
-				<input type="text" id="birthdate" name="birthdate" value=$('#birth_year option:selected).val()' + '$(#birth_year option:selected").val()')>
-				</c:if> --%>
 				<span>주소</span> 
 				<div>
-				<!-- <input type="text" class="form-control search-text" name="addr1" id="addr1" readonly="readonly">  -->
+				
 				<input type="text" id="addr1" class="form-control search-text" placeholder="우편번호" name="addr1" readonly="readonly">
 				<input type="button" id="btnaddress" class="btn btn-default" onclick="execPostCode()" value="주소검색">					
 				</div>
 				
-				<div> 
-				<!-- <input type="text" name="addr2" id="addr2" class="form-control" placeholder="도로명주소" readonly="readonly" > -->
+				<div>
 				<input type="text" id="addr2" name="addr2" placeholder="도로명주소" class="form-control" readonly="readonly" >
 				<input type="text" id="addr3" name="addr3" class="form-control" placeholder="상세주소를 입력해주세요." >
-				<!-- <input type="text" id="sample6_extraAddress" placeholder="참고항목" style="margin-bottom: 15px; visibility:hidden;" > -->
-				<!-- <input type="text" name="addr3" id="addr3" class="form-control" placeholder="상세주소를 입력해주세요." style="margin-bottom: 15px;"> -->
 				</div>
 				<div style="clear: both;"></div>
 	
@@ -267,7 +257,6 @@ margin-left: 8px;
 			</div>
 
 			<input type="button" onclick="validation()" class="btn btn-outline-secondary" type="button" id="btn_register" value="가입하기">
-		<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />  --%>
 
 
 		</form>
@@ -278,15 +267,7 @@ margin-left: 8px;
 	<!-- join_content -->
 
 <div class="chaticon" id="chaticon"></div>
-<!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    new daum.Postcode({
-        oncomplete: function(data) {
-            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
-            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
-        }
-    }).open();
-</script> -->
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	/* 주소검색창 */
@@ -307,35 +288,6 @@ margin-left: 8px;
                 } else { // 사용자가 지번 주소를 선택했을 경우(J)
                 	addr2 = data.jibunAddress;
                 }
-
-                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-               // if(data.userSelectedType === 'R'){
-                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                    /* if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraAddr += data.bname;
-                    } */
-                    // 건물명이 있고, 공동주택일 경우 추가한다.
-                    /* if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    } */
-                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                    /* if(extraAddr !== ''){
-                        extraAddr = ' (' + extraAddr + ')';
-                    } */
-                    // 조합된 참고항목을 해당 필드에 넣는다.
-                    //document.getElementById("sample6_extraAddress").value = extraAddr;
-                
-               /*  } else {
-                    document.getElementById("sample6_extraAddress").value = '';
-                } */
-
-                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-                //document.getElementById('addr1').value = data.zonecode;
-                //document.getElementById("addr2").value = addr2;
-                
-              /*   $("[name=addr1]").val(data.zonecode);
-                $("[name=addr2]").val(addr); */
                 
                 document.getElementById('addr1').value = data.zonecode; //5자리 새우편번호 사용
                 document.getElementById('addr2').value = addr2;
@@ -399,34 +351,7 @@ chaticon.onclick = function() {
     }
 
   }
-  
-  /* 아이디 중복체크 */
-  
-/*   var token = $("input[name='_csrf']").val();
-var header = "X-CSRF-TOKEN"; */
 
-
-/*   function id_check() {
-	  id = $("#id").val();
-	  
-	  $.ajax({
-			url : "/idCheck.action",  
-			type: "post",
-			dataType : "text",
-			data : id,
-			contentType : 'text/plain; charset=utf-8;',
-			success : function(data) {
-				if (data == 0) {
-					console.log("아이디 없음");
-					alert("사용가능한 아이디입니다.");
-				} else {
-					console.log("아이디 이미 있음");					
-					arert("이미 사용중인 아이디입니다.");
-				}
-			}
-			
-	  })
-  } */
   
   
   /* 아이디 중복체크 */
@@ -448,8 +373,6 @@ var header = "X-CSRF-TOKEN"; */
 
               url : "http://localhost:8090/mypet/member/idCheck.action",
               dataType : "json",
-              //dataType : "text",
-              //contentType: "application/json; charset=UTF-8",
               success : function(data) {
 //                  if (data.count > 0) {
                   if (data > 0) {
@@ -466,7 +389,7 @@ var header = "X-CSRF-TOKEN"; */
                       $(".divInputId").addClass("has-success")
                       $(".divInputId").removeClass("has-error")
                       $("#userpwd").focus();
-                      //아이디가 중복하지 않으면  idck = 1 
+                      //아이디가 중복하지 않으면 1 
                       id_check = 1;
                       
                   }
@@ -480,15 +403,6 @@ var header = "X-CSRF-TOKEN"; */
       
       });
   });
-  
-  
-  
-  
-  
-  
-  
-
-  
   
   
   
@@ -553,11 +467,7 @@ function validation() {
   
     } 
     
-     /* if(confirm("회원가입을 하시겠습니까?")){
-        alert("가입이 완료되었습니다. 로그인 후 이용해주세요.");
-        $("#register").submit();
-        return true;
-    } */ 
+    
     
 }
 
