@@ -219,14 +219,6 @@ public class MemberController {
 	//
 	
 	
-	
-//	@RequestMapping(value = "/member/register.action", method = { RequestMethod.GET })
-//	public String register(HttpServletRequest request, HttpServletResponse response, HttpSession session) {
-//
-//		return "member/register";
-//
-//	}
-	
 	/**
 	 * 다른페이지에서 회원가입 페이지로 이동할 때 호출하는 메소드
 	 * @throws Exception 예외처리
@@ -237,8 +229,6 @@ public class MemberController {
 		
 	}
 	
-//	@RequestMapping(value = "/member/register2.action", method = { RequestMethod.POST })
-//	public String register2(HttpServletRequest request, HttpServletResponse response, HttpSession session, MemberDTO ndto) {
 
 	/**
 	 * 회원가입 폼에서 제출을 눌렀을 때 클라이언트 정보를 서버로 전송하는 메소드
@@ -342,24 +332,10 @@ public class MemberController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/member/idCheck.action")
-	public int idCheck(@RequestBody String id) {
-	//public Map<Object, Object> idCheck(@RequestBody String id) {
+	public int idCheck(@RequestBody String id) {	
 		
-//		int count = 0;
-//		Map<Object, Object> map = new HashMap<Object, Object>();
-//		
 		int count = dao.idCheck(id);
 		System.out.println(count);
-//		map.put("count", count);
-//		
-//		return map;
-		
-		/////
-		
-//		String id = paramData.trim();
-//		System.out.println(id);
-		
-		//MemberDTO ndto = dao.idCheck(id);
 		
 		if(count >= 1) {
 			return 1;
@@ -367,10 +343,6 @@ public class MemberController {
 			System.out.println("null!!");
 			return 0;
 		}
-		
-//		int result = dao.idCheck(id);
-//		
-//		return result;
 	}
 	
 	
