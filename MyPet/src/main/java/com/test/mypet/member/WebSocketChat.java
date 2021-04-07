@@ -111,34 +111,15 @@ public class WebSocketChat {
     	
     	String sender = message.split(",")[1]; //user_id
     	message = message.split(",")[0]; //메시지 내용
-    	
-    	//String seqUser = message.split(",")[2];
 
     	ChatMessageDTO dto = new ChatMessageDTO();
     	
-    	//MemberDTO mdto = new MemberDTO();
-    	//mdto.setSeqUser((String)sessions.getAttribute("seqUser"));
-//      dao.addlist(dto); //이위치에 넣어봐도 채팅 종료됨!!
-    	
-    	System.out.println("보낸사람: " + sender);
-    	//System.out.println("메시지: " + message);
-    	//System.out.println(seqUser);
-    	//System.out.println(dto.seqUser);
-    
-        //System.out.println(((ChatMessageDTO) session).getSeqUser());
-    	
-    	//ChatMessageDTO cdto = dao.checkUser(dto.seqUser);
-    	//System.out.println(cdto.getSeqUser());
-    	
+    	System.out.println("보낸사람: " + sender);    	
     	dto.setContent(message);
     	System.out.println("메시지: " + dto.getContent().toString());
-    	//dao.checkUser(sender);
-        //System.out.println("seqUser: " + dao.checkUser(sender));
-    	
-    	//"content", message);
     	
         logger.info("Message From "+sender + ": "+message);
-//        dao.addlist(dto); //이위치에 넣으면 채팅 종료됨!!
+
         
         try {
             final Basic basic=session.getBasicRemote();            
@@ -150,7 +131,7 @@ public class WebSocketChat {
         }
         
         
-        //dao.addlist(dto); 포기해포기해아오못해ㅁ이러먀러댜ㅐㅓ
+        
         System.out.println(dao==null);
         sendAllSessionToMessage(session, sender, message);       
         
